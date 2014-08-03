@@ -47,11 +47,11 @@ group :development, :test do
 	gem 'capybara'
 	gem 'launchy'
 	gem 'database_cleaner'
+	gem 'guard-rspec'
 end
 
 group :test do
 	gem 'factory_girl_rails'
-	gem 'guard-rspec'
 end
 
 group :development do
