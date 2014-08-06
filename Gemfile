@@ -41,17 +41,22 @@ gem 'spring',        group: :development
 gem 'haml-rails'
 gem 'less-rails'
 gem 'devise'
+gem 'phony_rails'
 
 group :development, :test do
 	gem 'rspec-rails'
+	gem 'factory_girl_rails'
+	gem 'faker'
 	gem 'capybara'
 	gem 'launchy'
 	gem 'database_cleaner'
+	# gem 'capybara-webkit'
+	# gem 'selenium-webdriver'
 	gem 'rb-fsevent'
 end
 
 group :test do
-	gem 'factory_girl_rails'
+
 	gem 'guard-rspec'
 
 end

@@ -20,6 +20,8 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
+  username: storage_rails_app
+  password:
 
 development:
   <<: *default
@@ -81,5 +83,3 @@ test:
 production:
   <<: *default
   database: storage_rails_app_production
-  username: storage_rails_app
-  password: <%= ENV['STORAGE_RAILS_APP_DATABASE_PASSWORD'] %>
