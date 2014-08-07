@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :storage_items
+  resources :storage_items, :box_requests, :delivery_requests, :pickup_requests
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

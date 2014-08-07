@@ -13,6 +13,11 @@ class User < ActiveRecord::Base
   validates :zip, inclusion: { in: [80301, 80303], message: 'must be 80301 or 80303.' }
   validates :phone_number, :phony_plausible => true
 
+  has_many :storage_items
+  has_many :box_requests
+  has_many :delivery_requests
+  has_many :pickup_requests
+
 
   
 

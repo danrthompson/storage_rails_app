@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806084735) do
+ActiveRecord::Schema.define(version: 20140807042848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,18 +19,29 @@ ActiveRecord::Schema.define(version: 20140806084735) do
   create_table "box_requests", force: true do |t|
     t.integer  "user_id"
     t.datetime "delivery_time"
-    t.boolean  "completed"
+    t.datetime "completion_time"
     t.integer  "box_quantity"
+    t.integer  "driver_id"
   end
 
   add_index "box_requests", ["user_id"], name: "index_box_requests_on_user_id", using: :btree
 
+  create_table "delivery_requests", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "delivery_time"
+    t.datetime "completion_time"
+    t.integer  "driver_id"
+  end
+
+  add_index "delivery_requests", ["user_id"], name: "index_delivery_requests_on_user_id", using: :btree
+
   create_table "pickup_requests", force: true do |t|
     t.integer  "user_id"
     t.datetime "delivery_time"
-    t.boolean  "completed"
+    t.datetime "completion_time"
     t.integer  "box_quantity"
     t.integer  "couch_quantity"
+    t.integer  "driver_id"
   end
 
   add_index "pickup_requests", ["user_id"], name: "index_pickup_requests_on_user_id", using: :btree
@@ -42,8 +53,14 @@ ActiveRecord::Schema.define(version: 20140806084735) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "delivery_request_id"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "entered_storage_at"
+    t.datetime "left_storage_at"
   end
 
+  add_index "storage_items", ["delivery_request_id"], name: "index_storage_items_on_delivery_request_id", using: :btree
   add_index "storage_items", ["user_id"], name: "index_storage_items_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

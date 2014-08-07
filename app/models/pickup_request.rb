@@ -4,6 +4,8 @@ class PickupRequest < ActiveRecord::Base
 	validates :box_quantity, :couch_quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 	validate :includes_at_least_one_item
 
+	belongs_to :user
+
 	protected
 
 	def includes_at_least_one_item
