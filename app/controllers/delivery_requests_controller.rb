@@ -1,0 +1,3 @@
+class DeliveryRequestsController < ApplicationController
+
+end

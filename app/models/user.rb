@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :address_line_1, :city, :state, :zip, :phone_number, presence: true
   validates :city, format: { with: /\ABoulder\z/, message: 'must be Boulder.' }
   validates :state, format: { with: /\ACO\z/, message: 'must be CO.' }
-  validates :zip, inclusion: { in: %w(80301 80303), message: 'must be 80301 or 80303.' }
+  validates :zip, inclusion: { in: [80301, 80303], message: 'must be 80301 or 80303.' }
   validates :phone_number, :phony_plausible => true
 
 
