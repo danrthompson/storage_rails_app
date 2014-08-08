@@ -1,5 +1,4 @@
 class StorageItem < ActiveRecord::Base
-
 	@@types = %w(box couch)
 
 	validates :entered_storage_at, :user_id, :type, presence: true
@@ -24,5 +23,4 @@ class StorageItem < ActiveRecord::Base
 			nil
 		end
 	end
-
 end

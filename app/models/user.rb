@@ -23,10 +23,6 @@ class User < ActiveRecord::Base
   has_many :completed_delivery_requests, class_name: 'DeliveryRequest', foreign_key: 'driver_id'
   has_many :completed_pickup_requests, class_name: 'PickupRequest', foreign_key: 'driver_id'
 
-
-  
-
-
   protected
 
   def normalize_city
@@ -36,28 +32,4 @@ class User < ActiveRecord::Base
   def normalize_state
   	self.state = self.state.strip.upcase unless self.state.blank?
   end
-
-	# user m props
-	# email
-	# password
-
-	# first_name
-	# last_name
-	# address_line_1
-	# address_line_2
-	# city
-	# state
-	# zip
-	# special_instructions
-	# phone_number
-
-	# billing:
-	# name on cc
-	# ccn
-	# exp month
-	# exp year
-	# code
-
-
-
 end
