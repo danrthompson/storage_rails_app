@@ -1,4 +1,5 @@
 class StorageItemsController < ApplicationController
+	before_filter authenticate_user!
 
 	def new
 		@storage_item = StorageItem.new
@@ -6,6 +7,11 @@ class StorageItemsController < ApplicationController
 
 	def create
 		@storage_item = StorageItem.create storage_params
+	end
+
+	def index
+		@storage_items = StorageItem.where(user_id: current_user, left_storage_at: nil, delivery_request_id: nil).order(:type, :entered_storage_at)
+		@storage_items_pending_delivery = StorageItem.where(user_id: current_user, left_storage_at: nil).where.not(delivery_request_id: nil).order(:type, :entered_storage_at)
 	end
 
 	private

@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
   has_many :delivery_requests
   has_many :pickup_requests
 
+  has_many :completed_storage_items, class_name: 'StorageItem', foreign_key: 'driver_id'
+  has_many :completed_box_requests, class_name: 'BoxRequest', foreign_key: 'driver_id'
+  has_many :completed_delivery_requests, class_name: 'DeliveryRequest', foreign_key: 'driver_id'
+  has_many :completed_pickup_requests, class_name: 'PickupRequest', foreign_key: 'driver_id'
+
 
   
 
