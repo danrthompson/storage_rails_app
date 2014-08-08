@@ -1,19 +1,16 @@
-module Requestable
-	extend ActiveSupport::Concern
+class Request < ActiveRecord::Base
 
-	included do
-		belongs_to :user
-		belongs_to :driver, class_name: 'User'
-		validates :user_id, :delivery_time, presence: true
-	end
+	belongs_to :user
+	belongs_to :driver, class_name: 'User'
+	validates :user_id, :delivery_time, presence: true
 
-	def delivery_time_available?(time)
+	def self.delivery_time_available?(time)
 		within_standard_times?(time) and fits_with_other_delivery_times?(time)
 	end
 
 	private
 
-	def within_standard_times?(time)
+	def self.within_standard_times?(time)
 		if time.saturday? or time.sunday?
 			return time.in? 12..19
 		elsif time.monday? or time.wednesday? or time.friday?
@@ -23,7 +20,7 @@ module Requestable
 		end
 	end
 
-	def fits_with_other_delivery_times?(time)
-		
+	def self.fits_with_other_delivery_times?(time)
+		true
 	end
 end

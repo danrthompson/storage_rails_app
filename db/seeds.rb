@@ -83,3 +83,9 @@ PickupRequest.create!({
 	completion_time: Time.now - 1.day + 2.hours + 30.minutes,
 })
 
+StorageItem.create!({
+	user_id: user1.id,
+	entered_storage_at: Time.now - 1.day,
+	item_type: 'box',
+})
+
