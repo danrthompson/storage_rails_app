@@ -1,0 +1,13 @@
+# Add application configuration variables here, as shown below.
+#
+# PUSHER_APP_ID: "2954"
+# PUSHER_KEY: 7381a978f7dd7f9a1117
+# PUSHER_SECRET: abdc3b896a0ffb85d373
+# STRIPE_API_KEY: EdAvEPVEC3LuaTg5Q3z6WbDVqZlcBQ8Z
+# STRIPE_PUBLIC_KEY: pk_BRgD57O8fHja9HxduJUszhef6jCyS
+
+PAPERCLIP_S3_BUCKET: storage_rails_app
+AWS_ACCESS_KEY_ID: AKIAIYDDUHYCJP42HORQ
+AWS_SECRET_ACCESS_KEY: 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
+development:
+  PAPERCLIP_S3_BUCKET: storage_rails_app_dev

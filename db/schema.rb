@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20140807042848) do
 
   create_table "storage_items", force: true do |t|
     t.integer  "user_id"
-    t.string   "type"
+    t.string   "item_type"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

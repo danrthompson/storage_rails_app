@@ -7,7 +7,7 @@ class PickupRequest < ActiveRecord::Base
 	protected
 
 	def includes_at_least_one_item
-		unless StorageItem.types.any? { |type| self.send("#{type}_quantity") > 0 }
+		unless StorageItem.item_types.any? { |item_type| self.send("#{item_type}_quantity") > 0 }
 			errors.add :box_quantity, 'and all other quantities are zero.'
 		end
 	end
