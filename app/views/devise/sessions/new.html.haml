@@ -13,4 +13,38 @@
       = f.check_box :remember_me
       = f.label :remember_me
   %div= f.submit "Sign in"
--# = render "devise/shared/links"
+
+
+/ Render header partial
+%br/
+%br/
+%br/
+%br/
+%br/
+/ Section: ITEM SELECTION
+%section#about.home-section.text-center
+  .heading-about.marginbot-30
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          .section-heading
+            %h2 Create An Account
+  / BODY CONTENT: SELECT ITEMS
+  .container
+    .row
+      .col-lg-6.col-md-offset-3
+        .boxed-grey
+          %form#contact-form
+            .row
+              .col-md-8.col-md-offset-2
+                .form-group.address-form
+                  %input#name.form-control{placeholder: "First Name", required: "required", type: "text"}/
+                  %input#name.form-control{placeholder: "Last Name", required: "required", type: "text"}/
+                  %input#name.form-control{placeholder: "email", required: "required", type: "text"}/
+                  %input#name.form-control{placeholder: "password", required: "required", type: "password"}/
+              .col-md-8.col-md-offset-2.bottom-buttons
+                %a{href: "signup-review.html"}
+                  %h1.btn.btn-skin.pull-right Create Account
+                %a{href: "signup-delivery.html"}
+                  %h1.btn.btn-default.pull-left Back
+        %br/

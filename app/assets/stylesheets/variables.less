@@ -1,0 +1,38 @@
+
+
+@default-yellow: #ffce34;
+@default-blue: #206dab;
+@dark-blue: #17598F;
+@light-blue:  #E0ECF5;
+
+@gray-background: #EEE;
+@gray-regular: #666;
+@dark-gray: #444;
+@light-gray: #AFAFAF;
+
+@default-font: 'Lato', Arial, sans-serif;
+
+
+.default-font{
+	font-family: @default-font;
+	font-weight: 300;
+}
+
+///////////////////// MIXINS //////////////////////
+
+.placeholder(@activeColor){
+	.form-control::-webkit-input-placeholder { /* WebKit browsers */
+	    color:    @activeColor;
+	}
+	.form-control:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	    color:    @activeColor;
+	    opacity:  1;
+	}
+	.form-control::-moz-placeholder { /* Mozilla Firefox 19+ */
+	    color:    @activeColor;
+	    opacity:  1;
+	}
+	.form-control:-ms-input-placeholder { /* Internet Explorer 10+ */
+	    color:    @activeColor;
+	}
+}

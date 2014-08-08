@@ -1,0 +1,32 @@
+%br/
+%br/
+%br/
+
+/ BLUE HEADER BAR
+.container.full-width.blue-bg.no-padding.white.dashboard-header.single-row
+  .row
+    .col-md-6.align-center
+      %h1 Who We Are
+    .col-md-1.col-md-offset-4.col-sm-4.col-xs-4.align-center
+      .service-box.no-label
+        .service-icon
+          %i.fa.fa-question-circle.fa-3x
+
+/ Section: ITEM SELECTION
+%section#about.home-section.text-center
+  .heading-about.marginbot-20
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          .section-heading
+            %img.half-width{alt: "", src: "img/team/5.jpg"}/
+            %br/
+            %br/
+            %br/
+            %h2 The IG Story
+            %p
+              Have a question? Maybe some feedback for the site? We want to hear from you! You can always reach us via
+              %a.heavy-font.blue theteam@infinitegarage.com
+              or calling
+              = succeed "." do
+                %span.heavy-font.blue 1-800-555-5555
