@@ -12,15 +12,15 @@ class Request < ActiveRecord::Base
 
 	def self.within_standard_times?(time)
 		if time.saturday? or time.sunday?
-			return time.in? 12..19
+			return time.hour.in? 12..19
 		elsif time.monday? or time.wednesday? or time.friday?
-			return time.in? 8..19
+			return time.hour.in? 8..19
 		elsif time.tuesday? or time.thursday?
-			return time.in? 19..22
+			return time.hour.in? 19..22
 		end
 	end
 
 	def self.fits_with_other_delivery_times?(time)
-		true
+		not where(completion_time: nil, delivery_time: (time - 1.hour)..(time + 1.hour)).exists?
 	end
 end
