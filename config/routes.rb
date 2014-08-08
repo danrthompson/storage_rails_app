@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :storage_items, :box_requests, :delivery_requests, :pickup_requests
+
+  get 'admin_page' => 'admin_pages#admin_page'
+  get '404', to: redirect('/404'), as: 'not_found'
+  get '500', to: redirect('/500'), as: 'error'
+
+  root 'static_pages#homepage'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#homepage'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

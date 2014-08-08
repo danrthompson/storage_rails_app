@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807042848) do
+ActiveRecord::Schema.define(version: 20140808073318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20140807042848) do
 
   create_table "storage_items", force: true do |t|
     t.integer  "user_id"
-    t.string   "type"
+    t.string   "item_type"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140807042848) do
     t.integer  "zip"
     t.text     "special_instructions"
     t.string   "phone_number"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
