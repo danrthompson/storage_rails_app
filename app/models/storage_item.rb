@@ -1,7 +1,7 @@
 class StorageItem < ActiveRecord::Base
 	@@item_types = %w(box couch)
 
-	has_attached_file :image
+	has_attached_file :image, default_url: 'https://s3.amazonaws.com/storage_rails_app_dev/images/1419618-unicorn2.jpg'
 	belongs_to :user
 	belongs_to :delivery_request
 

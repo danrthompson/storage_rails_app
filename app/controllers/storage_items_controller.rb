@@ -1,5 +1,5 @@
 class StorageItemsController < ApplicationController
-	before_filter authenticate_user!
+	before_action authenticate_user!
 
 	def new
 		@storage_item = StorageItem.new
