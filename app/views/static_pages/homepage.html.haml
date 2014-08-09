@@ -1,4 +1,5 @@
 
+= render :partial => 'partials/header'
 
 %section#intro.intro
   .slogan
@@ -15,7 +16,7 @@
     %br/
     %br/
     .row.home-screen-links
-      / .col-md-2.col-md-offset-3
+      .col-md-2.col-md-offset-3
       /   %a{:href => "#what-we-do"}/
       /   .border-box What Do We Do?
       / .col-md-2
@@ -75,8 +76,7 @@
               \... and one more thing: we provide packing boxes
               %b.blue for free!
     / End Row
-    %br/
-    %br/
+ 
 / /Section: services
 .single-line.no-margin
 .row.homepage-started-row.bg-gray
@@ -94,7 +94,7 @@
     .container
       .row
         .col-lg-10.col-lg-offset-1
-          %img.full-width{:alt => "", :src => "img/primary-graphic.png"}/
+          %img.full-width{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/primary-graphic.png"}/
 / Section
 / Section: works
 %section#works.home-section.text-center
@@ -105,7 +105,7 @@
           .section-heading
             %h2.white How It Works
           %br/
-          %img.full-width{:alt => "", :src => "img/how-it-works.png"}/
+          %img.full-width{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/how-it-works.png"}/
 / /Section: works
 / Section: contact
 %section#store-what.home-section.text-center
@@ -165,7 +165,7 @@
               %h4 Standard Box
               %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month"
 / /Section: contact
-%div
+.row
   .col-md-12
     .single-line
     .row.homepage-started-row
@@ -184,41 +184,46 @@
         %p
           Copyright &copy; 2014 Infinite Garage - by
           %a{:href => "http://bootstraptaste.com"} Bootstraptaste
-/ Core JavaScript Files
-%script{:src => "js/jquery.min.js"}
-%script{:src => "js/bootstrap.min.js"}
-%script{:src => "js/jquery.easing.min.js"}
-%script{:src => "js/classie.js"}
-%script{:src => "js/gnmenu.js"}
-%script{:src => "js/jquery.scrollTo.js"}
-%script{:src => "js/nivo-lightbox.min.js"}
-%script{:src => "js/stellar.js"}
-/ Custom Theme JavaScript
-%script{:src => "js/custom.js"}
-/ FLEXSLIDER JS
-/ jQuery
-%script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"}
-:javascript
-  window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')
-/ FlexSlider
-%script{:defer => "", :src => "js/slider/jquery.flexslider.js"}
-:javascript
-  $(function(){
-    SyntaxHighlighter.all();
-  });
-  $(window).load(function(){
-    $('.flexslider').flexslider({
-      animation: "slide",
-      start: function(slider){
-        $('body').removeClass('loading');
-      }
-    });
-  });
-/ Syntax Highlighter
-%script{:src => "js/slider/shCore.js", :type => "text/javascript"}
-%script{:src => "js/slider/shBrushXml.js", :type => "text/javascript"}
-%script{:src => "js/slider/shBrushJScript.js", :type => "text/javascript"}
-/ Optional FlexSlider Additions
-%script{:src => "js/slider/jquery.easing.js"}
-%script{:src => "js/slider/jquery.mousewheel.js"}
-%script{:defer => "", :src => "js/slider/demo.js"}
+
+
+
+
+
+/ / Core JavaScript Files
+/ %script{:src => "js/jquery.min.js"}
+/ %script{:src => "js/bootstrap.min.js"}
+/ %script{:src => "js/jquery.easing.min.js"}
+/ %script{:src => "js/classie.js"}
+/ %script{:src => "js/gnmenu.js"}
+/ %script{:src => "js/jquery.scrollTo.js"}
+/ %script{:src => "js/nivo-lightbox.min.js"}
+/ %script{:src => "js/stellar.js"}
+/ / Custom Theme JavaScript
+/ %script{:src => "js/custom.js"}
+/ / FLEXSLIDER JS
+/ / jQuery
+/ %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"}
+/ :javascript
+/   window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')
+/ / FlexSlider
+/ %script{:defer => "", :src => "js/slider/jquery.flexslider.js"}
+/ :javascript
+/   $(function(){
+/     SyntaxHighlighter.all();
+/   });
+/   $(window).load(function(){
+/     $('.flexslider').flexslider({
+/       animation: "slide",
+/       start: function(slider){
+/         $('body').removeClass('loading');
+/       }
+/     });
+/   });
+/ / Syntax Highlighter
+/ %script{:src => "js/slider/shCore.js", :type => "text/javascript"}
+/ %script{:src => "js/slider/shBrushXml.js", :type => "text/javascript"}
+/ %script{:src => "js/slider/shBrushJScript.js", :type => "text/javascript"}
+/ / Optional FlexSlider Additions
+/ %script{:src => "js/slider/jquery.easing.js"}
+/ %script{:src => "js/slider/jquery.mousewheel.js"}
+/ %script{:defer => "", :src => "js/slider/demo.js"}
