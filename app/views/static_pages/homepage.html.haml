@@ -1,5 +1,8 @@
 
 = render :partial => 'partials/header'
+ 
+%p= link_to 'Login', new_user_session_path
+
 
 %section#intro.intro
   .slogan
@@ -177,15 +180,16 @@
         .boxed-gray.continue-button.pull-left
           %a{:href => "signup-items.html"}
             %button.btn.btn-primary.blue-bg-hover{:type => "button"} Get Started
-%footer
-  .container
-    .row
-      .col-md-12.col-lg-12
-        %p
-          Copyright &copy; 2014 Infinite Garage - by
-          %a{:href => "http://bootstraptaste.com"} Bootstraptaste
+/ %footer
+/   .container
+/     .row
+/       .col-md-12.col-lg-12
+/         %p
+/           Copyright &copy; 2014 Infinite Garage - by
+/           %a{:href => "http://bootstraptaste.com"} Bootstraptaste
 
 
+= render :partial => 'partials/footer'
 
 
 
