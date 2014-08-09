@@ -1,0 +1,194 @@
+%p homepage
+%p= link_to 'Login', new_user_session_path
+
+/  NEW CODE FROM FRONT END TEMPLATE
+
+.container
+  %ul#gn-menu.gn-menu-main.main-header
+    %li.pull-right
+      %a{href: ""}
+        %span.light-gray> Already Have An Account?
+        Login Here
+
+/ Section: intro
+%section#intro.intro
+  .slogan
+    %h1 SIMPLIFY
+    %h3.dark-gray We Make Storage Easy
+    .row
+      .col-md-2.col-md-offset-5.col-sm-8.col-sm-offset-2.col-xs-8.col-xs-offset-2
+        .boxed-gray.continue-button
+          %a{href: "signup-items.html"}
+            %button.btn.btn-primary.blue-bg.blue-bg-hover{type: "button"} Get Started
+    %br
+    %br
+    %br
+    .row.home-screen-links
+      .col-md-2.col-md-offset-3
+        %a{href: "#what-we-do"}
+          .border-box What Do We Do?
+      .col-md-2
+        %a{href: "#save-much"}
+          .border-box How Much Can I Save?
+      .col-md-2
+        %a{href: "#store-what"}
+          .border-box What Can I Store?
+      / /Section: intro
+%br
+%br
+%br
+  / Section: services
+%section#what-we-do.home-section.text-center
+  .container
+    .row
+      .col-md-10.col-md-offset-1
+        .section-heading
+          %h2 We Make Storage Easy
+        %br
+        %br
+        .row
+          .col-sm-4.col-md-4
+            .service-box
+              .service-icon
+                %img.offer-img{alt: "", src: "img/offer-1.png"}
+                .service-desc
+                  %h5
+                    Save With
+                    %br Pricing By The Box
+                    %p Save money by only paying for the space you use. Our fees are calculated by the item - so there's no need to pay for half-full storage containers.
+          .col-sm-4.col-md-4
+            .service-box
+              .service-icon
+                %img.offer-img{alt: "", src: "img/offer-2.png"}
+                .service-desc
+                  %h5
+                    Pickup  Delivery
+                    %br DOOR TO DOOR
+                    %p We pick up your items for free! Then when you're ready, let us know and we'll deliver  right back to your door. Easy as that!
+          .col-sm-4.col-md-4
+            .service-box
+              .service-icon
+                %img.offer-img{alt: "", src: "img/offer-3.png"}
+                .service-desc
+                  %h5
+                    Any Item
+                    %br Any Size
+                    %p We're great at storing boxes, but that's not all we store. Have a couch? A bike? Old furniture? We can help. We store anything.
+            %br
+        .row.homepage-started-row
+          .col-md-10.col-md-offset-1.center-align
+            %h3
+              \... and one more thing: we provide packing boxes
+              %b.blue for free!
+          / End Row
+        %br
+        %br
+        / /Section: services
+        .single-line.no-margin
+        .row.homepage-started-row.bg-gray
+          .col-md-6.col-md-offset-2
+            %h3.dark-gray The best decision you'll make today
+          .col-md-2
+            .boxed-gray.continue-button.pull-left
+              %a{href: "signup-items.html"}
+                %button.btn.btn-primary.blue-bg-hover{type: "button"} Get Started
+        .single-line.no-padding
+        / Section: works
+        %section#save-much.home-section.text-center
+          .heading-works.marginbot-50
+            .container
+              .row
+                .col-lg-10.col-lg-offset-1
+                  %img.full-width{alt: "", src: "img/primary-graphic.png"}
+          / Section
+          / Section: works
+          %section#works.home-section.text-center
+            .heading-works.marginbot-50
+              .container
+                .row
+                  .col-lg-8.col-lg-offset-2
+                    .section-heading
+                      %h2.white How It Works
+                    %br
+                      %img.full-width{alt: "", src: "img/how-it-works.png"}
+              / /Section: works
+              / Section: contact
+              %section#store-what.home-section.text-center
+                .container
+                  .row
+                    .col-md-10.col-md-offset-1
+                      .section-heading
+                        %br
+                          %h2 Any Item, Any Size
+                          %p.dark-gray What do we store? Anything! Here are some of the most common items stored by our users. Have something unique or odd shaped? Let us know and we'll give it its own special home.
+                          %br
+                          .row.inventory
+                            / TOP ROW
+                            .col-md-4.col-sm-4.col-xs-4.inventory-entries
+                              .inner
+                                .avatar
+                                  %img.img-responsive{alt: "", src: "img/team/7.PNG"}/
+                                %h4 Standard Box
+                                %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $4.25/month"
+                            .col-md-4.col-sm-4.col-xs-4.inventory-entries
+                              .inner
+                                .avatar
+                                  %img.img-responsive{alt: "", src: "img/team/7.PNG"}/
+                                %h4 Standard Box
+                                %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month"
+                            .col-md-4.col-sm-4.col-xs-4.inventory-entries
+                              .inner
+                                .avatar
+                                  %img.img-responsive{alt: "", src: "img/team/7.PNG"}/
+                                %h4 Standard Box
+                                %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month"
+                          %hr
+                            .row.inventory
+                              / TOP ROW
+                              .col-md-3.col-sm-3.col-xs-3.inventory-entries
+                                .inner
+                                  .avatar
+                                    %img.img-responsive{alt: "", src: "img/team/7.PNG"}/
+                                  %h4 Standard Box
+                                  %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $4.25/month"
+                              .col-md-3.col-sm-3.col-xs-3.inventory-entries
+                                .inner
+                                  .avatar
+                                    %img.img-responsive{alt: "", src: "img/team/7.PNG"}/
+                                  %h4 Standard Box
+                                  %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month"
+                              .col-md-3.col-sm-3.col-xs-3.inventory-entries
+                                .inner
+                                  .avatar
+                                    %img.img-responsive{alt: "", src: "img/team/7.PNG"}/
+                                  %h4 Standard Box
+                                  %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month"
+                              .col-md-3.col-sm-3.col-xs-3.inventory-entries
+                                .inner
+                                  .avatar
+                                    %img.img-responsive{alt: "", src: "img/team/7.PNG"}/
+                                  %h4 Standard Box
+                                  %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month"
+                    / /Section: contact
+                    %div{class: "row"}
+                      .col-md-12
+                        .single-line
+                        .row.homepage-started-row
+                          .col-md-12
+                            %h3.dark-gray
+                              Free Boxes, Free Pickup,
+                              %b.blue Storage That Fits
+                          .col-md-4.col-md-offset-4
+                            .boxed-gray.continue-button.pull-left
+                              %a{href: "signup-items.html"}
+                                %button.btn.btn-primary.blue-bg-hover{type: "button"} Get Started
+                    %footer
+                      .container
+                        .row
+                          .col-md-12.col-lg-12
+                            %p
+                              Copyright  2014 Infinite Garage - by
+                              %a{href: "http://bootstraptaste.com"} Bootstraptaste
+
+= render :partial => "partials/javascriptSource"                                            
+= render :partial => "partials/footer"                                            
