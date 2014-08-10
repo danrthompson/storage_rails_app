@@ -1,5 +1,4 @@
-class PickupRequest < ActiveRecord::Base
-	include Requestable
+class PickupRequest < Request
 
 	validates :box_quantity, :couch_quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 	validate :includes_at_least_one_item
