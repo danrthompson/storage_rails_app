@@ -6,6 +6,6 @@ class BoxRequestsController < ApplicationController
 	end
 
 	def create
-
+		render text: params and return
 	end
 end

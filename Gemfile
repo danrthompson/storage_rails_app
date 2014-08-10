@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 # Converts html 2 haml
-gem 'html2haml'
 gem 'less'
 
 
