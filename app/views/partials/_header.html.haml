@@ -28,7 +28,8 @@
       %a.no-side-padding{href: "/"}
         %span.light-gray.black-hover#menu-title The Space You Need
     %li.pull-right
-      %a.black-hover{href: ""} Logout
+      / %a.black-hover{href: ""} Logout
+      = link_to "Logout", destroy_user_session_path, method: "delete"
     %li.pull-right.no-border
       %a{href: ""}
         %span.light-gray.black-hover Account
