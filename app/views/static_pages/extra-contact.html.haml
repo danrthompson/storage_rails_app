@@ -1,3 +1,6 @@
+= render :partial => 'partials/header'
+
+
 / BLUE HEADER BAR
 .container.full-width.blue-bg.no-padding.white.dashboard-header.single-row
   .row
@@ -7,8 +10,11 @@
       .service-box.no-label
         .service-icon
           %i.fa.fa-question-circle.fa-3x
-
-
+/ END SECONDARY HEADER
+/
+  <br>
+  <br>
+  <br>
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
   .heading-about.marginbot-20
@@ -24,12 +30,13 @@
               or calling
               = succeed "." do
                 %span.heavy-font.blue 1-800-555-5555
- 
+              If you prefer, you can also leave us a more specific message below. Thanks!
   / BODY CONTENT: SELECT ITEMS
   .container
     .row
       .col-md-8.col-md-offset-2
         .row
+          / End Phone Number &amp; Instructions Box
           .col-md-8.col-md-offset-2.half-opacity.charges-box
             .single-line
             %br/
@@ -38,16 +45,19 @@
             %form#contact-form
               .row
                 .col-md-6.align-left
-                  %label{for: "name"} Subject
-                  %input#name.form-control{placeholder: "Pricing, Box Sizes, Storage Types...", required: "required", type: "text"}/
+                  %label{:for => "name"} Subject
+                  %input#name.form-control{:placeholder => "Pricing, Box Sizes, Storage Types...", :required => "required", :type => "text"}/
                 .col-md-6.align-left
-                  %label{for: "name"} Email
-                  %input#name.form-control{placeholder: "johndoe@email.com", required: "required", type: "text"}/
+                  %label{:for => "name"} Email
+                  %input#name.form-control{:placeholder => "johndoe@email.com", :required => "required", :type => "text"}/
                 .col-md-12.align-left
                   %br/
-                  %label{for: "name"} Your Message
-                  %textarea#message.form-control{cols: "25", name: "message", placeholder: "Message", required: "required", rows: "4"}
+                  %label{:for => "name"} Your Message
+                  %textarea#message.form-control{:cols => "25", :name => "message", :placeholder => "Message", :required => "required", :rows => "4"}
               .row
                 .col-md-6.col-md-offset-6.bottom-buttons
-                  %button.btn.btn-primary.blue-bg.pull-right{type: "button"}
-                    %a{href: "user-dashboard.html", style: "color: white;"} Send Message
+                  / <div class="boxed-gray continue-button">
+                  %button.btn.btn-primary.blue-bg.pull-right{:type => "button"}/
+                  %a{:href => "user-dashboard.html", :style => "color: white;"} Send Message
+
+= render :partial => 'partials/footer'

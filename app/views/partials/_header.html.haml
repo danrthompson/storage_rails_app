@@ -1,9 +1,10 @@
 / HEADER PARTIAL
 .container
   %ul#gn-menu.gn-menu-main.main-header.full-opacity
-    %li.gn-trigger
-      %a.gn-icon.gn-icon-menu
-        %span Menu
+    %li.gn-trigger.no-border
+      %a.no-padding
+        %img#menu-img{:src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/syn-logo.png", :alt => ""}/
+      / %span Menu
       %nav.gn-menu-wrapper
         .gn-scroller
           %ul.gn-menu
@@ -21,14 +22,21 @@
               %a.gn-icon.gn-icon-archive{href: "#contact"} Contact
         / /gn-scroller
     / <li><a href="index.html">Infinite Garage</a></li>
+    / %li.pull-left#menu-logo
+    /   %img{:src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/syn-logo.png", :alt => ""}/ 
     %li.pull-left.no-border.half-opacity
-      %a{href: ""}
-        %span.light-gray.black-hover Feedback
+      %a.no-side-padding{href: "/"}
+        %span.light-gray.black-hover#menu-title The Space You Need
     %li.pull-right
       %a.black-hover{href: ""} Logout
-    %li.pull-right
+    %li.pull-right.no-border
       %a{href: ""}
         %span.light-gray.black-hover Account
-    %li.pull-right
+    %li.pull-right.no-border
       %a{href: ""}
         %span.light-gray.black-hover Contact
+    %li.pull-right.no-border.half-opacity
+      %a{href: ""}
+        %span.light-gray.black-hover Feedback
+
+        

@@ -1,26 +1,7 @@
-%h2 Sign in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
-    %div
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %div= f.submit "Sign in"
+= render :partial => 'partials/header'
 
 
-/ Render header partial
-%br/
-%br/
-%br/
-%br/
-%br/
+
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
   .heading-about.marginbot-30
@@ -36,15 +17,27 @@
         .boxed-grey
           %form#contact-form
             .row
-              .col-md-8.col-md-offset-2
-                .form-group.address-form
-                  %input#name.form-control{placeholder: "First Name", required: "required", type: "text"}/
-                  %input#name.form-control{placeholder: "Last Name", required: "required", type: "text"}/
-                  %input#name.form-control{placeholder: "email", required: "required", type: "text"}/
-                  %input#name.form-control{placeholder: "password", required: "required", type: "password"}/
-              .col-md-8.col-md-offset-2.bottom-buttons
-                %a{href: "signup-review.html"}
-                  %h1.btn.btn-skin.pull-right Create Account
-                %a{href: "signup-delivery.html"}
-                  %h1.btn.btn-default.pull-left Back
+              = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+                .col-md-8.col-md-offset-2
+                  / %h2 Sign in
+                  %br/
+                  %br/ 
+                  %div.form-group.address-form
+                    / = f.label :email
+                    / %br/
+                    = f.email_field :email, autofocus: true, placeholder:"Email", class:"form-control"
+                  %div
+                    = f.password_field :password, autocomplete: "off", placeholder:"Password", class:"form-control"
+                  - if devise_mapping.rememberable?
+                    #remember-checkbox.col-md-6
+                      = f.check_box :remember_me, class: "pull-left"
+                      %p.pull-left Remember Me
+                .col-md-8.col-md-offset-2.bottom-buttons
+                  %div= f.submit "Sign in",:class => "btn btn-skin pull-right"                  
+                  %a{href: "/"}
+                    %h1.btn.btn-default.pull-left Back    
         %br/
+
+
+
+= render :partial => 'partials/footer'

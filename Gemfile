@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+# Converts html 2 haml
+gem 'html2haml'
+gem 'less'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'

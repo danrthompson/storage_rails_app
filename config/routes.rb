@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   get '404', to: redirect('/404'), as: 'not_found'
   get '500', to: redirect('/500'), as: 'error'
 
+  get 'about' => 'static_pages#extra-about'
+  get 'feedback' => 'static_pages#extra-feedback'
+  get 'faq' => 'static_pages#extra-faq'
+  get 'contact' => 'static_pages#extra-contact'
+
   root 'static_pages#homepage'
 
 

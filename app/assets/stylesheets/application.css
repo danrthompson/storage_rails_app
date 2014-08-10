@@ -10,6 +10,19 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require style
+ 
+*= require template-css
+*= require animate
+*= require css/default
+*= require nivo-lightbox-theme/default/default
+*= require nivo-lightbox
+*= require font-awesome/css/font-awesome
+*= require bootstrap_less/bootstrap
+*= require style
+
+
  *= require_self
+
  */
+ /**= reuquire theme.css*/
+ /**= require pikaday.css*/

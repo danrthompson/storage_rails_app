@@ -1,6 +1,4 @@
-%br/
-%br/
-%br/
+= render :partial => 'partials/header'
 
 / BLUE HEADER BAR
 .container.full-width.blue-bg.no-padding.white.dashboard-header.single-row
@@ -11,6 +9,8 @@
       .service-box.no-label
         .service-icon
           %i.fa.fa-question-circle.fa-3x
+/ END SECONDARY HEADER
+
 
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
@@ -19,7 +19,7 @@
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %img.half-width{alt: "", src: "img/team/5.jpg"}/
+            %img.half-width{:alt => "", :src => "img/team/5.jpg"}/
             %br/
             %br/
             %br/
@@ -30,3 +30,18 @@
               or calling
               = succeed "." do
                 %span.heavy-font.blue 1-800-555-5555
+              If you prefer, you can also leave us a more specific message below. Thanks!
+
+= render :partial => 'partials/footer'
+= render :partial => 'partials/javascriptSource'
+
+:javascript
+  var picker = new Pikaday(
+  {
+      field: document.getElementById('datepicker'),
+      firstDay: 1,
+      minDate: new Date('2000-01-01'),
+      maxDate: new Date('2020-12-31'),
+      yearRange: [2000,2020]
+  });
+

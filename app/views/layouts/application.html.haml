@@ -5,38 +5,37 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-
-    / = stylesheet_link_tag 'style'
-
-    / = stylesheet_link_tag 'flexslider'
-    / = stylesheet_link_tag 'bootstrap'
-    / = stylesheet_link_tag 'font-awesome'
-    / = stylesheet_link_tag 'nivo-lightbox'
-    / = stylesheet_link_tag 'default'
-    / = stylesheet_link_tag 'animate'
-
-
-
     %meta{charset: "utf-8"}/
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
     %meta{name: "description", sntent: ""}/
     %meta{content: "", name: "author"}/
-    / Bootstrap Core CSS
-    / %link{href: "css/css/bootstrap.css", rel: "stylesheet", type: "text/css"}/
-    / Fonts
-    / %link{href: "font-awesome/css/font-awesome.min.css", rel: "stylesheet", type: "text/css"}/
-    / %link{href: "css/nivo-lightbox.css", rel: "stylesheet"}/
-    / %link{href: "css/nivo-lightbox-theme/default/default.css", rel: "stylesheet", type: "text/css"}/
-    / %link{href: "css/animate.css", rel: "stylesheet"}/
-    / Squad theme CSS
-    / %link{href: "css/style.css", rel: "stylesheet"}/
-    / %link{href: "color/default.css", rel: "stylesheet"}/
-    / %link{href: "css/flexslider.css", rel: "stylesheet"}/
-    %script{src: "jquery-1.11.1.min.js"}
    
 
 
   %body
-    %p.notice= notice
-    %p.alert= alert
+    #menu-spacer
+      %p The Space You Need
+
+    %p.notice.default-hide#notice-section= notice
+    %p.alert.default-hide#alert-section= alert    
+
+    :javascript
+        hideWhenNotUsedClass("default-hide");
+        showMenuSpacer();
+        
+        // Hides notices and alerts so no space is allocated if they're not there
+        function hideWhenNotUsedClass(classId){
+            var objectToHide = $("." + classId);
+            objectToHide.each(function(){
+                if ($(this).html()) $(this).show();     
+            });
+        };   
+
+        // Hides menu spacer if there is no menu bar: for notices & alerts
+        function showMenuSpacer(){
+            if ($("#gn-menu")){
+                $("#menu-spacer").show();
+                console.log("showing spacer");
+            }
+        }
     = yield

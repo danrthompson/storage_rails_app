@@ -12,5 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+
+//= require gnmenu
 //= require turbolinks
+// require bootstrap
+// require classie
+// require nivo-lightbox
+// require stellar
+// require custom
+
 //= require_tree .
