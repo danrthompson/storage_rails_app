@@ -1,179 +1,167 @@
-= render :partial => 'partials/header'
 
+= render partial: "partials/header"   
 
-/ BLUE HEADER BAR
-.container.full-width.blue-bg.no-padding.white.dashboard-header.single-row
-  .row
-    .col-md-7.align-center
-      %h1 REQUEST STORAGE SUPPLIES
-    / Dashboard
-    .col-md-1.col-md-offset-2.col-sm-4.col-xs-4.align-center
-      .service-box
-        %a{:href => "user-dashboard.html"}
-        .service-icon
-          %i.fa.fa-dashboard
-        .service-desc
-          %h6 Dashboard
-    / Questions
-    .col-md-1.col-sm-4.col-xs-4.align-center
-      .service-box
-        %a{:href => "faq.html"}
-        .service-icon
-          %i.fa.fa-question-circle
-        .service-desc
-          %h6 FAQ
-
-
-/ /////////// MAIN BODY CONTENT ///////////////////
+/ Section: ITEM SELECTION
 %section#about.home-section.text-center
   .heading-about.marginbot-20
     .container
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %h2 WHAT ARE YOU STORING?
- 
+            %h2 What are you looking for?
+
   / BODY CONTENT: SELECT ITEMS
-  .container.inventory
+  .container
     .row
-      .col-md-10.col-md-offset-1
-        .row
-          = form_for(@box_request, html: {id: "selected-boxes-form"}) do |f| 
-            .col-md-8
-              
-              / //////////// ITEMS AT HOME /////////////////////////          
-              .row
-                %h2
-                  Standard Storage
-                  %a.pull-right{:href => ""} Want More Information?
-                .double-line
-                / Item listing
-                .col-md-6.col-sm-6.col-xs-6.inventory-entries
-                  .inner
-                    .avatar
-                      %img.img-responsive{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg"}/
-                    .row
-                      .col-md-3.col-sm-12.col-xs-12.button-group
-                        = f.text_field :box_quantity,  autofocus: true, placeholder:"0", class:"form-control full-width quantity-field", id:"txt-stdbox"
-                        / %input#txt-stdbox.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
-                        %button#stdbox.btn.btn-primary.btn-inc{:type => "button"} +
-                      .col-md-9.col-sm-12.col-xs-12.text-group
-                        %h4 Standard Box
-                        %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month, 22" x 18" x 12"
-
-                / Item listing
-                .col-md-6.col-sm-6.col-xs-6.inventory-entries
-                  .inner
-                    .avatar
-                      %img.img-responsive{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg"}/
-                    .row
-                      .col-md-3.col-sm-12.col-xs-12.button-group
-                        = f.text_field :box_quantity,  autofocus: true, placeholder:"0", class:"form-control full-width quantity-field", id:"txt-warbox"
-                        / %input#txt-warbox.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
-                        %button#warbox.btn.btn-primary.btn-inc{:type => "button"} +
-                      .col-md-9.col-sm-12.col-xs-12.text-group
-                        %h4 Wardrobe Box
-                        %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month, 22" x 18" x 12"
-              %br/
-              %br/
-
-              / ///////////// Specialty storage ////////////////////////
-              .row
-                %h2
-                  Packaging Supplies
-                  %a.pull-right{:href => ""} Want More Information?
-                .double-line
-
-                / Item listing
-                .col-md-6.col-sm-6.col-xs-6.inventory-entries
-                  .inner
-                    .avatar
-                      %img.img-responsive{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg"}/
-                    .row
-                      .col-md-3.col-sm-12.col-xs-12.button-group
-                        = f.text_field :box_quantity,  autofocus: true, placeholder:"0", class:"form-control full-width quantity-field", id:"txt-couch"
-                        / %input#txt-couch.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
-                        %button#couch.btn.btn-primary.btn-inc{:type => "button"} +
-                      .col-md-9.col-sm-12.col-xs-12.text-group
-                        %h4 Medium Couch
-                        %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month, 22" x 18" x 12"
-
-                / Item listing
-                .col-md-6.col-sm-6.col-xs-6.inventory-entries
-                  .inner
-                    .avatar
-                      %img.img-responsive{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg"}/
-                    .row
-                      .col-md-3.col-sm-12.col-xs-12.button-group
-                        = f.text_field :box_quantity,  autofocus: true, placeholder:"0", class:"form-control full-width quantity-field", id:"txt-bike"
-                        / %input#txt-bike.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
-                        %button#bike.btn.btn-primary.btn-inc{:type => "button"} +
-                      .col-md-9.col-sm-12.col-xs-12.text-group
-                        %h4 Bicycle
-                        %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month, 22" x 18" x 12"
-              %br/
-              %br/
-              .row
-                .col-md-12.col-sm-12.col-xs-12.align-left
-                  %h2
-                    FAQ
-                    %a.pull-right{:href => ""} Find The Full List Here
-                  .double-line
-                  %ul.no-list
-                    %li
-                      %a{:href => ""} Want To Store Something Really Big? We can do that!
-                    %li
-                      %a{:href => ""} Nullam id dolor id nibh ultricies valera?
-                    %li
-                      %a{:href => ""} Cras mattis consectetur purus sit amet fermentum purus sit amet.
-                    %li
-                      %a{:href => ""} Can I pay with gold coins?
-                    %li
-                      %a{:href => ""} What is the average velocity of an African swollow?
-              %br/
-              %br/
-              %br/
-
-          / /////////////////  SIDEBAR //////////////////// 
-          .col-md-4.inventory-sidebar
-            .row.sidebar-txtentry.light-blue-bg
-              .inner
-                %p
-                  Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Nullam quis risus eget urna mollis ornare vel eu leo.
-            .row.sidebar-txtentry.bg-gray
-              .inner
-                %h5 Your Order
-                .single-line
-                %ul.no-list
-                  %li#no-items.order-item.half-opacity
-                    %i You have no items in your order.
-                  %li#num-stdbox.order-item.hidden
-                    Standard Box
-                    %span.pull-right 0
-                  %li#num-warbox.order-item.hidden
-                    Wardrobe Boxes
-                    %span.pull-right 0
-                  %li#num-couch.order-item.hidden
-                    Couches
-                    %span.pull-right 0
-                  %li#num-bike.order-item.hidden
-                    Bikes
-                    %span.pull-right 0
-                  %li.order-item
-                    .single-line.half-opacity
-                %ul.no-list
-                  %li.heavy-font
-                    Subtotal
-                    %span#order-subtotal.pull-right $00.00/m
+      .div
+        = form_for (@box_request) do |f| 
+          .col-md-8.col-md-offset-2.inventory
             .row
-              .boxed-gray.continue-button#delivery-submit-btn
-                %a{:href => "user-nb-delivery.html"}
-                  %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Request Storage
+              .col-md-2.col-sm-4.col-xs-3.center-align
+              / = render partial: "partials/list_item_small", locals: {name: "cock", description: "test test test", price: "$1/m"}
+              = render partial: "partials/list_item_small", locals: {name: "Standard Box", description: "22\" x 18\" x 12\"", price: "$1/m", field_val: :box_quantity, id:"stdbox", form:f, cls:"form-control", uses:"(books, clothing & small items)", imgUrl:"http://ecx.images-amazon.com/images/I/41w7aqZ7AxL.jpg"}
+              = render partial: "partials/list_item_small", locals: {name: "Wardrobe Box", description: "24\" x 20\" x 46\"", price: "$1/m", field_val: :box_quantity, id:"warbox", form:f, cls:"form-control", uses:"(suits, poster tubes & tall items)", imgUrl:"http://ecx.images-amazon.com/images/I/41w7aqZ7AxL.jpg"}
+               
+            .row
+              %br/  
+              .col-md-12.col-md-offset-0
+                %h2.pull-left
+                  %i Additional Packing Supplies
+                %a.pull-right{:href => "user-newbox.html"} Order Additional Boxes
+                %br
+                .single-line.pt-10
+            .row
+              = render partial: "partials/list_item_small", locals: {name: "Bubble Wrap", uses: "cocoon your precious items.", description:"12\" wide x 30' long", price: "$10 - 100ft", field_val: :box_quantity, id:"bubble", form:f, cls:"form-control", imgUrl:"http://ecx.images-amazon.com/images/I/41w7aqZ7AxL.jpg"}
+              = render partial: "partials/list_item_small", locals: {name: "File Boxes", description:"10\" x 12\" x 15\"", uses: "keep that paper trail in line", price: "$5 each", field_val: :box_quantity, id:"filebox", form:f, cls:"form-control", imgUrl:"http://ecx.images-amazon.com/images/I/41w7aqZ7AxL.jpg"}
+              = render partial: "partials/list_item_small", locals: {name: "Poster/Art Tubes", description:"3\" x 36\"",uses: "your art -  rolled for freshness", price: "$5 each", field_val: :box_quantity, id:"tube", form:f, cls:"form-control", imgUrl:"http://ecx.images-amazon.com/images/I/41w7aqZ7AxL.jpg"}
+              
+          / End Phone Number &amp; Instructions Box
+          .col-md-6.col-md-offset-3.half-opacity.charges-box
             %br/
+            .single-line
             %br/
+          .col-md-12
+            %br/ 
+            %h1 Delivery Details
+          .col-md-8.col-md-offset-2
+            .row
+              / Date &amp; Address Box
+              .boxed-grey.col-md-12
+                / %form#contact-form
+                .row.align-left
+                  .col-md-6
+                    .form-group.address-form
+                      = f.label :box_quantity, "Confirm Address:"
+                      = f.text_field :box_quantity,  autofocus: true, placeholder:"Address Line 1", class:"form-control", id:""
+                      = f.text_field :box_quantity,  autofocus: true, placeholder:"Address Line 2", class:"form-control", id:""
+                      .row
+                        .col-md-6.col-sm-6.col-xs-6.col-lg-6
+                          = f.text_field :box_quantity,  autofocus: true, placeholder:"City", class:"col-md-6 form-control", id:""
+                          / %input#name.col-md-6.form-control{:placeholder => "City", :required => "required", :type => "text"}/
+                        .col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
+                          = f.text_field :box_quantity,  autofocus: true, placeholder:"st", class:"form-control", id:""
+                          / %input#name.form-control{:placeholder => "st", :required => "required", :type => "text"}/
+                        .col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
+                          = f.text_field :box_quantity,  autofocus: true, placeholder:"zip", class:"form-control", id:""
+                          / %input#name.form-control{:placeholder => "zip", :required => "required", :type => "text"}/
+                  .col-md-6
+                    .form-group
+                      .col-md-12
+                        .form-group.delivery-date-group
+                          / %label{:for => "date-picker"} Delivery Date
+                          = f.label :box_quantity, "Delivery Date"
+                          = f.text_field :box_quantity,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:""
+                          / %input#datepicker.form-control{:name => "date-picker", :placeholder => "Does tomorrow work for you?", :type => "text"}/
+                          %br/
+                          %label{:for => "date-picker"} Time Of Day
+                          = f.select  :box_quantity, options_for_select([["Red", "red"], ["Green", "green"]]),{}, {class:"form-control selectpicker"}
+                          / =f.select(:state, options_for_select(@states), { :class => 'dropdown'})
+                          / %label{:for => "date-picker"} Time Of Day
+                          / %select.form-control.selectpicker
+                          /   %option 6:30AM - 10:00PM
+                          /   %option Ketchup
+                          /   %option Relish
+                        %br/ 
+              .boxed-grey.col-md-12
+                / %form#contact-form
+                .row
+                  .col-md-6.align-left
+                    %label{:for => "name"} Phone Number (for delivery)
+                    %input#name.form-control{:placeholder => "Address Line 1", :required => "required", :type => "text"}/
+                  .col-md-6.align-left
+                    %label{:for => "name"} Any Special Instructions?
+                    %textarea#message.form-control{:cols => "25", :name => "message", :placeholder => "Message", :required => "required", :rows => "2"}
+                    %br/ 
+              / End Phone Number &amp; Instructions Box
+              .col-md-8.col-md-offset-2.half-opacity.charges-box
+                %br/
+                .single-line
+                %br/
+
+              / Payment &amp; Confirmation Box
+              .col-md-12.charges-box
+                .row
+                  / .col-md-6.confirm-elem.light-blue-bg
+                  /   %h5 Previously Ordered
+                  /   %ul
+                  /     %li
+                  /       %span.order-item Shoe Box
+                  /       %span.pull-right.font-italic.half-opacity Standard Item
+                  /     / 
+                  /     %li
+                  /       %span.order-item Wardrobe Box
+                  /       %span.pull-right.font-italic.half-opacity Standard Item
+                  /     %li
+                  /       %span.order-item Bicycle
+                  /       %span.pull-right.font-italic.half-opacity Standard Item
+                  /     %li
+                  /       %span.order-item Livingroom Couch
+                  /       %span.pull-right.font-italic.half-opacity Furniture / Large Item
+                  .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
+                    %h5 Delivery Summary
+                    %ul
+                      %li#num-stdbox
+                        %span.pull-left> 12
+                        \&nbsp; &nbsp;Standard Boxes
+                        %i.pull-right.light-gray $7.50/unit
+                      %li#num-warbox
+                        %span.pull-left> 3
+                        \&nbsp; &nbsp;Warchest Boxes
+                        %i.pull-right.light-gray $12.50/unit
+                      %li#num-bike
+                        %span.pull-left> 1
+                        \&nbsp; &nbsp;Gold Boxes
+                        %i.pull-right.light-gray $1.50/unit
+                      %li#num-chair
+                        %span.pull-left> 1
+                        \&nbsp; &nbsp;Pickle Boxes
+                        %i.pull-right.light-gray $100.50/unit
+                      %li
+                        Valet Pickup
+                        %span.pull-right Free
+                    .single-line
+                    %ul
+                      %li.heavy-font
+                        Subtotal
+                        %span#order-subtotal.pull-right $00.00/m
+              .col-md-12
+                %br/ 
+              .col-md-4.bottom-buttons
+                .boxed-gray.continue-button
+                  %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}/
+                  %a{:href => "user-newbox.html", :style => "color: white;"} Back
+              / END col-12
+              .col-md-4.col-md-offset-4.bottom-buttons
+                .boxed-gray.continue-button
+                  %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
+                  %a{:href => "success-delivery.html", :style => "color: white;"} Confirm Order
+
+
+= render :partial => "partials/footer"
 
 :javascript
   $(".btn-inc").click(function(){
+    console.log("button clicked");
     var id = $(this).attr('id');
 
     // update text field - incrememnt by one
@@ -183,6 +171,7 @@
     $(field).val(val);
 
     // update subtotal
+
     var orderEntrySpan = $('#num-'+id+" span");
     // redoCalculations();
     refreshOrder(val, orderEntrySpan);
@@ -199,6 +188,7 @@
   });
 
   function refreshOrder(val, orderEntrySpan){
+    console.log("REFERESHING ORDER");
     orderEntrySpan.html(parseInt(val));
     var orderEntry = orderEntrySpan.parent();
     
@@ -224,24 +214,10 @@
 
       if (tota < 0.1) $("#requst-btn").attr("disabled", "disabled");
     else {
-        console.log("Delivery BUTTON REMOVING DISABLED");
-        $("#delivery-button").removeAttr("disabled"); 
-        $(".pickup-entry").removeClass("selected-item");
-        $("#pickup-button").attr("disabled", "disabled");
-        numPickupItems = 0;  
+      console.log("Delivery BUTTON REMOVING DISABLED");
+      $("#delivery-button").removeAttr("disabled"); 
+      $(".pickup-entry").removeClass("selected-item");
+      $("#pickup-button").attr("disabled", "disabled");
+      numPickupItems = 0;  
      } 
   }
-
-  $("#delivery-submit-btn").click(function(){
-    $("#selected-boxes-form").submit();
-  });
-
-
-
-
-
-
-
-
-
-= render :partial => 'partials/footer'

@@ -8,12 +8,12 @@
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %h2 REQUEST A NEW PICKUP
+            %h2 REQUEST A NEW DELIVERY
   / BODY CONTENT: SELECT ITEMS
   .container
     .row
       .div
-        = form_for (@pickup_request) do |f| 
+        = form_for (@delivery_request) do |f| 
           .col-md-8.col-md-offset-2
             .row
               / Date &amp; Address Box
@@ -69,8 +69,8 @@
                 .single-line
                 %br/
               .col-md-12
-                %h1 Add To Pickup
-                %p.light-gray Would you like us to pick up anything additional? (ex: bikes, furniture, etc.)
+                %h1 Add To DELIVERY
+                %p.light-gray Would you like us to bring anything additional? (ex: more boxes, packing supplies, etc.)
               .col-md-12
                 .row
                   .col-xs-6.col-sm-4.col-md-4.list-item-small
@@ -147,24 +147,24 @@
               / Payment &amp; Confirmation Box
               .col-md-12.charges-box
                 .row
-                  .col-md-6.confirm-elem.light-blue-bg
-                    %h5 Previously Ordered
-                    %ul
-                      %li
-                        %span.order-item Shoe Box
-                        %span.pull-right.font-italic.half-opacity Standard Item
-                      / 
-                      %li
-                        %span.order-item Wardrobe Box
-                        %span.pull-right.font-italic.half-opacity Standard Item
-                      %li
-                        %span.order-item Bicycle
-                        %span.pull-right.font-italic.half-opacity Standard Item
-                      %li
-                        %span.order-item Livingroom Couch
-                        %span.pull-right.font-italic.half-opacity Furniture / Large Item
-                  .col-md-6.confirm-elem.light-blue-bg
-                    %h5 Pickup Additions
+                  / .col-md-6.confirm-elem.light-blue-bg
+                  /   %h5 Previously Ordered
+                  /   %ul
+                  /     %li
+                  /       %span.order-item Shoe Box
+                  /       %span.pull-right.font-italic.half-opacity Standard Item
+                  /     / 
+                  /     %li
+                  /       %span.order-item Wardrobe Box
+                  /       %span.pull-right.font-italic.half-opacity Standard Item
+                  /     %li
+                  /       %span.order-item Bicycle
+                  /       %span.pull-right.font-italic.half-opacity Standard Item
+                  /     %li
+                  /       %span.order-item Livingroom Couch
+                  /       %span.pull-right.font-italic.half-opacity Furniture / Large Item
+                  .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
+                    %h5 Delivery Summary
                     %ul
                       %li#num-stdbox
                         %span.pull-left> 12
@@ -190,8 +190,7 @@
                       %li.heavy-font
                         Subtotal
                         %span#order-subtotal.pull-right $00.00/m
-             
-
+              
               .col-md-4.bottom-buttons
                 .boxed-gray.continue-button
                   %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}/

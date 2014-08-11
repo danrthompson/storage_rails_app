@@ -1,0 +1,13 @@
+.col-xs-6.col-sm-4.col-md-4.list-item-small
+  .team.boxed-grey
+    .avatar
+      %img.img-responsive{:alt => "", :src => "#{imgUrl}"}/
+    .row.list-item-buttons
+      .col-md-12
+        %h4.align-center= name
+        %p.blue= description
+        %p= uses
+      .col-md-7
+        = form.text_field field_val,  autofocus: true, placeholder:"#{price}", class:"#{cls}", id:"txt-#{id}"
+      .col-md-5
+        %button.btn.btn-primary.rounded.full-width.btn-inc{:type => "button", id:"#{id}"} +
