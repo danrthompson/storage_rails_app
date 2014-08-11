@@ -43,14 +43,15 @@
                         = f.label :box_quantity, "Delivery Date"
                         = f.text_field :box_quantity,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:""
                         / %input#datepicker.form-control{:name => "date-picker", :placeholder => "Does tomorrow work for you?", :type => "text"}/
-                        = f.select  :box_quantity, options_for_select([["Red", "red"], ["Green", "green"]]), {class:"form-control selectpicker"}
-                        / =f.select(:state, options_for_select(@states), { :class => 'dropdown'})
                         %br/
                         %label{:for => "date-picker"} Time Of Day
-                        %select.form-control.selectpicker
-                          %option 6:30AM - 10:00PM
-                          %option Ketchup
-                          %option Relish
+                        = f.select  :box_quantity, options_for_select([["Red", "red"], ["Green", "green"]]),{}, {class:"form-control selectpicker"}
+                        / =f.select(:state, options_for_select(@states), { :class => 'dropdown'})
+                        / %label{:for => "date-picker"} Time Of Day
+                        / %select.form-control.selectpicker
+                        /   %option 6:30AM - 10:00PM
+                        /   %option Ketchup
+                        /   %option Relish
                       %br/ 
             .boxed-grey.col-md-12
               / %form#contact-form
