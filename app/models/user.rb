@@ -24,7 +24,9 @@ class User < ActiveRecord::Base
   validates :zip, inclusion: { in: [80301, 80303], message: 'must be 80301 or 80303.' }
   validates :phone_number, :phony_plausible => true
 
-
+  def boxes_at_home
+    BoxRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity) - PickupRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity)
+  end
 
   protected
 
