@@ -4,4 +4,8 @@ class PickupRequestsController < ApplicationController
 		@pickup_request = PickupRequest.new;
 	end
 
+	def create
+		render text: params and return
+	end
+
 end
