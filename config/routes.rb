@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :storage_items, :box_requests, :delivery_requests, :pickup_requests
+  resources :storage_items, :box_requests, :pickup_requests
+  resources :delivery_requests, only: [:show, :create]
+
+  get 'delivery_requests/new/:ids', to: 'delivery_requests#new', as: 'new_delivery_request'
+  get 'pickup_requests/new/:ids', to: 'pickup_requests#new', as: 'new_pickup_request'
 
   get 'admin_page' => 'admin_pages#admin_page'
+  post 'admin_pages/complete_request/:id', to: 'admin_pages#complete_request', as: 'complete_request'
+
   get '404', to: redirect('/404'), as: 'not_found'
   get '500', to: redirect('/500'), as: 'error'
 
