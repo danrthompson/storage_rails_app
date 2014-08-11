@@ -87,5 +87,27 @@ StorageItem.create!({
 	user_id: user1.id,
 	entered_storage_at: Time.now - 1.day,
 	item_type: 'box',
+	title: "cocaine and sex toys",
+		description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 })
+
+StorageItem.create!({
+	user_id: user1.id,
+	entered_storage_at: Time.now - 1.day,
+	item_type: 'box',
+	title: "guitars & music items",
+	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+})
+
+StorageItem.create!({
+	user_id: user1.id,
+	entered_storage_at: Time.now - 1.day,
+	item_type: 'couch',
+	title: "sex_couch",
+	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+})
+
+
+
+
 

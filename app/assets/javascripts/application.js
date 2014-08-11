@@ -20,5 +20,4 @@
 // require nivo-lightbox
 // require stellar
 // require custom
-
-//= require_tree .
+// require syn-dashboard
