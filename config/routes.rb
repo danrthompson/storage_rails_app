@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :storage_items, :box_requests, :pickup_requests
+  resources :storage_items, :box_requests
   resources :delivery_requests, only: [:show, :create]
+  resources :pickup_requests, only: [:show, :create]
+
 
   get 'delivery_requests/new/:ids', to: 'delivery_requests#new', as: 'new_delivery_request'
   get 'pickup_requests/new/:ids', to: 'pickup_requests#new', as: 'new_pickup_request'
