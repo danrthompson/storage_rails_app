@@ -3,6 +3,7 @@ class BoxRequestsController < ApplicationController
 
 	def new
 		@box_request = BoxRequest.new
+		@user = current_user
 	end
 
 	def create
