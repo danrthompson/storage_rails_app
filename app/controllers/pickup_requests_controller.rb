@@ -1,4 +1,5 @@
 class PickupRequestsController < ApplicationController
+	before_action :authenticate_user!
 
 	def new
 		@pickup_request = PickupRequest.new;
