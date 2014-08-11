@@ -44,54 +44,46 @@
     .col-md-10.col-md-offset-1
       .row
         .col-md-8
+
           %form#pickup-form{:action => ""}
             / Boxes At Home
             .row
               %h2
-                %span.items-count> 3
-                Items Awaiting Pickup
+                %span.items-count= @boxes_at_home
+                Items Awaiting Pickup: 
                 %a.pull-right{:href => "user-newbox.html"} Order Additional Boxes
               .double-line
-              .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
-                .inner
-                  .avatar
-                    %img.img-responsive{:alt => "", :src => "img/team/7.PNG"}/
-                  %h4 Standard Box
-                  %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month, 22" x 18" x 12"
-                  %input.hidden{:name => "vehicle", :type => "checkbox", :value => "\#{{bike}}"}/
-              .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
-                .inner
-                  .avatar
-                    %img.img-responsive{:alt => "", :src => "img/team/7.PNG"}/
-                  %h4 Standard Box
-                  %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month, 22" x 18" x 12"
-                  %input.hidden{:name => "vehicle", :type => "checkbox", :value => "\#{{bike}}"}/
-            / end row
+              / - @boxes_at_home.times do
+              - 3.times do
+                .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
+                  .inner
+                    .avatar
+                      %img.img-responsive{:alt => "", :src => "img/team/7.PNG"}/
+                    %h4 Standard Box
+                    / %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month, 22" x 18" x 12"
+                    %input.hidden{:name => "vehicle", :type => "checkbox", :value => "\#{}"}/
+                     
           %br/
           %br/
           / Existing Inventory Row
           %form#delivery-form{:action => ""}
             .row
               %h2
-                %span.items-count> 10
+                %span.items-count> #{@num_storage_items}
                 Items In Storage
               .double-line
-              .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry
-                .inner
-                  .avatar
-                    %img.img-responsive{:alt => "", :src => "img/team/1.jpg"}/
-                  %h4 Standard Box
-                  %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month, 22" x 18" x 12"
-              .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry
-                .inner
-                  .avatar
-                    %img.img-responsive{:alt => "", :src => "img/team/1.jpg"}/
-                  %h4 Standard Box
-                  %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month, 22" x 18" x 12"
+              - @storage_items.each do |storage_item|
+                .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry.pull-right{:id => "#{storage_item.id}"}
+                  .inner
+                    .avatar
+                      = image_tag(storage_item.image.url, class: "img-responsive")
+
+                    %h4= storage_item.title
+                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.description
               .col-md-12.col-sm-12.col-xs-12.align-left
                 %br/
                 %a{:href => "user-newbox.html"} Want More Boxes? Schedule a dropoff.
-            / end row
+
         .col-md-4.inventory-sidebar
           .row.sidebar-txtentry.light-blue-bg
             .inner
@@ -101,10 +93,7 @@
                 %li
                   %span.order-item You have an pickup schedules for Thursday, September 15
                 %li
-                  %span.order-item You currently have 3 boxes at home, waiting to be picked up.
-              /
-                <ul class="li"><span class="order-item">Standard Box</span><span class="order-quantity">4</span></ul>
-                <ul class="li"><span class="order-item">Wardrobe Box</span><span class="order-quantity">2</span></ul>
+                  %span.order-item You currently have #{@boxes_at_home} boxes at home, waiting to be picked up.
           %br/
           .row.sidebar-txtentry.bg-gray
             .inner
@@ -120,9 +109,6 @@
                 %li
                   %span.order-item Couches
                   %span.pull-right 1
-              /
-                <ul class="li"><span class="order-item">Standard Box</span><span class="order-quantity">4</span></ul>
-                <ul class="li"><span class="order-item">Wardrobe Box</span><span class="order-quantity">2</span></ul>
           .row
             .boxed-gray.continue-button
               %a{:href => "user-pickup.html"}
@@ -140,68 +126,86 @@
 
 :javascript
   var numDeliveryItems = 0;
-  		var numPickupItems = 0;
-  
-  		// Delivery Entry Selected
-  		$(".delivery-entry").click(function() {
-  		  $(this).toggleClass("selected-item");
-  
-  	      if($(this).hasClass("selected-item")){
-  		  	numDeliveryItems = numDeliveryItems + 1;
-    		    $('input:first', this).prop('checked', true);
-  
-  		  } else {
-  		  	numDeliveryItems = numDeliveryItems - 1;
-  		    $('input:first', this).prop('checked', false);
-  
-  		  }
-  		  console.log("numDeliveryItems:" + numDeliveryItems);
-  		
-  		  if (numDeliveryItems == 0) $("#delivery-button").attr("disabled", "disabled");
-  		  else {
-  				console.log("Delivery BUTTON REMOVING DISABLED");
-  				$("#delivery-button").removeAttr("disabled"); 
-  				$(".pickup-entry").removeClass("selected-item");
-  				$("#pickup-button").attr("disabled", "disabled");
-  				numPickupItems = 0;  
-  		   } 
-  		});
-  
-  		// Pick Up Entry Selected
-  		$(".pickup-entry").click(function() {
-  		  $(this).toggleClass("selected-item");
-  	      // $('input:first', this).toggleClass('hidden');
-  	      $('input:first', this).prop('checked', true);
-  
-  	      if($(this).hasClass("selected-item")){
-  		  	numPickupItems = numPickupItems + 1;
-  		  } else {
-  		  	numPickupItems = numPickupItems - 1;
-  		  }
-  		  console.log("numPickupItems:" + numPickupItems);
-  		
-  		  if (numPickupItems == 0) $("#pickup-button").attr("disabled", "disabled");
-  		  else {
-  			  console.log("pickup BUTTON REMOVING DISABLED");
-  			  $("#pickup-button").removeAttr("disabled");   
-  			  $(".delivery-entry").removeClass("selected-item");
-  			  $("#delivery-button").attr("disabled", "disabled");
-  			  numDeliveryItems = 0;
-  		   } 
-  		});
-  
-  		$("#pickup-button").click(function(){
-  			 console.log("disabled clicked");
-  			 $("#pickup-form").submit();
-  		});
-  
-  		$("#delivery-button").click(function(){
-  			 console.log("disabled clicked");
-  			 $("#delivery-form").submit();
-  		});
-  
-  
-  		  // if (numPickupItems == 0) $("#pickup-button").attr("disabled", "disabled");
-  		  // else $("#pickup-button").removeAttr("disabled");
-  		
-  	    // if (numItems == 0) $("#pickup-button").attr("disabled", "disabled");
+  var numPickupItems = 0;
+
+  // Delivery Entry Selected
+  $(".delivery-entry").click(function() {
+    $(this).toggleClass("selected-item");
+
+      if($(this).hasClass("selected-item")){
+      numDeliveryItems = numDeliveryItems + 1;
+        $('input:first', this).prop('checked', true);
+
+    } else {
+      numDeliveryItems = numDeliveryItems - 1;
+      $('input:first', this).prop('checked', false);
+
+    }
+    console.log("numDeliveryItems:" + numDeliveryItems);
+
+    if (numDeliveryItems == 0) $("#delivery-button").attr("disabled", "disabled");
+    else {
+      console.log("Delivery BUTTON REMOVING DISABLED");
+      $("#delivery-button").removeAttr("disabled"); 
+      $(".pickup-entry").removeClass("selected-item");
+      $("#pickup-button").attr("disabled", "disabled");
+      numPickupItems = 0;  
+     } 
+  });
+
+  // Pick Up Entry Selected
+  $(".pickup-entry").click(function() {
+    $(this).toggleClass("selected-item");
+      // $('input:first', this).toggleClass('hidden');
+      $('input:first', this).prop('checked', true);
+
+      if($(this).hasClass("selected-item")){
+      numPickupItems = numPickupItems + 1;
+    } else {
+      numPickupItems = numPickupItems - 1;
+    }
+    console.log("numPickupItems:" + numPickupItems);
+
+    if (numPickupItems == 0) $("#pickup-button").attr("disabled", "disabled");
+    else {
+      console.log("pickup BUTTON REMOVING DISABLED");
+      $("#pickup-button").removeAttr("disabled");   
+      $(".delivery-entry").removeClass("selected-item");
+      $("#delivery-button").attr("disabled", "disabled");
+      numDeliveryItems = 0;
+     } 
+  });
+
+  $("#pickup-button").click(function(event){
+    event.preventDefault();
+     // console.log("disabled clicked");
+     var selectedEntries = $(".selected-item.pickup-entry");
+     console.log(selectedEntries.size());
+     var destinationURL = "/pickup_requests/new/" + selectedEntries.size();
+     window.location.href = destinationURL;
+     // $("#pickup-form").submit();
+  });
+
+  $("#delivery-button").click(function(){
+     // console.log("disabled clicked");
+     // $("#delivery-form").submit();
+     event.preventDefault();
+     var selectedEntries = $(".selected-item.delivery-entry");
+     var itemsList = "";
+     var numItems = 0;
+     selectedEntries.each(function(){
+      var elemId = $(this).attr('id');
+      if(numItems == 0){
+        itemsList = elemId;
+      } else{
+        itemsList = itemsList + "," + elemId;
+      }
+      numItems += 1;
+     });
+     console.log(selectedEntries.size());
+     console.log(itemsList);
+
+     var destinationURL = "/delivery_requests/new/" + itemsList;
+     window.location.href = destinationURL;
+  });
+
