@@ -10,4 +10,7 @@ class PickupRequest < Request
 			errors.add :box_quantity, 'and all other quantities are zero.'
 		end
 	end
+
+
+
 end

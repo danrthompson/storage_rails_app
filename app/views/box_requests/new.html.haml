@@ -54,7 +54,8 @@
                       %img.img-responsive{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg"}/
                     .row
                       .col-md-3.col-sm-12.col-xs-12.button-group
-                        %input#txt-stdbox.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
+                        = f.text_field :box_quantity,  autofocus: true, placeholder:"0", class:"form-control full-width quantity-field", id:"txt-stdbox"
+                        / %input#txt-stdbox.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
                         %button#stdbox.btn.btn-primary.btn-inc{:type => "button"} +
                       .col-md-9.col-sm-12.col-xs-12.text-group
                         %h4 Standard Box
@@ -67,7 +68,8 @@
                       %img.img-responsive{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg"}/
                     .row
                       .col-md-3.col-sm-12.col-xs-12.button-group
-                        %input#txt-warbox.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
+                        = f.text_field :box_quantity,  autofocus: true, placeholder:"0", class:"form-control full-width quantity-field", id:"txt-warbox"
+                        / %input#txt-warbox.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
                         %button#warbox.btn.btn-primary.btn-inc{:type => "button"} +
                       .col-md-9.col-sm-12.col-xs-12.text-group
                         %h4 Wardrobe Box
@@ -78,7 +80,7 @@
               / ///////////// Specialty storage ////////////////////////
               .row
                 %h2
-                  Specialty Storage
+                  Packaging Supplies
                   %a.pull-right{:href => ""} Want More Information?
                 .double-line
 
@@ -89,7 +91,8 @@
                       %img.img-responsive{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg"}/
                     .row
                       .col-md-3.col-sm-12.col-xs-12.button-group
-                        %input#txt-couch.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
+                        = f.text_field :box_quantity,  autofocus: true, placeholder:"0", class:"form-control full-width quantity-field", id:"txt-couch"
+                        / %input#txt-couch.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
                         %button#couch.btn.btn-primary.btn-inc{:type => "button"} +
                       .col-md-9.col-sm-12.col-xs-12.text-group
                         %h4 Medium Couch
@@ -102,7 +105,8 @@
                       %img.img-responsive{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg"}/
                     .row
                       .col-md-3.col-sm-12.col-xs-12.button-group
-                        %input#txt-bike.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
+                        = f.text_field :box_quantity,  autofocus: true, placeholder:"0", class:"form-control full-width quantity-field", id:"txt-bike"
+                        / %input#txt-bike.form-control.full-width.quantity-field{:placeholder => "0", :type => "text"}/
                         %button#bike.btn.btn-primary.btn-inc{:type => "button"} +
                       .col-md-9.col-sm-12.col-xs-12.text-group
                         %h4 Bicycle
