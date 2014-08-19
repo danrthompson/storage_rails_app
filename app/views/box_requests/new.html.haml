@@ -18,10 +18,8 @@
           .col-md-8.col-md-offset-2.inventory
             .row
               .col-md-2.col-sm-4.col-xs-3.center-align
-              / = render partial: "partials/list_item_small", locals: {name: "cock", description: "test test test", price: "$1/m"}
               = render partial: "partials/list_item_small", locals: {name: "Standard Box", description: "22\" x 18\" x 12\"", price: "$1/m", field_val: :box_quantity, id:"stdbox", form:f, cls:"form-control", uses:"(books, clothing & small items)", imgUrl:"http://ecx.images-amazon.com/images/I/41w7aqZ7AxL.jpg"}
               = render partial: "partials/list_item_small", locals: {name: "Wardrobe Box", description: "24\" x 20\" x 46\"", price: "$1/m", field_val: :box_quantity, id:"warbox", form:f, cls:"form-control", uses:"(suits, poster tubes & tall items)", imgUrl:"http://ecx.images-amazon.com/images/I/41w7aqZ7AxL.jpg"}
-               
             .row
               %br/  
               .col-md-12.col-md-offset-0
@@ -46,53 +44,8 @@
           .col-md-8.col-md-offset-2
             .row
               = fields_for @user do |field|
-                .boxed-grey.col-md-12
-                  .row.align-left
-                    .col-md-6
-                      .form-group.address-form
-                        = field.label :address_line_1, "Confirm Address:"
-                        = field.text_field :address_line_1,  autofocus: true, placeholder:"Address Line 1", class:"form-control", id:""
-                        = field.text_field :address_line_2,  autofocus: true, placeholder:"Address Line 2", class:"form-control", id:""
-                        .row
-                          .col-md-6.col-sm-6.col-xs-6.col-lg-6
-                            = field.text_field :city,  autofocus: true, placeholder:"City", class:"col-md-6 form-control", id:""
-                            / %input#name.col-md-6.form-control{:placeholder => "City", :required => "required", :type => "text"}/
-                          .col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
-                            = field.text_field :state,  autofocus: true, placeholder:"st", class:"form-control", id:""
-                            / %input#name.form-control{:placeholder => "st", :required => "required", :type => "text"}/
-                          .col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
-                            = field.text_field :zip,  autofocus: true, placeholder:"zip", class:"form-control", id:""
-                            / %input#name.form-control{:placeholder => "zip", :required => "required", :type => "text"}/
-                    .col-md-6
-                      .form-group
-                        .col-md-12
-                          .form-group.delivery-date-group
-                            / %label{:for => "date-picker"} Delivery Date
-                            = f.label :box_quantity, "Delivery Date"
-                            = f.text_field :box_quantity,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:""
-                            / %input#datepicker.form-control{:name => "date-picker", :placeholder => "Does tomorrow work for you?", :type => "text"}/
-                            %br/
-                            %label{:for => "date-picker"} Time Of Day
-                            = f.select  :box_quantity, options_for_select([["Red", "red"], ["Green", "green"]]),{}, {class:"form-control selectpicker"}
-                            / =f.select(:state, options_for_select(@states), { :class => 'dropdown'})
-                            / %label{:for => "date-picker"} Time Of Day
-                            / %select.form-control.selectpicker
-                            /   %option 6:30AM - 10:00PM
-                            /   %option Ketchup
-                            /   %option Relish
-                          %br/ 
-                .boxed-grey.col-md-12
-                  / %form#contact-form
-                  .row
-                    .col-md-6.align-left
-                      = field.label :phone_number, "Phone Number (for delivery)"
-                      = field.text_field :phone_number,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:""
-                      / %input#name.form-control{:placeholder => "Address Line 1", :required => "required", :type => "text"}/
-                    .col-md-6.align-left
-                      %label{:for => "name"} Any Special Instructions?
-                      %textarea#message.form-control{:cols => "25", :name => "message", :placeholder => "Message", :required => "required", :rows => "2"}
-                      %br/ 
-              / End Phone Number &amp; Instructions Box
+                = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
+                = render partial: "partials/delivery_phone_message", locals: {field:field, f:f}
               .col-md-8.col-md-offset-2.half-opacity.charges-box
                 %br/
                 .single-line

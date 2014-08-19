@@ -1,0 +1,11 @@
+.boxed-grey.col-md-12
+  / %form#contact-form
+  .row
+    .col-md-6.align-left
+      = field.label :phone_number, "Phone Number (for delivery)"
+      = field.text_field :phone_number,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:""
+      / %input#name.form-control{:placeholder => "Address Line 1", :required => "required", :type => "text"}/
+    .col-md-6.align-left
+      %label{:for => "name"} Any Special Instructions?
+      %textarea#message.form-control{:cols => "25", :name => "message", :placeholder => "Message", :required => "required", :rows => "2"}
+      %br/ 
