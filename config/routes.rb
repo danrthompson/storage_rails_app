@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
 
   get 'delivery_requests/new/:ids', to: 'delivery_requests#new', as: 'new_delivery_request'
-  get 'pickup_requests/new/:ids', to: 'pickup_requests#new', as: 'new_pickup_request'
+  get 'pickup_requests/new/:num_boxes', to: 'pickup_requests#new', as: 'new_pickup_request'
 
   get 'admin_page' => 'admin_pages#admin_page'
   post 'admin_pages/complete_request/:id', to: 'admin_pages#complete_request', as: 'complete_request'

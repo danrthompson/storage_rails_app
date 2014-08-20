@@ -2,7 +2,9 @@ class PickupRequestsController < ApplicationController
 	before_action :authenticate_user!
 
 	def new
-		@pickup_request = PickupRequest.new;
+		@pickup_request = PickupRequest.new
+		@num_boxes = params[:num_boxes].to_i
+		@user = current_user
 	end
 
 	def create

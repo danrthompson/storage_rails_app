@@ -3,10 +3,12 @@ class DeliveryRequestsController < ApplicationController
 
 	def new
 		@delivery_request = DeliveryRequest.new
-		# @numboxes = 
+		item_ids = params[:ids].split(',').map { |x| x.to_i }
+		@requested_boxes = StorageItem.where(user: current_user, id: item_ids)
+		@user = current_user
 	end
 
 	def create
-		# render text: params and return
+		render text: params and return
 	end
 end
