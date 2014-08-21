@@ -7,7 +7,7 @@ class BoxRequestsController < ApplicationController
 	end
 
 	def create
-		render text: params and return
+		
 		@box_request = BoxRequest.new(params[:box_request])
 		@box_request.user = current_user
 		@box_request.save

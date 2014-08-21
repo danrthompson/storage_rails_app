@@ -73,7 +73,7 @@
                 Items In Storage
               .double-line
               - @storage_items.each do |storage_item|
-                .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry.pull-right{:id => "#{storage_item.id}"}
+                .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
                   .inner
                     .avatar
                       = image_tag(storage_item.image.url, class: "img-responsive")
