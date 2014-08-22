@@ -13,8 +13,8 @@ class StorageItem < ActiveRecord::Base
 		@@item_types
 	end
 
-	def price(item_type)
-		case item_type
+	def price
+		case self.item_type
 		when 'box'
 			5.0
 		when 'couch'
@@ -23,4 +23,19 @@ class StorageItem < ActiveRecord::Base
 			nil
 		end
 	end
+
+	def delivery_price
+		case self.item_type
+		when 'box'
+			2.00
+		when 'couch'
+			15.00
+		else
+			nil
+		end
+	end
+
+
+
+
 end

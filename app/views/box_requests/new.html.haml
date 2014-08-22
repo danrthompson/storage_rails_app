@@ -1,6 +1,7 @@
 
 = render partial: "partials/header"   
 
+= render partial: "partials/blue_bar", locals:{mainText:"New Box Request", dashboard:true, faq:true}
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
   .heading-about.marginbot-20
@@ -17,7 +18,7 @@
         = form_for (@box_request) do |f| 
           .col-md-8.col-md-offset-2.inventory
             .row
-              .col-md-2.col-sm-4.col-xs-3.center-align
+              .col-md-2.col-sm-0.col-xs-2.center-align
               = render partial: "partials/list_item_small", locals: {name: "Standard Box", description: "22\" x 18\" x 12\"", price: "$6.50/m", field_val: :box_quantity, id:"stdbox", form:f, cls:"form-control", uses:"(books, clothing & small items)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
               = render partial: "partials/list_item_small", locals: {name: "Wardrobe Box", description: "24\" x 20\" x 46\"", price: "$12.00/m", field_val: :box_quantity, id:"warbox", form:f, cls:"form-control", uses:"(suits, poster tubes & tall items)", imgUrl:"http://www.ikea.com/us/en/images/products/brimnes-wardrobe-with--doors__0140624_PE300605_S4.JPG"}
             .row
@@ -91,12 +92,13 @@
               .col-md-4.bottom-buttons
                 .boxed-gray.continue-button
                   %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}/
-                  %a{:href => "user-newbox.html", :style => "color: white;"} Back
+                  = link_to "Back", storage_items_path, class:"white"
+                  / %a{:href => "user-newbox.html", :style => "color: white;"} Back
               / END col-12
               .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                 .boxed-gray.continue-button
                   %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
-                  = f.submit "Confirm Odrder"
+                  = f.submit "Confirm Order"
                   / %a{:href => "success-delivery.html", :style => "color: white;"} Confirm Order
 
 

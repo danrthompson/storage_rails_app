@@ -10,6 +10,12 @@ class DeliveryRequestsController < ApplicationController
 	end
 
 	def create
-		render text: params and return
+		# render text: params and return
+		redirect_to @delivery_request
+
+	end
+
+	def show
+		
 	end
 end
