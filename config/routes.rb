@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   get 'faq' => 'static_pages#extra-faq'
   get 'contact' => 'static_pages#extra-contact'
 
-  root 'static_pages#homepage'
+  get 'signup' => 'signup_pages#new'
+
+  root 'static_pages#homepage'    
 
 
   # The priority is based upon order of creation: first created -> highest priority.

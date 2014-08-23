@@ -1,40 +1,42 @@
 
-= render partial: "partials/header"
+= render partial: "partials/logged_in_header"
 / SECONDARY HEADER BAR
 .container.full-width.blue-bg.no-padding.white.dashboard-header
   .row
     .col-md-6.align-center
       %h1 HERE ARE YOUR THINGS
     .col-md-1.col-md-offset-2.col-sm-4.col-xs-4.align-center
-      %a{:href => "user-pickup.html"}
-      .service-box
-        .service-icon
-          %i.fa.fa-clock-o.fa-3x
-        .service-desc
-          %h6
-            Large Item
-            = succeed "Pickup" do
-              %br/
+      / # %div= link_to "test", storage_items_path 
+      / # = link_to "path/to/page.html" do
+    /   %a{:href => "user-pickup.html"}
+    /   .service-box
+    /     .service-icon
+    /       %i.fa.fa-clock-o.fa-3x
+    /     .service-desc
+    /       %h6
+    /         Large Item
+    /         = succeed "Pickup" do
+    /           %br/
     .col-md-1.col-sm-4.col-xs-4.align-center
-      %a{:href => "user-newbox.html"}
-      .service-box
-        .service-icon
-          %i.fa.fa-dropbox
-        .service-desc
-          %h6
-            Order
-            = succeed "Boxes" do
-              %br/
+      %a{:href => "box_requests/new.html"}
+        .service-box
+          .service-icon
+            %i.fa.fa-dropbox
+          .service-desc
+            %h6
+              Order
+              = succeed "Boxes" do
+                %br/
     .col-md-1.col-sm-4.col-xs-4.align-center
-      %a{:href => "extra-faq.html"}
-      .service-box
-        .service-icon
-          %i.fa.fa-question-circle.fa-3x
-        .service-desc
-          %h6
-            Have a
-            %br>/
-            Question?
+      %a{:href => "faq.html"}
+        .service-box
+          .service-icon
+            %i.fa.fa-question-circle.fa-3x
+          .service-desc
+            %h6
+              Have a
+              %br>/
+              Question?
 / END SECONDARY HEADER
 %br/
 %br/
@@ -51,7 +53,8 @@
               %h2
                 %span.items-count= @boxes_at_home
                 Items Awaiting Pickup: 
-                %a.pull-right{:href => "user-newbox.html"} Order Additional Boxes
+                =link_to "Order More Boxes", {:controller => "box_requests", :action => "new"}, :class => "pull-right"
+                / %a.pull-right{:href => "user-newbox.html"} Order More Boxes
               .double-line
               / - @boxes_at_home.times do
               - 3.times do
@@ -82,11 +85,11 @@
                     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.description
               .col-md-12.col-sm-12.col-xs-12.align-left
                 %br/
-                %a{:href => "user-newbox.html"} Want More Boxes? Schedule a dropoff.
+                =link_to "Want More Boxes? Schedule a dropoff.", {:controller => "box_requests", :action => "new"}
 
         .col-md-4.inventory-sidebar
           .row.sidebar-txtentry.light-blue-bg
-            .inner
+            .innert
               %h5 Notifications
               .single-line
               %ul
@@ -111,12 +114,8 @@
                   %span.pull-right 1
           .row
             .boxed-gray.continue-button
-              %a{:href => "user-pickup.html"}
-                %button#pickup-button.btn.btn-primary.gray-bg{:disabled => "", :type => "button"} Request Pickup
-              %a{:href => "user-delivery.html"}
-                %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:disabled => "", :type => "button"} Request Delivery
-      / end row
-  / end row
+              %button#pickup-button.btn.btn-primary.gray-bg{:disabled => "", :type => "button"} Request Pickup
+              %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:disabled => "true", :type => "button"} Request Delivery
 %br/
 %br/
 %br/
@@ -177,7 +176,7 @@
   });
 
   $("#pickup-button").click(function(event){
-    event.preventDefault();
+      event.preventDefault();
      // console.log("disabled clicked");
      var selectedEntries = $(".selected-item.pickup-entry");
      console.log(selectedEntries.size());

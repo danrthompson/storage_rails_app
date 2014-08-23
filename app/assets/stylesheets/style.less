@@ -29,7 +29,8 @@
 	font-style: italic;
 }
 .light-gray{
-	color: @light-gray}
+	color: @light-gray ! important;
+}
 
 .dark-gray{
 	color: @gray-regular ! important;
@@ -90,7 +91,7 @@
 
 .black-hover{
 	&:hover{
-		color: black;
+		color: black ! important;
 	}
 }
 
@@ -132,6 +133,11 @@
 
 .align-center{
 	text-align: center;
+}
+
+.extra-form-padding{
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .downplay{

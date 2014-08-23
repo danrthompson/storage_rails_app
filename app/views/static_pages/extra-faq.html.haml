@@ -1,4 +1,4 @@
-= render :partial => 'partials/header'
+= render :partial => 'partials/logged_in_header'
 
 / SECONDARY HEADER BAR
 .container.full-width.blue-bg.no-padding.white.dashboard-header
@@ -8,11 +8,11 @@
     / Dashboard
     .col-md-1.col-md-offset-1.col-sm-4.col-xs-4.align-center
       .service-box
-        %a{:href => "user-dashboard.html"}
-        .service-icon
-          %i.fa.fa-dashboard
-        .service-desc
-          %h6 Dashboard
+        %a{:href => "storage_items.html"}
+          .service-icon
+            %i.fa.fa-dashboard
+          .service-desc
+            %h6 Dashboard
 / END SECONDARY HEADER
 %br/
 %br/
@@ -68,8 +68,9 @@
             .boxed-gray.continue-button
               %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
               %a{:href => "delivery-info.html", :style => "color: white;"} Ask A Question
-              %button.btn.btn-primary.gray-bg{:type => "button"}/
-              %a{:href => "delivery-info.html", :style => "color: white;"} Back To Dashboard
+              %button.btn.btn-primary.gray-bg= link_to "Back To Dashboard", storage_items_path, class:"white"
+              / %button.btn.btn-primary.gray-bg{:type => "button"}/
+              / %a{:href => "delivery-info.html", :style => "color: white;"} Back To Dashboard
         .col-md-8.col-sm-8.col-xs-12.pull-left
           .row
             .col-md-12.faq-section

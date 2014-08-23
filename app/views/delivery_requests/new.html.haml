@@ -1,5 +1,5 @@
 
-= render partial: "partials/header"   
+= render partial: "partials/logged_in_header"   
 
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
@@ -21,11 +21,7 @@
               = fields_for @user do |field|
                 = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
                 = render partial: "partials/delivery_phone_message", locals: {field:field, f:f}
-          
-
         
-        
-
           / Add to Order Section
           .col-md-6.col-md-offset-3.half-opacity
             %br/

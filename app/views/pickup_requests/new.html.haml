@@ -1,5 +1,5 @@
 
-= render partial: "partials/header"   
+= render partial: "partials/logged_in_header"   
 
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
@@ -42,7 +42,7 @@
               .col-md-12.col-md-offset-0
                 %h2.pull-left.full-width
                   %i Individual Items
-                  %p.half-opacity.pull-right Anything else you want us to bring to storage?
+                  %p.half-opacity.pull-right Anything extra you want to store?
 
                 %br
                 .single-line.pt-10
@@ -54,18 +54,7 @@
               = render partial: "partials/list_item_small", locals: {name: "Oversized Item", description: "Needs three people to move", price: "$6.50/m", field_val: :box_quantity, id:"xl", form:f, cls:"form-control", uses:"(dining table, segmented couch...)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
               .col-12
                 %a.pull-right{:href => ""} Not sure which size to choose? Click here.
-            / .row
-            /   %br/  
-            /   .col-md-12.col-md-offset-0
-            /     %h2.pull-left
-            /       %i Additional Items
-            /     %br
-            /     .single-line.pt-10
-            / .row
-            /   = render partial: "partials/list_item_small", locals: {name: "Oversized Item", description: "Needs three people to move", price: "$6.50/m", field_val: :box_quantity, id:"xl", form:f, cls:"form-control", uses:"(dining table, segmented couch...)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
-   
-          / Final summary Section
-        
+    
           .col-md-6.col-md-offset-3.half-opacity.charges-box
             %br/
             %br/
