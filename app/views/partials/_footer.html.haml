@@ -8,24 +8,27 @@
         %h4 Print Page
         %ul.no-list
           %li
-            %a{href: ""} About Us
-          %li Press
-          %li Contact
-          %li FAQ
+            = link_to "About Us", about_path
+          / %li Press
+          %li 
+            = link_to "Contact", contact_path
+          %li
+            = link_to "FAQ", faq_path
       .col-md-2
         %h4 Contact Us
         %ul.no-list
-          %li Phone: 1-800-555-5555
-          %li team@spaceyouneed.com
-          %li
-            %a{href: "contact-us.html"} Contact Form
+          / %li Phone: 1-800-555-5555
+          %li 
+            %a{:href => "mailto:theteam@spaceyouneed.com"} team@spaceyouneed.com
+          / %li
+          /   %a{href: "contact-us.html"} Contact Form
       .col-md-2
         %h4 Get Social
         %ul.no-list
           %li
-            %a{href: "contact-us.html"} Facebook
+            %a{href: "http://www.facebook.com"} Facebook
           %li
-            %a{href: "contact-us.html"} Twitter
-          %li
-            %a{href: "contact-us.html"} Blog
+            %a{href: "http://www.twitter.com"} Twitter
+          / %li
+          /   %a{href: "contact-us.html"} Blog
       .col-md-12.col-lg-12

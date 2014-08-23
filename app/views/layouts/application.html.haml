@@ -17,6 +17,12 @@
       %p The Space You Need
 
     %p.notice.default-hide#notice-section= notice
+    / .row.notice.default-hide#notice-section
+    / .col-md-8.col-md-offset-2.center-align
+    /   %p adb
+    /   %p= notice
+    /   %p <span id="close-notice" class="pull-right">CLOSE</span>
+
     %p.alert.default-hide#alert-section= alert    
 
     :javascript
@@ -38,4 +44,8 @@
                 console.log("showing spacer");
             }
         }
+
+        $("#close-notice").click(function(){
+            $("#notice-section").hide();
+        })
     = yield

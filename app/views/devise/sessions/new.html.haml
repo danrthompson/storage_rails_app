@@ -1,4 +1,4 @@
-= render :partial => 'partials/logged_in_header'
+= render :partial => 'partials/sign_in_header'
 
 
 
@@ -9,7 +9,7 @@
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %h2 Create An Account
+            %h2 Account Login
   / BODY CONTENT: SELECT ITEMS
   .container
     .row
@@ -36,8 +36,9 @@
                 %a{href: "/"}
                   %h1.btn.btn-default.pull-left Back    
           %br/
-          %br/ 
-
+          %br/
+        = link_to "Dont have an account yet? Sign Up", new_user_registration_path, class:"black-hover, pull-right"  
+        / %a.pull-right{:href => ""}Dont have an account yet? Sign Up 
 
 
 = render :partial => 'partials/footer'

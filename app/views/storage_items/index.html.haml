@@ -4,6 +4,7 @@
 .container.full-width.blue-bg.no-padding.white.dashboard-header
   .row
     .col-md-6.align-center
+      .single-line.no-opacity
       %h1 HERE ARE YOUR THINGS
     .col-md-1.col-md-offset-2.col-sm-4.col-xs-4.align-center
       / # %div= link_to "test", storage_items_path 
@@ -24,9 +25,9 @@
             %i.fa.fa-dropbox
           .service-desc
             %h6
-              Order
-              = succeed "Boxes" do
-                %br/
+              Order Boxes
+              / = succeed "Boxes" do
+              /   %br/
     .col-md-1.col-sm-4.col-xs-4.align-center
       %a{:href => "faq.html"}
         .service-box
@@ -51,7 +52,7 @@
             / Boxes At Home
             .row
               %h2
-                %span.items-count= @boxes_at_home
+                %span.items-count#boxes-at-home= @boxes_at_home
                 Items Awaiting Pickup: 
                 =link_to "Order More Boxes", {:controller => "box_requests", :action => "new"}, :class => "pull-right"
                 / %a.pull-right{:href => "user-newbox.html"} Order More Boxes
