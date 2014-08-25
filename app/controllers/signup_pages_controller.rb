@@ -16,7 +16,7 @@ class SignupPagesController < ApplicationController
 			@box_request.user = @user
 			@box_request.save!
 			sign_in @user
-			redirect_to action: :show, id: @user.id and return
+			redirect_to signup_pages_confirm_url(@user.id) and return
 		end
 		render action: :new and return
 	end
@@ -32,18 +32,18 @@ class SignupPagesController < ApplicationController
 		redirect_to new_user_session_url and return if @user.id != current_user.id
 		@user.update(params.require(:user).permit(:cc_name, :cc_number, :exp_month, :exp_year))
 		redirect_to storage_items_url and return if @user.ready?
-		redirect_to action: :show and return
+		redirect_to signup_pages_confirm_url(@user.id) and return
 	end
 
 	private
 
 	def no_user
-		redirect_to action: :show, id: current_user.id and return if current_user
+		redirect_to signup_pages_confirm_url(current_user.id) and return if current_user and not current_user.ready?
+		redirect_to storage_items_url and return if current_user and current_user.ready?
 	end
 
 	def user_but_no_cc_info
 		redirect_to new_user_session_url and return unless current_user
-		redirect_to storage_items_url and return if current_user and current_user.ready? 
+		redirect_to storage_items_url(current_user.id) and return if current_user and current_user.ready? 
 	end
-
 end
