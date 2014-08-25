@@ -314,6 +314,14 @@
     refreshOrder(field.val(), orderEntrySpan);
   });
 
+  $(".quantity-field").submit(function(e){
+    console.log("BOOOOOOM");
+
+    e.preventDefault();
+      console.log("BOOOOOOM");
+
+  })
+
 
   // Rewrites values in Order Summary Field
   function refreshOrder(val, orderEntrySpan){
