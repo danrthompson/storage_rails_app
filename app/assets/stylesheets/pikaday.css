@@ -86,7 +86,7 @@ http://nicolasgallagher.com/micro-clearfix-hack/
     text-indent: 20px;
     white-space: nowrap;
     overflow: hidden;
-    background-color: transparent;
+    /*background-color: transparent;*/
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 75% 75%;
@@ -103,9 +103,10 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 .pika-prev,
 .is-rtl .pika-next:after {
     float: left;
-    content: "\25b6";
+    content: "\25B6";
     *left: 0;
 }
+
 
 .pika-next,
 .is-rtl .pika-prev:after {

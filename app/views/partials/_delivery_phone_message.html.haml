@@ -3,12 +3,14 @@
   .row
     .col-md-6.align-left
       = f.label :box_quantity, "Delivery Date"
-      = f.text_field :box_quantity,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:""
-      / %input#name.form-control{:placeholder => "Address Line 1", :required => "required", :type => "text"}/
+      = f.text_field :box_quantity,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:"datepicker", name:"date-picker"
     .col-md-6.align-left
-      / %label{:for => "name"} Any Special Instructions?
-      / %textarea#message.form-control{:cols => "25", :name => "message", :placeholder => "Message", :required => "required", :rows => "2"}
       %label{:for => "date-picker"} Time Of Day
       = f.select  :box_quantity, options_for_select([["Red", "red"], ["Green", "green"]]),{}, {class:"form-control selectpicker"}
       %br/ 
+
+      / <input type="text" class="form-control" name="date-picker" id="datepicker" placeholder="Does tomorrow work for you?">
+
+:javascript
+  var picker = new Pikaday({ field: document.getElementById('datepicker') });
 

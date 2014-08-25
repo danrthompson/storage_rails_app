@@ -12,41 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require pikaday
 //= require gnmenu
 //= require turbolinks
-// require bootstrap
+//= require bootstrap
 // require classie
 // require nivo-lightbox
 // require stellar
-// require custom
+//= require custom
 // require syn-dashboard
 
-
-
-$("#signup-first-btn").click(function(){
-	console.log("moving on to the second");
-	$("#signup-first").hide();
-	$("#signup-second").hide();
-	window.scrollTo(0,0);
-})
-
-
-$("#signup-second-btn").click(function(e){
-	e.preventDefault()
-	console.log("moving on to the second");
-	$("#signup-second").hide();
-	$("#signup-third").hide();
-	window.scrollTo(0,0);
-})
-
-
-$("#signup-third-btn").click(function(){
-	console.log("moving on to the second");
-	$("#signup-third").hide();
-	$("#signup-fourth").show();
-	window.scrollTo(0,0);
-})
 
 
 

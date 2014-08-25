@@ -54,7 +54,7 @@
               = render partial: "partials/list_item_small", locals: {name: "Large Item", description: "Items movable by two people", price: "$20.00/m", field_val: :box_quantity, id:"lg", form:f, cls:"form-control", uses:"(couches, small tables, dressers...)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
               = render partial: "partials/list_item_small", locals: {name: "Oversized Item", description: "Needs three people to move", price: "$6.50/m", field_val: :box_quantity, id:"xl", form:f, cls:"form-control", uses:"(dining table, segmented couch...)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
               .col-12
-                %a.pull-right{:href => ""} Not sure which size to choose? Click here.
+                %a.pull-right.pointer{"data-target" => "#myModal", "data-toggle" => "modal"} Not sure which size to choose? Click here.
     
           .col-md-6.col-md-offset-3.half-opacity.charges-box
             %br/
@@ -122,6 +122,35 @@
                   = f.submit "Confirm Delivery"
 
 = render :partial => "partials/footer"
+
+/ Button trigger modal
+%button.btn.btn-primary.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal"}
+  Launch demo modal
+/ Modal
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title What's the Right Option
+      .modal-body
+        %p Small Items
+        %ul
+          %li Small Items
+          %li Medium Items
+        %p Medium Items
+        %ul
+          %li Small Items
+          %li Medium Items
+        %p Large Items
+        %ul
+          %li Small Items
+          %li Medium Items
+      .modal-footer
+        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
+        / %button.btn.btn-primary{:type => "button"} Save changes
 
 :javascript
     // Increment Text Field
