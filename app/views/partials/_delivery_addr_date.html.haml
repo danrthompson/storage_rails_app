@@ -2,16 +2,16 @@
 	.row.align-left
 		.col-md-6
 			.form-group.address-form
-				= field.label :address_line_1, "Confirm Address:"
-				= field.text_field :address_line_1,  autofocus: true, placeholder:"Address Line 1", class:"form-control", id:""
-				= field.text_field :address_line_2,  autofocus: true, placeholder:"Address Line 2", class:"form-control", id:""
+				= f.label :address_line_1, "Confirm Address:"
+				= f.text_field :address_line_1,  autofocus: true, placeholder:"Address Line 1", class:"form-control", id:""
+				= f.text_field :address_line_2,  autofocus: true, placeholder:"Address Line 2", class:"form-control", id:""
 				.row
 					.col-md-6.col-sm-6.col-xs-6.col-lg-6
-						= field.text_field :city,  autofocus: true, placeholder:"City", class:"col-md-6 form-control", id:""
+						= f.text_field :city,  autofocus: true, placeholder:"City", class:"col-md-6 form-control", id:""
 					.col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
-						= field.text_field :state,  autofocus: true, placeholder:"st", class:"form-control", id:""
+						= f.text_field :state,  autofocus: true, placeholder:"st", class:"form-control", id:""
 					.col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
-						= field.text_field :zip,  autofocus: true, placeholder:"zip", class:"form-control", id:""
+						= f.text_field :zip,  autofocus: true, placeholder:"zip", class:"form-control", id:""
 		.col-md-6
 			.form-group
 				.col-md-12

@@ -114,15 +114,16 @@
             .row
               = fields_for @user do |field|
                 = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
-                = render partial: "partials/delivery_phone_message", locals: {field:field, f:f}
+                = render partial: "partials/delivery_date_time", locals: {field:field, f:f}
               .col-md-4.bottom-buttons
                 .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}/
-                  = link_to "Back", storage_items_path, class:"white"
+                  %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}
+                    %a.white#signup-second-back Back
+                  / = link_to "Back", storage_items_path, class:"white"
               .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                 .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
-                  %a.white#signup-second-btn Next
+                  %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}
+                    %a.white#signup-second-btn Next
                   / = f.submit "Confirm Order"
 
 
@@ -153,8 +154,8 @@
                   .col-md-12.bottom-buttons
                     / %a.white#signup-third-btn Next 
                     %a= userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-third-btn"                  
-                    %a{href: "/"}
-                      %h1.btn.btn-default.pull-left Back    
+                    %a.pointer
+                      %h1.btn.btn-default.pull-left#signup-third-back Back
             %br/
             %br/ 
     %br/ 
@@ -288,7 +289,7 @@
         / %button.btn.btn-primary{:type => "button"} Save changes
 
 :javascript
-    // Increment Text Field
+  // Increment Text Field
   $(".btn-inc").click(function(){
     console.log("button clicked");
     var id = $(this).attr('id');
@@ -350,32 +351,47 @@
     console.log("total:" + total);
     $('#order-subtotal').text("$" + total+"/m");
   }
+  
+  function moveFromTo(fromDiv, toDiv){
+    $(fromDiv).hide();
+    $(toDiv).show();
+    window.scrollTo(0,0);
+  }
+
+
+  function moveFromTo(fromDiv, toDiv){
+    $(fromDiv).hide();
+    $(toDiv).show();
+    window.scrollTo(0,0);
+  }
 
   $("#signup-first-btn").click(function(){
-    console.log("moving on to the second");
-    $("#signup-first").hide();
-    $("#signup-second").show();
-    window.scrollTo(0,0);
-
+    moveFromTo("#signup-first", "#signup-second");
   })
-
 
   $("#signup-second-btn").click(function(){
-    console.log("moving on to the third");
-    $("#signup-second").hide();
-    $("#signup-third").show();
-    window.scrollTo(0,0);
-
+    moveFromTo("#signup-second", "#signup-third");
   })
 
-
-  $("#signup-third-btn").click(function(e){
+  $("#signup-third-btn").click(function(){
     e.preventDefault();
-    console.log("moving on to the fourth");
-    $("#signup-third").hide();
-    $("#signup-fourth").show();
-    window.scrollTo(0,0);
-
+    moveFromTo("#signup-third", "#signup-fourth");
   })
 
-  
+  $("#signup-second-back").click(function(){
+    moveFromTo("#signup-second", "#signup-first");
+  })
+
+  $("#signup-third-back").click(function(){
+    moveFromTo("#signup-third", "#signup-second");
+  })
+
+  $("#signup-fourth-back").click(function(){
+    e.preventDefault();
+    moveFromTo("#signup-fourth", "#signup-third");
+  })
+
+
+
+
+

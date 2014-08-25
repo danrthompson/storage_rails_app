@@ -20,6 +20,7 @@
 // require nivo-lightbox
 // require stellar
 //= require custom
+//= require signup_flow.js
 // require syn-dashboard
 
 
