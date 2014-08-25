@@ -3,7 +3,7 @@
   .row
     .col-md-6.align-left
       = f.label :delivery_date, "Delivery Date"
-      = f.text_field :delivery_date,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:"datepicker", name:"date-picker"
+      = f.text_field :delivery_date,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:"datepicker"
     .col-md-6.align-left
       %label{:for => "date-picker"} Time Of Day
       = f.select  :delivery_time, options_for_select([["Red", "red"], ["Green", "green"]]),{}, {class:"form-control selectpicker"}
