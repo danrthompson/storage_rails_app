@@ -1,0 +1,46 @@
+/ HEADER PARTIAL
+.container
+  %ul#gn-menu.gn-menu-main.main-header.full-opacity
+    %li.gn-trigger.no-border
+      %a.no-padding{href: "/"}
+        %img#menu-img{:src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/syn-logo.png", :alt => ""}/
+
+
+      // THIS IS HIDDEN. NORMALLY SHRINKS WHEN WINDOW GETS TOO SMALL
+      / %span Menu
+      %nav.gn-menu-wrapper
+        .gn-scroller
+          %ul.gn-menu.pull-right
+            %li.gn-search-item
+              %input.gn-search{placeholder: "Search", type: "search"}/
+              %a.gn-icon.gn-icon-search
+                %span Search
+            %li
+              %a.gn-icon.gn-icon-download{href: "#about"} About
+            %li
+              %a.gn-icon.gn-icon-cog{href: "#service"} Service
+            %li
+              %a.gn-icon.gn-icon-help{href: "#works"} Works
+            %li
+              %a.gn-icon.gn-icon-archive{href: "#contact"} Contact
+  
+    // ICON & TITLE
+    %li.pull-left.no-border.half-opacity
+      %a.no-side-padding{href: "/"}
+        %span.light-gray.black-hover#menu-title The Space You Need
+
+    %li.pull-right.no-border
+      = link_to 'Login', new_user_session_path, class:"light-gray black-hover"
+      / # = link_to "Account", contact_path, class:"light-gray black-hover"
+    %li.pull-right.no-border{disabled: true}
+      %p 
+    %li.pull-right.no-border
+      %a.light-gray.black-hover.thin-font{:href => "#works"} FAQ
+      / # = link_to "How It Works", contact_path, class:"light-gray black-hover thin-font"     
+    %li.pull-right.no-border
+      / # = link_to "Savings", contact_path, class:"light-gray black-hover thin-font" 
+      %a.light-gray.black-hover.thin-font{:href => "#save-much"} HOME
+    
+
+
+/ %p= link_to 'Login', new_user_session_path
