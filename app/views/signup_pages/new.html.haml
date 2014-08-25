@@ -88,12 +88,12 @@
                 %br/ 
                 .col-md-4.bottom-buttons
                   .boxed-gray.continue-button
-                    %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}/
-                    = link_to "Back", root_path, class:"white"
+                    %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}
+                      = link_to "Back", root_path, class:"white"
                 .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                   .boxed-gray.continue-button
-                    %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
-                    %a#signup-first-btn.white Delivery Details
+                    %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-first-btn{:type => "button"}
+                      Delivery Details
 
 
 
@@ -117,13 +117,13 @@
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f}
               .col-md-4.bottom-buttons
                 .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}
-                    %a.white#signup-second-back Back
+                  %button.btn.btn-primary.blue-bg.gray-bg#signup-second-back{:type => "button"}
+                    Back
                   / = link_to "Back", storage_items_path, class:"white"
               .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                 .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}
-                    %a.white#signup-second-btn Next
+                  %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
+                    Next
                   / = f.submit "Confirm Order"
 
   / Signup
