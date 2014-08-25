@@ -98,7 +98,7 @@
 
 
   / Delivery Details
-  %section.text-center#signup-second.default-hide
+  %section.text-center#signup-second.hidden
     .heading-about.marginbot-20
       .container
         .row
@@ -126,10 +126,8 @@
                     %a.white#signup-second-btn Next
                   / = f.submit "Confirm Order"
 
-
-
   / Signup
-  %section.text-center#signup-third.default-hide
+  %section.text-center#signup-third.hidden
     .heading-about.marginbot-30
       .container
         .row
@@ -164,7 +162,7 @@
 
 
   / / CONFIRMATION
-  / %section#signup-fourth.text-center.default-hide
+  / %section#signup-fourth.text-center.hidden
   /   .heading-about.marginbot-30
   /     .container
   /       .row
@@ -360,8 +358,8 @@
 
 
   function moveFromTo(fromDiv, toDiv){
-    $(fromDiv).hide();
-    $(toDiv).show();
+    $(fromDiv).toggleClass("hidden");
+    $(toDiv).toggleClass("hidden");
     window.scrollTo(0,0);
   }
 
