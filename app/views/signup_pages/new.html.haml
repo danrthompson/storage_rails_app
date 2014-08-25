@@ -287,6 +287,24 @@
         / %button.btn.btn-primary{:type => "button"} Save changes
 
 :javascript
+
+  
+  $(document).ready(function() {
+    $(".quantity-field").keydown(function(event){
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        console.log("QUANTITY CHANGED");
+        var field = $(this);
+        var id = field.attr("id");
+        var idRoot = id.substr(4);
+        console.log("#num-"+idRoot+" span");
+        var orderEntrySpan = $('#num-'+idRoot+ " span");
+        refreshOrder(field.val(), orderEntrySpan);
+      }
+    });
+  });
+
+
   // Increment Text Field
   $(".btn-inc").click(function(){
     console.log("button clicked");
@@ -314,13 +332,6 @@
     refreshOrder(field.val(), orderEntrySpan);
   });
 
-  $(".quantity-field").submit(function(e){
-    console.log("BOOOOOOM");
-
-    e.preventDefault();
-      console.log("BOOOOOOM");
-
-  })
 
 
   // Rewrites values in Order Summary Field
