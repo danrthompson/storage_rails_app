@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#extra-contact'
 
   get 'signup' => 'signup_pages#new'
+  post 'signup' => 'signup_pages#create'
 
   root 'static_pages#homepage'    
 
