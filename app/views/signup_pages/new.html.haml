@@ -7,7 +7,7 @@
 %br/ 
 %br/ 
 %br/ 
-= form_for (@box_request) do |f| 
+= form_for :signup, url: {action: 'create'} do |f| 
 
   / Item Selection
   %section.text-center#signup-first
@@ -250,9 +250,10 @@
                 %input#terms-checkbox.pull-right{:type => "checkbox"}/
               .col-md-4
                 .boxed-gray.continue-button
-                  %a{:href => "user-dashboard.html"}
-                    %button.btn.btn-primary.blue-bg-hover= link_to "Confirm Order", storage_items_path, class:"white"
-                    / %button.btn.btn-primary{:type => "button"} Confirm Order
+                  / %a{:href => "user-dashboard.html"}
+                  / %button.btn.btn-primary.blue-bg-hover= link_to "Confirm Order", storage_items_path, class:"white"
+                  / %button.btn.btn-primary{:type => "button"} Confirm Order
+                  = f.submit 'confirm order'
 
 
 

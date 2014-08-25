@@ -2,7 +2,11 @@ class SignupPagesController < ApplicationController
 
 	def new
 		@box_request = BoxRequest.new
-		@user = current_user
+		@user = User.new
+	end
+
+	def create
+		render text: params
 	end
 
 end
