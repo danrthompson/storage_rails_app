@@ -1,0 +1,244 @@
+
+/ = render partial: "partials/logged_in_header"   
+= render :partial => 'partials/logged_in_header'
+
+
+= render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
+%br/ 
+%br/ 
+%br/ 
+= form_for :signup, url: {action: 'create'} do |f| 
+
+
+  / CONFIRMATION
+  %section#signup-fourth.text-center
+    .heading-about.marginbot-30
+      .container
+        .row
+          .col-lg-8.col-lg-offset-2
+            .section-heading
+              %h2 Confirm Your Order
+    .container
+      .row
+        .col-lg-8.col-md-offset-2
+          %h3.double-underlined Order Details
+          .double-line
+          .row
+            .col-md-4.confirm-elem
+              %h5 Your Order
+              %ul
+                %li
+                  %span.order-item Standard Box
+                  %span.pull-right 3
+                %li
+                  %span.order-item Wardrobe Box
+                  %span.pull-right 1
+                %li
+                  %span.order-item Bicycle
+                  %span.pull-right 1
+              .single-line
+              %ul
+                %li.light-gray
+                  %span.order-item Subtotal:
+                  %span.pull-right $30/month
+                %li
+                  %span.order-item.blue.heavy-font Savings:
+                  %span.pull-right.heavy-font $165/month
+            .col-md-4.confirm-elem
+              %h5 Delivery Time
+              %p Tuesday, July 29 between
+              %p 5:30 and 6:00 PM
+            .col-md-4.confirm-elem
+              %h5 Your Address
+              %p 1035 Pearl St. #211
+              %p Boulder, CO 80302
+          %br/
+          %br/
+          %h3.double-underlined Payment Info
+          .double-line
+          %form#contact-form
+            .bg-gray
+              %br/
+              .row
+                .col-md-8.col-md-offset-2
+                  .form-group.address-form
+                    %label{:for => "name"} Name on Credit Card
+                    %input#name.form-control{:placeholder => "e.g. John Doe", :required => "required", :type => "text"}/
+                    %br/
+                    %label{:for => "name"} Credit Card Number
+                    %input#name.form-control{:placeholder => "e.g. 1234 5678 9012 3456", :required => "required", :type => "text"}/
+                    %br/
+                    .row
+                      .col-md-6.col-sm-6.col-xs-6.col-lg-6
+                        %label{:for => "name"} Expiration Month
+                        %input#name.col-md-6.form-control{:placeholder => "mm", :required => "required", :type => "text"}/
+                      .col-md-6.col-sm-6.col-xs-6.col-lg-6
+                        %label{:for => "name"} Expiration Year
+                        %input#name.col-md-6.form-control{:placeholder => "yyyy", :required => "required", :type => "text"}/
+                .col-md-8.col-md-offset-2
+              %br/
+            %br/
+            .bg-gray
+              / %br/
+              / .row
+              /   .col-md-8.col-md-offset-2
+              /     .form-group.address-form
+              /       %label{:for => "name"}
+              /         Your Phone Number
+              /         %span (for deliveries)
+              /       %input#name.form-control{:placeholder => "", :required => "required", :type => "text"}/
+              /       %br/
+              /   .col-md-8.col-md-offset-2
+            %br/
+            .row
+              .col-md-5.col-md-offset-2.no-side-padding
+                %p.align-right.pull-right.pt-10
+                  I agree to the
+                  %a.pointer{"data-target" => "#myModal", "data-toggle" => "modal"} terms and services 
+              .col-md-1
+                %input#terms-checkbox.pull-right{:type => "checkbox"}/
+              .col-md-4
+                .boxed-gray.continue-button
+                  / %a{:href => "user-dashboard.html"}
+                  / # %button.btn.btn-primary.blue-bg-hover= link_to "Confirm Order", storage_items_path, class:"white"
+                  / %button.btn.btn-primary{:type => "button"} Confirm Order
+                  = f.submit 'confirm order', class:"btn btn-primary blue-bg-hover", type:"button"
+
+
+
+= render :partial => "partials/footer"
+
+
+/ Modal
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Terms of Service
+      .modal-body
+        %p Small Items
+        %ul
+          %li Small Items
+          %li Medium Items
+        %p Medium Items
+        %ul
+          %li Small Items
+          %li Medium Items
+        %p Large Items
+        %ul
+          %li Small Items
+          %li Medium Items
+      .modal-footer
+        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
+        / %button.btn.btn-primary{:type => "button"} Save changes
+
+:javascript
+  // Increment Text Field
+  $(".btn-inc").click(function(){
+    console.log("button clicked");
+    var id = $(this).attr('id');
+
+    // update text field - incrememnt by one
+    var field = $("#txt-"+id);
+    var val = $(field).val();
+    val = +val + 1;
+    $(field).val(val);
+
+    // update subtotal text
+    var orderEntrySpan = $('#num-'+id+" span");
+    console.log("#num-"+id+" span");
+    refreshOrder(val, orderEntrySpan);
+  });
+
+  $(".quantity-field").change(function(){
+    var field = $(this);
+    var id = field.attr("id");
+    var idRoot = id.substr(4);
+    console.log("#num-"+idRoot+" span");
+    var orderEntrySpan = $('#num-'+idRoot+ " span");
+    refreshOrder(field.val(), orderEntrySpan);
+  });
+
+
+  // Rewrites values in Order Summary Field
+  function refreshOrder(val, orderEntrySpan){
+    console.log("REFERESHING ORDER FOR" + orderEntrySpan);
+    orderEntrySpan.html(parseInt(val));
+    var orderEntry = orderEntrySpan.parent();
+    
+    if (val == 0) orderEntry.addClass('hidden');
+    else orderEntry.removeClass('hidden');
+    
+    updateBoxRequestTotal();
+  }
+
+
+  // Overwrites subtotal for box request
+  function updateBoxRequestTotal(){
+
+    // Number of Boxes
+    var numStdBox = $('#txt-stdbox').val();
+    var numWarBox = $('#txt-warbox').val();
+    var numBubble = $('#txt-bubble').val();
+    var numFileBox = $('#txt-filebox').val();
+    var numTube = $('#txt-tube').val();
+
+    // Pricing Per Box
+    var STDBOX_PRICE =  6.50;
+    var WARDROBE_BOX_PRICE =  12.00;
+    var BUBBLE_WRAP_PRICE =  4.50;
+    var FILE_BOX_PRICE =  9.50;
+    var POSTER_TUBE_PRICE =  10.00;
+
+
+    var total = (numStdBox * STDBOX_PRICE) + (numWarBox * WARDROBE_BOX_PRICE) + (numBubble * BUBBLE_WRAP_PRICE) + (numFileBox * FILE_BOX_PRICE) + (numTube * POSTER_TUBE_PRICE);
+    console.log("total:" + total);
+    $('#order-subtotal').text("$" + total+"/m");
+  }
+  
+  function moveFromTo(fromDiv, toDiv){
+    $(fromDiv).hide();
+    $(toDiv).show();
+    window.scrollTo(0,0);
+  }
+
+
+  function moveFromTo(fromDiv, toDiv){
+    $(fromDiv).hide();
+    $(toDiv).show();
+    window.scrollTo(0,0);
+  }
+
+  $("#signup-first-btn").click(function(){
+    moveFromTo("#signup-first", "#signup-second");
+  })
+
+  $("#signup-second-btn").click(function(){
+    moveFromTo("#signup-second", "#signup-third");
+  })
+
+  $("#signup-third-btn").click(function(){
+    e.preventDefault();
+    moveFromTo("#signup-third", "#signup-fourth");
+  })
+
+  $("#signup-second-back").click(function(){
+    moveFromTo("#signup-second", "#signup-first");
+  })
+
+  $("#signup-third-back").click(function(){
+    moveFromTo("#signup-third", "#signup-second");
+  })
+
+  $("#signup-fourth-back").click(function(){
+    e.preventDefault();
+    moveFromTo("#signup-fourth", "#signup-third");
+  })
+
+
+
+
+
