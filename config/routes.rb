@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get 'signup' => 'signup_pages#new'
   post 'signup' => 'signup_pages#create'
+  get 'signup/:id' => 'signup_pages#show'
+  post 'signup/:id' => 'signup_pages#add_payment'
 
   root 'static_pages#homepage'    
 
