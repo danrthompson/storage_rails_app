@@ -1,8 +1,13 @@
 class Request < ActiveRecord::Base
 	@@packing_items = %w(bubble file_box poster_tube)
 
+	attr_accessor :posted_delivery_date, :posted_delivery_time
+
 	belongs_to :user
 	belongs_to :driver, class_name: 'User'
+
+	before_validation :normalize_delivery_time
+
 	validates :user_id, :delivery_time, presence: true
 	validate :delivery_time_is_available
 
@@ -11,6 +16,14 @@ class Request < ActiveRecord::Base
 	end
 
 	private
+
+	def normalize_delivery_time
+		if self.posted_delivery_time and self.posted_delivery_date then
+			self.delivery_time = Date.strptime(self.posted_delivery_date, '%a %b %d %Y') + self.posted_delivery_time.to_i.hours
+			self.posted_delivery_time = nil
+			self.posted_delivery_date = nil
+		end
+	end
 
 	def delivery_time_is_available
 		if self.delivery_time then
