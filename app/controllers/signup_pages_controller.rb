@@ -8,10 +8,11 @@ class SignupPagesController < ApplicationController
 	end
 
 	def create
-		@user = User.new(params[:user].permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation))
-		@box_request = BoxRequest.new(params[:signup].permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity))
-		@box_request.delivery_time = Date.strptime(params[:signup][:delivery_date], '%a %b %d %Y') + params[:signup][:delivery_time].hours
+		binding.pry
+		@user = User.new(params.require(:user).permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation))
+		@box_request = BoxRequest.new(params.require(:signup).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity, :posted_delivery_time, :posted_delivery_date))
 		@box_request.valid?
+		binding.pry
 		if @user.valid? and @box_request.errors.count == 1 then
 			@user.save!
 			@box_request.user = @user
@@ -24,6 +25,7 @@ class SignupPagesController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		redirect_to new_user_session_url if @user.id != current_user.id
 		@box_request = @user.box_requests.first
 	end
 
