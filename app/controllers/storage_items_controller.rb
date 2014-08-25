@@ -1,5 +1,5 @@
 class StorageItemsController < ApplicationController
-	before_action :authenticate_user!
+	before_action :verify_user_is_ready!
 
 	def new
 		@storage_item = StorageItem.new
@@ -23,4 +23,8 @@ class StorageItemsController < ApplicationController
 		params.require(:storage_item).permit(:image)
 	end
 
+	def verify_user_is_ready!
+		redirect_to new_user_session_url and return unless current_user
+		redirect_to signup_pages_confirm_url(current_user.id) and return unless current_user.ready?
+	end
 end
