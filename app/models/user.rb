@@ -23,9 +23,16 @@ class User < ActiveRecord::Base
   validates :state, format: { with: /\ACO\z/, message: 'must be CO.' }
   validates :zip, inclusion: { in: [80301, 80303], message: 'must be 80301 or 80303.' }
   validates :phone_number, :phony_plausible => true
+  validates :exp_month, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 12}, allow_nil: true
+  validates :exp_year, numericality: {only_integer: true, greater_than_or_equal_to: 2014, less_than_or_equal_to: 2035}, allow_nil: true
 
   def boxes_at_home
     BoxRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity) - PickupRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity)
+  end
+
+  def ready?
+    return true if self.cc_number and self.cc_name and self.exp_year and self.exp_month
+    return false
   end
 
   protected
