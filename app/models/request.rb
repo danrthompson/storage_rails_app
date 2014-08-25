@@ -12,7 +12,9 @@ class Request < ActiveRecord::Base
 	private
 
 	def delivery_time_is_available
-		errors.add(:delivery_time, 'is unavailable') unless Request.within_standard_times?(self.delivery_time) and Request.fits_with_other_delivery_times?(self.delivery_time, Request.where.not(id: self.id))
+		if self.delivery_time then
+			errors.add(:delivery_time, 'is unavailable') unless Request.within_standard_times?(self.delivery_time) and Request.fits_with_other_delivery_times?(self.delivery_time, Request.where.not(id: self.id))
+		end
 	end
 
 	def self.within_standard_times?(time)

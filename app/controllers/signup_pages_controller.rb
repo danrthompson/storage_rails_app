@@ -8,10 +8,19 @@ class SignupPagesController < ApplicationController
 	end
 
 	def create
-		@user = User.create!(params[:user].permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation))
-		@box_request = @user.box_requests.build(params[:signup].permit(:box_quantity, :wardrobe_box_quantity, :bubble_wrap_quantity, :file_box_quantity, :poster_tube_quantity))
-		@box_request.delivery_time = Date.strptime(params[:signup][:delivery_date], '%m/%d/%y') + params[:signup][:delivery_time].hours
-		@box_request.save!
+		render text: params and return
+		@user = User.new(params[:user].permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation))
+		@box_request = BoxRequest.new(params[:signup].permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity))
+		@box_request.delivery_time = Date.strptime(params[:signup]['date-picker'], '%m/%d/%y') + params[:signup][:delivery_time].hours
+		@box_request.valid?
+		if @user.valid? and @box_request.errors.count == 1 then
+			@user.save!
+			@box_request.user = @user
+			@box_request.save!
+			sign_in @user
+			redirect_to action: :show, id: @user.id and return
+		end
+		render action: :new and return
 	end
 
 	def show
