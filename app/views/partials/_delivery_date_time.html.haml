@@ -6,7 +6,7 @@
       = f.text_field :delivery_date,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:"datepicker"
     .col-md-6.align-left
       %label{:for => "date-picker"} Time Of Day
-      = f.select  :delivery_time, options_for_select([["Red", "red"], ["Green", "green"]]),{}, {class:"form-control selectpicker"}
+      = f.select  :delivery_time, options_for_select([["1:00", "1"], ["2:00", "2"]]),{}, {class:"form-control selectpicker"}
       %br/ 
 
       / <input type="text" class="form-control" name="date-picker" id="datepicker" placeholder="Does tomorrow work for you?">

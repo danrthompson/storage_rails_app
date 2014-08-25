@@ -1,4 +1,5 @@
 class Request < ActiveRecord::Base
+	@@packing_items = %w(bubble file_box poster_tube)
 
 	belongs_to :user
 	belongs_to :driver, class_name: 'User'
