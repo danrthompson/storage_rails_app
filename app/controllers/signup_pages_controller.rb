@@ -25,7 +25,7 @@ class SignupPagesController < ApplicationController
 	private
 
 	def no_user
-		redirect_to action: :show if current_user
+		redirect_to action: :show, id: current_user.id if current_user
 	end
 
 	def user_but_no_cc_info
