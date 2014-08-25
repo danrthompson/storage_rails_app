@@ -4,36 +4,35 @@ function moveFromTo(fromDiv, toDiv){
 	window.scrollTo(0,0);
 }
 
-
-
 $("#signup-first-btn").click(function(){
-	console.log("TESTETSTETSTSEETETETETTSTE");
 	moveFromTo("#signup-first", "#signup-second");
-	// console.log("moving on to the second");
-	// $("#signup-first").hide();
-	// $("#signup-second").show();
-	// window.scrollTo(0,0);
 })
 
 $("#signup-second-btn").click(function(){
-	console.log("moving on to the third");
-	$("#signup-second").hide();
-	$("#signup-third").show();
-	window.scrollTo(0,0);
+	moveFromTo("#signup-second", "#signup-third");
 })
 
-
-$("#signup-third-btn").click(function(e){
+$("#signup-third-btn").click(function(){
 	e.preventDefault();
-	console.log("moving on to the fourth");
-	$("#signup-third").hide();
-	$("#signup-fourth").show();
-	window.scrollTo(0,0);
+	moveFromTo("#signup-third", "#signup-fourth");
+})
+
+$("#signup-second-back").click(function(){
+	moveFromTo("#signup-second", "#signup-first");
+})
+
+$("#signup-third-back").click(function(e){
+	e.preventDefault();
+	moveFromTo("#signup-third", "#signup-second");
+})
+
+$("#signup-fourth-back").click(function(){
+	e.preventDefault();
+	moveFromTo("#signup-fourth", "#signup-third");
 })
 
 
-$("#signup-second-btn").click(function(){
-	$("#signup-second").hide();
-	$("#signup-third").show();
-	window.scrollTo(0,0);
-})
+
+
+
+
