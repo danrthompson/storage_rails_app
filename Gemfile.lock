@@ -269,6 +269,7 @@ DEPENDENCIES
   paperclip (~> 4.1)
   pg
   phony_rails
+  pry
   rails (= 4.1.4)
   rb-fsevent
   rspec-rails

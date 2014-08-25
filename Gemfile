@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-# Converts html 2 haml
+# during dev
+gem 'pry'
 
 gem 'less'
 

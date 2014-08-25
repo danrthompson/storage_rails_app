@@ -8,10 +8,9 @@ class SignupPagesController < ApplicationController
 	end
 
 	def create
-		render text: params and return
 		@user = User.new(params[:user].permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation))
 		@box_request = BoxRequest.new(params[:signup].permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity))
-		@box_request.delivery_time = Date.strptime(params[:signup]['date-picker'], '%m/%d/%y') + params[:signup][:delivery_time].hours
+		@box_request.delivery_time = Date.strptime(params[:signup][:delivery_date], '%a %b %d %Y') + params[:signup][:delivery_time].hours
 		@box_request.valid?
 		if @user.valid? and @box_request.errors.count == 1 then
 			@user.save!
@@ -24,7 +23,8 @@ class SignupPagesController < ApplicationController
 	end
 
 	def show
-
+		@user = User.find(params[:id])
+		@box_request = @user.box_requests.first
 	end
 
 	def add_payment
