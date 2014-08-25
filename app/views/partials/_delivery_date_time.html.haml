@@ -2,11 +2,11 @@
   / %form#contact-form
   .row
     .col-md-6.align-left
-      = f.label :box_quantity, "Delivery Date"
-      = f.text_field :box_quantity,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:"datepicker", name:"date-picker"
+      = f.label :delivery_date, "Delivery Date"
+      = f.text_field :delivery_date,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:"datepicker", name:"date-picker"
     .col-md-6.align-left
       %label{:for => "date-picker"} Time Of Day
-      = f.select  :box_quantity, options_for_select([["Red", "red"], ["Green", "green"]]),{}, {class:"form-control selectpicker"}
+      = f.select  :delivery_time, options_for_select([["Red", "red"], ["Green", "green"]]),{}, {class:"form-control selectpicker"}
       %br/ 
 
       / <input type="text" class="form-control" name="date-picker" id="datepicker" placeholder="Does tomorrow work for you?">
