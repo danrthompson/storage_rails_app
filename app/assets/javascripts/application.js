@@ -16,6 +16,7 @@
 //= require gnmenu
 //= require turbolinks
 //= require bootstrap
+//= require bootstrapValidator
 // require classie
 // require nivo-lightbox
 // require stellar
