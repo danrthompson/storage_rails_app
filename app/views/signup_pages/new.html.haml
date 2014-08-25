@@ -7,7 +7,7 @@
 %br/ 
 %br/ 
 %br/ 
-= form_for :signup, url: {action: 'create'} do |f| 
+= form_for :signup, :html => {:id => 'signup-form'}, url: {action: 'create'} do |f| 
 
   / Item Selection
   %section.text-center#signup-first
@@ -427,6 +427,73 @@
   })
 
 
+  $(document).ready(function() {
+      $('#signup-form').bootstrapValidator({
+          // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+          feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+          },
+          fields: {
+              'user[address_line_1]': {
+                  message: 'The address field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'The address is required and cannot be empty'
+                      },
+                      stringLength: {
+                          min: 10,
+                          message: 'The address must be a real address'
+                      },
+                  }
+              },
+              email: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The email address is required and cannot be empty'
+                      },
+                      emailAddress: {
+                          message: 'The email address is not a valid'
+                      }
+                  }
+              },
+              password: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The password is required and cannot be empty'
+                      },
+                      different: {
+                          field: 'username',
+                          message: 'The password cannot be the same as username'
+                      },
+                      stringLength: {
+                          min: 8,
+                          message: 'The password must have at least 8 characters'
+                      }
+                  }
+              },
+              birthday: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The date of birth is required'
+                      },
+                      date: {
+                          format: 'YYYY/MM/DD',
+                          message: 'The date of birth is not valid'
+                      }
+                  }
+              },
+              gender: {
+                  validators: {
+                      notEmpty: {
+                          message: 'The gender is required'
+                      }
+                  }
+              }
+          }
+      });
+  });
 
 
 
