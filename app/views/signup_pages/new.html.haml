@@ -22,7 +22,7 @@
       .row
         .div
           .col-md-8.col-md-offset-2.inventory
-            .row
+            .row.inventory-group-header
               %br/  
               .col-md-12.col-md-offset-0
                 %h2.pull-left
@@ -33,7 +33,7 @@
               / .col-md-2.col-sm-0.col-xs-2.center-align
               = render partial: "partials/list_item_small", locals: {name: "Standard Box", description: "22\" x 18\" x 12\"", price: "$6.50/m", field_val: :box_quantity, id:"stdbox", form:f, cls:"form-control", uses:"(books, clothing & small items)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
               = render partial: "partials/list_item_small", locals: {name: "Wardrobe Box", description: "24\" x 20\" x 46\"", price: "$12.00/m", field_val: :wardrobe_box_quantity, id:"warbox", form:f, cls:"form-control", uses:"(suits, poster tubes & tall items)", imgUrl:"http://www.ikea.com/us/en/images/products/brimnes-wardrobe-with--doors__0140624_PE300605_S4.JPG"}
-            .row
+            .row.inventory-group-header
               %br/  
               .col-md-12.col-md-offset-0
                 %h2.pull-left
@@ -44,9 +44,26 @@
               = render partial: "partials/list_item_small", locals: {name: "Bubble Wrap", uses: "cocoon your precious items.", description:"12\" wide x 30' long", price: "$4.50 - 100ft", field_val: :bubble_quantity, id:"bubble", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0767163_sc7?$splssku$"}
               = render partial: "partials/list_item_small", locals: {name: "File Boxes", description:"10\" x 12\" x 15\"", uses: "keep that paper trail in line", price: "$9.50 each", field_val: :file_box_quantity, id:"filebox", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0199320_sc7?$splssku$"}
               = render partial: "partials/list_item_small", locals: {name: "Poster/Art Tubes", description:"3\" x 36\"",uses: "your art -  rolled for freshness", price: "$10 each", field_val: :poster_tube_quantity, id:"tube", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0059946_sc7?$splssku$"}
+            .row.inventory-group-header
+              %br/  
+              .col-md-12.col-md-offset-0
+                %h2.pull-left
+                  %i Items Available At Pickup
+                %br
+                .single-line.pt-10
+            .row
+              = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", title:"Small Items", description:"$5.00/m"}
+              = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", title:"Mediums", description:"$12.00/m"}
+              = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", title:"Large Items", description:"$20.00/m"}
+              = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", title:"XL Items", description:"$40.00/m"}
+          
           .col-md-6.col-md-offset-3.half-opacity.charges-box
             %br/
+            %br/ 
+            %br/ 
             .single-line
+            %br/ 
+            / %br/ 
             %br/
           .col-md-10.col-md-offset-1
             .row
@@ -287,7 +304,7 @@
         / %button.btn.btn-primary{:type => "button"} Save changes
 
 :javascript
-
+  
   
   $(document).ready(function() {
     $(".quantity-field").keydown(function(event){
@@ -388,6 +405,8 @@
   })
 
   $("#signup-second-btn").click(function(){
+    var worked = validateFormContent("js-valid");
+    console.log("worked" + worked);
     moveFromTo("#signup-second", "#signup-third");
   })
 
