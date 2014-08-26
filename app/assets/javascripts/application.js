@@ -31,3 +31,11 @@ function hideParentWhenNotUsed(classId){
       else $(this).parent().hide();     
   });
 }; 
+
+function hideParentWhenZero(classId){
+  var objectToHide = $("." + classId);
+  objectToHide.each(function(){
+      if ($(this).html() != "0") $(this).parent().show();
+      else $(this).parent().hide();     
+  });
+}; 

@@ -7,17 +7,6 @@
       .single-line.no-opacity
       %h1 HERE ARE YOUR THINGS
     .col-md-1.col-md-offset-2.col-sm-4.col-xs-4.align-center
-      / # %div= link_to "test", storage_items_path 
-      / # = link_to "path/to/page.html" do
-    /   %a{:href => "user-pickup.html"}
-    /   .service-box
-    /     .service-icon
-    /       %i.fa.fa-clock-o.fa-3x
-    /     .service-desc
-    /       %h6
-    /         Large Item
-    /         = succeed "Pickup" do
-    /           %br/
     .col-md-1.col-sm-4.col-xs-4.align-center
       %a{:href => "box_requests/new.html"}
         .service-box
@@ -26,8 +15,6 @@
           .service-desc
             %h6
               Order Boxes
-              / = succeed "Boxes" do
-              /   %br/
     .col-md-1.col-sm-4.col-xs-4.align-center
       %a{:href => "faq.html"}
         .service-box
@@ -38,10 +25,11 @@
               Have a
               %br>/
               Question?
-/ END SECONDARY HEADER
 %br/
 %br/
 %br/
+
+// Main Body Content
 .container.inventory
   .row
     .col-md-10.col-md-offset-1
@@ -55,9 +43,7 @@
                 %span.items-count#boxes-at-home= @boxes_at_home
                 Items Awaiting Pickup: 
                 =link_to "Order More Boxes", {:controller => "box_requests", :action => "new"}, :class => "pull-right"
-                / %a.pull-right{:href => "user-newbox.html"} Order More Boxes
               .double-line
-              / - @boxes_at_home.times do
               - 3.times do
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
@@ -69,6 +55,7 @@
                      
           %br/
           %br/
+    
           / Existing Inventory Row
           %form#delivery-form{:action => ""}
             .row
@@ -156,7 +143,6 @@
   // Pick Up Entry Selected
   $(".pickup-entry").click(function() {
     $(this).toggleClass("selected-item");
-      // $('input:first', this).toggleClass('hidden');
       $('input:first', this).prop('checked', true);
 
       if($(this).hasClass("selected-item")){
