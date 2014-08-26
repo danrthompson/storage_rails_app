@@ -11,6 +11,7 @@ class SignupPagesController < ApplicationController
 
 	def create
 		@user = User.new user_address_params(params)
+		# this is not DRY, but im going to leave it for now to avoid view disruption
 		@box_request = BoxRequest.new(params.require(:signup).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity, :posted_delivery_time, :posted_delivery_date))
 		@box_request.valid?
 		if @user.valid? and @box_request.errors.count == 1 then

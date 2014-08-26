@@ -7,17 +7,20 @@ class BoxRequestsController < ApplicationController
 	end
 
 	def create
-		render text: params and return
 		@user = current_user
-		@box_request = BoxRequest.new(params.require(:box_request).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity, :posted_delivery_date, :posted_delivery_time))
+		@box_request = BoxRequest.new(create_box_request_params(params))
 		@box_request.user = @user
-		if @box_request.valid? then
-			@user.update(params.require(:user))
-		redirect_to @box_request and return if @box_request
-		render action: :new
+		@user.update(user_address_params(params))
+		if @box_request.valid? and @user.valid? then
+			@box_request.save!
+			redirect_to @box_request and return
+		else
+			render action: :new and return
+		end
 	end
 
 	def show
-
+		@user = current_user
+		@box_request = BoxRequest.find(params[:id])
 	end
 end
