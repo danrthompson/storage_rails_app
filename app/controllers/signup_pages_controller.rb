@@ -1,5 +1,5 @@
 class SignupPagesController < ApplicationController
-	include ParamExtraction
+	include ParamExtraction 
 
 	before_action :no_user, only: [:new, :create]
 	before_action :user_but_no_cc_info, only: [:show, :add_payment]
@@ -18,7 +18,7 @@ class SignupPagesController < ApplicationController
 			@box_request.user = @user
 			@box_request.save!
 			sign_in @user
-			redirect_to signup_pages_confirm_url(@user.id) and return
+			redirect_to confirm_signup_pages_url(@user.id) and return
 		end
 		render action: :new and return
 	end
@@ -34,13 +34,13 @@ class SignupPagesController < ApplicationController
 		redirect_to new_user_session_url and return if @user.id != current_user.id
 		@user.update(params.require(:user).permit(:cc_name, :cc_number, :exp_month, :exp_year))
 		redirect_to storage_items_url and return if @user.ready?
-		redirect_to signup_pages_confirm_url(@user.id) and return
+		redirect_to confirm_signup_pages_url(@user.id) and return
 	end
 
 	private
 
 	def no_user
-		redirect_to signup_pages_confirm_url(current_user.id) and return if current_user and not current_user.ready?
+		redirect_to confirm_signup_pages_url(current_user.id) and return if current_user and not current_user.ready?
 		redirect_to storage_items_url and return if current_user and current_user.ready?
 	end
 
