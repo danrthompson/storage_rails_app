@@ -8,6 +8,6 @@ module ParamExtraction
 	end
 
 	def create_box_request_params(params)
-		params.require(:signup).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity, :posted_delivery_time, :posted_delivery_date)
+		params.require(:box_request).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity, :posted_delivery_time, :posted_delivery_date)
 	end
 end
