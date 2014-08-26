@@ -28,6 +28,7 @@ class SignupPagesController < ApplicationController
 		@user = User.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != current_user.id
 		@box_request = @user.box_requests.first
+		@delivery_date = @box_request.delivery_time.strftime("%h:%m %B %d")
 	end
 
 	# BoxRequest(id: integer, user_id: integer, delivery_time: datetime, completion_time: datetime, box_quantity: integer, couch_quantity: integer, driver_id: integer, type: string, wardrobe_box_quantity: integer, bubble_quantity: integer, file_box_quantity: integer, poster_tube_quantity: integer) 

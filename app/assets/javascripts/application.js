@@ -24,4 +24,10 @@
 //= require signup_flow.js
 // require syn-dashboard
 
-
+function hideParentWhenNotUsed(classId){
+  var objectToHide = $("." + classId);
+  objectToHide.each(function(){
+      if ($(this).html()) $(this).parent().show();
+      else $(this).parent().hide();     
+  });
+}; 

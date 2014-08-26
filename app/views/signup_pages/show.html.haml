@@ -26,31 +26,34 @@
             %ul
               %li
                 %span.order-item Standard Box
-                %span.pull-right= @box_request.box_quantity
+                %span.pull-right.hide-when-empty= @box_request.box_quantity
               %li
                 %span.order-item Wardrobe Box
-                %span.pull-right= @box_request.wardrobe_box_quantity
+                %span.pull-right.hide-when-empty= @box_request.wardrobe_box_quantity
               %li
                 %span.order-item Bubble Wrap
-                %span.pull-right= @box_request.bubble_quantity
+                %span.pull-right.hide-when-empty= @box_request.bubble_quantity
               %li
                 %span.order-item File Boxes
-                %span.pull-right= @box_request.file_box_quantity
+                %span.pull-right.hide-when-empty= @box_request.file_box_quantity
               %li
                 %span.order-item Poster Tubes
-                %span.pull-right= @box_request.poster_tube_quantity
+                %span.pull-right.hide-when-empty= @box_request.poster_tube_quantity
             .single-line
             %ul
               %li.light-gray
-                %span.order-item Subtotal:
-                %span.pull-right $30/month
-              %li
-                %span.order-item.blue.heavy-font Savings:
-                %span.pull-right.heavy-font $165/month
+                %span.order-item Cost of Supplies:
+                %span.pull-right.hide-when-empty= @box_resuest.monthly_price
+              %li.light-gray
+                %span.order-item Price of Storage:
+                %span.pull-right.hide-when-empty= @box_resuest.one_time_price
+              / %li
+              /   %span.order-item.blue.heavy-font Savings:
+              /   %span.pull-right.heavy-font $165/month
           .col-md-4.confirm-elem
             %h5 Delivery Time
-            %p Tuesday, July 29 between
-            %p 5:30 and 6:00 PM
+            %p= @delivery_date
+            / %p 5:30 and 6:00 PM
           .col-md-4.confirm-elem
             %h5 Your Address
             %p 1035 Pearl St. #211
@@ -147,109 +150,6 @@
         / %button.btn.btn-primary{:type => "button"} Save changes
 
 :javascript
-  // Increment Text Field
-  $(".btn-inc").click(function(){
-    console.log("button clicked");
-    var id = $(this).attr('id');
+  hideParentWhenNotUsed("hide-when-empty");
 
-    // update text field - incrememnt by one
-    var field = $("#txt-"+id);
-    var val = $(field).val();
-    val = +val + 1;
-    $(field).val(val);
-
-    // update subtotal text
-    var orderEntrySpan = $('#num-'+id+" span");
-    console.log("#num-"+id+" span");
-    refreshOrder(val, orderEntrySpan);
-  });
-
-  $(".quantity-field").change(function(){
-    var field = $(this);
-    var id = field.attr("id");
-    var idRoot = id.substr(4);
-    console.log("#num-"+idRoot+" span");
-    var orderEntrySpan = $('#num-'+idRoot+ " span");
-    refreshOrder(field.val(), orderEntrySpan);
-  });
-
-
-  // Rewrites values in Order Summary Field
-  function refreshOrder(val, orderEntrySpan){
-    console.log("REFERESHING ORDER FOR" + orderEntrySpan);
-    orderEntrySpan.html(parseInt(val));
-    var orderEntry = orderEntrySpan.parent();
-    
-    if (val == 0) orderEntry.addClass('hidden');
-    else orderEntry.removeClass('hidden');
-    
-    updateBoxRequestTotal();
-  }
-
-
-  // Overwrites subtotal for box request
-  function updateBoxRequestTotal(){
-
-    // Number of Boxes
-    var numStdBox = $('#txt-stdbox').val();
-    var numWarBox = $('#txt-warbox').val();
-    var numBubble = $('#txt-bubble').val();
-    var numFileBox = $('#txt-filebox').val();
-    var numTube = $('#txt-tube').val();
-
-    // Pricing Per Box
-    var STDBOX_PRICE =  6.50;
-    var WARDROBE_BOX_PRICE =  12.00;
-    var BUBBLE_WRAP_PRICE =  4.50;
-    var FILE_BOX_PRICE =  9.50;
-    var POSTER_TUBE_PRICE =  10.00;
-
-
-    var total = (numStdBox * STDBOX_PRICE) + (numWarBox * WARDROBE_BOX_PRICE) + (numBubble * BUBBLE_WRAP_PRICE) + (numFileBox * FILE_BOX_PRICE) + (numTube * POSTER_TUBE_PRICE);
-    console.log("total:" + total);
-    $('#order-subtotal').text("$" + total+"/m");
-  }
   
-  function moveFromTo(fromDiv, toDiv){
-    $(fromDiv).hide();
-    $(toDiv).show();
-    window.scrollTo(0,0);
-  }
-
-
-  function moveFromTo(fromDiv, toDiv){
-    $(fromDiv).hide();
-    $(toDiv).show();
-    window.scrollTo(0,0);
-  }
-
-  $("#signup-first-btn").click(function(){
-    moveFromTo("#signup-first", "#signup-second");
-  })
-
-  $("#signup-second-btn").click(function(){
-    moveFromTo("#signup-second", "#signup-third");
-  })
-
-  $("#signup-third-btn").click(function(){
-    e.preventDefault();
-    moveFromTo("#signup-third", "#signup-fourth");
-  })
-
-  $("#signup-second-back").click(function(){
-    moveFromTo("#signup-second", "#signup-first");
-  })
-
-  $("#signup-third-back").click(function(){
-    moveFromTo("#signup-third", "#signup-second");
-  })
-
-  $("#signup-fourth-back").click(function(){
-    e.preventDefault();
-    moveFromTo("#signup-fourth", "#signup-third");
-  })
-
-
-
-
-
