@@ -8,7 +8,16 @@ class PickupRequestsController < ApplicationController
 	end
 
 	def create
-		render text: params and return
+		@user = current_user
+		@pickup_request = PickupRequest.new(create_pickup_request_params(params))
+		@pickup_request.user = @user
+		@user.update(user_address_params(params))
+		if @pickup_request.valid? and @user.valid? then
+			@pickup_request.save!
+			redirect_to @pickup_request and return
+		else
+			render action: :new and return
+		end
 	end
 
 	def show
