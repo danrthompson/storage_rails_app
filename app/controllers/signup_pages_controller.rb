@@ -1,4 +1,6 @@
 class SignupPagesController < ApplicationController
+	include ParamExtraction
+
 	before_action :no_user, only: [:new, :create]
 	before_action :user_but_no_cc_info, only: [:show, :add_payment]
 
@@ -8,7 +10,7 @@ class SignupPagesController < ApplicationController
 	end
 
 	def create
-		@user = User.new(params.require(:user).permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation))
+		@user = User.new user_address_params(params)
 		@box_request = BoxRequest.new(params.require(:signup).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity, :posted_delivery_time, :posted_delivery_date))
 		@box_request.valid?
 		if @user.valid? and @box_request.errors.count == 1 then

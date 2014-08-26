@@ -1,6 +1,8 @@
 module ParamExtraction
 	extend ActiveSupport::Concern
 
+	private
+
 	def user_address_params(params)
 		params.require(:user).permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation)
 	end

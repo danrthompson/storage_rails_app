@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
 
   def verify_user_is_ready!
   	redirect_to new_user_session_url and return unless current_user
-  	redirect_to signup_pages_confirm_url(current_user.id) and return unless current_user.ready?
+  	redirect_to confirm_signup_pages_url(current_user.id) and return unless current_user.ready?
   end
 end
