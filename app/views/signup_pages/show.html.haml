@@ -8,7 +8,6 @@
 %br/ 
 %br/ 
 / = form_for :signup, url: {action: 'create'} do |f| 
-= form_for :user, url:{action: 'add_payment'} do |f|
 
 
   / CONFIRMATION
@@ -57,25 +56,34 @@
           %br/
           %h3.double-underlined Payment Info
           .double-line
-          %form#contact-form
+          = form_for :user, url:{action: 'add_payment'}, html:{id:"credit-card-form"} do |cc|
+          / %form#contact-form
             .bg-gray
               %br/
               .row
                 .col-md-8.col-md-offset-2
                   .form-group.address-form
-                    %label{:for => "name"} Name on Credit Card
-                    %input#name.form-control{:placeholder => "e.g. John Doe", :required => "required", :type => "text"}/
+                    / %label{:for => "name"} Name on Credit Card
+                    = cc.label :cc_name, "Name on Credit Card"
+                    = cc.text_field :cc_name,  autofocus: true, placeholder:"e.g. John Doe", class:"form-control", id:""
+                    / %input#name.form-control{:placeholder => "e.g. John Doe", :required => "required", :type => "text"}/
                     %br/
-                    %label{:for => "name"} Credit Card Number
-                    %input#name.form-control{:placeholder => "e.g. 1234 5678 9012 3456", :required => "required", :type => "text"}/
+                    / %label{:for => "name"} Credit Card Number
+                    / %input#name.form-control{:placeholder => "e.g. 1234 5678 9012 3456", :required => "required", :type => "text"}/
+                    = cc.label :cc_number, "Credit Card Number"
+                    = cc.text_field :cc_number,  autofocus: true, placeholder:"e.g. 1234 5678 9012 3456", class:"form-control", id:""
                     %br/
                     .row
                       .col-md-6.col-sm-6.col-xs-6.col-lg-6
-                        %label{:for => "name"} Expiration Month
-                        %input#name.col-md-6.form-control{:placeholder => "mm", :required => "required", :type => "text"}/
+                        / %label{:for => "name"} Expiration Month
+                        / %input#name.col-md-6.form-control{:placeholder => "mm", :required => "required", :type => "text"}/
+                        = cc.label :exp_month, "Expiration Month"
+                        = cc.text_field :exp_month,  autofocus: true, placeholder:"mm", class:"form-control", id:""
                       .col-md-6.col-sm-6.col-xs-6.col-lg-6
-                        %label{:for => "name"} Expiration Year
-                        %input#name.col-md-6.form-control{:placeholder => "yyyy", :required => "required", :type => "text"}/
+                        = cc.label :exp_year, "Expiration Year"
+                        = cc.text_field :exp_year,  autofocus: true, placeholder:"yyyy", class:"form-control", id:""
+                        / %label{:for => "name"} Expiration Year
+                        / %input#name.col-md-6.form-control{:placeholder => "yyyy", :required => "required", :type => "text"}/
                 .col-md-8.col-md-offset-2
               %br/
             %br/
