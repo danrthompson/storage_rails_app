@@ -18,10 +18,10 @@ Rails.application.routes.draw do
   get 'faq' => 'static_pages#extra-faq'
   get 'contact' => 'static_pages#extra-contact'
 
-  get 'signup', to: 'signup_pages#new', as: 'signup_pages_new'
-  post 'signup', to: 'signup_pages#create', as: 'signup_pages_create'
-  get 'signup/:id', to: 'signup_pages#show', as: 'signup_pages_confirm'
-  post 'signup/:id', to: 'signup_pages#add_payment', as: 'signup_pages_add_payment'
+  get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
+  post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'
+  get 'signup/:id', to: 'signup_pages#show', as: 'confirm_signup_pages'
+  post 'signup/:id', to: 'signup_pages#add_payment', as: 'add_payment_signup_pages'
 
   root 'static_pages#homepage'    
 
