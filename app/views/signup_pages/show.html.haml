@@ -7,111 +7,107 @@
 %br/ 
 %br/ 
 %br/ 
-/ = form_for :signup, url: {action: 'create'} do |f| 
 
-
-  / CONFIRMATION
-  %section#signup-fourth.text-center
-    .heading-about.marginbot-30
-      .container
-        .row
-          .col-lg-8.col-lg-offset-2
-            .section-heading
-              %h2 Confirm Your Order
+%section#signup-fourth.text-center
+  .heading-about.marginbot-30
     .container
       .row
-        .col-lg-8.col-md-offset-2
-          %h3.double-underlined Order Details
-          .double-line
-          .row
-            .col-md-4.confirm-elem
-              %h5 Your Order
-              %ul
-                %li
-                  %span.order-item Standard Box
-                  %span.pull-right 3
-                %li
-                  %span.order-item Wardrobe Box
-                  %span.pull-right 1
-                %li
-                  %span.order-item Bicycle
-                  %span.pull-right 1
-              .single-line
-              %ul
-                %li.light-gray
-                  %span.order-item Subtotal:
-                  %span.pull-right $30/month
-                %li
-                  %span.order-item.blue.heavy-font Savings:
-                  %span.pull-right.heavy-font $165/month
-            .col-md-4.confirm-elem
-              %h5 Delivery Time
-              %p Tuesday, July 29 between
-              %p 5:30 and 6:00 PM
-            .col-md-4.confirm-elem
-              %h5 Your Address
-              %p 1035 Pearl St. #211
-              %p Boulder, CO 80302
-          %br/
-          %br/
-          %h3.double-underlined Payment Info
-          .double-line
-          = form_for :user, url:{action: 'add_payment'}, html:{id:"credit-card-form"} do |cc|
-          / %form#contact-form
-            .bg-gray
-              %br/
-              .row
-                .col-md-8.col-md-offset-2
-                  .form-group.address-form
-                    / %label{:for => "name"} Name on Credit Card
-                    = cc.label :cc_name, "Name on Credit Card"
-                    = cc.text_field :cc_name,  autofocus: true, placeholder:"e.g. John Doe", class:"form-control", id:""
-                    / %input#name.form-control{:placeholder => "e.g. John Doe", :required => "required", :type => "text"}/
-                    %br/
-                    / %label{:for => "name"} Credit Card Number
-                    / %input#name.form-control{:placeholder => "e.g. 1234 5678 9012 3456", :required => "required", :type => "text"}/
-                    = cc.label :cc_number, "Credit Card Number"
-                    = cc.text_field :cc_number,  autofocus: true, placeholder:"e.g. 1234 5678 9012 3456", class:"form-control", id:""
-                    %br/
-                    .row
-                      .col-md-6.col-sm-6.col-xs-6.col-lg-6
-                        / %label{:for => "name"} Expiration Month
-                        / %input#name.col-md-6.form-control{:placeholder => "mm", :required => "required", :type => "text"}/
-                        = cc.label :exp_month, "Expiration Month"
-                        = cc.text_field :exp_month,  autofocus: true, placeholder:"mm", class:"form-control", id:""
-                      .col-md-6.col-sm-6.col-xs-6.col-lg-6
-                        = cc.label :exp_year, "Expiration Year"
-                        = cc.text_field :exp_year,  autofocus: true, placeholder:"yyyy", class:"form-control", id:""
-                        / %label{:for => "name"} Expiration Year
-                        / %input#name.col-md-6.form-control{:placeholder => "yyyy", :required => "required", :type => "text"}/
-                .col-md-8.col-md-offset-2
-              %br/
-            %br/
-            .bg-gray
-              / %br/
-              / .row
-              /   .col-md-8.col-md-offset-2
-              /     .form-group.address-form
-              /       %label{:for => "name"}
-              /         Your Phone Number
-              /         %span (for deliveries)
-              /       %input#name.form-control{:placeholder => "", :required => "required", :type => "text"}/
-              /       %br/
-              /   .col-md-8.col-md-offset-2
+        .col-lg-8.col-lg-offset-2
+          .section-heading
+            %h2 Confirm Your Order
+  .container
+    .row
+      .col-lg-8.col-md-offset-2
+        %h3.double-underlined Order Details
+        .double-line
+        .row
+          .col-md-4.confirm-elem
+            %h5 Your Order
+            %ul
+              %li
+                %span.order-item Standard Box
+                %span.pull-right 3
+              %li
+                %span.order-item Wardrobe Box
+                %span.pull-right 1
+              %li
+                %span.order-item Bicycle
+                %span.pull-right 1
+            .single-line
+            %ul
+              %li.light-gray
+                %span.order-item Subtotal:
+                %span.pull-right $30/month
+              %li
+                %span.order-item.blue.heavy-font Savings:
+                %span.pull-right.heavy-font $165/month
+          .col-md-4.confirm-elem
+            %h5 Delivery Time
+            %p Tuesday, July 29 between
+            %p 5:30 and 6:00 PM
+          .col-md-4.confirm-elem
+            %h5 Your Address
+            %p 1035 Pearl St. #211
+            %p Boulder, CO 80302
+        %br/
+        %br/
+        %h3.double-underlined Payment Info
+        .double-line
+        = form_for :user, url:{action: 'add_payment'}, html:{id:"credit-card-form"} do |cc|
+          .bg-gray
             %br/
             .row
-              .col-md-5.col-md-offset-2.no-side-padding
-                %p.align-right.pull-right.pt-10
-                  I agree to the
-                  %a.pointer{"data-target" => "#myModal", "data-toggle" => "modal"} terms and services 
-              .col-md-1
-                %input#terms-checkbox.pull-right{:type => "checkbox"}/
-              .col-md-4
-                .boxed-gray.continue-button
-                  / %a{:href => "user-dashboard.html"}
-                  / # %button.btn.btn-primary.blue-bg-hover= link_to "Confirm Order", storage_items_path, class:"white"
-                  / %button.btn.btn-primary{:type => "button"} Confirm Order
-                  = f.submit 'confirm order', class:"btn btn-primary blue-bg-hover", type:"button"
+              .col-md-8.col-md-offset-2.align-left
+                .form-group.address-form
+                  / %label{:for => "name"} Name on Credit Card
+                  = cc.label :cc_name, "Name on Credit Card", class:"no-margin"
+                  = cc.text_field :cc_name,  autofocus: true, placeholder:"e.g. John Doe", class:"form-control", id:""
+                  / %input#name.form-control{:placeholder => "e.g. John Doe", :required => "required", :type => "text"}/
+                  %br/
+                  / %label{:for => "name"} Credit Card Number
+                  / %input#name.form-control{:placeholder => "e.g. 1234 5678 9012 3456", :required => "required", :type => "text"}/
+                  = cc.label :cc_number, "Credit Card Number", class:"no-margin"
+                  = cc.text_field :cc_number,  autofocus: true, placeholder:"e.g. 1234 5678 9012 3456", class:"form-control", id:""
+                  %br/
+                  .row
+                    .col-md-6.col-sm-6.col-xs-6.col-lg-6
+                      / %label{:for => "name"} Expiration Month
+                      / %input#name.col-md-6.form-control{:placeholder => "mm", :required => "required", :type => "text"}/
+                      = cc.label :exp_month, "Expiration Month", class:"no-margin"
+                      = cc.text_field :exp_month,  autofocus: true, placeholder:"mm", class:"form-control", id:""
+                    .col-md-6.col-sm-6.col-xs-6.col-lg-6
+                      = cc.label :exp_year, "Expiration Year", class:"no-margin"
+                      = cc.text_field :exp_year,  autofocus: true, placeholder:"yyyy", class:"form-control", id:""
+                      / %label{:for => "name"} Expiration Year
+                      / %input#name.col-md-6.form-control{:placeholder => "yyyy", :required => "required", :type => "text"}/
+              .col-md-8.col-md-offset-2
+            %br/
+          %br/
+          .bg-gray
+            / %br/
+            / .row
+            /   .col-md-8.col-md-offset-2
+            /     .form-group.address-form
+            /       %label{:for => "name"}
+            /         Your Phone Number
+            /         %span (for deliveries)
+            /       %input#name.form-control{:placeholder => "", :required => "required", :type => "text"}/
+            /       %br/
+            /   .col-md-8.col-md-offset-2
+          %br/
+          .row
+            .col-md-5.col-md-offset-2.no-side-padding
+              %p.align-right.pull-right.pt-10
+                I agree to the
+                %a.pointer{"data-target" => "#myModal", "data-toggle" => "modal"} terms and services 
+            .col-md-1
+              %input#terms-checkbox.pull-right{:type => "checkbox"}/
+            .col-md-4
+              .boxed-gray.continue-button
+                / %a{:href => "user-dashboard.html"}
+                / # %button.btn.btn-primary.blue-bg-hover= link_to "Confirm Order", storage_items_path, class:"white"
+                / %button.btn.btn-primary{:type => "button"} Confirm Order
+                = cc.submit 'confirm order', class:"btn btn-primary blue-bg-hover", type:"button"
 
 
 
