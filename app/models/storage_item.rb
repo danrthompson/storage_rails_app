@@ -1,10 +1,6 @@
 class StorageItem < ActiveRecord::Base
-	def self.box_types
-		%w(box wardrobe_box)
-	end
-
 	def self.item_types
-		box_types + %w(couch)
+		{box: 5.0, medium: 7.5, large: 10.0, extra_large: 20.0}
 	end
 
 	has_attached_file :image, default_url: 'https://s3.amazonaws.com/storage_rails_app_dev/images/1419618-unicorn2.jpg'
@@ -12,38 +8,10 @@ class StorageItem < ActiveRecord::Base
 	belongs_to :delivery_request
 
 	validates :entered_storage_at, :user_id, :item_type, presence: true
-	validates :item_type, inclusion: { in: self.item_types, message: 'must be a real type.' }
+	validates :item_type, inclusion: { in: self.item_types.keys, message: 'must be a real type.' }
 	validates_attachment :image, size: { less_than: 1.megabytes }, content_type: { content_type: /\Aimage\/.*\Z/ }
 
-	def self.item_price(item_type)
-		case item_type
-		when 'box'
-			5.0
-		when 'couch'
-			20.0
-		when 'wardrobe_box'
-			9.0
-		else
-			nil
-		end
-	end
-
 	def price
-		StorageItem.item_price(self.item_type)
+		StorageItem.item_types[self.item_type]
 	end
-
-	def delivery_price
-		case self.item_type
-		when 'box'
-			2.00
-		when 'couch'
-			15.00
-		else
-			nil
-		end
-	end
-
-
-
-
 end

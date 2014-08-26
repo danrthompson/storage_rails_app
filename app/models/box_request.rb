@@ -1,54 +1,34 @@
 class BoxRequest < Request
-	before_validation :make_quantities_zero_not_nil
+	after_initialize :make_quantities_zero_not_nil
 
-	validates :box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
-	validates :couch_quantity, absence: true
+	validates :box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, :poster_tube_quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 	validate :includes_at_least_one_item
 
-	def self.one_time_items
-		%w(bubble file_box poster_tube)
+	def self.packing_items
+		{bubble: 1.0, tape: 2.0, poster_tube: 3.0, box: 4.0, wardrobe_box: 5.0}
 	end
 
-	def self.one_time_item_price(item_type)
-		case item_type
-		when 'bubble'
-			4.0
-		when 'file_box'
-			5.0
-		when 'poster_tube'
-			6.0
-		else
-			nil
-		end
+	def self.delivery_price
+		5.0
 	end
 
-	def one_time_price
+	def price
 		total = 0.0
-		BoxRequest.one_time_items.each do |item|
-			total += self.send("#{item}_quantity") * BoxRequest.one_time_item_price(item)
+		BoxRequest.packing_items.each do |item, price|
+			total += self.send("#{item}_quantity") * price
 		end
-		total
+		total + BoxRequest.delivery_price
 	end
 
-	def monthly_price
-		total = 0.0
-		StorageItem.box_types.each do |item|
-			total += self.send("#{item}_quantity") * StorageItem.item_price(item)
-		end
-		total
-	end
-
-	protected
+	private
 
 	def includes_at_least_one_item
-		unless (StorageItem.box_types + @@packing_items).any? { |item_type| self.send("#{item_type}_quantity") > 0 }
+		unless BoxRequest.packing_items.keys.any? { |item| self.send("#{item}_quantity") > 0 }
 			errors.add :box_quantity, 'and all other quantities are zero.'
 		end
 	end
 
 	def make_quantities_zero_not_nil
-		(BoxRequest.one_time_items + StorageItem.box_types).each do |item|
-			self.send("#{item}_quantity=", 0) if self.send("#{item}_quantity").nil?
-		end
+		BoxRequest.packing_items.keys.each { |item| self.send("#{item}_quantity=", 0) if self.send("#{item}_quantity").nil? }
 	end
 end

@@ -1,7 +1,6 @@
 class PickupRequest < Request
-
-	validates :box_quantity, :couch_quantity, :wardrobe_box_quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
-	validates :bubble_quantity, :file_box_quantity, :poster_tube_quantity, absence: true
+	validates :box_quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+	validates :bubble_quantity, :tape_quantity, :poster_tube_quantity, :wardrobe_box_quantity, absence: true
 	validate :includes_at_least_one_item
 
 	protected
