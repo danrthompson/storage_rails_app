@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826212112) do
+ActiveRecord::Schema.define(version: 20140826222154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,9 +43,11 @@ ActiveRecord::Schema.define(version: 20140826212112) do
     t.datetime "entered_storage_at"
     t.datetime "left_storage_at"
     t.integer  "delivery_request_id"
+    t.integer  "pickup_request_id"
   end
 
   add_index "storage_items", ["delivery_request_id"], name: "index_storage_items_on_delivery_request_id", using: :btree
+  add_index "storage_items", ["pickup_request_id"], name: "index_storage_items_on_pickup_request_id", using: :btree
   add_index "storage_items", ["user_id"], name: "index_storage_items_on_user_id", using: :btree
 
   create_table "unavailable_times", force: true do |t|
