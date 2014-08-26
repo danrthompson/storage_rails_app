@@ -15,17 +15,21 @@ class StorageItem < ActiveRecord::Base
 	validates :item_type, inclusion: { in: self.item_types, message: 'must be a real type.' }
 	validates_attachment :image, size: { less_than: 1.megabytes }, content_type: { content_type: /\Aimage\/.*\Z/ }
 
-
-
-	def price
-		case self.item_type
+	def self.item_price(item_type)
+		case item_type
 		when 'box'
 			5.0
 		when 'couch'
 			20.0
+		when 'wardrobe_box'
+			9.0
 		else
 			nil
 		end
+	end
+
+	def price
+		StorageItem.item_price(self.item_type)
 	end
 
 	def delivery_price

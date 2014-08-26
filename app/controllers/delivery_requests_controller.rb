@@ -10,12 +10,13 @@ class DeliveryRequestsController < ApplicationController
 	end
 
 	def create
-		# render text: params and return
+		render text: params and return
 		redirect_to @delivery_request
 
 	end
 
 	def show
-		
+		@user = current_user
+		@delivery_request = DeliveryRequest.find(params[:id])
 	end
 end

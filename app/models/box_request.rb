@@ -3,6 +3,35 @@ class BoxRequest < Request
 	validates :couch_quantity, absence: true
 	validate :includes_at_least_one_item
 
+	def self.one_time_item_price(item_type)
+		case item_type
+		when 'bubble'
+			4.0
+		when 'file_box'
+			5.0
+		when 'poster_tube'
+			6.0
+		else
+			nil
+		end
+	end
+
+	def one_time_price
+		total = 0.0
+		['bubble', 'file_box', 'poster_tube'].each do |item|
+			total += self.send("#{item}_quantity") * BoxRequest.one_time_item_price(item)
+		end
+		total
+	end
+
+	def monthly_price
+		total = 0.0
+		StorageItem.box_types.each do |item|
+			total += self.send("#{item}_quantity") * StorageItem.item_price(item)
+		end
+		total
+	end
+
 	protected
 
 	def includes_at_least_one_item
