@@ -11,4 +11,8 @@ class PickupRequestsController < ApplicationController
 		render text: params and return
 	end
 
+	def show
+		@user = current_user
+		@pickup_request = PickupRequest.find(params[:id])
+	end
 end

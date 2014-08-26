@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
   	redirect_to new_user_session_url and return unless current_user
   	redirect_to confirm_signup_pages_url(current_user.id) and return unless current_user.ready?
   end
+
+  def after_sign_in_path_for(resource)
+  	storage_items_url
+  end
 end
