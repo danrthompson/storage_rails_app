@@ -1,5 +1,5 @@
 class DeliveryRequestsController < ApplicationController
-	before_action :authenticate_user!
+	before_action :verify_user_is_ready!
 
 	def new
 		@delivery_request = DeliveryRequest.new
