@@ -6,13 +6,19 @@ class DeliveryRequestsController < ApplicationController
 		item_ids = params[:ids].split(',').map { |x| x.to_i }
 		@requested_boxes = StorageItem.where(user: current_user, id: item_ids)
 		@user = current_user
-		# render text: params and return
 	end
 
 	def create
-		render text: params and return
-		redirect_to @delivery_request
-
+		@user = current_user
+		@delivery_request = DeliveryRequest.new(create_delivery_request_params(params))
+		@delivery_request.user = @user
+		@user.update(user_address_params(params))
+		if @delivery_request.valid? and @user.valid? then
+			@delivery_request.save!
+			redirect_to @delivery_request and return
+		else
+			render action: :new and return
+		end
 	end
 
 	def show

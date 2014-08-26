@@ -10,4 +10,12 @@ module ParamExtraction
 	def create_box_request_params(params)
 		params.require(:box_request).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity, :posted_delivery_time, :posted_delivery_date)
 	end
+
+	def create_delivery_request_params(params)
+		nil
+	end
+
+	def create_pickup_request_params(params)
+		nil
+	end
 end
