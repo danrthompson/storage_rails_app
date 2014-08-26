@@ -8,11 +8,19 @@ class StorageItem < ActiveRecord::Base
 	belongs_to :delivery_request
 	belongs_to :pickup_request
 
-	validates :user_id, :item_type, presence: true
-	validates :item_type, inclusion: { in: self.item_types.keys, message: 'must be a real type.' }
+	before_create :add_user_item_number
+
+	validates :user_id, :item_type, :pickup_request_id, presence: true
+	validates :item_type, inclusion: { in: self.item_types.keys.map { |item| item.to_s }, message: 'must be a real type.' }
 	validates_attachment :image, size: { less_than: 1.megabytes }, content_type: { content_type: /\Aimage\/.*\Z/ }
 
 	def price
 		StorageItem.item_types[self.item_type]
+	end
+
+	private
+
+	def add_user_item_number
+		self.user_item_number = self.user.storage_items.length + 1
 	end
 end
