@@ -3,10 +3,20 @@
 = render :partial => 'partials/signup_header'
 
 
-= render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
+/ = render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
+/ %br/ 
+/ %br/ 
+/ %br/ 
+
+.container.full-width.blue-bg.no-padding.white.align-center
+  %br/ 
+  %h1#lets-doit LET'S DO THIS
 %br/ 
 %br/ 
 %br/ 
+%br/ 
+%br/ 
+
 = form_for :signup, :html => {:id => 'signup-form'}, url: {action: 'create'} do |f| 
 
   / Item Selection
@@ -16,46 +26,41 @@
         .row
           .col-lg-8.col-lg-offset-2
             .section-heading
-              %h2.no-margin What are you looking for?
-              %p.center-align (These are the items we'll deliver to you so you can start packing)
+              %h2.no-margin Do You Need Packing Supplies?
+              %p.align-center (we'll bring these items right to your door)
     .container
       .row
         .div
           .col-md-8.col-md-offset-2.inventory
-            .row.inventory-group-header
-              %br/  
-              .col-md-12.col-md-offset-0
-                %h2.pull-left
-                  %i Traditional Packing Supplies
-                %br
-                .single-line.pt-10
+            %br/ 
+            %br/ 
+            / .row.inventory-group-header.no-margin
+            /   %br/  
+            /   .col-md-12.col-md-offset-0
+            /     %h2.pull-left
+            /       %i Packing Supplies
+            /     %br
+            /     .single-line.pt-10
             .row
               / .col-md-2.col-sm-0.col-xs-2.center-align
               = render partial: "partials/list_item_small", locals: {name: "Standard Box", description: "22\" x 18\" x 12\"", price: "$6.50/m", field_val: :box_quantity, id:"stdbox", form:f, cls:"form-control", uses:"(books, clothing & small items)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
               = render partial: "partials/list_item_small", locals: {name: "Wardrobe Box", description: "24\" x 20\" x 46\"", price: "$12.00/m", field_val: :wardrobe_box_quantity, id:"warbox", form:f, cls:"form-control", uses:"(suits, poster tubes & tall items)", imgUrl:"http://www.ikea.com/us/en/images/products/brimnes-wardrobe-with--doors__0140624_PE300605_S4.JPG"}
-            .row.inventory-group-header
-              %br/  
-              .col-md-12.col-md-offset-0
-                %h2.pull-left
-                  %i Box Packing Supplies
-                %br
-                .single-line.pt-10
-            .row
               = render partial: "partials/list_item_small", locals: {name: "Bubble Wrap", uses: "cocoon your precious items.", description:"12\" wide x 30' long", price: "$4.50 - 100ft", field_val: :bubble_quantity, id:"bubble", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0767163_sc7?$splssku$"}
-              = render partial: "partials/list_item_small", locals: {name: "File Boxes", description:"10\" x 12\" x 15\"", uses: "keep that paper trail in line", price: "$9.50 each", field_val: :file_box_quantity, id:"filebox", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0199320_sc7?$splssku$"}
+              = render partial: "partials/list_item_small", locals: {name: "Packing Tape", description:"10\" x 12\" x 15\"", uses: "keep that paper trail in line", price: "$9.50 each", field_val: :file_box_quantity, id:"filebox", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0199320_sc7?$splssku$"}
               = render partial: "partials/list_item_small", locals: {name: "Poster/Art Tubes", description:"3\" x 36\"",uses: "your art -  rolled for freshness", price: "$10 each", field_val: :poster_tube_quantity, id:"tube", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0059946_sc7?$splssku$"}
-            .row.inventory-group-header
-              %br/  
-              .col-md-12.col-md-offset-0
-                %h2.pull-left
-                  %i Items Available At Pickup
-                %br
-                .single-line.pt-10
-            .row
-              = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", title:"Small Items", description:"$5.00/m"}
-              = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", title:"Mediums", description:"$12.00/m"}
-              = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", title:"Large Items", description:"$20.00/m"}
-              = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", title:"XL Items", description:"$40.00/m"}
+            / .row.inventory-group-header
+            /   %br/
+            /   %br/   
+            /   .col-md-12.col-md-offset-0
+            /     %h2.pull-left
+            /       %i Items Available At Pickup
+            /     %br
+            /     .single-line.pt-10
+            / .row
+            /   = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", title:"Small Items", description:"$5.00/m"}
+            /   = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", title:"Mediums", description:"$12.00/m"}
+            /   = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", title:"Large Items", description:"$20.00/m"}
+            /   = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", title:"XL Items", description:"$40.00/m"}
           
           .col-md-6.col-md-offset-3.half-opacity.charges-box
             %br/
@@ -63,14 +68,13 @@
             %br/ 
             .single-line
             %br/ 
-            / %br/ 
-            %br/
+            %br/ 
           .col-md-10.col-md-offset-1
             .row
               .col-md-12.charges-box
                 .row
                   .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
-                    %h5 Delivery Summary
+                    %h5 Packing Supplies Summary
                     %ul
                       %li#num-stdbox.hidden
                         %span.pull-left> 0
@@ -112,16 +116,127 @@
                     %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-first-btn{:type => "button"}
                       Delivery Details
 
-
-
   / Delivery Details
   %section.text-center#signup-second.hidden
+    
+    %br/ 
+    %br/
     .heading-about.marginbot-20
       .container
         .row
           .col-lg-8.col-lg-offset-2
             .section-heading
-              %h2.no-margin Where should we drop off the boxes?
+              %h2.no-margin Would You Like To Schedule A Pickup Now?
+    .container
+      .row
+        .div
+          .col-md-6.col-md-offset-3.half-opacity.charges-box
+            %br/
+          .col-md-8.col-md-offset-2
+            .row
+              .col-md-4.bottom-buttons
+                .boxed-gray.continue-button
+                  %button.btn.btn-primary.blue-bg.gray-bg#signup-second-back{:type => "button"}
+                    Later
+                  %a#signup-second-back.pull-left.light-gray.black-hover{:href => ""} Previous Step 
+                  / = link_to "Back", storage_items_path, class:"white"
+              .col-md-4.col-md-offset-4.bottom-buttons.charges-box
+                .boxed-gray.continue-button
+                  %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
+                    Yes!
+                  / = f.submit "Confirm Order"
+      %br/ 
+      %br/ 
+      %br/ 
+      %br/ 
+      %br/ 
+      %br/ 
+      %br/ 
+      %br/ 
+
+  / Item Selection
+  %section.text-center#signup-third
+    .heading-about.marginbot-20
+      .container
+        .row
+          .col-lg-8.col-lg-offset-2
+            .section-heading
+              %h2.no-margin What Are We Picking Up?
+    .col-md-4.col-md-offset-4.half-opacity.charges-box
+      %br/
+      %br/ 
+      .single-line
+    .container
+      .row
+        .div
+          .col-md-8.col-md-offset-2.inventory
+            %br/ 
+            %br/ 
+            .row
+              = render partial: "partials/list_item_4col_field", locals:{title: "Boxes", price: "$5/m", id:"warbox", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Medium", price: "$12/m", id:"warbox", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"Wardrobe Boxes, Desks, Lamps, Skis, Bikes, Small Furniture, Equivalent Items"}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Large", price: "$20/m", id:"warbox", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:"Couches, mattresses, desks, tables, dressers, or furniture that takes two to move."}
+              = render partial: "partials/list_item_4col_field", locals:{title: "XL Items", price: "$40/m", id:"warbox", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", description:"Sectional couches, large dining tables, items over 200lbs or 60 cubic feet"}
+
+          
+          .col-md-6.col-md-offset-3.half-opacity.charges-box
+            %br/
+            %br/ 
+            %br/ 
+            .single-line
+            %br/ 
+            %br/ 
+          .col-md-10.col-md-offset-1
+            .row
+              .col-md-12.charges-box
+                .row
+                  .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
+                    %h5 Pickup Summary
+                    %ul
+                      %li#num-stdbox.hidden
+                        %span.pull-left> 0
+                        \&nbsp; &nbsp;Standard Boxes
+                        %i.pull-right.light-gray $6.50/unit
+                      %li#num-warbox.hidden
+                        %span.pull-left> 0
+                        \&nbsp; &nbsp;Medium Items
+                        %i.pull-right.light-gray $12.00/unit
+                      %li#num-bubble.hidden
+                        %span.pull-left> 0
+                        \&nbsp; &nbsp;Large Items
+                        %i.pull-right.light-gray $4.50/unit
+                      %li#num-filebox.hidden
+                        %span.pull-left> 0
+                        \&nbsp; &nbsp;Extra Large Items
+                        %i.pull-right.light-gray $9.50/unit
+                      %br/  
+                      %li.half-opacity
+                        Valet Pickup
+                        %span.pull-right Free
+                    .single-line
+                    %ul
+                      %li.heavy-font
+                        Subtotal
+                        %span#order-subtotal.pull-right $00.00/m
+              .col-md-10.col-md-offset-1
+                %br/ 
+                .col-md-4.bottom-buttons
+                  .boxed-gray.continue-button
+                    %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}
+                      = link_to "Back", root_path, class:"white"
+                .col-md-4.col-md-offset-4.bottom-buttons.charges-box
+                  .boxed-gray.continue-button
+                    %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-third-btn{:type => "button"}
+                      Delivery Details
+
+  / Delivery Details
+  %section.text-center#signup-fourth.hidden
+    .heading-about.marginbot-20
+      .container
+        .row
+          .col-lg-8.col-lg-offset-2
+            .section-heading
+              %h2.no-margin To Where Are We Delivering?
     .container
       .row
         .div
@@ -131,20 +246,53 @@
             .row
               = fields_for @user do |field|
                 = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
+        .col-md-6.col-md-offset-3.half-opacity.charges-box
+          %br/
+          %br/ 
+          .single-line
+          %br/ 
+          %br/       
+    .container
+      %h2.no-margin When should we drop off the supplies?
+      .row
+        .div
+          .col-md-6.col-md-offset-3.half-opacity.charges-box
+            %br/
+          .col-md-8.col-md-offset-2
+            .row
+              = fields_for @user do |field|
+                / # = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f}
+
+        .col-md-6.col-md-offset-3.half-opacity.charges-box
+          %br/
+          %br/ 
+          .single-line
+          %br/ 
+          %br/ 
+      %h2.no-margin When should we schedule the pickup?    
+      .row
+        .div
+          .col-md-6.col-md-offset-3.half-opacity.charges-box
+            %br/
+          .col-md-8.col-md-offset-2
+            .row
+              = fields_for @user do |field|
+                / # = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
+                = render partial: "partials/delivery_date_time", locals: {field:field, f:f}          
               .col-md-4.bottom-buttons
                 .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.gray-bg#signup-second-back{:type => "button"}
+                  %button.btn.btn-primary.blue-bg.gray-bg#signup-fourth-back{:type => "button"}
                     Back
                   / = link_to "Back", storage_items_path, class:"white"
               .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                 .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
+                  %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-fourth-btn{:type => "button"}
                     Next
                   / = f.submit "Confirm Order"
 
   / Signup
-  %section.text-center#signup-third.hidden
+  %section.text-center#signup-fifth.hidden
     .heading-about.marginbot-30
       .container
         .row
@@ -170,13 +318,15 @@
                   / %a.white#signup-third-btn Next 
                   %a= userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-third-btn"                  
                   %a.pointer
-                    %h1.btn.btn-default.pull-left#signup-third-back Back
+                    %h1.btn.btn-default.pull-left#signup-fifth-back Back
             %br/
             %br/ 
     %br/ 
     %br/ 
     %br/ 
-
+    %br/ 
+    %br/ 
+    %br/ 
 
   / / CONFIRMATION
   / %section#signup-fourth.text-center.hidden
@@ -319,8 +469,24 @@
         refreshOrder(field.val(), orderEntrySpan);
       }
     });
+    $(window).resize(function(){
+
+    });
+    sizeEntriesTheSame("four-by-entry")
   });
 
+  function sizeEntriesTheSame(divName){
+    var maxHeight = 0;
+    var entries = $("." + divName);
+    entries.each(function(){
+      var thisHeight = $(this).height();
+      if (thisHeight > maxHeight){
+        maxHeight = thisHeight;
+      } 
+    });
+    entries.css("height", maxHeight);
+    console.log("reset size");
+  }
 
   // Increment Text Field
   $(".btn-inc").click(function(){
@@ -401,19 +567,28 @@
   }
 
   $("#signup-first-btn").click(function(){
+    $("#lets-doit").parent().hide();
     moveFromTo("#signup-first", "#signup-second");
   })
 
-  $("#signup-second-btn").click(function(){
+  $("#signup-second-btn").click(function(e){
+    e.preventDefault();
     moveFromTo("#signup-second", "#signup-third");
   })
 
-  $("#signup-third-btn").click(function(){
+  $("#signup-third-btn").click(function(e){
     e.preventDefault();
     moveFromTo("#signup-third", "#signup-fourth");
   })
 
+  $("#signup-fourth-btn").click(function(e){
+    e.preventDefault();
+    moveFromTo("#signup-fourth", "#signup-fifth");
+  })
+
+
   $("#signup-second-back").click(function(){
+    $("#lets-doit").parent().show();
     moveFromTo("#signup-second", "#signup-first");
   })
 
@@ -421,10 +596,15 @@
     moveFromTo("#signup-third", "#signup-second");
   })
 
-  $("#signup-fourth-back").click(function(){
+  $("#signup-fourth-back").click(function(e){
     e.preventDefault();
     moveFromTo("#signup-fourth", "#signup-third");
   })
+
+  $("#signup-fourth-back").click(function(){
+    moveFromTo("#signup-fifth", "#signup-fourth");
+  })
+
 
 
   $(document).ready(function() {
