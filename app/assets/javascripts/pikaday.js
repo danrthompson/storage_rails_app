@@ -4,11 +4,7 @@
  * Copyright © 2014 David Bushell | BSD & MIT license | https://github.com/dbushell/Pikaday
  */
 
-saySomethingImportant("THIS IS IMPORTANT");
 
-function saySomethingImportant(text){
-    console.log(text);
-}
 
 (function (root, factory)
 {

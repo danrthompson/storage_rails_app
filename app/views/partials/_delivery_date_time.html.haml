@@ -3,7 +3,7 @@
   .row
     .col-md-6.align-left
       = f.label :posted_delivery_date, "Delivery Date"
-      = f.text_field :posted_delivery_date,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:"datepicker"
+      = f.text_field :posted_delivery_date,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:"#{id}"
     .col-md-6.align-left
       %label{:for => "date-picker"} Time Of Day
       = f.select  :posted_delivery_time, options_for_select([["1:00", "13"], ["2:00", "14"]]),{}, {class:"form-control selectpicker"}
@@ -13,5 +13,4 @@
 
 :javascript
   var picker = new Pikaday({ field: document.getElementById('datepicker') });
-
-  
+  var picker2 = new Pikaday({ field: document.getElementById('datepicker2')});

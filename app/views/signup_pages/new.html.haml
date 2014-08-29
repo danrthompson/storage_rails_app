@@ -48,20 +48,7 @@
               = render partial: "partials/list_item_small", locals: {name: "Bubble Wrap", uses: "cocoon your precious items.", description:"12\" wide x 30' long", price: "$4.50 - 100ft", field_val: :bubble_quantity, id:"bubble", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0767163_sc7?$splssku$"}
               = render partial: "partials/list_item_small", locals: {name: "Packing Tape", description:"10\" x 12\" x 15\"", uses: "keep that paper trail in line", price: "$9.50 each", field_val: :file_box_quantity, id:"filebox", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0199320_sc7?$splssku$"}
               = render partial: "partials/list_item_small", locals: {name: "Poster/Art Tubes", description:"3\" x 36\"",uses: "your art -  rolled for freshness", price: "$10 each", field_val: :poster_tube_quantity, id:"tube", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0059946_sc7?$splssku$"}
-            / .row.inventory-group-header
-            /   %br/
-            /   %br/   
-            /   .col-md-12.col-md-offset-0
-            /     %h2.pull-left
-            /       %i Items Available At Pickup
-            /     %br
-            /     .single-line.pt-10
-            / .row
-            /   = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", title:"Small Items", description:"$5.00/m"}
-            /   = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", title:"Mediums", description:"$12.00/m"}
-            /   = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", title:"Large Items", description:"$20.00/m"}
-            /   = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", title:"XL Items", description:"$40.00/m"}
-          
+
           .col-md-6.col-md-offset-3.half-opacity.charges-box
             %br/
             %br/ 
@@ -116,43 +103,43 @@
                     %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-first-btn{:type => "button"}
                       Delivery Details
 
-  / Delivery Details
-  %section.text-center#signup-second.hidden
+  / / Delivery Details
+  / %section.text-center#signup-second
     
-    %br/ 
-    %br/
-    .heading-about.marginbot-20
-      .container
-        .row
-          .col-lg-8.col-lg-offset-2
-            .section-heading
-              %h2.no-margin Would You Like To Schedule A Pickup Now?
-    .container
-      .row
-        .div
-          .col-md-6.col-md-offset-3.half-opacity.charges-box
-            %br/
-          .col-md-8.col-md-offset-2
-            .row
-              .col-md-4.bottom-buttons
-                .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.gray-bg#signup-second-back{:type => "button"}
-                    Later
-                  %a#signup-second-back.pull-left.light-gray.black-hover{:href => ""} Previous Step 
-                  / = link_to "Back", storage_items_path, class:"white"
-              .col-md-4.col-md-offset-4.bottom-buttons.charges-box
-                .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
-                    Yes!
-                  / = f.submit "Confirm Order"
-      %br/ 
-      %br/ 
-      %br/ 
-      %br/ 
-      %br/ 
-      %br/ 
-      %br/ 
-      %br/ 
+  /   %br/ 
+  /   %br/
+  /   .heading-about.marginbot-20
+  /     .container
+  /       .row
+  /         .col-lg-8.col-lg-offset-2
+  /           .section-heading
+  /             %h2.no-margin Would You Like To Schedule A Pickup Now?
+  /   .container
+  /     .row
+  /       .div
+  /         .col-md-6.col-md-offset-3.half-opacity.charges-box
+  /           %br/
+  /         .col-md-8.col-md-offset-2
+  /           .row
+  /             .col-md-4.bottom-buttons
+  /               .boxed-gray.continue-button
+  /                 %button.btn.btn-primary.blue-bg.gray-bg#signup-skip-third{:type => "button"}
+  /                   Later
+  /                 %a#signup-second-back.pull-left.light-gray.black-hover{:href => ""} Previous Step 
+  /                 / = link_to "Back", storage_items_path, class:"white"
+  /             .col-md-4.col-md-offset-4.bottom-buttons.charges-box
+  /               .boxed-gray.continue-button
+  /                 %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
+  /                   Yes!
+  /                 / = f.submit "Confirm Order"
+  /     %br/ 
+  /     %br/ 
+  /     %br/ 
+  /     %br/ 
+  /     %br/ 
+  /     %br/ 
+  /     %br/ 
+  /     %br/ 
 
   / Item Selection
   %section.text-center#signup-third
@@ -162,8 +149,9 @@
           .col-lg-8.col-lg-offset-2
             .section-heading
               %h2.no-margin What Are We Picking Up?
+              %p.align-center (you can always edit your pickup, or change it when we arrive)
+
     .col-md-4.col-md-offset-4.half-opacity.charges-box
-      %br/
       %br/ 
       .single-line
     .container
@@ -173,10 +161,10 @@
             %br/ 
             %br/ 
             .row
-              = render partial: "partials/list_item_4col_field", locals:{title: "Boxes", price: "$5/m", id:"warbox", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
-              = render partial: "partials/list_item_4col_field", locals:{title: "Medium", price: "$12/m", id:"warbox", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"Wardrobe Boxes, Desks, Lamps, Skis, Bikes, Small Furniture, Equivalent Items"}
-              = render partial: "partials/list_item_4col_field", locals:{title: "Large", price: "$20/m", id:"warbox", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:"Couches, mattresses, desks, tables, dressers, or furniture that takes two to move."}
-              = render partial: "partials/list_item_4col_field", locals:{title: "XL Items", price: "$40/m", id:"warbox", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", description:"Sectional couches, large dining tables, items over 200lbs or 60 cubic feet"}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Boxes", price: "$5/m", id:"small", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Medium", price: "$12/m", id:"medium", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"Wardrobe Boxes, Desks, Lamps, Skis, Bikes, Small Furniture, Equivalent Items"}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Large", price: "$20/m", id:"large", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:"Couches, mattresses, desks, tables, dressers, or furniture that takes two to move."}
+              = render partial: "partials/list_item_4col_field", locals:{title: "XL Items", price: "$40/m", id:"xlarge", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", description:"Sectional couches, large dining tables, items over 200lbs or 60 cubic feet"}
 
           
           .col-md-6.col-md-offset-3.half-opacity.charges-box
@@ -245,14 +233,14 @@
           .col-md-8.col-md-offset-2
             .row
               = fields_for @user do |field|
-                = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
+                = render partial: "partials/delivery_addr_date", locals: {field:field, f:f, id:"datepicker"}
         .col-md-6.col-md-offset-3.half-opacity.charges-box
           %br/
           %br/ 
           .single-line
           %br/ 
           %br/       
-    .container
+    .container#delivery-time
       %h2.no-margin When should we drop off the supplies?
       .row
         .div
@@ -261,8 +249,7 @@
           .col-md-8.col-md-offset-2
             .row
               = fields_for @user do |field|
-                / # = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
-                = render partial: "partials/delivery_date_time", locals: {field:field, f:f}
+                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"datepicker2"}
 
         .col-md-6.col-md-offset-3.half-opacity.charges-box
           %br/
@@ -270,6 +257,7 @@
           .single-line
           %br/ 
           %br/ 
+    .container#pickup-time
       %h2.no-margin When should we schedule the pickup?    
       .row
         .div
@@ -278,18 +266,22 @@
           .col-md-8.col-md-offset-2
             .row
               = fields_for @user do |field|
-                / # = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
-                = render partial: "partials/delivery_date_time", locals: {field:field, f:f}          
-              .col-md-4.bottom-buttons
-                .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.gray-bg#signup-fourth-back{:type => "button"}
-                    Back
-                  / = link_to "Back", storage_items_path, class:"white"
-              .col-md-4.col-md-offset-4.bottom-buttons.charges-box
-                .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-fourth-btn{:type => "button"}
-                    Next
-                  / = f.submit "Confirm Order"
+                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"datepicker"}          
+              
+    .container
+      %br/ 
+      %br/ 
+      %br/ 
+      .col-md-3.bottom-buttons
+        .boxed-gray.continue-button
+          %button.btn.btn-primary.blue-bg.gray-bg#signup-fourth-back{:type => "button"}
+            Back
+          / = link_to "Back", storage_items_path, class:"white"
+      .col-md-3.col-md-offset-6.bottom-buttons.charges-box
+        .boxed-gray.continue-button
+          %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-fourth-btn{:type => "button"}
+            Next
+          / = f.submit "Confirm Order"              
 
   / Signup
   %section.text-center#signup-fifth.hidden
@@ -315,7 +307,6 @@
                   %div.extra-form-padding
                     = userAcct.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm Password"
                 .col-md-8.col-md-offset-2.bottom-buttons
-                  / %a.white#signup-third-btn Next 
                   %a= userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-third-btn"                  
                   %a.pointer
                     %h1.btn.btn-default.pull-left#signup-fifth-back Back
@@ -472,7 +463,6 @@
     $(window).resize(function(){
 
     });
-    sizeEntriesTheSame("four-by-entry")
   });
 
   function sizeEntriesTheSame(divName){
@@ -591,6 +581,13 @@
     $("#lets-doit").parent().show();
     moveFromTo("#signup-second", "#signup-first");
   })
+
+  $("#signup-skip-third").click(function(){
+    $('#pickup-time').hide();
+    moveFromTo("#signup-second", "#signup-fourth");
+  });
+
+
 
   $("#signup-third-back").click(function(){
     moveFromTo("#signup-third", "#signup-second");
