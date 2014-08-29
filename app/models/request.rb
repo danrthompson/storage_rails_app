@@ -1,6 +1,4 @@
 class Request < ActiveRecord::Base
-	@@packing_items = %w(bubble file_box poster_tube)
-
 	attr_accessor :posted_delivery_date, :posted_delivery_time
 
 	belongs_to :user

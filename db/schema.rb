@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825195200) do
+ActiveRecord::Schema.define(version: 20140827011100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,13 +21,12 @@ ActiveRecord::Schema.define(version: 20140825195200) do
     t.datetime "delivery_time"
     t.datetime "completion_time"
     t.integer  "box_quantity"
-    t.integer  "couch_quantity"
     t.integer  "driver_id"
     t.string   "type"
     t.integer  "wardrobe_box_quantity"
     t.integer  "bubble_quantity"
-    t.integer  "file_box_quantity"
     t.integer  "poster_tube_quantity"
+    t.integer  "tape_quantity"
   end
 
   add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
@@ -44,9 +43,12 @@ ActiveRecord::Schema.define(version: 20140825195200) do
     t.datetime "entered_storage_at"
     t.datetime "left_storage_at"
     t.integer  "delivery_request_id"
+    t.integer  "pickup_request_id"
+    t.integer  "user_item_number"
   end
 
   add_index "storage_items", ["delivery_request_id"], name: "index_storage_items_on_delivery_request_id", using: :btree
+  add_index "storage_items", ["pickup_request_id"], name: "index_storage_items_on_pickup_request_id", using: :btree
   add_index "storage_items", ["user_id"], name: "index_storage_items_on_user_id", using: :btree
 
   create_table "unavailable_times", force: true do |t|
@@ -86,6 +88,7 @@ ActiveRecord::Schema.define(version: 20140825195200) do
     t.string   "cc_number"
     t.string   "exp_month"
     t.string   "exp_year"
+    t.integer  "storage_item_number",    default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

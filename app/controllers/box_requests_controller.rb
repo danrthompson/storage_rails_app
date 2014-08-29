@@ -1,4 +1,6 @@
 class BoxRequestsController < ApplicationController
+	include ParamExtraction
+
 	before_action :verify_user_is_ready!
 
 	def new
@@ -22,5 +24,6 @@ class BoxRequestsController < ApplicationController
 	def show
 		@user = current_user
 		@box_request = BoxRequest.find(params[:id])
+		redirect_to new_user_session_url and return if @user != @box_request.user
 	end
 end

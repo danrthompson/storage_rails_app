@@ -1,14 +1,32 @@
 class PickupRequest < Request
+	attr_accessor :small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity
 
-	validates :box_quantity, :couch_quantity, :wardrobe_box_quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
-	validates :bubble_quantity, :file_box_quantity, :poster_tube_quantity, absence: true
-	validate :includes_at_least_one_item
+	has_many :storage_items
 
-	protected
+	after_create :create_associated_storage_items
 
-	def includes_at_least_one_item
-		unless StorageItem.item_types.any? { |item_type| self.send("#{item_type}_quantity") > 0 }
-			errors.add :box_quantity, 'and all other quantities are zero.'
-		end
+	validates :box_quantity, :bubble_quantity, :tape_quantity, :poster_tube_quantity, :wardrobe_box_quantity, absence: true
+
+	private
+
+	def create_associated_storage_items
+		basic_storage_item_values = {user: self.user, pickup_request: self}
+
+		small_storage_item_values = basic_storage_item_values.clone
+		small_storage_item_values[:item_type] = 'box'
+
+		medium_storage_item_values = basic_storage_item_values.clone
+		medium_storage_item_values[:item_type] = 'medium'
+
+		large_storage_item_values = basic_storage_item_values.clone
+		large_storage_item_values[:item_type] = 'large'
+
+		extra_large_storage_item_values = basic_storage_item_values.clone
+		extra_large_storage_item_values[:item_type] = 'extra_large'
+
+		self.small_item_quantity.times { StorageItem.create!(small_storage_item_values) } unless self.small_item_quantity.nil?
+		self.medium_item_quantity.times { StorageItem.create!(medium_storage_item_values) } unless self.medium_item_quantity.nil?
+		self.large_item_quantity.times { StorageItem.create!(large_storage_item_values) } unless self.large_item_quantity.nil?
+		self.extra_large_item_quantity.times { StorageItem.create!(extra_large_storage_item_values) } unless self.extra_large_item_quantity.nil?
 	end
 end

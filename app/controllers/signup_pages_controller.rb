@@ -1,5 +1,5 @@
 class SignupPagesController < ApplicationController
-	include ParamExtraction 
+	include ParamExtraction
 
 	before_action :no_user, only: [:new, :create]
 	before_action :user_but_no_cc_info, only: [:show, :add_payment]
@@ -11,8 +11,7 @@ class SignupPagesController < ApplicationController
 
 	def create
 		@user = User.new user_address_params(params)
-		# this is not DRY, but im going to leave it for now to avoid view disruption
-		@box_request = BoxRequest.new(params.require(:signup).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :file_box_quantity, :poster_tube_quantity, :posted_delivery_time, :posted_delivery_date))
+		@box_request = BoxRequest.new(create_box_request_params(params))
 		@box_request.valid?
 		if @user.valid? and @box_request.errors.count == 1 then
 			@user.save!
@@ -31,11 +30,10 @@ class SignupPagesController < ApplicationController
 		@delivery_date = @box_request.delivery_time.strftime("%B %d at %l:%m %p")
 	end
 
-	# BoxRequest(id: integer, user_id: integer, delivery_time: datetime, completion_time: datetime, box_quantity: integer, couch_quantity: integer, driver_id: integer, type: string, wardrobe_box_quantity: integer, bubble_quantity: integer, file_box_quantity: integer, poster_tube_quantity: integer) 
 	def add_payment
 		@user = User.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != current_user.id
-		@user.update(params.require(:user).permit(:cc_name, :cc_number, :exp_month, :exp_year))
+		@user.update(user_cc_params(params))
 		redirect_to storage_items_url and return if @user.ready?
 		redirect_to confirm_signup_pages_url(@user.id) and return
 	end
