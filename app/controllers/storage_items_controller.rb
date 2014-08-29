@@ -1,4 +1,6 @@
 class StorageItemsController < ApplicationController
+	include ParamExtraction
+
 	before_action :verify_user_is_ready!
 
 	def new
@@ -13,7 +15,7 @@ class StorageItemsController < ApplicationController
 	def update
 		@storage_item = StorageItem.find(params[:id])
 		redirect_to new_user_session_url and return unless @storage_item.user_id == current_user.id
-		@storage_item.update(params.require(:storage_item).permit(:title, :description, :image))
+		@storage_item.update(update_storage_item_params(params))
 		redirect_to @storage_item
 	end
 
@@ -25,7 +27,7 @@ class StorageItemsController < ApplicationController
 		@boxes_at_home = current_user.boxes_at_home
 		# @boxes_at_home_array = (0..@boxes_at_home)
 		@storage_items = StorageItem.where(user_id: current_user, left_storage_at: nil, delivery_request_id: nil).order(:item_type, :entered_storage_at)
-		@num_storage_items = @storage_items.count;
+		@num_storage_items = @storage_items.count
 		@storage_items_pending_delivery = StorageItem.where(user_id: current_user, left_storage_at: nil).where.not(delivery_request_id: nil).order(:item_type, :entered_storage_at)
 	end
 

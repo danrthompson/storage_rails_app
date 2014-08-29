@@ -1,6 +1,4 @@
 class Request < ActiveRecord::Base
-	include ParamExtraction
-
 	attr_accessor :posted_delivery_date, :posted_delivery_time
 
 	belongs_to :user

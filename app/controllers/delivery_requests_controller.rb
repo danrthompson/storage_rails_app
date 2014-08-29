@@ -1,4 +1,6 @@
 class DeliveryRequestsController < ApplicationController
+	include ParamExtraction
+
 	before_action :verify_user_is_ready!
 
 	def new
@@ -24,5 +26,6 @@ class DeliveryRequestsController < ApplicationController
 	def show
 		@user = current_user
 		@delivery_request = DeliveryRequest.find(params[:id])
+		redirect_to new_user_session_url and return if @user != @delivery_request.user
 	end
 end

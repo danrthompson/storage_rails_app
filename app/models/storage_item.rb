@@ -21,6 +21,8 @@ class StorageItem < ActiveRecord::Base
 	private
 
 	def add_user_item_number
-		self.user_item_number = self.user.storage_items.length + 1
+		self.user_item_number = self.user.storage_item_number
+		self.user.storage_item_number += 1
+		self.user.save
 	end
 end
