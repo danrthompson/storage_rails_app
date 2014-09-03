@@ -15,7 +15,7 @@
   ///////////////////////////////////////////////////
   // ITEM SELECTION /////////////////////////////////
   ///////////////////////////////////////////////////
-  %section.text-center#signup-first
+  %section.text-center#signup-first.hidden
     .heading-about.marginbot-20
       .container
         .row
@@ -167,13 +167,13 @@
                 .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                   .boxed-gray.continue-button
                     %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
-                      Delivery Details
+                      Item Pickup
 
   
   ///////////////////////////////////////////////////
   // DELIVERY DETAILS ///////////////////////////////
   ///////////////////////////////////////////////////
-  %section.text-center#signup-third.hidden
+  %section.text-center#signup-third
     .heading-about.marginbot-20
       .container
         .row
@@ -195,7 +195,7 @@
           .single-line
           %br/ 
           %br/       
-    .container#delivery-time.hidden
+    .container#delivery-time
       %h2.no-margin When should we drop off the supplies?
       .row
         .div
@@ -212,7 +212,7 @@
           .single-line
           %br/ 
           %br/ 
-    .container#pickup-time.hidden
+    .container#pickup-time
       %h2.no-margin When should we schedule the pickup?    
       .row
         .div
@@ -422,8 +422,10 @@
     var total = (numStdBox * STDBOX_PRICE) + (numWarBox * WARDROBE_BOX_PRICE) + (numBubble * BUBBLE_WRAP_PRICE) + (numFileBox * FILE_BOX_PRICE) + (numTube * POSTER_TUBE_PRICE);
     console.log("total:" + total);
     $('#order-subtotal').text("$" + total+"/m");
-    if (total > 1) $("#delivery-time").toggleClass("hidden");
-
+    if ((total > 1) && ($("#delivery-time").hasClass("hidden"))) {
+      console.log("showing delivery time");
+      $("#delivery-time").toggleClass("hidden");
+    }
   }
 
 
@@ -447,7 +449,10 @@
     var total = (numBox * BOX_PRICE) + (numMedium * MEDIUM_PRICE) + (numLarge * LARGE_PRICE) + (numXLarge * XLARGE_PRICE);
     console.log("total:" + total);
     $('#pickup-subtotal').text("$" + total+"/m");
-    if (total > 1) $("#pickup-time").toggleClass("hidden");
+    if ((total > 1) && ($("#pickup-time").hasClass("hidden"))){
+      $("#pickup-time").toggleClass("hidden");
+      console.log("showing the pickup time text field");
+    }
   }
 
 
@@ -507,20 +512,63 @@
     moveFromTo("#signup-fifth", "#signup-fourth");
   })
 
-
-  /////////////////////////////////////////////////////////////
-  // Validations
-  /////////////////////////////////////////////////////////////
   $(document).ready(function() {
       $('#signup-form').bootstrapValidator({
           // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
           feedbackIcons: {
-              valid: 'glyphicon glyphicon-ok',
-              invalid: 'glyphicon glyphicon-remove',
-              validating: 'glyphicon glyphicon-refresh'
+              // valid: 'glyphicon glyphicon-ok',
+              // invalid: 'glyphicon glyphicon-remove',
+              // validating: 'glyphicon glyphicon-refresh'
           },
           fields: {
               'user[address_line_1]': {
+                  message: 'The address field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'The address field can\'t be empty'
+                      },
+                      stringLength: {
+                          min: 10,
+                          message: 'The address must be a real address'
+                      }
+                  }
+              },
+              'user[city]': {
+                  message: 'The city field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'The city is required'
+                      }  
+                  }
+              },
+              'user[zip]': {
+                  message: 'The zip code field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'The zip code cannot be empty'
+                      },
+                  }
+              },
+              'user[state]': {
+                  message: 'The state field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'The state field is required.'
+                      }
+                  }
+              },
+              'user[phone_number]': {
+                  message: 'The address field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'The phone number is required'
+                      },
+                      phone:{
+                        message: "The phone number must be valid"
+                      }
+                  }
+              },
+              'user[special_instructions]': {
                   message: 'The address field is not valid',
                   validators: {
                       notEmpty: {
@@ -529,49 +577,6 @@
                       stringLength: {
                           min: 10,
                           message: 'The address must be a real address'
-                      },
-                  }
-              },
-              email: {
-                  validators: {
-                      notEmpty: {
-                          message: 'The email address is required and cannot be empty'
-                      },
-                      emailAddress: {
-                          message: 'The email address is not a valid'
-                      }
-                  }
-              },
-              password: {
-                  validators: {
-                      notEmpty: {
-                          message: 'The password is required and cannot be empty'
-                      },
-                      different: {
-                          field: 'username',
-                          message: 'The password cannot be the same as username'
-                      },
-                      stringLength: {
-                          min: 8,
-                          message: 'The password must have at least 8 characters'
-                      }
-                  }
-              },
-              birthday: {
-                  validators: {
-                      notEmpty: {
-                          message: 'The date of birth is required'
-                      },
-                      date: {
-                          format: 'YYYY/MM/DD',
-                          message: 'The date of birth is not valid'
-                      }
-                  }
-              },
-              gender: {
-                  validators: {
-                      notEmpty: {
-                          message: 'The gender is required'
                       }
                   }
               }
@@ -581,3 +586,4 @@
 
 
 
+  
