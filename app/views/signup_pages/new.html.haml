@@ -1,13 +1,5 @@
-
-
-/ = render partial: "partials/logged_in_header"   
+= javascript_include_tag "signup_flow"
 = render :partial => 'partials/signup_header'
-
-
-/ = render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
-/ %br/ 
-/ %br/ 
-/ %br/ 
 
 .container.full-width.blue-bg.no-padding.white.align-center
   %br/ 
@@ -20,7 +12,9 @@
 
 = form_for :signup, :html => {:id => 'signup-form'}, url: {action: 'create'} do |f| 
 
-  / Item Selection
+  ///////////////////////////////////////////////////
+  // ITEM SELECTION /////////////////////////////////
+  ///////////////////////////////////////////////////
   %section.text-center#signup-first
     .heading-about.marginbot-20
       .container
@@ -35,15 +29,7 @@
           .col-md-8.col-md-offset-2.inventory
             %br/ 
             %br/ 
-            / .row.inventory-group-header.no-margin
-            /   %br/  
-            /   .col-md-12.col-md-offset-0
-            /     %h2.pull-left
-            /       %i Packing Supplies
-            /     %br
-            /     .single-line.pt-10
             .row
-              / .col-md-2.col-sm-0.col-xs-2.center-align
               = render partial: "partials/list_item_small", locals: {name: "Standard Box", description: "22\" x 18\" x 12\"", price: "$6.50/m", field_val: :box_quantity, id:"stdbox", form:f, cls:"form-control", uses:"(books, clothing & small items)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
               = render partial: "partials/list_item_small", locals: {name: "Wardrobe Box", description: "24\" x 20\" x 46\"", price: "$12.00/m", field_val: :wardrobe_box_quantity, id:"warbox", form:f, cls:"form-control", uses:"(suits, poster tubes & tall items)", imgUrl:"http://www.ikea.com/us/en/images/products/brimnes-wardrobe-with--doors__0140624_PE300605_S4.JPG"}
               = render partial: "partials/list_item_small", locals: {name: "Bubble Wrap", uses: "cocoon your precious items.", description:"12\" wide x 30' long", price: "$4.50 - 100ft", field_val: :bubble_quantity, id:"bubble", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0767163_sc7?$splssku$"}
@@ -104,53 +90,18 @@
                     %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-first-btn{:type => "button"}
                       Delivery Details
 
-  / / Delivery Details
-  / %section.text-center#signup-second
-    
-  /   %br/ 
-  /   %br/
-  /   .heading-about.marginbot-20
-  /     .container
-  /       .row
-  /         .col-lg-8.col-lg-offset-2
-  /           .section-heading
-  /             %h2.no-margin Would You Like To Schedule A Pickup Now?
-  /   .container
-  /     .row
-  /       .div
-  /         .col-md-6.col-md-offset-3.half-opacity.charges-box
-  /           %br/
-  /         .col-md-8.col-md-offset-2
-  /           .row
-  /             .col-md-4.bottom-buttons
-  /               .boxed-gray.continue-button
-  /                 %button.btn.btn-primary.blue-bg.gray-bg#signup-skip-third{:type => "button"}
-  /                   Later
-  /                 %a#signup-second-back.pull-left.light-gray.black-hover{:href => ""} Previous Step 
-  /                 / = link_to "Back", storage_items_path, class:"white"
-  /             .col-md-4.col-md-offset-4.bottom-buttons.charges-box
-  /               .boxed-gray.continue-button
-  /                 %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
-  /                   Yes!
-  /                 / = f.submit "Confirm Order"
-  /     %br/ 
-  /     %br/ 
-  /     %br/ 
-  /     %br/ 
-  /     %br/ 
-  /     %br/ 
-  /     %br/ 
-  /     %br/ 
 
-  / Item Selection
-  %section.text-center#signup-third
+  ///////////////////////////////////////////////////
+  // PICKUP   ///////////////////////////////////////
+  ///////////////////////////////////////////////////
+  %section.text-center#signup-second.hidden
     .heading-about.marginbot-20
       .container
         .row
           .col-lg-8.col-lg-offset-2
             .section-heading
               %h2.no-margin What Are We Picking Up?
-              %p.align-center (you can always edit your pickup, or change it when we arrive)
+              %p.align-center (you can always edit your pickup or change it when we arrive)
 
     .col-md-4.col-md-offset-4.half-opacity.charges-box
       %br/ 
@@ -162,10 +113,10 @@
             %br/ 
             %br/ 
             .row
-              = render partial: "partials/list_item_4col_field", locals:{title: "Boxes", price: "$5/m", id:"small", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
-              = render partial: "partials/list_item_4col_field", locals:{title: "Medium", price: "$12/m", id:"medium", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"Wardrobe Boxes, Desks, Lamps, Skis, Bikes, Small Furniture, Equivalent Items"}
-              = render partial: "partials/list_item_4col_field", locals:{title: "Large", price: "$20/m", id:"large", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:"Couches, mattresses, desks, tables, dressers, or furniture that takes two to move."}
-              = render partial: "partials/list_item_4col_field", locals:{title: "XL Items", price: "$40/m", id:"xlarge", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", description:"Sectional couches, large dining tables, items over 200lbs or 60 cubic feet"}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Boxes", price: "$5/m", id:"box", field_val: :box, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Medium", price: "$12/m", id:"medium", field_val: :medium, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"Wardrobe Boxes, Desks, Lamps, Skis, Bikes, Small Furniture, Equivalent Items"}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Large", price: "$20/m", id:"large", field_val: :large, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:"Couches, mattresses, desks, tables, dressers, or furniture that takes two to move."}
+              = render partial: "partials/list_item_4col_field", locals:{title: "XL Items", price: "$40/m", id:"extra_large", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", description:"Sectional couches, large dining tables, items over 200lbs or 60 cubic feet"}
 
           
           .col-md-6.col-md-offset-3.half-opacity.charges-box
@@ -182,19 +133,19 @@
                   .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
                     %h5 Pickup Summary
                     %ul
-                      %li#num-stdbox.hidden
+                      %li#num-box.hidden
                         %span.pull-left> 0
-                        \&nbsp; &nbsp;Standard Boxes
+                        \&nbsp; &nbsp; Boxes
                         %i.pull-right.light-gray $6.50/unit
-                      %li#num-warbox.hidden
+                      %li#num-medium.hidden
                         %span.pull-left> 0
                         \&nbsp; &nbsp;Medium Items
                         %i.pull-right.light-gray $12.00/unit
-                      %li#num-bubble.hidden
+                      %li#num-large.hidden
                         %span.pull-left> 0
                         \&nbsp; &nbsp;Large Items
                         %i.pull-right.light-gray $4.50/unit
-                      %li#num-filebox.hidden
+                      %li#num-extra_large.hidden
                         %span.pull-left> 0
                         \&nbsp; &nbsp;Extra Large Items
                         %i.pull-right.light-gray $9.50/unit
@@ -206,20 +157,23 @@
                     %ul
                       %li.heavy-font
                         Subtotal
-                        %span#order-subtotal.pull-right $00.00/m
+                        %span#pickup-subtotal.pull-right $00.00/m
               .col-md-10.col-md-offset-1
                 %br/ 
                 .col-md-4.bottom-buttons
                   .boxed-gray.continue-button
-                    %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}
-                      = link_to "Back", root_path, class:"white"
+                    %button.btn.btn-primary.blue-bg.gray-bg#signup-second-back{:type => "button"}
+                      Back
                 .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                   .boxed-gray.continue-button
-                    %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-third-btn{:type => "button"}
+                    %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
                       Delivery Details
 
-  / Delivery Details
-  %section.text-center#signup-fourth.hidden
+  
+  ///////////////////////////////////////////////////
+  // DELIVERY DETAILS ///////////////////////////////
+  ///////////////////////////////////////////////////
+  %section.text-center#signup-third.hidden
     .heading-about.marginbot-20
       .container
         .row
@@ -241,7 +195,7 @@
           .single-line
           %br/ 
           %br/       
-    .container#delivery-time
+    .container#delivery-time.hidden
       %h2.no-margin When should we drop off the supplies?
       .row
         .div
@@ -258,7 +212,7 @@
           .single-line
           %br/ 
           %br/ 
-    .container#pickup-time
+    .container#pickup-time.hidden
       %h2.no-margin When should we schedule the pickup?    
       .row
         .div
@@ -275,17 +229,19 @@
       %br/ 
       .col-md-3.bottom-buttons
         .boxed-gray.continue-button
-          %button.btn.btn-primary.blue-bg.gray-bg#signup-fourth-back{:type => "button"}
+          %button.btn.btn-primary.blue-bg.gray-bg#signup-third-back{:type => "button"}
             Back
-          / = link_to "Back", storage_items_path, class:"white"
       .col-md-3.col-md-offset-6.bottom-buttons.charges-box
         .boxed-gray.continue-button
-          %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-fourth-btn{:type => "button"}
+          %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-third-btn{:type => "button"}
             Next
           / = f.submit "Confirm Order"              
 
-  / Signup
-  %section.text-center#signup-fifth.hidden
+
+  ///////////////////////////////////////////////////
+  // Signup /////////////////////////////////////////
+  ///////////////////////////////////////////////////
+  %section.text-center#signup-fourth.hidden
     .heading-about.marginbot-30
       .container
         .row
@@ -310,7 +266,7 @@
                 .col-md-8.col-md-offset-2.bottom-buttons
                   %a= userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-third-btn"                  
                   %a.pointer
-                    %h1.btn.btn-default.pull-left#signup-fifth-back Back
+                    %h1.btn.btn-default.pull-left#signup-fourth-back Back
             %br/
             %br/ 
     %br/ 
@@ -319,100 +275,6 @@
     %br/ 
     %br/ 
     %br/ 
-
-  / / CONFIRMATION
-  / %section#signup-fourth.text-center.hidden
-  /   .heading-about.marginbot-30
-  /     .container
-  /       .row
-  /         .col-lg-8.col-lg-offset-2
-  /           .section-heading
-  /             %h2 Confirm Your Order
-  /   .container
-  /     .row
-  /       .col-lg-8.col-md-offset-2
-  /         %h3.double-underlined Order Details
-  /         .double-line
-  /         .row
-  /           .col-md-4.confirm-elem
-  /             %h5 Your Order
-  /             %ul
-  /               %li
-  /                 %span.order-item Standard Box
-  /                 %span.pull-right 3
-  /               %li
-  /                 %span.order-item Wardrobe Box
-  /                 %span.pull-right 1
-  /               %li
-  /                 %span.order-item Bicycle
-  /                 %span.pull-right 1
-  /             .single-line
-  /             %ul
-  /               %li.light-gray
-  /                 %span.order-item Subtotal:
-  /                 %span.pull-right $30/month
-  /               %li
-  /                 %span.order-item.blue.heavy-font Savings:
-  /                 %span.pull-right.heavy-font $165/month
-  /           .col-md-4.confirm-elem
-  /             %h5 Delivery Time
-  /             %p Tuesday, July 29 between
-  /             %p 5:30 and 6:00 PM
-  /           .col-md-4.confirm-elem
-  /             %h5 Your Address
-  /             %p 1035 Pearl St. #211
-  /             %p Boulder, CO 80302
-  /         %br/
-  /         %br/
-  /         %h3.double-underlined Payment Info
-  /         .double-line
-  /         %form#contact-form
-  /           .bg-gray
-  /             %br/
-  /             .row
-  /               .col-md-8.col-md-offset-2
-  /                 .form-group.address-form
-  /                   %label{:for => "name"} Name on Credit Card
-  /                   %input#name.form-control{:placeholder => "e.g. John Doe", :required => "required", :type => "text"}/
-  /                   %br/
-  /                   %label{:for => "name"} Credit Card Number
-  /                   %input#name.form-control{:placeholder => "e.g. 1234 5678 9012 3456", :required => "required", :type => "text"}/
-  /                   %br/
-  /                   .row
-  /                     .col-md-6.col-sm-6.col-xs-6.col-lg-6
-  /                       %label{:for => "name"} Expiration Month
-  /                       %input#name.col-md-6.form-control{:placeholder => "mm", :required => "required", :type => "text"}/
-  /                     .col-md-6.col-sm-6.col-xs-6.col-lg-6
-  /                       %label{:for => "name"} Expiration Year
-  /                       %input#name.col-md-6.form-control{:placeholder => "yyyy", :required => "required", :type => "text"}/
-  /               .col-md-8.col-md-offset-2
-  /             %br/
-  /           %br/
-  /           .bg-gray
-  /             / %br/
-  /             / .row
-  /             /   .col-md-8.col-md-offset-2
-  /             /     .form-group.address-form
-  /             /       %label{:for => "name"}
-  /             /         Your Phone Number
-  /             /         %span (for deliveries)
-  /             /       %input#name.form-control{:placeholder => "", :required => "required", :type => "text"}/
-  /             /       %br/
-  /             /   .col-md-8.col-md-offset-2
-  /           %br/
-  /           .row
-  /             .col-md-5.col-md-offset-2.no-side-padding
-  /               %p.align-right.pull-right.pt-10
-  /                 I agree to the
-  /                 %a.pointer{"data-target" => "#myModal", "data-toggle" => "modal"} terms and services 
-  /             .col-md-1
-  /               %input#terms-checkbox.pull-right{:type => "checkbox"}/
-  /             .col-md-4
-  /               .boxed-gray.continue-button
-  /                 / %a{:href => "user-dashboard.html"}
-  /                 / %button.btn.btn-primary.blue-bg-hover= link_to "Confirm Order", storage_items_path, class:"white"
-  /                 / %button.btn.btn-primary{:type => "button"} Confirm Order
-  /                 = f.submit 'confirm order'
 
 
 
@@ -448,6 +310,9 @@
 :javascript
   
   
+  /////////////////////////////////////////////////////////////
+  // Prevent "enter" button submission
+  /////////////////////////////////////////////////////////////
   $(document).ready(function() {
     $(".quantity-field").keydown(function(event){
       if(event.keyCode == 13) {
@@ -466,6 +331,10 @@
     });
   });
 
+
+  /////////////////////////////////////////////////////////////
+  // Makes sure that div sizes are the same height
+  /////////////////////////////////////////////////////////////
   function sizeEntriesTheSame(divName){
     var maxHeight = 0;
     var entries = $("." + divName);
@@ -479,7 +348,10 @@
     console.log("reset size");
   }
 
+
+  /////////////////////////////////////////////////////////////
   // Increment Text Field
+  /////////////////////////////////////////////////////////////
   $(".btn-inc").click(function(){
     console.log("button clicked");
     var id = $(this).attr('id');
@@ -496,6 +368,10 @@
     refreshOrder(val, orderEntrySpan);
   });
 
+
+  /////////////////////////////////////////////////////////////
+  // Changes quantity, updates field when text manually changed
+  /////////////////////////////////////////////////////////////
   $(".quantity-field").change(function(){
     console.log("QUANTITY CHANGED");
     var field = $(this);
@@ -507,8 +383,9 @@
   });
 
 
-
+  /////////////////////////////////////////////////////////////
   // Rewrites values in Order Summary Field
+  /////////////////////////////////////////////////////////////
   function refreshOrder(val, orderEntrySpan){
     console.log("REFERESHING ORDER FOR" + orderEntrySpan);
     orderEntrySpan.html(parseInt(val));
@@ -517,12 +394,15 @@
     if (val == 0) orderEntry.addClass('hidden');
     else orderEntry.removeClass('hidden');
     
-    updateBoxRequestTotal();
+    updatePackingItemsTotal();
+    updatePickupTotal();
   }
 
 
-  // Overwrites subtotal for box request
-  function updateBoxRequestTotal(){
+  /////////////////////////////////////////////////////////////
+  // Overwrites subtotal for packing Items
+  /////////////////////////////////////////////////////////////
+  function updatePackingItemsTotal(){
 
     // Number of Boxes
     var numStdBox = $('#txt-stdbox').val();
@@ -542,21 +422,48 @@
     var total = (numStdBox * STDBOX_PRICE) + (numWarBox * WARDROBE_BOX_PRICE) + (numBubble * BUBBLE_WRAP_PRICE) + (numFileBox * FILE_BOX_PRICE) + (numTube * POSTER_TUBE_PRICE);
     console.log("total:" + total);
     $('#order-subtotal').text("$" + total+"/m");
-  }
-  
-  function moveFromTo(fromDiv, toDiv){
-    $(fromDiv).hide();
-    $(toDiv).show();
-    window.scrollTo(0,0);
+    if (total > 1) $("#delivery-time").toggleClass("hidden");
+
   }
 
 
+  /////////////////////////////////////////////////////////////
+  // Overwrites subtotal for packing Items
+  /////////////////////////////////////////////////////////////
+  function updatePickupTotal(){
+    // Number of Boxes
+    var numBox = $('#txt-box').val();
+    var numMedium = $('#txt-medium').val();
+    var numLarge = $('#txt-large').val();
+    var numXLarge = $('#txt-extra_large').val();
+
+    // Pricing Per Box
+    var BOX_PRICE =  5.00;
+    var MEDIUM_PRICE =  12.00;
+    var LARGE_PRICE =  20.00;
+    var XLARGE_PRICE =  40.00;
+
+
+    var total = (numBox * BOX_PRICE) + (numMedium * MEDIUM_PRICE) + (numLarge * LARGE_PRICE) + (numXLarge * XLARGE_PRICE);
+    console.log("total:" + total);
+    $('#pickup-subtotal').text("$" + total+"/m");
+    if (total > 1) $("#pickup-time").toggleClass("hidden");
+  }
+
+
+  /////////////////////////////////////////////////////////////
+  // Segues between on-screen, hidden "pages"
+  /////////////////////////////////////////////////////////////
   function moveFromTo(fromDiv, toDiv){
     $(fromDiv).toggleClass("hidden");
     $(toDiv).toggleClass("hidden");
     window.scrollTo(0,0);
   }
 
+
+  /////////////////////////////////////////////////////////////
+  // Signup Button Flow - Forward
+  /////////////////////////////////////////////////////////////
   $("#signup-first-btn").click(function(){
     $("#lets-doit").parent().hide();
     moveFromTo("#signup-first", "#signup-second");
@@ -578,17 +485,14 @@
   })
 
 
+  /////////////////////////////////////////////////////////////
+  // Back Buttons
+  /////////////////////////////////////////////////////////////
+
   $("#signup-second-back").click(function(){
     $("#lets-doit").parent().show();
     moveFromTo("#signup-second", "#signup-first");
   })
-
-  $("#signup-skip-third").click(function(){
-    $('#pickup-time').hide();
-    moveFromTo("#signup-second", "#signup-fourth");
-  });
-
-
 
   $("#signup-third-back").click(function(){
     moveFromTo("#signup-third", "#signup-second");
@@ -604,7 +508,9 @@
   })
 
 
-
+  /////////////////////////////////////////////////////////////
+  // Validations
+  /////////////////////////////////////////////////////////////
   $(document).ready(function() {
       $('#signup-form').bootstrapValidator({
           // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later

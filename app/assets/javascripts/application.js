@@ -17,12 +17,11 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootstrapValidator
+//= require custom
+// require syn-dashboard
 // require classie
 // require nivo-lightbox
 // require stellar
-//= require custom
-//= require signup_flow.js
-// require syn-dashboard
 
 function hideParentWhenNotUsed(classId){
   var objectToHide = $("." + classId);
