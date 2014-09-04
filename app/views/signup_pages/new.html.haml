@@ -15,7 +15,7 @@
   ///////////////////////////////////////////////////
   // ITEM SELECTION /////////////////////////////////
   ///////////////////////////////////////////////////
-  %section.text-center#signup-first.hidden
+  %section.text-center#signup-first
     .heading-about.marginbot-20
       .container
         .row
@@ -30,11 +30,10 @@
             %br/ 
             %br/ 
             .row
-              = render partial: "partials/list_item_small", locals: {name: "Standard Box", description: "22\" x 18\" x 12\"", price: "$6.50/m", field_val: :box_quantity, id:"stdbox", form:f, cls:"form-control", uses:"(books, clothing & small items)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
-              = render partial: "partials/list_item_small", locals: {name: "Wardrobe Box", description: "24\" x 20\" x 46\"", price: "$12.00/m", field_val: :wardrobe_box_quantity, id:"warbox", form:f, cls:"form-control", uses:"(suits, poster tubes & tall items)", imgUrl:"http://www.ikea.com/us/en/images/products/brimnes-wardrobe-with--doors__0140624_PE300605_S4.JPG"}
-              = render partial: "partials/list_item_small", locals: {name: "Bubble Wrap", uses: "cocoon your precious items.", description:"12\" wide x 30' long", price: "$4.50 - 100ft", field_val: :bubble_quantity, id:"bubble", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0767163_sc7?$splssku$"}
-              = render partial: "partials/list_item_small", locals: {name: "Packing Tape", description:"10\" x 12\" x 15\"", uses: "keep that paper trail in line", price: "$9.50 each", field_val: :file_box_quantity, id:"filebox", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0199320_sc7?$splssku$"}
-              = render partial: "partials/list_item_small", locals: {name: "Poster/Art Tubes", description:"3\" x 36\"",uses: "your art -  rolled for freshness", price: "$10 each", field_val: :poster_tube_quantity, id:"tube", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0059946_sc7?$splssku$"}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Standard Box", price: "$5/unit", id:"stdbox", field_val: :box_quantity, form: f, imgURL:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG", description:"22\" x 18\" x 12\" for books, clothing & small items."}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Wardrobe Box", price: "$12/unit", id:"warbox", field_val: :wardrobe_box_quantity, form: f, imgURL:"http://www.ikea.com/us/en/images/products/brimnes-wardrobe-with--doors__0140624_PE300605_S4.JPG", description:"24\" x 20\" x 46\" suits, poster tubes & tall items."}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Bubble Wrap", price: "$10 / 30ft", id:"bubble", field_val: :bubble_quantity, form: f, imgURL:"http://www.staples-3p.com/s7/is/image/Staples/s0767163_sc7?$splssku$", description:"12\" wide x 30' long. Cocoon your precious items. "}
+              = render partial: "partials/list_item_4col_field", locals:{title: "Packing Tape", price: "$5 / 30ft", id:"tape", field_val: :tape_quantity, form: f, imgURL:"http://www.staples-3p.com/s7/is/image/Staples/s0199320_sc7?$splssku$", description:"10\" x 12\" x 15\" to keep your boxex in line."}
 
           .col-md-6.col-md-offset-3.half-opacity.charges-box
             %br/
@@ -62,9 +61,9 @@
                         %span.pull-left> 0
                         \&nbsp; &nbsp;Rolls of Bubble Wrap
                         %i.pull-right.light-gray $4.50/unit
-                      %li#num-filebox.hidden
+                      %li#num-tape.hidden
                         %span.pull-left> 0
-                        \&nbsp; &nbsp;File Boxes
+                        \&nbsp; &nbsp;Packing Tape
                         %i.pull-right.light-gray $9.50/unit
                       %li#num-tube.hidden
                         %span.pull-left> 0
@@ -166,14 +165,17 @@
                       Back
                 .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                   .boxed-gray.continue-button
-                    %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
+                    %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button", disabled: true}
                       Item Pickup
-
+              .col-md-12
+                %p.light-gray.onepxhigh#pickup-deliv-instructions (You must schedule at least one pickup or delivery to sign up)
+                %br/ 
+                %br/ 
   
   ///////////////////////////////////////////////////
   // DELIVERY DETAILS ///////////////////////////////
   ///////////////////////////////////////////////////
-  %section.text-center#signup-third
+  %section.text-center#signup-third.hidden
     .heading-about.marginbot-20
       .container
         .row
@@ -195,7 +197,7 @@
           .single-line
           %br/ 
           %br/       
-    .container#delivery-time
+    .container#delivery-time.hidden
       %h2.no-margin When should we drop off the supplies?
       .row
         .div
@@ -204,7 +206,7 @@
           .col-md-8.col-md-offset-2
             .row
               = fields_for @user do |field|
-                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"datepicker2", select_id:"time_picker_2"}
+                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"delivery_datepicker", select_id:"delivery_time"}
 
 
         .col-md-6.col-md-offset-3.half-opacity.charges-box
@@ -213,16 +215,16 @@
           .single-line
           %br/ 
           %br/ 
-    .container#pickup-time
+    .container#pickup-time.hidden
       %h2.no-margin When should we schedule the pickup?    
       .row
         .div
           .col-md-6.col-md-offset-3.half-opacity.charges-box
             %br/
           .col-md-8.col-md-offset-2
-            .row#TEST-THIS
-              = fields_for @user, :html => {:id => 'create-acct-form'} do |field|
-                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"datepicker", select_id:"time_picker"}
+            .row
+              = fields_for @user do |field|
+                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"pickup_time"}
     .container
       %br/ 
       %br/ 
@@ -233,7 +235,7 @@
             Back
       .col-md-3.col-md-offset-6.bottom-buttons.charges-box
         .boxed-gray.continue-button
-          %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-third-btn{:type => "button", disabled: false}
+          %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-third-btn{:type => "button", disabled: true}
             Next
           / = f.submit "Confirm Order"              
 
@@ -329,6 +331,7 @@
 
     var all_form = $(".form-control");
     all_form.on('input', function() {
+      checkFormDisableBtn();
     });
 
   });
@@ -336,13 +339,14 @@
 
 
   /////////////////////////////////////////////////////////////
-  // Makes sure required fields are filled out
+  // Makes sure required fields are filled out on address/delivery page
   /////////////////////////////////////////////////////////////
   function checkFormDisableBtn(){
     if ($("#signup-form").data('bootstrapValidator').isValid()){
-      console.log("NEXT BUTTON REMOVING DISABLED");
-      if(($("#datepicker").val().length > 0) && ($("#datepicker2").val().length > 0)) {
-        if(($("#time_picker").val().length > 0) && ($("#time_picker_2").val().length > 0)) {
+
+      // If 
+      if((($("#pickup_datepicker").val().length > 0) && ($("#pickup_time").val().length > 0)) || $("#pickup-time").hasClass("hidden")) {
+        if((($("#delivery_datepicker").val().length > 0) && ($("#delivery_time").val().length > 0)) || $("#delivery-time").hasClass("hidden")) {
           $("#signup-third-btn").removeAttr("disabled"); 
         }
       }
@@ -355,7 +359,7 @@
 
 
   /////////////////////////////////////////////////////////////
-  // Makes sure that div sizes are the same height
+  // Makes sure that div sizes are the same height for order items
   /////////////////////////////////////////////////////////////
   function sizeEntriesTheSame(divName){
     var maxHeight = 0;
@@ -406,7 +410,7 @@
 
 
   /////////////////////////////////////////////////////////////
-  // Rewrites values in Order Summary Field
+  // Rewrites values in Order Summary Field for pickups and deliveries
   /////////////////////////////////////////////////////////////
   function refreshOrder(val, orderEntrySpan){
     console.log("REFERESHING ORDER FOR" + orderEntrySpan);
@@ -422,7 +426,8 @@
 
 
   /////////////////////////////////////////////////////////////
-  // Overwrites subtotal for packing Items
+  // Overwrites subtotal for packing Items.
+  // Hides delivery field if no items selected
   /////////////////////////////////////////////////////////////
   function updatePackingItemsTotal(){
 
@@ -430,29 +435,34 @@
     var numStdBox = $('#txt-stdbox').val();
     var numWarBox = $('#txt-warbox').val();
     var numBubble = $('#txt-bubble').val();
-    var numFileBox = $('#txt-filebox').val();
-    var numTube = $('#txt-tube').val();
+    var numTape = $('#txt-tape').val();
 
     // Pricing Per Box
     var STDBOX_PRICE =  6.50;
     var WARDROBE_BOX_PRICE =  12.00;
     var BUBBLE_WRAP_PRICE =  4.50;
-    var FILE_BOX_PRICE =  9.50;
+    var TAPE_PRICE =  9.50;
     var POSTER_TUBE_PRICE =  10.00;
 
-
-    var total = (numStdBox * STDBOX_PRICE) + (numWarBox * WARDROBE_BOX_PRICE) + (numBubble * BUBBLE_WRAP_PRICE) + (numFileBox * FILE_BOX_PRICE) + (numTube * POSTER_TUBE_PRICE);
+    var total = (numStdBox * STDBOX_PRICE) + (numWarBox * WARDROBE_BOX_PRICE) + (numBubble * BUBBLE_WRAP_PRICE) + (numTape * TAPE_PRICE);
     console.log("total:" + total);
     $('#order-subtotal').text("$" + total+"/m");
     if ((total > 1) && ($("#delivery-time").hasClass("hidden"))) {
-      console.log("showing delivery time");
       $("#delivery-time").toggleClass("hidden");
+      
+      // Allow user to continue on
+      if (!$("#pickup-deliv-instructions").hasClass("hidden")){
+        $("#pickup-deliv-instructions").toggleClass("hidden");
+        $("#signup-second-btn").removeAttr("disabled");
+      }
+
     }
   }
 
 
   /////////////////////////////////////////////////////////////
-  // Overwrites subtotal for packing Items
+  // Overwrites subtotal for pickup order
+  // Hides delivery field if no items selected
   /////////////////////////////////////////////////////////////
   function updatePickupTotal(){
     // Number of Boxes
@@ -473,7 +483,12 @@
     $('#pickup-subtotal').text("$" + total+"/m");
     if ((total > 1) && ($("#pickup-time").hasClass("hidden"))){
       $("#pickup-time").toggleClass("hidden");
-      console.log("showing the pickup time text field");
+      
+      // Allow user to continue on
+      if (!$("#pickup-deliv-instructions").hasClass("hidden")){
+        $("#pickup-deliv-instructions").toggleClass("hidden");
+        $("#signup-second-btn").removeAttr("disabled");
+      }
     }
   }
 
@@ -530,16 +545,7 @@
     moveFromTo("#signup-fourth", "#signup-third");
   })
 
-  $("#signup-fourth-back").click(function(){
-    moveFromTo("#signup-fifth", "#signup-fourth");
-  })
-
-
-
-/////////////////////////////////////////////////////////////
-// Back Buttons
-/////////////////////////////////////////////////////////////
-
+ 
 
 
 

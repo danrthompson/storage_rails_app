@@ -74,16 +74,21 @@ $(document).ready(function() {
                     },
                 }
             },
+            'user[password]': {
+                message: 'The password field is not valid',
+                validators: {
+                  stringLength: {
+                    min: 8,
+                    message: 'The password must have at least 8 characters'
+                  }
+               }
+            },
             'user[password_confirmation]': {
                 message: 'The password_confirmation field is not valid',
                 validators: {
                   identical: {
                       field: 'user[password]',
                       message: 'The password confirmation must match the password'
-                  },
-                  stringLength: {
-                    min: 8,
-                    message: 'The password must have at least 8 characters'
                   }
                }
             }
