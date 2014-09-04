@@ -1,0 +1,51 @@
+
+
+.col-md-8.col-md-offset-2.inventory
+  %br/ 
+  %br/ 
+  .row
+    = render partial: "partials/list_item_4col_field", locals:{title: "Boxes", price: "$5/m", id:"box", field_val: :box, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Medium", price: "$12/m", id:"medium", field_val: :medium, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"Wardrobe Boxes, Desks, Lamps, Skis, Bikes, Small Furniture, Equivalent Items"}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Large", price: "$20/m", id:"large", field_val: :large, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:"Couches, mattresses, desks, tables, dressers, or furniture that takes two to move."}
+    = render partial: "partials/list_item_4col_field", locals:{title: "XL Items", price: "$40/m", id:"extra_large", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", description:"Sectional couches, large dining tables, items over 200lbs or 60 cubic feet"}
+
+
+.col-md-6.col-md-offset-3.half-opacity.charges-box
+  %br/
+  %br/ 
+  %br/ 
+  .single-line
+  %br/ 
+  %br/ 
+.col-md-10.col-md-offset-1
+  .row
+    .col-md-12.charges-box
+      .row
+        .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
+          %h5 Pickup Summary
+          %ul
+            %li#num-box.hidden
+              %span.pull-left> 0
+              \&nbsp; &nbsp; Boxes
+              %i.pull-right.light-gray $6.50/unit
+            %li#num-medium.hidden
+              %span.pull-left> 0
+              \&nbsp; &nbsp;Medium Items
+              %i.pull-right.light-gray $12.00/unit
+            %li#num-large.hidden
+              %span.pull-left> 0
+              \&nbsp; &nbsp;Large Items
+              %i.pull-right.light-gray $4.50/unit
+            %li#num-extra_large.hidden
+              %span.pull-left> 0
+              \&nbsp; &nbsp;Extra Large Items
+              %i.pull-right.light-gray $9.50/unit
+            %br/  
+            %li.half-opacity
+              Valet Pickup
+              %span.pull-right Free
+          .single-line
+          %ul
+            %li.heavy-font
+              Subtotal
+              %span#pickup-subtotal.pull-right $00.00/m

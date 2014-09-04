@@ -1,0 +1,55 @@
+
+.col-md-8.col-md-offset-2.inventory
+  %br/ 
+  %br/ 
+  .row
+    = render partial: "partials/list_item_4col_field", locals:{title: "Standard Box", price: "$5/unit", id:"stdbox", field_val: :box_quantity, form: f, imgURL:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG", description:"22\" x 18\" x 12\" for books, clothing & small items."}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Wardrobe Box", price: "$12/unit", id:"warbox", field_val: :wardrobe_box_quantity, form: f, imgURL:"http://www.ikea.com/us/en/images/products/brimnes-wardrobe-with--doors__0140624_PE300605_S4.JPG", description:"24\" x 20\" x 46\" suits, poster tubes & tall items."}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Bubble Wrap", price: "$10 / 30ft", id:"bubble", field_val: :bubble_quantity, form: f, imgURL:"http://www.staples-3p.com/s7/is/image/Staples/s0767163_sc7?$splssku$", description:"12\" wide x 30' long. Cocoon your precious items. "}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Packing Tape", price: "$5 / 30ft", id:"tape", field_val: :tape_quantity, form: f, imgURL:"http://www.staples-3p.com/s7/is/image/Staples/s0199320_sc7?$splssku$", description:"10\" x 12\" x 15\" to keep your boxex in line."}
+
+    
+
+.col-md-6.col-md-offset-3.half-opacity.charges-box
+  %br/
+  %br/ 
+  %br/ 
+  .single-line
+  %br/ 
+  %br/ 
+.col-md-10.col-md-offset-1
+  .row
+    .col-md-12.charges-box
+      .row
+        .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
+          %h5 Packing Supplies Summary
+          %ul
+            %li#num-stdbox.hidden
+              %span.pull-left> 0
+              \&nbsp; &nbsp;Standard Boxes
+              %i.pull-right.light-gray $6.50/unit
+            %li#num-warbox.hidden
+              %span.pull-left> 0
+              \&nbsp; &nbsp;Wardrobe Boxes
+              %i.pull-right.light-gray $12.00/unit
+            %li#num-bubble.hidden
+              %span.pull-left> 0
+              \&nbsp; &nbsp;Rolls of Bubble Wrap
+              %i.pull-right.light-gray $4.50/unit
+            %li#num-tape.hidden
+              %span.pull-left> 0
+              \&nbsp; &nbsp;Packing Tape
+              %i.pull-right.light-gray $9.50/unit
+            %li#num-tube.hidden
+              %span.pull-left> 0
+              \&nbsp; &nbsp;Art/Poster Tubes
+              %i.pull-right.light-gray $10.00/unit
+            %br/  
+            %li.half-opacity
+              Valet Delivery
+              %span.pull-right Free
+          .single-line
+          %ul
+            %li.heavy-font
+              Subtotal
+              %span#order-subtotal.pull-right $00.00/m

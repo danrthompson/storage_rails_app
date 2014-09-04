@@ -20,8 +20,8 @@
           .col-md-8.col-md-offset-2
             .row
               = fields_for @user do |field|
-                = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
-                = render partial: "partials/delivery_date_time", locals: {field:field, f:f}
+                = render partial: "partials/delivery_addr_date", locals: {field:field, f:f, id:"datepicker"}
+                = render partial: "partials/delivery_date_time", locals: {field:field, f:f,  id:"delivery_datepicker", select_id:"delivery_time"}
         
           / Add to Order Section
           .col-md-6.col-md-offset-3.half-opacity
@@ -76,12 +76,12 @@
               .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
                 %h5 Delivery Summary
                 %ul
-                  - @requested_boxes.each do |requested_item|
-                    %li
-                      = requested_item.title
-                      %i.pull-right
-                        $
-                        = requested_item.delivery_price
+                  / - @requested_boxes.each do |requested_item|
+                  /   %li
+                  /     = requested_item.title
+                  /     %i.pull-right
+                  /       $
+                  /       = requested_item.delivery_price
                   %li#num-stdbox.hidden
                     %span.pull-left> 0
                     \&nbsp; &nbsp;Standard Boxes

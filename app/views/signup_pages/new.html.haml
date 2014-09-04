@@ -26,68 +26,17 @@
     .container
       .row
         .div
-          .col-md-8.col-md-offset-2.inventory
-            %br/ 
-            %br/ 
-            .row
-              = render partial: "partials/list_item_4col_field", locals:{title: "Standard Box", price: "$5/unit", id:"stdbox", field_val: :box_quantity, form: f, imgURL:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG", description:"22\" x 18\" x 12\" for books, clothing & small items."}
-              = render partial: "partials/list_item_4col_field", locals:{title: "Wardrobe Box", price: "$12/unit", id:"warbox", field_val: :wardrobe_box_quantity, form: f, imgURL:"http://www.ikea.com/us/en/images/products/brimnes-wardrobe-with--doors__0140624_PE300605_S4.JPG", description:"24\" x 20\" x 46\" suits, poster tubes & tall items."}
-              = render partial: "partials/list_item_4col_field", locals:{title: "Bubble Wrap", price: "$10 / 30ft", id:"bubble", field_val: :bubble_quantity, form: f, imgURL:"http://www.staples-3p.com/s7/is/image/Staples/s0767163_sc7?$splssku$", description:"12\" wide x 30' long. Cocoon your precious items. "}
-              = render partial: "partials/list_item_4col_field", locals:{title: "Packing Tape", price: "$5 / 30ft", id:"tape", field_val: :tape_quantity, form: f, imgURL:"http://www.staples-3p.com/s7/is/image/Staples/s0199320_sc7?$splssku$", description:"10\" x 12\" x 15\" to keep your boxex in line."}
-
-          .col-md-6.col-md-offset-3.half-opacity.charges-box
-            %br/
-            %br/ 
-            %br/ 
-            .single-line
-            %br/ 
-            %br/ 
+          = render partial: "partials/packing_items", locals:{f: f}
           .col-md-10.col-md-offset-1
-            .row
-              .col-md-12.charges-box
-                .row
-                  .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
-                    %h5 Packing Supplies Summary
-                    %ul
-                      %li#num-stdbox.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Standard Boxes
-                        %i.pull-right.light-gray $6.50/unit
-                      %li#num-warbox.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Wardrobe Boxes
-                        %i.pull-right.light-gray $12.00/unit
-                      %li#num-bubble.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Rolls of Bubble Wrap
-                        %i.pull-right.light-gray $4.50/unit
-                      %li#num-tape.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Packing Tape
-                        %i.pull-right.light-gray $9.50/unit
-                      %li#num-tube.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Art/Poster Tubes
-                        %i.pull-right.light-gray $10.00/unit
-                      %br/  
-                      %li.half-opacity
-                        Valet Pickup
-                        %span.pull-right Free
-                    .single-line
-                    %ul
-                      %li.heavy-font
-                        Subtotal
-                        %span#order-subtotal.pull-right $00.00/m
-              .col-md-10.col-md-offset-1
-                %br/ 
-                .col-md-4.bottom-buttons
-                  .boxed-gray.continue-button
-                    %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}
-                      = link_to "Back", root_path, class:"white"
-                .col-md-4.col-md-offset-4.bottom-buttons.charges-box
-                  .boxed-gray.continue-button
-                    %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-first-btn{:type => "button"}
-                      Delivery Details
+            %br/ 
+            .col-md-4.bottom-buttons
+              .boxed-gray.continue-button
+                %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}
+                  = link_to "Back", root_path, class:"white"
+            .col-md-4.col-md-offset-4.bottom-buttons.charges-box
+              .boxed-gray.continue-button
+                %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-first-btn{:type => "button"}
+                  Delivery Details
 
 
   ///////////////////////////////////////////////////
@@ -108,70 +57,22 @@
     .container
       .row
         .div
-          .col-md-8.col-md-offset-2.inventory
-            %br/ 
-            %br/ 
-            .row
-              = render partial: "partials/list_item_4col_field", locals:{title: "Boxes", price: "$5/m", id:"box", field_val: :box, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
-              = render partial: "partials/list_item_4col_field", locals:{title: "Medium", price: "$12/m", id:"medium", field_val: :medium, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"Wardrobe Boxes, Desks, Lamps, Skis, Bikes, Small Furniture, Equivalent Items"}
-              = render partial: "partials/list_item_4col_field", locals:{title: "Large", price: "$20/m", id:"large", field_val: :large, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:"Couches, mattresses, desks, tables, dressers, or furniture that takes two to move."}
-              = render partial: "partials/list_item_4col_field", locals:{title: "XL Items", price: "$40/m", id:"extra_large", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", description:"Sectional couches, large dining tables, items over 200lbs or 60 cubic feet"}
-
-          
-          .col-md-6.col-md-offset-3.half-opacity.charges-box
-            %br/
-            %br/ 
-            %br/ 
-            .single-line
-            %br/ 
-            %br/ 
+          = render partial: "partials/storage_items", locals:{f:f}
           .col-md-10.col-md-offset-1
-            .row
-              .col-md-12.charges-box
-                .row
-                  .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
-                    %h5 Pickup Summary
-                    %ul
-                      %li#num-box.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp; Boxes
-                        %i.pull-right.light-gray $6.50/unit
-                      %li#num-medium.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Medium Items
-                        %i.pull-right.light-gray $12.00/unit
-                      %li#num-large.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Large Items
-                        %i.pull-right.light-gray $4.50/unit
-                      %li#num-extra_large.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Extra Large Items
-                        %i.pull-right.light-gray $9.50/unit
-                      %br/  
-                      %li.half-opacity
-                        Valet Pickup
-                        %span.pull-right Free
-                    .single-line
-                    %ul
-                      %li.heavy-font
-                        Subtotal
-                        %span#pickup-subtotal.pull-right $00.00/m
-              .col-md-10.col-md-offset-1
-                %br/ 
-                .col-md-4.bottom-buttons
-                  .boxed-gray.continue-button
-                    %button.btn.btn-primary.blue-bg.gray-bg#signup-second-back{:type => "button"}
-                      Back
-                .col-md-4.col-md-offset-4.bottom-buttons.charges-box
-                  .boxed-gray.continue-button
-                    %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button", disabled: true}
-                      Item Pickup
-              .col-md-12
-                %p.light-gray.onepxhigh#pickup-deliv-instructions (You must schedule at least one pickup or delivery to sign up)
-                %br/ 
-                %br/ 
-  
+            %br/ 
+            .col-md-4.bottom-buttons
+              .boxed-gray.continue-button
+                %button.btn.btn-primary.blue-bg.gray-bg#signup-second-back{:type => "button"}
+                  Back
+            .col-md-4.col-md-offset-4.bottom-buttons.charges-box
+              .boxed-gray.continue-button
+                %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button", disabled: true}
+                  Item Pickup
+          .col-md-12
+            %p.light-gray.onepxhigh#pickup-deliv-instructions (You must schedule at least one pickup or delivery to sign up)
+            %br/ 
+            %br/ 
+
   ///////////////////////////////////////////////////
   // DELIVERY DETAILS ///////////////////////////////
   ///////////////////////////////////////////////////
@@ -181,7 +82,7 @@
         .row
           .col-lg-8.col-lg-offset-2
             .section-heading
-              %h2.no-margin To Where Are We Delivering?
+              %h2.no-margin Where Are We Delivering?
     .container
       .row
         .div
@@ -225,19 +126,19 @@
             .row
               = fields_for @user do |field|
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"pickup_time"}
-    .container
+    .row
       %br/ 
-      %br/ 
-      %br/ 
-      .col-md-3.bottom-buttons
-        .boxed-gray.continue-button
-          %button.btn.btn-primary.blue-bg.gray-bg#signup-third-back{:type => "button"}
-            Back
-      .col-md-3.col-md-offset-6.bottom-buttons.charges-box
-        .boxed-gray.continue-button
-          %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-third-btn{:type => "button", disabled: true}
-            Next
-          / = f.submit "Confirm Order"              
+      .col-md-10.col-md-offset-1
+        .row
+          .col-md-3.bottom-buttons
+            .boxed-gray.continue-button
+              %button.btn.btn-primary.blue-bg.gray-bg#signup-third-back{:type => "button"}
+                Back
+          .col-md-3.col-md-offset-6.bottom-buttons.charges-box
+            .boxed-gray.continue-button
+              %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-third-btn{:type => "button", disabled: true}
+                Next
+              / = f.submit "Confirm Order"              
 
 
   ///////////////////////////////////////////////////
