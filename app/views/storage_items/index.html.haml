@@ -102,7 +102,7 @@
                   %span.pull-right 1
           .row
             .boxed-gray.continue-button
-              %button#pickup-button.btn.btn-primary.gray-bg{:disabled => "", :type => "button"} Request Pickup
+              %button#pickup-button.btn.btn-primary.gray-bg{:disabled => false, :type => "button"} Request Pickup
               %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:disabled => "true", :type => "button"} Request Delivery
 %br/
 %br/
@@ -135,7 +135,7 @@
       console.log("Delivery BUTTON REMOVING DISABLED");
       $("#delivery-button").removeAttr("disabled"); 
       $(".pickup-entry").removeClass("selected-item");
-      $("#pickup-button").attr("disabled", "disabled");
+      // $("#pickup-button").attr("disabled", "disabled");
       numPickupItems = 0;  
      } 
   });
@@ -152,7 +152,7 @@
     }
     console.log("numPickupItems:" + numPickupItems);
 
-    if (numPickupItems == 0) $("#pickup-button").attr("disabled", "disabled");
+    if (numPickupItems == 0) console.log("the pickup button would be disabled here bc there are no items selected");
     else {
       console.log("pickup BUTTON REMOVING DISABLED");
       $("#pickup-button").removeAttr("disabled");   
@@ -164,17 +164,13 @@
 
   $("#pickup-button").click(function(event){
       event.preventDefault();
-     // console.log("disabled clicked");
      var selectedEntries = $(".selected-item.pickup-entry");
      console.log(selectedEntries.size());
      var destinationURL = "/pickup_requests/new/" + selectedEntries.size();
      window.location.href = destinationURL;
-     // $("#pickup-form").submit();
   });
 
   $("#delivery-button").click(function(){
-     // console.log("disabled clicked");
-     // $("#delivery-form").submit();
      event.preventDefault();
      var selectedEntries = $(".selected-item.delivery-entry");
      var itemsList = "";

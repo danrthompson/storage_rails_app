@@ -23,10 +23,6 @@
                 = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"delivery_datepicker", select_id:"delivery_time"}
           
-
-        
-        
-
           / Add to Order Section
           .col-md-6.col-md-offset-3.half-opacity
             %br/
@@ -48,8 +44,7 @@
                 %br
                 .single-line.pt-10
             .row
-              / .col-md-2.col-sm-4.col-xs-3.center-align
-              / = render partial: "partials/list_item_small", locals: {name: "Small Item", description: "2\' x 2\' x 2\' or smaller", price: "$6.50/m", field_val: :box_quantity, id:"sm", form:f, cls:"form-control", uses:"(small boxes, sports items, etc.)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
+              
               = render partial: "partials/list_item_small", locals: {name: "Medium Item", description: "Items movable by one person", price: "$12.50/m", field_val: :box_quantity, id:"md", form:f, cls:"form-control", uses:"(chairs, bikes, skis, golf clubs...)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
               = render partial: "partials/list_item_small", locals: {name: "Large Item", description: "Items movable by two people", price: "$20.00/m", field_val: :box_quantity, id:"lg", form:f, cls:"form-control", uses:"(couches, small tables, dressers...)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
               = render partial: "partials/list_item_small", locals: {name: "Oversized Item", description: "Needs three people to move", price: "$6.50/m", field_val: :box_quantity, id:"xl", form:f, cls:"form-control", uses:"(dining table, segmented couch...)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
