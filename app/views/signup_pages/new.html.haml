@@ -204,7 +204,8 @@
           .col-md-8.col-md-offset-2
             .row
               = fields_for @user do |field|
-                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"datepicker2"}
+                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"datepicker2", select_id:"time_picker_2"}
+
 
         .col-md-6.col-md-offset-3.half-opacity.charges-box
           %br/
@@ -219,10 +220,9 @@
           .col-md-6.col-md-offset-3.half-opacity.charges-box
             %br/
           .col-md-8.col-md-offset-2
-            .row
-              = fields_for @user do |field|
-                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"datepicker"}          
-              
+            .row#TEST-THIS
+              = fields_for @user, :html => {:id => 'create-acct-form'} do |field|
+                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"datepicker", select_id:"time_picker"}
     .container
       %br/ 
       %br/ 
@@ -233,7 +233,7 @@
             Back
       .col-md-3.col-md-offset-6.bottom-buttons.charges-box
         .boxed-gray.continue-button
-          %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-third-btn{:type => "button"}
+          %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-third-btn{:type => "button", disabled: false}
             Next
           / = f.submit "Confirm Order"              
 
@@ -255,7 +255,7 @@
             .row
               %br/ 
               %br/ 
-              = fields_for @user do |userAcct|
+              = fields_for @user do |userAcct| 
                 .col-md-8.col-md-offset-2.form-group.address-form
                   %div.extra-form-padding
                     = userAcct.email_field :email, autofocus: true, class:"form-control", placeholder: "Email Address"
@@ -326,10 +326,32 @@
         refreshOrder(field.val(), orderEntrySpan);
       }
     });
-    $(window).resize(function(){
 
+    var all_form = $(".form-control");
+    all_form.on('input', function() {
     });
+
   });
+
+
+
+  /////////////////////////////////////////////////////////////
+  // Makes sure required fields are filled out
+  /////////////////////////////////////////////////////////////
+  function checkFormDisableBtn(){
+    if ($("#signup-form").data('bootstrapValidator').isValid()){
+      console.log("NEXT BUTTON REMOVING DISABLED");
+      if(($("#datepicker").val().length > 0) && ($("#datepicker2").val().length > 0)) {
+        if(($("#time_picker").val().length > 0) && ($("#time_picker_2").val().length > 0)) {
+          $("#signup-third-btn").removeAttr("disabled"); 
+        }
+      }
+
+    } else{
+      $("#signup-third-btn").attr("disabled", "disabled"); 
+      console.log("no");
+    }
+  }
 
 
   /////////////////////////////////////////////////////////////
@@ -512,77 +534,12 @@
     moveFromTo("#signup-fifth", "#signup-fourth");
   })
 
-  $(document).ready(function() {
-      $('#signup-form').bootstrapValidator({
-          // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-          feedbackIcons: {
-              // valid: 'glyphicon glyphicon-ok',
-              // invalid: 'glyphicon glyphicon-remove',
-              // validating: 'glyphicon glyphicon-refresh'
-          },
-          fields: {
-              'user[address_line_1]': {
-                  message: 'The address field is not valid',
-                  validators: {
-                      notEmpty: {
-                          message: 'The address field can\'t be empty'
-                      },
-                      stringLength: {
-                          min: 10,
-                          message: 'The address must be a real address'
-                      }
-                  }
-              },
-              'user[city]': {
-                  message: 'The city field is not valid',
-                  validators: {
-                      notEmpty: {
-                          message: 'The city is required'
-                      }  
-                  }
-              },
-              'user[zip]': {
-                  message: 'The zip code field is not valid',
-                  validators: {
-                      notEmpty: {
-                          message: 'The zip code cannot be empty'
-                      },
-                  }
-              },
-              'user[state]': {
-                  message: 'The state field is not valid',
-                  validators: {
-                      notEmpty: {
-                          message: 'The state field is required.'
-                      }
-                  }
-              },
-              'user[phone_number]': {
-                  message: 'The address field is not valid',
-                  validators: {
-                      notEmpty: {
-                          message: 'The phone number is required'
-                      },
-                      phone:{
-                        message: "The phone number must be valid"
-                      }
-                  }
-              },
-              'user[special_instructions]': {
-                  message: 'The address field is not valid',
-                  validators: {
-                      notEmpty: {
-                          message: 'The address is required and cannot be empty'
-                      },
-                      stringLength: {
-                          min: 10,
-                          message: 'The address must be a real address'
-                      }
-                  }
-              }
-          }
-      });
-  });
+
+
+/////////////////////////////////////////////////////////////
+// Back Buttons
+/////////////////////////////////////////////////////////////
+
 
 
 

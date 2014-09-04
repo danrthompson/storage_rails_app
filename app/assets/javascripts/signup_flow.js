@@ -3,7 +3,9 @@
 // Validations
 /////////////////////////////////////////////////////////////
 $(document).ready(function() {
-    $('#signup-form').bootstrapValidator({
+
+    $('#signup-form')
+      .bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
             // valid: 'glyphicon glyphicon-ok',
@@ -71,8 +73,28 @@ $(document).ready(function() {
                         message: 'The address must be a real phone number'
                     },
                 }
+            },
+            'user[password_confirmation]': {
+                message: 'The password_confirmation field is not valid',
+                validators: {
+                  identical: {
+                      field: 'user[password]',
+                      message: 'The password confirmation must match the password'
+                  },
+                  stringLength: {
+                    min: 8,
+                    message: 'The password must have at least 8 characters'
+                  }
+               }
             }
         }
+    })
+    .on('success.form.bv', function(e) {
+        $('#errors').html('');
+        console.log("EVERYTHING WORKS");
+    })
+    .on('error.form.bv', function() {
+      console.log("EVERYTHING WORKS");
     });
 });
 
