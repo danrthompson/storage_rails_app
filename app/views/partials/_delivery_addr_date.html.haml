@@ -1,25 +1,123 @@
 .boxed-grey.col-md-12
-	.row.align-left
-		.col-md-6
-			.form-group.address-form
-				= field.label :address_line_1, "Address:"
-				= field.text_field :address_line_1,  autofocus: true, placeholder:"Address Line 1", class:"form-control", id:""
-				= field.text_field :address_line_2,  autofocus: true, placeholder:"Address Line 2", class:"form-control", id:""
-				.row
-					.col-md-6.col-sm-6.col-xs-6.col-lg-6
-						= field.text_field :city,  autofocus: true, placeholder:"City", class:"col-md-6 form-control", id:""
-					.col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
-						= field.text_field :state,  autofocus: true, placeholder:"st", class:"form-control", id:""
-					.col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
-						= field.text_field :zip,  autofocus: true, placeholder:"zip", class:"form-control", id:""
-		.col-md-6
-			.form-group
-				.col-md-12
-					.form-group.delivery-date-group
-						= field.label :phone_number, "Phone Number (for delivery)"
-						= field.text_field :phone_number,  autofocus: true, placeholder:"(303) 555-1111", class:"form-control", id:""
-						%br/
-						%label{:for => "name"} Any Special Instructions?
-						= field.text_area :special_instructions, placeholder:"Message", rows:1, class:"form-control"
-						/ textarea#message.form-control{:cols => "25", :name => "special_instructions", :placeholder => "Message", :rows => "1"}
-					%br/ 
+  .row.align-left#validator-id
+    .col-md-6
+      .form-group.address-form
+        = field.label :address_line_1, "Address:"
+        = field.text_field :address_line_1,  autofocus: true, placeholder:"Address Line 1", class:"form-control", id:""
+        = field.text_field :address_line_2,  autofocus: true, placeholder:"Address Line 2", class:"form-control", id:""
+        .row
+          .col-md-6.col-sm-6.col-xs-6.col-lg-6
+            = field.text_field :city,  autofocus: true, placeholder:"City", class:"col-md-6 form-control", id:""
+          .col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
+            = field.text_field :state,  autofocus: true, placeholder:"st", class:"form-control", id:""
+          .col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
+            = field.text_field :zip,  autofocus: true, placeholder:"zip", class:"form-control", id:""
+    .col-md-6
+      .form-group
+        .col-md-12
+          .form-group.delivery-date-group
+            = field.label :phone_number, "Phone Number (for delivery)"
+            = field.text_field :phone_number,  autofocus: true, placeholder:"(303) 555-1111", class:"form-control", id:""
+            %br/
+            %label{:for => "name"} Any Special Instructions?
+            = field.text_area :special_instructions, placeholder:"Message", rows:1, class:"form-control"
+          %br/ 
+
+:javascript
+  $(document).ready(function() {
+    
+
+    $(".form-control").on('input', function() {
+      $('#validator-id').data('bootstrapValidator').validate();
+    });
+
+    $('#validator-id')
+      .bootstrapValidator({
+      feedbackIcons: {
+      },
+      fields: {
+        'user[address_line_1]': {
+          message: 'The address field is not valid',
+          validators: {
+            notEmpty: {
+              message: 'The address field can\'t be empty'
+            },
+            stringLength: {
+              min: 10,
+              message: 'The address must be a real'
+            },
+          }
+        },
+        'user[city]': {
+          message: 'The city field is not valid',
+          validators: {
+            notEmpty: {
+              message: 'The city is required'
+            },  
+            stringLength:{
+              min: 2,
+              message: "Valid city is required"
+            }
+          }
+        },
+        'user[zip]': {
+          message: 'The zip code field is not valid',
+          validators: {
+            notEmpty: {
+              message: 'The zip code cannot be empty'
+            },
+            stringLength: {
+              min: 5,
+              max: 5,
+              message: ' valid zip required'
+            },
+          }
+        },
+        'user[state]': {
+          message: 'The state field is not valid',
+          validators: {
+            notEmpty: {
+              message: '* state required.'
+            },
+            stringLength: {
+              min:2,
+              message: "Valid state required"
+            }
+          }
+        },
+        'user[phone_number]': {
+          message: 'The address field is not valid',
+          validators: {
+            notEmpty: {
+              message: 'The phone number is required'
+            },
+            stringLength: {
+              min: 10,
+              message: 'The address must be a real phone number'
+            },
+          }
+        },
+        'user[password]': {
+          message: 'The password field is not valid',
+          validators: {
+            stringLength: {
+            min: 8,
+            message: 'The password must have at least 8 characters'
+            }
+           }
+        },
+        'user[password_confirmation]': {
+          message: 'The password_confirmation field is not valid',
+          validators: {
+            identical: {
+              field: 'user[password]',
+              message: 'The password confirmation must match the password'
+            }
+           }
+        }
+      }
+    })
+  });
+
+
+

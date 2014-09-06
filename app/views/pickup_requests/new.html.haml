@@ -29,79 +29,10 @@
             / .single-line
             %br/
           .col-md-12
-            %br/ 
-            %h1 Add To Pickup
-            / %p.light-gray Would you like anything additional when we deliver your items? (more boxes, packing supplies, etc.)
-            / %br/ 
-          .col-md-8.col-md-offset-2.inventory
-            .row
-              %br/  
-              .col-md-12.col-md-offset-0
-                %h2.pull-left.full-width
-                  %i Individual Items
-                  %p.half-opacity.pull-right Anything extra you want to store?
-
-                %br
-                .single-line.pt-10
-            .row
-              
-              = render partial: "partials/list_item_small", locals: {name: "Medium Item", description: "Items movable by one person", price: "$12.50/m", field_val: :box_quantity, id:"md", form:f, cls:"form-control", uses:"(chairs, bikes, skis, golf clubs...)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
-              = render partial: "partials/list_item_small", locals: {name: "Large Item", description: "Items movable by two people", price: "$20.00/m", field_val: :box_quantity, id:"lg", form:f, cls:"form-control", uses:"(couches, small tables, dressers...)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
-              = render partial: "partials/list_item_small", locals: {name: "Oversized Item", description: "Needs three people to move", price: "$6.50/m", field_val: :box_quantity, id:"xl", form:f, cls:"form-control", uses:"(dining table, segmented couch...)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
-              .col-12
-                %a.pull-right.pointer{"data-target" => "#myModal", "data-toggle" => "modal"} Not sure which size to choose? Click here.
-    
-          .col-md-6.col-md-offset-3.half-opacity.charges-box
-            %br/
-            %br/
-            %br/ 
-            .single-line
-            
-          .col-md-6.col-md-offset-3.half-opacity
-            %br/
-          .col-md-12
-            %br/ 
-            %h1 Order Summary
-          .col-md-8.col-md-offset-2
-            .row.charges-box
-              .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
-                %h5 Pickup Summary
-                %ul
-                  / %li#num-box.hidden
-                  /   %span.pull-left> 0
-                  /   \&nbsp; &nbsp;Small Item
-                  /   %i.pull-right.light-gray $6.50/month
-                  %li#num-sm.hidden
-                    %span.pull-left> 0
-                    \&nbsp; &nbsp;Small Item
-                    %i.pull-right.light-gray $6.50/month
-                  %li#num-md.hidden
-                    %span.pull-left> 0
-                    \&nbsp; &nbsp;Medium Item
-                    %i.pull-right.light-gray $12.50/month
-                  %li#num-lg.hidden
-                    %span.pull-left> 0
-                    \&nbsp; &nbsp;Large Item
-                    %i.pull-right.light-gray $20.00/month
-                  %li#num-xl.hidden
-                    %span.pull-left> 0
-                    \&nbsp; &nbsp;Oversized Item
-                    %i.pull-right.light-gray $50.00/month
-                  %li#num-tube.hidden
-                    %span.pull-left> 0
-                    \&nbsp; &nbsp;Art/Poster Tubes
-                    %i.pull-right.light-gray $10.00/month
-                  %br/  
-                  %li.half-opacity
-                    Baseline Delivery Fee
-                    %span.pull-right $00.00
-                .single-line
-                %ul
-                  %li.heavy-font
-                    Subtotal
-                    %span#order-subtotal.pull-right $00.00
-                    / %p#not-month.hidden 0
-            %br/ 
+            %h1.no-margin Add To Pickup
+          
+          = render partial: "partials/storage_items", locals:{f:f}
+          
 
           / Bottom Buttons Section
           .col-md-8.col-md-offset-2
@@ -147,65 +78,4 @@
         %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
         / %button.btn.btn-primary{:type => "button"} Save changes
 
-:javascript
-    // Increment Text Field
-  $(".btn-inc").click(function(){
-    console.log("button clicked");
-    var id = $(this).attr('id');
-
-    // update text field - incrememnt by one
-    var field = $("#txt-"+id);
-    var val = $(field).val();
-    val = +val + 1;
-    $(field).val(val);
-
-    // update subtotal text
-    var orderEntrySpan = $('#num-'+id+" span");
-    console.log("#num-"+id+" span");
-    refreshOrder(val, orderEntrySpan);
-  });
-
-  $(".quantity-field").change(function(){
-    var field = $(this);
-    var id = field.attr("id");
-    var idRoot = id.substr(4);
-    console.log("#num-"+idRoot+" span");
-    var orderEntrySpan = $('#num-'+idRoot+ " span");
-    refreshOrder(field.val(), orderEntrySpan);
-  });
-
-
-  // Rewrites values in Order Summary Field
-  function refreshOrder(val, orderEntrySpan){
-    console.log("REFERESHING ORDER FOR" + orderEntrySpan);
-    orderEntrySpan.html(parseInt(val));
-    var orderEntry = orderEntrySpan.parent();
-    
-    if (val == 0) orderEntry.addClass('hidden');
-    else orderEntry.removeClass('hidden');
-    
-    updateBoxRequestTotal();
-  }
-
-
-  // Overwrites subtotal for box request
-  function updateBoxRequestTotal(){
-
-    var numSm = $('#txt-sm').val();
-    var numMd = $('#txt-md').val();
-    var numLg = $('#txt-lg').val();
-    var numXl = $('#txt-xl').val();
-
-    var SM_PRICE = 6.50
-    var MD_PRICE = 12.50
-    var LG_PRICE = 20.00
-    var XL_PRICE = 50.00
-
-
-    var total = (numSm * SM_PRICE) + (numMd * MD_PRICE) + (numLg * LG_PRICE) + (numXl * XL_PRICE);
-
-    console.log("total:" + total);
-    var isNotMonthly = $('#not-month');
-    if (isNotMonthly.length) $('#order-subtotal').text("$" + total);
-    else  $('#order-subtotal').text("$" + total+"/m");
-  }
+= javascript_include_tag "item_selector"

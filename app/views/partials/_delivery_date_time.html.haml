@@ -1,17 +1,31 @@
 .boxed-grey.col-md-12
-  / %form#contact-form
-  .row
+  .row#validator-id
     .col-md-6.align-left
-      = f.label :posted_delivery_date, "Delivery Date"
+      %label{:for => "posted_delivery_date"} Delivery Date <span class="required_label">  * required </span>
       = f.text_field :posted_delivery_date,  autofocus: true, placeholder:"Does tomorrow work for you?", class:"form-control", id:"#{id}"
     .col-md-6.align-left
       %label{:for => "date-picker"} Time Of Day
       = f.select  :posted_delivery_time, options_for_select([["1:00", "13"], ["2:00", "14"]]),{}, {class:"form-control selectpicker", id:"#{select_id}"}
       %br/ 
 
-      / <input type="text" class="form-control" name="date-picker" id="datepicker" placeholder="Does tomorrow work for you?">
-
 :javascript
   var picker = new Pikaday({ field: document.getElementById('delivery_datepicker') });
   var picker2 = new Pikaday({ field: document.getElementById('pickup_datepicker') });
-
+  
+  $(document).ready(function() {
+    $('#time-validator-id')
+      .bootstrapValidator({
+      feedbackIcons: {
+      },
+      fields: {
+        'box_request[posted_delivery_date]': {
+          message: 'The address field is not valid',
+          validators: {
+            notEmpty: {
+              message: 'You must select a date for delivery'
+            }
+          }
+        }
+      }
+    })
+  });

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	include ParamExtraction
 
 	def edit
-		redirect_to new_user_session_url and return if current_user.id != params[:id]
+		redirect_to new_user_session_url and return if current_user.id != params[:id].to_i
 		@user = current_user
 	end
 
