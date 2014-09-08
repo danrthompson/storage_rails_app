@@ -24,6 +24,7 @@ class StorageItemsController < ApplicationController
 	end
 
 	def index
+		@user = current_user
 		@boxes_at_home = current_user.boxes_at_home
 		# @boxes_at_home_array = (0..@boxes_at_home)
 		@storage_items = StorageItem.where(user_id: current_user, left_storage_at: nil, delivery_request_id: nil).order(:item_type, :entered_storage_at)

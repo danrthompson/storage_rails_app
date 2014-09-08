@@ -9,161 +9,37 @@
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %h2 What are you looking for?
+            %h2 Order Packing Supplies
 
   / BODY CONTENT: SELECT ITEMS
-  .container
-    .row
-      .div
-        = form_for (@box_request) do |f| 
-          .col-md-8.col-md-offset-2.inventory
-            .row
-              .col-md-2.col-sm-0.col-xs-2.center-align
-              = render partial: "partials/list_item_small", locals: {name: "Standard Box", description: "22\" x 18\" x 12\"", price: "$6.50/m", field_val: :box_quantity, id:"stdbox", form:f, cls:"form-control", uses:"(books, clothing & small items)", imgUrl:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG"}
-              = render partial: "partials/list_item_small", locals: {name: "Wardrobe Box", description: "24\" x 20\" x 46\"", price: "$12.00/m", field_val: :wardrobe_box_quantity, id:"warbox", form:f, cls:"form-control", uses:"(suits, poster tubes & tall items)", imgUrl:"http://www.ikea.com/us/en/images/products/brimnes-wardrobe-with--doors__0140624_PE300605_S4.JPG"}
-            .row
-              %br/  
-              .col-md-12.col-md-offset-0
-                %h2.pull-left
-                  %i Additional Packing Supplies
-                / %a.pull-right{:href => "user-newbox.html"} Order Additional Boxes
-                %br
-                .single-line.pt-10
-            .row
-              = render partial: "partials/list_item_small", locals: {name: "Bubble Wrap", uses: "cocoon your precious items.", description:"12\" wide x 30' long", price: "$4.50 - 100ft", field_val: :bubble_quantity, id:"bubble", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0767163_sc7?$splssku$"}
-              = render partial: "partials/list_item_small", locals: {name: "File Boxes", description:"10\" x 12\" x 15\"", uses: "keep that paper trail in line", price: "$9.50 each", field_val: :file_box_quantity, id:"filebox", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0199320_sc7?$splssku$"}
-              = render partial: "partials/list_item_small", locals: {name: "Poster/Art Tubes", description:"3\" x 36\"",uses: "your art -  rolled for freshness", price: "$10 each", field_val: :poster_tube_quantity, id:"tube", form:f, cls:"form-control", imgUrl:"http://www.staples-3p.com/s7/is/image/Staples/s0059946_sc7?$splssku$"}
-              
-          / End Phone Number &amp; Instructions Box
-          .col-md-6.col-md-offset-3.half-opacity.charges-box
-            %br/
-            .single-line
-            %br/
-          .col-md-12
-            %br/ 
-            %h1 Delivery Details
+  = form_for (@box_request) do |f| 
+    .container
+      .row
+        .div
           .col-md-8.col-md-offset-2
             .row
               = fields_for @user do |field|
                 = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"delivery_datepicker", select_id:"delivery_time"}
-              .col-md-8.col-md-offset-2.half-opacity.charges-box
-                %br/
-                .single-line
-                %br/
+          .col-md-6.col-md-offset-3.half-opacity.charges-box
+            %br/
+            %br/ 
+            .single-line
+          = render partial: "partials/packing_items", locals: {f:f}
 
-              / Payment &amp; Confirmation Box
-              .col-md-12.charges-box
-                .row
-                  .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
-                    %h5 Delivery Summary
-                    %ul
-                      %li#num-stdbox.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Standard Boxes
-                        %i.pull-right.light-gray $6.50/unit
-                      %li#num-warbox.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Wardrobe Boxes
-                        %i.pull-right.light-gray $12.00/unit
-                      %li#num-bubble.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Rolls of Bubble Wrap
-                        %i.pull-right.light-gray $4.50/unit
-                      %li#num-filebox.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;File Boxes
-                        %i.pull-right.light-gray $9.50/unit
-                      %li#num-tube.hidden
-                        %span.pull-left> 0
-                        \&nbsp; &nbsp;Art/Poster Tubes
-                        %i.pull-right.light-gray $10.00/unit
-                      %br/  
-                      %li.half-opacity
-                        Valet Pickup
-                        %span.pull-right Free
-                    .single-line
-                    %ul
-                      %li.heavy-font
-                        Subtotal
-                        %span#order-subtotal.pull-right $00.00/m
-              .col-md-12
-                %br/ 
-              .col-md-4.bottom-buttons
-                .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}/
-                  = link_to "Back", storage_items_path, class:"white"
-                  / %a{:href => "user-newbox.html", :style => "color: white;"} Back
-              / END col-12
-              .col-md-4.col-md-offset-4.bottom-buttons.charges-box
-                .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
-                  = f.submit "Confirm Order"
-                  / %a{:href => "success-delivery.html", :style => "color: white;"} Confirm Order
+          .col-md-12
+            %br/ 
+          .col-md-4.bottom-buttons
+            .boxed-gray.continue-button
+              %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}/
+              = link_to "Back", storage_items_path, class:"white"
+          .col-md-4.col-md-offset-4.bottom-buttons.charges-box
+            .boxed-gray.continue-button
+              %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
+              = f.submit "Confirm Order"
 
 
 = render :partial => "partials/footer"
 
-:javascript
-    // Increment Text Field
-  $(".btn-inc").click(function(){
-    console.log("button clicked");
-    var id = $(this).attr('id');
+= javascript_include_tag "item_selector"
 
-    // update text field - incrememnt by one
-    var field = $("#txt-"+id);
-    var val = $(field).val();
-    val = +val + 1;
-    $(field).val(val);
-
-    // update subtotal text
-    var orderEntrySpan = $('#num-'+id+" span");
-    console.log("#num-"+id+" span");
-    refreshOrder(val, orderEntrySpan);
-  });
-
-  $(".quantity-field").change(function(){
-    var field = $(this);
-    var id = field.attr("id");
-    var idRoot = id.substr(4);
-    console.log("#num-"+idRoot+" span");
-    var orderEntrySpan = $('#num-'+idRoot+ " span");
-    refreshOrder(field.val(), orderEntrySpan);
-  });
-
-
-  // Rewrites values in Order Summary Field
-  function refreshOrder(val, orderEntrySpan){
-    console.log("REFERESHING ORDER FOR" + orderEntrySpan);
-    orderEntrySpan.html(parseInt(val));
-    var orderEntry = orderEntrySpan.parent();
-    
-    if (val == 0) orderEntry.addClass('hidden');
-    else orderEntry.removeClass('hidden');
-    
-    updateBoxRequestTotal();
-  }
-
-
-  // Overwrites subtotal for box request
-  function updateBoxRequestTotal(){
-
-    // Number of Boxes
-    var numStdBox = $('#txt-stdbox').val();
-    var numWarBox = $('#txt-warbox').val();
-    var numBubble = $('#txt-bubble').val();
-    var numFileBox = $('#txt-filebox').val();
-    var numTube = $('#txt-tube').val();
-
-    // Pricing Per Box
-    var STDBOX_PRICE =  6.50;
-    var WARDROBE_BOX_PRICE =  12.00;
-    var BUBBLE_WRAP_PRICE =  4.50;
-    var FILE_BOX_PRICE =  9.50;
-    var POSTER_TUBE_PRICE =  10.00;
-
-
-    var total = (numStdBox * STDBOX_PRICE) + (numWarBox * WARDROBE_BOX_PRICE) + (numBubble * BUBBLE_WRAP_PRICE) + (numFileBox * FILE_BOX_PRICE) + (numTube * POSTER_TUBE_PRICE);
-    console.log("total:" + total);
-    $('#order-subtotal').text("$" + total+"/m");
-  }

@@ -38,3 +38,4 @@ function hideParentWhenZero(classId){
       else $(this).parent().hide();     
   });
 }; 
+
