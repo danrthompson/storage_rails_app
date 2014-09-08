@@ -1,4 +1,4 @@
-class BoxRequest < Request
+class PackingSuppliesRequest < Request
 	after_initialize :make_quantities_zero_not_nil
 
 	validates :box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, :poster_tube_quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
@@ -14,21 +14,21 @@ class BoxRequest < Request
 
 	def price
 		total = 0.0
-		BoxRequest.packing_items.each do |item, price|
+		PackingSuppliesRequest.packing_items.each do |item, price|
 			total += self.send("#{item}_quantity") * price
 		end
-		total + BoxRequest.delivery_price
+		total + PackingSuppliesRequest.delivery_price
 	end
 
 	private
 
 	def includes_at_least_one_item
-		unless BoxRequest.packing_items.keys.any? { |item| self.send("#{item}_quantity") > 0 }
+		unless PackingSuppliesRequest.packing_items.keys.any? { |item| self.send("#{item}_quantity") > 0 }
 			errors.add :box_quantity, 'and all other quantities are zero.'
 		end
 	end
 
 	def make_quantities_zero_not_nil
-		BoxRequest.packing_items.keys.each { |item| self.send("#{item}_quantity=", 0) if self.send("#{item}_quantity").nil? }
+		PackingSuppliesRequest.packing_items.keys.each { |item| self.send("#{item}_quantity=", 0) if self.send("#{item}_quantity").nil? }
 	end
 end
