@@ -16,7 +16,7 @@
               %a.gn-icon.gn-icon-search
                 %span Search
             %li
-              %a.gn-icon.gn-icon-download{href: "#about"} About
+              %a.gn-icon.gn-icon-download{href: "#about"} Settings
             %li
               %a.gn-icon.gn-icon-cog{href: "#service"} Service
             %li
@@ -33,7 +33,7 @@
     %li.pull-right
       = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover"
     %li.pull-right.no-border
-      = link_to "Account", [:edit, @user]
+      = link_to "Settings", [:edit, @user], class:"light-gray black-hover"
     %li.pull-right.no-border
       = link_to "Contact", contact_path, class:"light-gray black-hover"
         

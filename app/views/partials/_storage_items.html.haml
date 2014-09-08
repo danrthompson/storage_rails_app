@@ -8,6 +8,9 @@
     = render partial: "partials/list_item_4col_field", locals:{title: "Medium", price: "$12/m", id:"medium", field_val: :medium_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"Wardrobe Boxes, Desks, Lamps, Skis, Bikes, Small Furniture, Equivalent Items"}
     = render partial: "partials/list_item_4col_field", locals:{title: "Large", price: "$20/m", id:"large", field_val: :large_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:"Couches, mattresses, desks, tables, dressers, or furniture that takes two to move."}
     = render partial: "partials/list_item_4col_field", locals:{title: "XL Items", price: "$40/m", id:"extra_large", field_val: :extra_large_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", description:"Sectional couches, large dining tables, items over 200lbs or 60 cubic feet"}
+    / %button.btn.btn-primary.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal"}
+    %a.pull-right.pointer{"data-target" => "#storageSizeModal", "data-toggle" => "modal"}
+      Not sure which size to choose? Click here
 
 
 .col-md-6.col-md-offset-3.half-opacity.charges-box

@@ -1,0 +1,73 @@
+
+= render partial: "partials/logged_in_header"   
+= render partial: "partials/blue_bar", locals:{mainText:"Edit Profile", dashboard:true, faq:true}
+
+/ Section: ITEM SELECTION
+%section#about.home-section.text-center
+  
+
+  .container
+    .row
+      .div.col-md-8.col-md-offset-2
+        =form_for @user, :url => { :action => "update" } do |f|   
+          = fields_for @user do |field|      
+
+            .row
+              %h2 Address Information
+              = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
+              %h1.no-opacity spacer
+            .row
+              %h2 Payment Information
+              = render partial: "partials/cc_info", locals: {field:field}
+              %h1.no-opacity spacer
+            .row
+              %h2 Email & Password
+              = render partial: "partials/password_email_form", locals: {field: field}
+              %h1.no-opacity spacer
+          
+            .row
+              .col-md-4.bottom-buttons
+                .boxed-gray.continue-button
+                  %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}/
+                  = link_to "Cancel", storage_items_path, class:"white"
+                  / %a{:href => "user-newbox.html", :style => "color: white;"} Back
+                  
+              .col-md-4.col-md-offset-4.bottom-buttons.charges-box
+                .boxed-gray.continue-button
+                  %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
+                  = f.submit "Save Changes"
+          
+        
+
+= render :partial => "partials/footer"
+
+/ Button trigger modal
+/ %button.btn.btn-primary.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal"}
+/   Launch demo modal
+/ Modal
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title What's the Right Option
+      .modal-body
+        %p Small Items
+        %ul
+          %li Small Items
+          %li Medium Items
+        %p Medium Items
+        %ul
+          %li Small Items
+          %li Medium Items
+        %p Large Items
+        %ul
+          %li Small Items
+          %li Medium Items
+      .modal-footer
+        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
+        / %button.btn.btn-primary{:type => "button"} Save changes
+
+= javascript_include_tag "item_selector"

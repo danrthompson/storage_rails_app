@@ -182,33 +182,7 @@
 
 
 = render :partial => "partials/footer"
-
-
-/ Modal
-#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-          %span.sr-only Close
-        %h4#myModalLabel.modal-title Terms of Service
-      .modal-body
-        %p Small Items
-        %ul
-          %li Small Items
-          %li Medium Items
-        %p Medium Items
-        %ul
-          %li Small Items
-          %li Medium Items
-        %p Large Items
-        %ul
-          %li Small Items
-          %li Medium Items
-      .modal-footer
-        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
-        / %button.btn.btn-primary{:type => "button"} Save changes
+= render :partial => "partials/storageSizeModal"
 
 = javascript_include_tag "item_selector"
 

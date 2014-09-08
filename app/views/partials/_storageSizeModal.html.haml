@@ -1,0 +1,49 @@
+
+/ Modal
+#storageSizeModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "storageSizeModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h1#storageSizeModalLabel.modal-title.align-center Storage Sizes
+      .modal-body.width-90
+        %p.width-90
+          We can storage anything. Most items fall within one of four categories. For your convenience, we've listed these categories and the items they cover below. 
+        %br/ 
+        .row
+          .col-md-6
+            %h4.no-margin Boxes
+            %ul
+              %li Boxes 2' x 2' x 2' or smaller
+              %li Things that fit in 2'x2'x2' boxes
+          .col-md-6
+            %h4.no-margin Large Items
+            %ul
+              %li Sofas and couches
+              %li Mattresses
+              %li Desks
+          
+        .row
+          .col-md-6
+            %h4.no-margin Medium Items
+            %ul
+              %li Wardrobe boxes
+              %li Bicycles
+              %li Sports gear (e.g. skis)
+              %li Mini-fridges, lamps
+              %li Coffee tables, Chairs
+              %li Small Furniture
+          .col-md-6
+            %h4.no-margin Extra Large Items
+            %ul
+              %li Large dining tables
+              %li Sectional couches
+              %li Full bed frames
+              %li Exercise equipment
+              %li Items over 250lbs
+        
+      .modal-footer
+        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
+        / %button.btn.btn-primary{:type => "button"} Save changes

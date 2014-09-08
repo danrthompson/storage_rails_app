@@ -1,0 +1,124 @@
+.boxed-grey.col-md-12.align-left
+  .form-group.address-form
+    .row
+      .col-md-4.col-sm-6.col-xs-6.col-lg-6
+        = field.label :cc_name, "Name on Credit Card", class:"no-margin"
+        = field.text_field :cc_name,  autofocus: true, placeholder:"e.g. John Doe", class:"form-control", id:""
+        %br/ 
+      .col-md-8.col-sm-6.col-xs-6.col-lg-6
+        = field.label :cc_number, "Credit Card Number", class:"no-margin"
+        = field.text_field :cc_number,  autofocus: true, placeholder:"e.g. 1234 5678 9012 3456", class:"form-control", id:""
+        %br/ 
+        
+    .row
+      .col-md-4
+        = field.label :exp_month, "Expiration Month", class:"no-margin"
+        = field.text_field :exp_month,  autofocus: true, placeholder:"mm", class:"form-control", id:""
+      .col-md-4
+        = field.label :exp_year, "Expiration Year", class:"no-margin"
+        = field.text_field :exp_year,  autofocus: true, placeholder:"yyyy", class:"form-control", id:""
+      .col-md-4
+        = field.label :exp_year, "Security Code", class:"no-margin"
+        = field.text_field :exp_year,  autofocus: true, placeholder:"yyyy", class:"form-control", id:""
+    %br/ 
+.col-md-8.col-md-offset-2
+
+
+:javascript
+  $(document).ready(function() {
+  
+
+  $(".form-control").on('input', function() {
+    $('#validator-id').data('bootstrapValidator').validate();
+  });
+
+  $('#validator-id')
+    .bootstrapValidator({
+    feedbackIcons: {
+    },
+    fields: {
+    'user[address_line_1]': {
+      message: 'The address field is not valid',
+      validators: {
+      notEmpty: {
+        message: 'The address field can\'t be empty'
+      },
+      stringLength: {
+        min: 10,
+        message: 'The address must be a real'
+      },
+      }
+    },
+    'user[city]': {
+      message: 'The city field is not valid',
+      validators: {
+      notEmpty: {
+        message: 'The city is required'
+      },  
+      stringLength:{
+        min: 2,
+        message: "Valid city is required"
+      }
+      }
+    },
+    'user[zip]': {
+      message: 'The zip code field is not valid',
+      validators: {
+      notEmpty: {
+        message: 'The zip code cannot be empty'
+      },
+      stringLength: {
+        min: 5,
+        max: 5,
+        message: ' valid zip required'
+      },
+      }
+    },
+    'user[state]': {
+      message: 'The state field is not valid',
+      validators: {
+      notEmpty: {
+        message: '* state required.'
+      },
+      stringLength: {
+        min:2,
+        message: "Valid state required"
+      }
+      }
+    },
+    'user[phone_number]': {
+      message: 'The address field is not valid',
+      validators: {
+      notEmpty: {
+        message: 'The phone number is required'
+      },
+      stringLength: {
+        min: 10,
+        message: 'The address must be a real phone number'
+      },
+      }
+    },
+    'user[password]': {
+      message: 'The password field is not valid',
+      validators: {
+      stringLength: {
+      min: 8,
+      message: 'The password must have at least 8 characters'
+      }
+       }
+    },
+    'user[password_confirmation]': {
+      message: 'The password_confirmation field is not valid',
+      validators: {
+      identical: {
+        field: 'user[password]',
+        message: 'The password confirmation must match the password'
+      }
+       }
+    }
+    }
+  })
+  });
+
+
+
