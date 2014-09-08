@@ -5,13 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :storage_items
-  has_many :box_requests
+  has_many :packing_supplies_requests
   has_many :delivery_requests
   has_many :pickup_requests
 
   has_many :unavailable_times
   has_many :completed_storage_items, class_name: 'StorageItem', foreign_key: 'driver_id'
-  has_many :completed_box_requests, class_name: 'BoxRequest', foreign_key: 'driver_id'
+  has_many :completed_packing_supplies_requests, class_name: 'PackingSuppliesRequest', foreign_key: 'driver_id'
   has_many :completed_delivery_requests, class_name: 'DeliveryRequest', foreign_key: 'driver_id'
   has_many :completed_pickup_requests, class_name: 'PickupRequest', foreign_key: 'driver_id'
 
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   validates :exp_year, numericality: {only_integer: true, greater_than_or_equal_to: 2014, less_than_or_equal_to: 2035}, allow_nil: true
 
   def boxes_at_home
-    BoxRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity) - PickupRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity)
+    PackingSuppliesRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity) - PickupRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity)
   end
 
   def ready?

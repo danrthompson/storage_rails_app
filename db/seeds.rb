@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-BoxRequest.delete_all
+PackingSuppliesRequest.delete_all
 DeliveryRequest.delete_all
 PickupRequest.delete_all
 StorageItem.delete_all
@@ -55,13 +55,13 @@ admin = User.create!({
 	admin: true
 })
 
-BoxRequest.create!({
+PackingSuppliesRequest.create!({
 	user_id: user1.id,
 	delivery_time: Time.now + 1.day,
 	box_quantity: 1,
 })
 
-BoxRequest.create!({
+PackingSuppliesRequest.create!({
 	user_id: user2.id,
 	delivery_time: Time.now + 2.days,
 	box_quantity: 3,

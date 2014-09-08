@@ -34,12 +34,12 @@ var orderEntry = orderEntrySpan.parent();
 if (val == 0) orderEntry.addClass('hidden');
 else orderEntry.removeClass('hidden');
 
-updateBoxRequestTotal();
+updatePackingSuppliesRequestTotal();
 }
 
 
 // Overwrites subtotal for box request
-function updateBoxRequestTotal(){
+function updatePackingSuppliesRequestTotal(){
 
 // Number of Boxes
 var numStdBox = $('#txt-stdbox').val();

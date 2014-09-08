@@ -26,27 +26,27 @@
             %ul
               %li
                 %span.order-item Standard Box
-                %span.pull-right.hide-when-zero= @box_request.box_quantity
+                %span.pull-right.hide-when-zero= @packing_supplies_request.box_quantity
               %li
                 %span.order-item Wardrobe Box
-                %span.pull-right.hide-when-zero= @box_request.wardrobe_box_quantity
+                %span.pull-right.hide-when-zero= @packing_supplies_request.wardrobe_box_quantity
               %li
                 %span.order-item Bubble Wrap
-                %span.pull-right.hide-when-zero= @box_request.bubble_quantity
+                %span.pull-right.hide-when-zero= @packing_supplies_request.bubble_quantity
               %li
                 %span.order-item File Boxes
-                %span.pull-right.hide-when-zero= @box_request.file_box_quantity
+                %span.pull-right.hide-when-zero= @packing_supplies_request.file_box_quantity
               %li
                 %span.order-item Poster Tubes
-                %span.pull-right.hide-when-zero= @box_request.poster_tube_quantity
+                %span.pull-right.hide-when-zero= @packing_supplies_request.poster_tube_quantity
             .single-line
             %ul
               %li.light-gray
                 %span.order-item Cost of Supplies:
-                %span.pull-right.hide-when-zero$ #{@box_request.one_time_price}
+                %span.pull-right.hide-when-zero$ #{@packing_supplies_request.one_time_price}
               %li.light-gray
                 %span.order-item Price of Storage:
-                %span.pull-right.hide-when-zero$ #{@box_request.monthly_price}/m
+                %span.pull-right.hide-when-zero$ #{@packing_supplies_request.monthly_price}/m
            
           // Delivery Recap
           .col-md-4.confirm-elem

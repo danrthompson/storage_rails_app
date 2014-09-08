@@ -11,8 +11,8 @@ module ParamExtraction
 		params.require(:user).permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation)
 	end
 
-	def create_box_request_params(params)
-		params.require(:box_request).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, :poster_tube_quantity, :posted_delivery_time, :posted_delivery_date)
+	def create_packing_supplies_request_params(params)
+		params.require(:packing_supplies_request).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, :poster_tube_quantity, :posted_delivery_time, :posted_delivery_date)
 	end
 
 	def create_delivery_request_params(params)

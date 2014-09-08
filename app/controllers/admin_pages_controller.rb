@@ -2,7 +2,7 @@ class AdminPagesController < ApplicationController
 	before_action :authenticate_admin!
 
 	def admin_page
-		@box_requests = BoxRequest.where(completion_time: nil).order(:delivery_time)
+		@packing_supplies_requests = PackingSuppliesRequest.where(completion_time: nil).order(:delivery_time)
 		@pickup_requests = PickupRequest.where(completion_time: nil).order(:delivery_time)
 		@delivery_requests = DeliveryRequest.where(completion_time: nil).order(:delivery_time)
 	end
