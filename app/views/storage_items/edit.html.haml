@@ -1,0 +1,62 @@
+= render :partial => 'partials/logged_in_header'
+= render partial: "partials/blue_bar", locals:{mainText:"Edit Item", dashboard:true, faq:true}
+
+/ %section 
+/   .container.boxed-gray
+/     .row
+/       .col-md-4.blue-bg
+/         %p asdlkfjadsf
+/       .col-md-7.col-md-offset-1.blue-bg
+/         %p alsdkfjal;ds
+
+
+
+
+/ Section: ITEM SELECTION
+%section#about.home-section.text-center
+  .heading-about.marginbot-20
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          .section-heading
+            %h2 WE WANT TO HEAR FROM YOU!
+  = form_for @storage_item, url: storage_item_path(@storage_item), :html => { multipart: true, method: "patch" } do |form|
+    .container
+      .row
+        .col-md-10.col-md-offset-1
+          .row
+            .col-md-8.col-md-offset-2.half-opacity.charges-box
+              .single-line
+              %br/
+              %br/
+          .row
+            .col-md-4.fat-white-boarder.boxed-grey
+              = image_tag "https://s3.amazonaws.com/storage_rails_app_dev/images/small-item.png"
+              %br/
+              %br/ 
+              %p No current image
+              .single-line.width-80.no-padding
+              / %br
+              / %p.align-left Want to change your box image?
+              = form.file_field :image, class:"align-center"
+              %br/ 
+            .boxed-grey.col-md-7.fat-white-boarder
+              %form#contact-form
+                .row
+                  .col-md-6.align-left
+                    %label{:for => "name"} Subject
+                    %input#name.form-control{:placeholder => "Pricing, Box Sizes, Storage Types...", :required => "required", :type => "text"}/
+                  .col-md-6.align-left
+                    %label{:for => "name"} Email
+                    %input#name.form-control{:placeholder => "johndoe@email.com", :required => "required", :type => "text"}/
+                  .col-md-12.align-left
+                    %br/
+                    %label{:for => "name"} Your Message
+                    %textarea#message.form-control{:cols => "25", :name => "message", :placeholder => "Message", :required => "required", :rows => "4"}
+                .row
+                  .col-md-6.col-md-offset-6.bottom-buttons
+                    / <div class="boxed-gray continue-button">
+                    %button.btn.btn-primary.blue-bg.pull-right{:type => "button"}/
+                    %a{:href => "user-dashboard.html", :style => "color: white;"} Send Message
+
+= render :partial => 'partials/footer'
