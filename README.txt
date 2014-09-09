@@ -1,6 +1,26 @@
 todo:
 
-im concerned that the "unique" id for storage items / users is not going to be unique because the add_user_item_number method is not done atomically (at least i dont think it is)
+for DH:
+	sign up link should either not exist or it should go to the sign up flow
+	on homepage, pay for what you use graphic still uses infinite garage verbage
+	on homepage, any item, any size needs to be looked at to make sure it reflects our current model
+	check homepage to ensure it corresponds to current pricing
+	about us, contact, faq pages give error
+	during sign up flow, the links "home" and "faq" probably shouldnt exist. if you do want to keep them, they are currently broken
+	on sign up flow, first page (packing supply request), subheader for packing supplies says "we'll bring these items right to your door." we should probably say we'll ship them to you, rather than bring htem to you
+	all price calculator page sections that are connected to editable price fields only update when you click outside the field, but i rarely click outside a field until im ready to click another field or button. thus, the last field probably wont update until the user clicks submit, and therefore the user may see a misestimate in the calculator. i think it would be best to update the calculator anytime the field changes at all (for example, on key down instead of on change), so its more in real time
+	on sign up flow, second page (pickup request), the subheader is "you can always edit your pickup or change it when we arrive." love the bit about editing your pickup. the second bit is a bit confusing to me. maybe a modal explaining that they can give us extra items that they didnt note down on hte request or give us fewer items than they did request, with the caveat that they cannot add large or extra-large items if they only scheduled a pickup for small or medium items (since we only sent one driver)
+	on the sign up flow, if you put a non-zero quantity for an item in the packing supplies section, then change it back to 0 (either while still on that page, or by returning to that page with the back button), the summary page will ask for details about that packing_supplies_request
+	validations need to be by field, not by form or by section or whatever
+
+
+us
+	need to figure out pricing for packing supplies
+	need to set up email, facebook, and twitter, or get rid of those items in the footer
+	for delivery time, we need to use ajax to pull in available times
+
+me
+	im concerned that the "unique" id for storage items / users is not going to be unique because the add_user_item_number method is not done atomically (at least i dont think it is)
 
 
 
