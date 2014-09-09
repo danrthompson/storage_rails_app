@@ -6,10 +6,12 @@ class SignupPagesController < ApplicationController
 
 	def new
 		@packing_supplies_request = PackingSuppliesRequest.new
+		@pickup_request = PickupRequest.new
 		@user = User.new
 	end
 
 	def create
+		render text: params and return
 		@user = User.new user_address_params(params)
 		@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))
 		@packing_supplies_request.valid?
