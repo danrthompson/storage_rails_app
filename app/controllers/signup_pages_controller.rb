@@ -28,6 +28,7 @@ class SignupPagesController < ApplicationController
 		redirect_to new_user_session_url and return if @user.id != current_user.id
 		@packing_supplies_request = @user.packing_supplies_requests.first
 		@delivery_date = @packing_supplies_request.delivery_time.strftime("%B %d at %l:%m %p")
+		@pickup_request = @user.pickup_requests.first
 	end
 
 	def add_payment
