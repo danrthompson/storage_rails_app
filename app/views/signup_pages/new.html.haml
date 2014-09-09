@@ -10,7 +10,8 @@
 %br/ 
 %br/ 
 
-= form_for :signup, :html => {:id => 'signup-form'}, url: {action: 'create'} do |f| 
+/ = form_for :signup, :html => {:id => 'signup-form'}, url: {action: 'create'} do |f| 
+= form_for @packing_supplies_request, :html => {:id => 'signup-form'}, url: {controller: 'signup_pages', action: 'create'} do |f| 
 
   ///////////////////////////////////////////////////
   // ITEM SELECTION /////////////////////////////////
@@ -57,21 +58,22 @@
     .container
       .row
         .div
-          = render partial: "partials/storage_items", locals:{f:f}
-          .col-md-10.col-md-offset-1
-            %br/ 
-            .col-md-4.bottom-buttons
-              .boxed-gray.continue-button
-                %button.btn.btn-primary.blue-bg.gray-bg#signup-second-back{:type => "button"}
-                  Back
-            .col-md-4.col-md-offset-4.bottom-buttons.charges-box
-              .boxed-gray.continue-button
-                %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button", disabled: true}
-                  Item Pickup
-          .col-md-12
-            %p.light-gray.onepxhigh#pickup-deliv-instructions (You must schedule at least one pickup or delivery to sign up)
-            %br/ 
-            %br/ 
+          = fields_for @pickup_request do |pickup_field|
+            = render partial: "partials/storage_items", locals:{f:pickup_field}
+            .col-md-10.col-md-offset-1
+              %br/ 
+              .col-md-4.bottom-buttons
+                .boxed-gray.continue-button
+                  %button.btn.btn-primary.blue-bg.gray-bg#signup-second-back{:type => "button"}
+                    Back
+              .col-md-4.col-md-offset-4.bottom-buttons.charges-box
+                .boxed-gray.continue-button
+                  %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button", disabled: true}
+                    Item Pickup
+            .col-md-12
+              %p.light-gray.onepxhigh#pickup-deliv-instructions (You must schedule at least one pickup or delivery to sign up)
+              %br/ 
+              %br/ 
 
   ///////////////////////////////////////////////////
   // DELIVERY DETAILS ///////////////////////////////
