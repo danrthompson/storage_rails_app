@@ -12,13 +12,14 @@ class SignupPagesController < ApplicationController
 
 	def create
 		render text: params and return
-		@user = User.new user_address_params(params)
-		@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))
-		@packing_supplies_request.valid?
-		if @user.valid? and @packing_supplies_request.errors.count == 1 then
-			@user.save!
+		@user = User.create user_address_params(params)
+		if @user.valid?
+			@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))
+			@pickup_request = PickupRequest.new(create_pickup_request_params(params))
 			@packing_supplies_request.user = @user
-			@packing_supplies_request.save!
+			@pickup_request.user = @user
+			@packing_supplies_request.save
+			@pickup_request.save
 			sign_in @user
 			redirect_to confirm_signup_pages_url(@user.id) and return
 		end
