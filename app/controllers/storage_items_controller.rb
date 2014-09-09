@@ -24,6 +24,10 @@ class StorageItemsController < ApplicationController
 		@storage_item = StorageItem.create storage_params
 	end
 
+	def show
+		redirect_to :storage_items and return
+	end
+
 	def index
 		@user = current_user
 		@boxes_at_home = current_user.boxes_at_home
