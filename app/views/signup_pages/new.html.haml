@@ -126,7 +126,7 @@
             %br/
           .col-md-8.col-md-offset-2
             .row
-              = fields_for @user do |field|
+              = fields_for @pickup_request do |pickup_field|
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"pickup_time"}
     .row
       %br/ 
