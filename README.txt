@@ -1,5 +1,9 @@
 todo:
 
+im concerned that the "unique" id for storage items / users is not going to be unique because the add_user_item_number method is not done atomically (at least i dont think it is)
+
+
+
 signup data:
 	signup
 		standard box q

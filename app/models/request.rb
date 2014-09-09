@@ -35,7 +35,7 @@ class Request < ActiveRecord::Base
 		elsif time.monday? or time.wednesday? or time.friday?
 			return time.hour.in? 8..19
 		elsif time.tuesday? or time.thursday?
-			return time.hour.in? 19..22
+			return time.hour.in? 17..22
 		end
 	end
 

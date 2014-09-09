@@ -16,8 +16,8 @@
               New
               %br/ 
               Pickup 
-    .col-md-1.col-sm-4.col-xs-4.align-center
-      %a{:href => "box_requests/new.html"}
+    .col-md-1.col-md-offset-3.col-sm-4.col-sm-offset-2.col-xs-4.col-xs-offset-2.align-center
+      %a{:href => "packing_supplies_requests/new.html"}
         .service-box
           .service-icon
             %i.fa.fa-dropbox
@@ -53,7 +53,7 @@
               %h2
                 %span.items-count#boxes-at-home= @boxes_at_home
                 Items Awaiting Pickup: 
-                =link_to "Add to Pickup", {:controller => "box_requests", :action => "new"}, :class => "pull-right"
+                =link_to "Add to Pickup", {:controller => "packing_supplies_requests", :action => "new"}, :class => "pull-right"
               .double-line
               - 3.times do
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
@@ -85,7 +85,7 @@
                     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.description
               .col-md-12.col-sm-12.col-xs-12.align-left
                 %br/
-                =link_to "Want More Boxes? Schedule a dropoff.", {:controller => "box_requests", :action => "new"}
+                =link_to "Want More Boxes? Schedule a dropoff.", {:controller => "packing_supplies_requests", :action => "new"}
 
         .col-md-4.inventory-sidebar
           .row.sidebar-txtentry.light-blue-bg
