@@ -12,16 +12,16 @@ module ParamExtraction
 	end
 
 	def create_packing_supplies_request_params(params)
-		params.require(:packing_supplies_request).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, :poster_tube_quantity, :posted_delivery_time, :posted_delivery_date)
+		params.require(:packing_supplies_request).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, :posted_delivery_time, :posted_delivery_date)
+	end
+
+	def create_pickup_request_params(params)
+		params.require(:pickup_request).permit(:small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity, :posted_delivery_time, :posted_delivery_date)
 	end
 
 	def create_delivery_request_params(params)
 		# need to add storage item ids corresponding to what needs to be delivered
 		params.require(:delivery_request).permit(:posted_delivery_time, :posted_delivery_date)
-	end
-
-	def create_pickup_request_params(params)
-		params.require(:pickup_request).permit(:small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity, :posted_delivery_time, :posted_delivery_date)
 	end
 
 	def update_storage_item_params(params)
