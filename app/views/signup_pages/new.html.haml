@@ -111,7 +111,6 @@
               = fields_for @user do |field|
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"delivery_datepicker", select_id:"delivery_time"}
 
-
         .col-md-6.col-md-offset-3.half-opacity.charges-box
           %br/
           %br/ 
@@ -127,7 +126,7 @@
           .col-md-8.col-md-offset-2
             .row
               = fields_for @pickup_request do |pickup_field|
-                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"pickup_time"}
+                = render partial: "partials/delivery_date_time", locals: {field:pickup_field, f:f, id:"pickup_datepicker", select_id:"pickup_time"}
     .row
       %br/ 
       .col-md-10.col-md-offset-1
