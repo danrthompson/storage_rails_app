@@ -5,7 +5,7 @@ class PickupRequest < Request
 
 	after_create :create_associated_storage_items
 
-	validates :box_quantity, :bubble_quantity, :tape_quantity, :poster_tube_quantity, :wardrobe_box_quantity, absence: true
+	validates :box_quantity, :bubble_quantity, :tape_quantity, :wardrobe_box_quantity, absence: true
 
 	private
 

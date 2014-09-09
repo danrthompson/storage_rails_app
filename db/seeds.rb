@@ -55,37 +55,40 @@ admin = User.create!({
 	admin: true
 })
 
+valid_delivery_time = Time.now
+valid_delivery_time.change hour: 18, minute: 0
+
 PackingSuppliesRequest.create!({
 	user_id: user1.id,
-	delivery_time: Time.now + 1.day,
+	delivery_time: valid_delivery_time + 1.day,
 	box_quantity: 1,
 })
 
 PackingSuppliesRequest.create!({
 	user_id: user2.id,
-	delivery_time: Time.now + 2.days,
+	delivery_time: valid_delivery_time + 2.days,
 	box_quantity: 3,
 })
 
 PickupRequest.create!({
 	user_id: user1.id,
-	delivery_time: Time.now + 3.days,
+	delivery_time: valid_delivery_time + 3.days,
 	box_quantity: 1,
 	couch_quantity: 2,
 })
 
 PickupRequest.create!({
 	user_id: user2.id,
-	delivery_time: Time.now - 1.day,
+	delivery_time: valid_delivery_time - 1.day,
 	box_quantity: 2,
 	couch_quantity: 1,
 	driver_id: admin.id,
-	completion_time: Time.now - 1.day + 2.hours + 30.minutes,
+	completion_time: valid_delivery_time - 1.day + 2.hours + 30.minutes,
 })
 
 StorageItem.create!({
 	user_id: user1.id,
-	entered_storage_at: Time.now - 1.day,
+	entered_storage_at: valid_delivery_time - 1.day,
 	item_type: 'box',
 	title: "cocaine and sex toys",
 		description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -93,7 +96,7 @@ StorageItem.create!({
 
 StorageItem.create!({
 	user_id: user1.id,
-	entered_storage_at: Time.now - 1.day,
+	entered_storage_at: valid_delivery_time - 1.day,
 	item_type: 'box',
 	title: "guitars & music items",
 	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -101,7 +104,7 @@ StorageItem.create!({
 
 StorageItem.create!({
 	user_id: user1.id,
-	entered_storage_at: Time.now - 1.day,
+	entered_storage_at: valid_delivery_time - 1.day,
 	item_type: 'couch',
 	title: "sex_couch",
 	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
