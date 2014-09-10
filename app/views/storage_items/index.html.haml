@@ -58,7 +58,7 @@
               - 3.times do
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
-                    .avatar
+                    .crop-mask
                       %img.img-responsive{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg"}/
                     %h4 Standard Box
                     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 Click "request pickup" when you're done packing.
@@ -74,15 +74,17 @@
                 %span.items-count#items-in-storage #{@num_storage_items}
                 / %span.items-count#items-in-storage 0
                 Items In Storage
+                =link_to "Click items to select them for delivery", {}, :class => "pull-right", disabled: true
               .double-line
               - @storage_items.each do |storage_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
                   .inner
-                    .avatar
+                    .crop-mask
                       = image_tag(storage_item.image.url, class: "img-responsive")
 
-                    %h4= storage_item.title
+                    %h4.storage-item-title= storage_item.title
                     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.description
+                    = link_to "edit", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"pull-right"
               .col-md-12.col-sm-12.col-xs-12.align-left
                 %br/
                 =link_to "Want More Boxes? Schedule a dropoff.", {:controller => "packing_supplies_requests", :action => "new"}
