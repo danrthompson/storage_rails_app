@@ -12,6 +12,7 @@ for DH:
 	on sign up flow, second page (pickup request), the subheader is "you can always edit your pickup or change it when we arrive." love the bit about editing your pickup. the second bit is a bit confusing to me. maybe a modal explaining that they can give us extra items that they didnt note down on hte request or give us fewer items than they did request, with the caveat that they cannot add large or extra-large items if they only scheduled a pickup for small or medium items (since we only sent one driver)
 	on the sign up flow, if you put a non-zero quantity for an item in the packing supplies section, then change it back to 0 (either while still on that page, or by returning to that page with the back button), the summary page will ask for details about that packing_supplies_request
 	validations need to be by field, not by form or by section or whatever
+	on sign up flow, im still required to either do a packing supplies request or a pickup request to proceed through the pickup request page
 
 
 us

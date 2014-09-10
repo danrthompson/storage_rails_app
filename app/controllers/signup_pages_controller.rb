@@ -21,8 +21,11 @@ class SignupPagesController < ApplicationController
 			@pickup_request.save
 			sign_in @user
 			redirect_to confirm_signup_pages_url(@user.id) and return
+		else
+			@packing_supplies_request = PackingSuppliesRequest.new
+			@pickup_request = PickupRequest.new
+			render action: :new and return
 		end
-		render action: :new and return
 	end
 
 	def show
