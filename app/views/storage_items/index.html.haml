@@ -74,6 +74,7 @@
                 %span.items-count#items-in-storage #{@num_storage_items}
                 / %span.items-count#items-in-storage 0
                 Items In Storage
+                =link_to "Click items to select them for delivery", {}, :class => "pull-right", disabled: true
               .double-line
               - @storage_items.each do |storage_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
@@ -83,7 +84,7 @@
 
                     %h4.storage-item-title= storage_item.title
                     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.description
-                    = link_to "edit entry", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"pull-right"
+                    = link_to "edit", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"pull-right"
               .col-md-12.col-sm-12.col-xs-12.align-left
                 %br/
                 =link_to "Want More Boxes? Schedule a dropoff.", {:controller => "packing_supplies_requests", :action => "new"}

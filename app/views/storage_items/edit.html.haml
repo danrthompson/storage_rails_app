@@ -21,12 +21,12 @@
               %br/
           .row
             .col-md-4.fat-white-boarder.boxed-grey
-              - if @storage_item.image_file_name
-                = image_tag "#{@storage_item.image.url}"
-              - else
-                = image_tag "https://s3.amazonaws.com/storage_rails_app_dev/images/small-item.png"
-              %br/
-              %br/ 
+              .crop-mask
+                - if @storage_item.image_file_name
+                  = image_tag "#{@storage_item.image.url}"
+                - else
+                  = image_tag "https://s3.amazonaws.com/storage_rails_app_dev/images/small-item.png"
+ 
               %p No current image
               .single-line.width-80.no-padding
               = form.file_field :image, class:"align-center"
@@ -52,7 +52,8 @@
                   %br/ 
                   .col-md-6.col-md-offset-6.bottom-buttons
                     = form.submit "Save Changes", class:"btn btn-primary pull-right" 
-                    %a{:href => "", :style => "color: white;", class:"btn gray-bg pull-left half-opacity"} Cancel
-                    %p.no-opacity p
+                    = link_to "Cancel", :storage_items, class:"btn gray-bg white half-opacity"
+
+                    %p.pull-left.no-opacity p
 
 = render :partial => 'partials/footer'
