@@ -24,7 +24,7 @@
           .col-md-4.confirm-elem
             %h5 Your Order
             %ul
-              - if defined? @packing_supplies_request
+              - if @packing_supplies_request
                 // Packing Supplies
                 %li
                   %span.order-item Standard Box
@@ -39,7 +39,7 @@
                   %span.order-item Packing Tape
                   %span.pull-right.hide-when-zero= @packing_supplies_request.tape_quantity
               
-              - if defined? @pickup_request
+              - if @pickup_request
                 // Storage Items
                 %li
                   %span.order-item Packing Box
@@ -85,7 +85,7 @@
         .double-line
 
         // Credit Card Info Form
-        = form_for :user, url:add_payment_signup_pages_path, html:{id:"credit-card-form"} do |cc|
+        = form_for @user, url:add_payment_signup_pages_path, html:{id:"credit-card-form"} do |cc|
           .bg-gray
             %br/
             .row

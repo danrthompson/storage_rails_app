@@ -11,7 +11,7 @@
 %br/ 
 
 / = form_for :signup, :html => {:id => 'signup-form'}, url: {action: 'create'} do |f| 
-= form_for @packing_supplies_request, :html => {:id => 'signup-form'}, url: {controller: 'signup_pages', action: 'create'} do |f| 
+= form_for @packing_supplies_request, url: create_signup_pages_path, :html => {:id => 'signup-form'} do |f| 
 
   ///////////////////////////////////////////////////
   // ITEM SELECTION /////////////////////////////////
