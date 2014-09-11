@@ -1,11 +1,27 @@
 class PickupRequest < Request
-	attr_accessor :small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity
+	attr_reader :small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity
 
 	has_many :storage_items
 
 	after_create :create_associated_storage_items
 
 	validates :box_quantity, :bubble_quantity, :tape_quantity, :wardrobe_box_quantity, absence: true
+
+	def small_item_quantity=(small_item_quantity)
+		@small_item_quantity = small_item_quantity.to_i
+	end
+
+	def medium_item_quantity=(medium_item_quantity)
+		@medium_item_quantity = medium_item_quantity.to_i
+	end
+
+	def large_item_quantity=(large_item_quantity)
+		@large_item_quantity = large_item_quantity.to_i
+	end
+
+	def extra_large_item_quantity=(extra_large_item_quantity)
+		@extra_large_item_quantity = extra_large_item_quantity.to_i
+	end
 
 	private
 

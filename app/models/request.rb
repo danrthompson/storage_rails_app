@@ -16,7 +16,7 @@ class Request < ActiveRecord::Base
 	private
 
 	def normalize_delivery_time
-		if self.posted_delivery_time and self.posted_delivery_date then
+		if not (self.posted_delivery_time.blank? or self.posted_delivery_date.blank?) then
 			self.delivery_time = Date.strptime(self.posted_delivery_date, '%a %b %d %Y') + self.posted_delivery_time.to_i.hours
 			self.posted_delivery_time = nil
 			self.posted_delivery_date = nil

@@ -8,16 +8,20 @@ for DH:
 	about us, contact, faq pages give error
 	during sign up flow, the links "home" and "faq" probably shouldnt exist. if you do want to keep them, they are currently broken
 	on sign up flow, first page (packing supply request), subheader for packing supplies says "we'll bring these items right to your door." we should probably say we'll ship them to you, rather than bring htem to you
+	on sign up flow, first page (packing supply request), submit button says "delivery details." on the second page (pickup request) it says "item pickup"
 	all price calculator page sections that are connected to editable price fields only update when you click outside the field, but i rarely click outside a field until im ready to click another field or button. thus, the last field probably wont update until the user clicks submit, and therefore the user may see a misestimate in the calculator. i think it would be best to update the calculator anytime the field changes at all (for example, on key down instead of on change), so its more in real time
+	sign up flow, first page, placeholder values for packing material quantities are gone, its now just 0, which means that the prices are gone. separately, not all browsers render placeholder values, so we need to put the prices elsewhere anyhow
 	on sign up flow, second page (pickup request), the subheader is "you can always edit your pickup or change it when we arrive." love the bit about editing your pickup. the second bit is a bit confusing to me. maybe a modal explaining that they can give us extra items that they didnt note down on hte request or give us fewer items than they did request, with the caveat that they cannot add large or extra-large items if they only scheduled a pickup for small or medium items (since we only sent one driver)
 	on the sign up flow, if you put a non-zero quantity for an item in the packing supplies section, then change it back to 0 (either while still on that page, or by returning to that page with the back button), the summary page will ask for details about that packing_supplies_request
 	validations need to be by field, not by form or by section or whatever
-
+	on sign up flow, im still required to either do a packing supplies request or a pickup request to proceed through the pickup request page
+	validations dont work when you autofill
 
 us
 	need to figure out pricing for packing supplies
 	need to set up email, facebook, and twitter, or get rid of those items in the footer
 	for delivery time, we need to use ajax to pull in available times
+	need to render better error messages if thigns dont validate
 
 me
 	im concerned that the "unique" id for storage items / users is not going to be unique because the add_user_item_number method is not done atomically (at least i dont think it is)
