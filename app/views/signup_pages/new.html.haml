@@ -23,7 +23,7 @@
           .col-lg-8.col-lg-offset-2
             .section-heading
               %h2.no-margin Do You Need Packing Supplies?
-              %p.align-center (we'll bring these items right to your door)
+              %p.align-center (we'll ship these items right to your door)
     .container
       .row
         .div
@@ -37,7 +37,7 @@
             .col-md-4.col-md-offset-4.bottom-buttons.charges-box
               .boxed-gray.continue-button
                 %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-first-btn{:type => "button"}
-                  Delivery Details
+                  Next
 
 
   ///////////////////////////////////////////////////
@@ -50,7 +50,7 @@
           .col-lg-8.col-lg-offset-2
             .section-heading
               %h2.no-margin What Are We Picking Up?
-              %p.align-center (you can always edit your pickup or change it when we arrive)
+              %p.align-center (you can always edit your pickup when we pick up your things)
 
     .col-md-4.col-md-offset-4.half-opacity.charges-box
       %br/ 
@@ -68,8 +68,8 @@
                     Back
               .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                 .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button", disabled: true}
-                    Item Pickup
+                  %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
+                    Next
             .col-md-12
               %p.light-gray.onepxhigh#pickup-deliv-instructions (You must schedule at least one pickup or delivery to sign up)
               %br/ 
@@ -84,7 +84,7 @@
         .row
           .col-lg-8.col-lg-offset-2
             .section-heading
-              %h2.no-margin Where Are We Delivering?
+              %h2.no-margin Address for Pickup & Delivery 
     .container
       .row
         .div
@@ -193,18 +193,23 @@
   // Prevent "enter" button submission
   /////////////////////////////////////////////////////////////
   $(document).ready(function() {
-    $(".quantity-field").keydown(function(event){
+    $(".quantity-field").keypress(function(event){
       if(event.keyCode == 13) {
         event.preventDefault();
-        console.log("QUANTITY CHANGED");
-        var field = $(this);
-        var id = field.attr("id");
-        var idRoot = id.substr(4);
-        console.log("#num-"+idRoot+" span");
-        var orderEntrySpan = $('#num-'+idRoot+ " span");
-        refreshOrder(field.val(), orderEntrySpan);
       }
+      
     });
+
+    $('.quantity-field').on('input', function() {
+      console.log("QUANTITY CHANGED");
+      var field = $(this);
+      var id = field.attr("id");
+      var idRoot = id.substr(4);
+      console.log("#num-"+idRoot+" span");
+      var orderEntrySpan = $('#num-'+idRoot+ " span");
+      refreshOrder(field.val(), orderEntrySpan);
+    });
+
 
     var all_form = $(".form-control");
     all_form.on('input', function() {

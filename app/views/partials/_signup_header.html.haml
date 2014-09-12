@@ -6,23 +6,6 @@
         %img#menu-img{:src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/syn-logo.png", :alt => ""}/
 
 
-      // THIS IS HIDDEN. NORMALLY SHRINKS WHEN WINDOW GETS TOO SMALL
-      / %span Menu
-      %nav.gn-menu-wrapper
-        .gn-scroller
-          %ul.gn-menu.pull-right
-            %li.gn-search-item
-              %input.gn-search{placeholder: "Search", type: "search"}/
-              %a.gn-icon.gn-icon-search
-                %span Search
-            %li
-              %a.gn-icon.gn-icon-download{href: "#about"} About
-            %li
-              %a.gn-icon.gn-icon-cog{href: "#service"} Service
-            %li
-              %a.gn-icon.gn-icon-help{href: "#works"} Works
-            %li
-              %a.gn-icon.gn-icon-archive{href: "#contact"} Contact
   
     // ICON & TITLE
     %li.pull-left.no-border.half-opacity
@@ -35,12 +18,8 @@
     %li.pull-right.no-border{disabled: true}
       %p 
     %li.pull-right.no-border
-      %a.light-gray.black-hover.thin-font{:href => "#works"} FAQ
+      = link_to "FAQ", guestfaq_path, class:"light-gray black-hover thin-font" 
       / # = link_to "How It Works", contact_path, class:"light-gray black-hover thin-font"     
     %li.pull-right.no-border
-      / # = link_to "Savings", contact_path, class:"light-gray black-hover thin-font" 
-      %a.light-gray.black-hover.thin-font{:href => "#save-much"} HOME
+      = link_to "Home", root_path, class:"light-gray black-hover thin-font" 
     
-
-
-/ %p= link_to 'Login', new_user_session_path

@@ -2,7 +2,7 @@
   %br/ 
   %img{:alt => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg", :src => "#{imgURL}"}/
   %h4.align-center.pb-10= title
-  %p.align-center.subtitle.box-subtitle.light-gray.no-padding= description
+  %p.align-center.subtitle.light-gray.no-padding= description
   = form.text_field field_val,  autofocus: true, placeholder:"#{price}", class:"form-control quantity-field", id:"txt-#{id}"
   %button.btn.btn-primary.rounded.full-width.btn-inc{:type => "button", id:"#{id}"} +
   %p.no-opacity.onepxhigh  spacer

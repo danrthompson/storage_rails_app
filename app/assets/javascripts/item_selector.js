@@ -22,7 +22,7 @@
   /////////////////////////////////////////////////////////////
   // Changes quantity, updates field when text manually changed
   /////////////////////////////////////////////////////////////
-  $(".quantity-field").change(function(){
+  $('.quantity-field').on('input', function() {
     console.log("QUANTITY CHANGED");
     var field = $(this);
     var id = field.attr("id");
@@ -77,7 +77,7 @@
       // Allow user to continue on
       if (!$("#pickup-deliv-instructions").hasClass("hidden")){
         $("#pickup-deliv-instructions").toggleClass("hidden");
-        $("#signup-second-btn").removeAttr("disabled");
+        // $("#signup-second-btn").removeAttr("disabled");
       }
 
     }
@@ -111,8 +111,9 @@
       // Allow user to continue on
       if (!$("#pickup-deliv-instructions").hasClass("hidden")){
         $("#pickup-deliv-instructions").toggleClass("hidden");
-        $("#signup-second-btn").removeAttr("disabled");
+        // $("#signup-second-btn").removeAttr("disabled");
       }
     }
+    
   }
 

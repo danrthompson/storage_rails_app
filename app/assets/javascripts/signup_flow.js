@@ -94,13 +94,13 @@ $(document).ready(function() {
       }
     }
   })
-  .on('success.form.bv', function(e) {
-    $('#errors').html('');
-    console.log("EVERYTHING WORKS");
-  })
-  .on('error.form.bv', function() {
-    console.log("EVERYTHING WORKS");
-  });
+  // .on('success.form.bv', function(e) {
+  //   $('#errors').html('');
+  //   console.log("EVERYTHING WORKS");
+  // })
+  // .on('error.form.bv', function() {
+  //   console.log("EVERYTHING WORKS");
+  // });
 });
 
 

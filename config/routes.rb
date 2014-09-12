@@ -15,9 +15,11 @@ Rails.application.routes.draw do
   get '500', to: redirect('/500'), as: 'error'
 
   get 'about' => 'static_pages#about'
-  get 'feedback' => 'static_pages#extra-feedback'
-  get 'faq' => 'static_pages#extra-faq'
-  get 'contact' => 'static_pages#extra-contact'
+  get 'feedback' => 'static_pages#feedback'
+  get 'faq' => 'static_pages#faq'
+  get 'contact' => 'static_pages#contact'
+  get 'guestfaq' => 'static_pages#guestfaq'
+
 
   get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
   post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'
