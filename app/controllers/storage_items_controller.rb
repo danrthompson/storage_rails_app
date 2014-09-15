@@ -10,7 +10,7 @@ class StorageItemsController < ApplicationController
 	def edit
 		@storage_item = StorageItem.find(params[:id])
 		redirect_to new_user_session_url and return unless @storage_item.user_id == current_user.id
-		@user = current_user;
+		@user = current_user
 	end
 
 	def update

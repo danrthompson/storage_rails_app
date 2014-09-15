@@ -1,4 +1,24 @@
-todo:
+me:
+	delivery requests from dash
+	user edit
+	admin
+	revise routes
+	figure out how to render available pickup times
+
+for DH (new):
+	on the signup flow, for the packing supplies page, the price should not be per month
+	on the signup flow, it might be good to tell the user that the packing supplies order and the pickup order are both optional. now they can click forward with 0'ed quantities, but they might not know that doing so is "ok." it almost seems like theyre setting up a pickup without anything in it.
+	so you live outside boulder modal is just filler text
+	we need to update the terms of service modal
+	terms of service acceptance checkbox isnt required
+	on new packing supplies request page (not in sign up flow), it says "new box request" at the top
+	should clear out static pages folder in views
+	a lot of urls, especially on the dashboard, are hardcoded, which we should change to the variable paths. ie %a{:href => "packing_supplies_requests/new.html"} should be changed to %a{:href => new_packing_supplies_request_path}
+	show (confirm) page for packing supplies requests and pickup requests displays a hardcoded message (your boxes will be delivered on Monday, when i picked a friday)
+	pickup request url is broken from dashboard
+	edit your listing page is a little rough, and the item id section should probably be a bit more clear for the user
+	on the dashboard the text "click items to select them for delivery" probably should not be a link
+
 
 for DH:
 	sign up link should either not exist or it should go to the sign up flow

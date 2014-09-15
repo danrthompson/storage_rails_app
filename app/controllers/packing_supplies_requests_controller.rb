@@ -10,10 +10,12 @@ class PackingSuppliesRequestsController < ApplicationController
 
 	def create
 		@user = current_user
+
 		@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))
 		@packing_supplies_request.user = @user
+
 		@user.update(user_address_params(params))
-		if @packing_supplies_request.valid? and @user.valid? then
+		if @packing_supplies_request.valid? and @user.valid?
 			@packing_supplies_request.save!
 			redirect_to @packing_supplies_request and return
 		else
