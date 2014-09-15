@@ -1,30 +1,5 @@
 = render partial: "partials/logged_in_header"   
 
-%section#about.home-section.text-center
-  .heading-about.marginbot-20
-    .container
-      .row
-        .col-lg-8.col-lg-offset-2
-          .section-heading
-            %h2 Your Pickup Is Booked!
-            %br/
-            %p
-              Someone will be by to take your items to storage on
-              %span.heavy-font.blue Monday, August 24 between 5:00 and 7:00PM.
-              If you have any questions in the meantime, feel free to contact us at
-              %a{:href => "mailto:theteam@spaceyouneed.com"} theteam@infinitegarage.com
-  / BODY CONTENT: SELECT ITEMS
-  .container
-    .row
-      .col-md-8.col-md-offset-2
-        .row
-          / End Phone Number &amp; Instructions Box
-          .col-md-8.col-md-offset-2.half-opacity.charges-box
-            .single-line
-            %br/
-          .col-md-6.col-md-offset-3.bottom-buttons
-            .boxed-gray.continue-button
-              %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
-              =link_to "Back To Dashboard", storage_items_path, class:"white"
+= render partial: "partials/driver_confirmation", locals:{deliveryTime:"#{@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")}", title: "Your Pickup Is Booked!", description:"Someone will be by to take your items to storage on "}
 
 = render partial: "partials/footer"   

@@ -9,7 +9,8 @@
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %h2 Edit Your Listing
+            %h2.no-margin Edit Your Listing
+            %p (Give your items a description so you can easily find them in the future)
   = form_for @storage_item, :html => { multipart: true } do |form|
     .container
       .row
@@ -38,7 +39,7 @@
                     %label{:for => "name"} Name Your Item
                     = form.text_field :title, class:"form-control", placeholder: "test"
                   .col-md-6.align-left
-                    %label{:for => "name"} Item Id <span class="required_label">&nbsp;&nbsp; (place this somewhere on your item) </span>
+                    %label{:for => "name"} Item Id <a data-target="#itemIDModal" data-toggle = "modal" class="required_label blue pointer black-hover">&nbsp;&nbsp; Why is this important? </a>
                     = form.text_field :id, class:"form-control", disabled: true, placeholder: "test"
 
                   .col-md-12.align-left
@@ -55,3 +56,54 @@
                     %p.pull-left.no-opacity p
 
 = render :partial => 'partials/footer'
+
+
+/ Modal
+#itemIDModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "itemIDModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h1#itemIDModalLabel.modal-title.align-center What is the ID For?
+      .modal-body.width-90
+        %p.width-90
+          We can storage anything. Most items fall within one of four categories. For your convenience, we've listed these categories and the items they cover below. 
+        %br/ 
+        .row
+          .col-md-6
+            %h4.no-margin Boxes
+            %ul
+              %li Boxes 2' x 2' x 2' or smaller
+              %li Things that fit in 2'x2'x2' boxes
+          .col-md-6
+            %h4.no-margin Large Items
+            %ul
+              %li Sofas and couches
+              %li Mattresses
+              %li Desks
+          
+        .row
+          .col-md-6
+            %h4.no-margin Medium Items
+            %ul
+              %li Wardrobe boxes
+              %li Bicycles
+              %li Sports gear (e.g. skis)
+              %li Mini-fridges, lamps
+              %li Coffee tables, Chairs
+              %li Small Furniture
+          .col-md-6
+            %h4.no-margin Extra Large Items
+            %ul
+              %li Large dining tables
+              %li Sectional couches
+              %li Full bed frames
+              %li Exercise equipment
+              %li Items over 250lbs
+        
+      .modal-footer
+        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
+        / %button.btn.btn-primary{:type => "button"} Save changes
+

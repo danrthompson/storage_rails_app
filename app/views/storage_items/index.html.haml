@@ -100,7 +100,7 @@
                 %span.items-count#items-in-storage #{@num_storage_items}
                 / %span.items-count#items-in-storage 0
                 Items In Storage
-                =link_to "Click items to select them for delivery", {}, :class => "pull-right", disabled: true
+                %p.pull-right.half-opacity Click items to select them for delivery
               .double-line
               - @storage_items.each do |storage_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
