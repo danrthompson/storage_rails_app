@@ -12,7 +12,7 @@ class SignupPagesController < ApplicationController
 
 	def create
 		@user = User.create user_address_params(params)
-		binding.pry
+		# binding.pry
 		if @user.valid?
 			@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))
 			@pickup_request = PickupRequest.new(create_pickup_request_params(params))
