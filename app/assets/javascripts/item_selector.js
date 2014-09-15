@@ -70,13 +70,13 @@
 
     var total = (numStdBox * STDBOX_PRICE) + (numWarBox * WARDROBE_BOX_PRICE) + (numBubble * BUBBLE_WRAP_PRICE) + (numTape * TAPE_PRICE);
     console.log("total:" + total);
-    $('#order-subtotal').text("$" + total+"/m");
+    $('#order-subtotal').text("$" + total);
     if ((total > 1) && ($("#delivery-time").hasClass("hidden"))) {
       $("#delivery-time").toggleClass("hidden");
       
       // Allow user to continue on
-      if (!$("#pickup-deliv-instructions").hasClass("hidden")){
-        $("#pickup-deliv-instructions").toggleClass("hidden");
+      if (!$("#packing-instructions").hasClass("hidden")){
+        $("#packing-instructions").toggleClass("hidden");
         // $("#signup-second-btn").removeAttr("disabled");
       }
 
