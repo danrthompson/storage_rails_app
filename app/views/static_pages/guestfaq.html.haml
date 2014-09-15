@@ -1,0 +1,120 @@
+= render :partial => 'partials/signup_header'
+
+/ SECONDARY HEADER BAR
+.container.full-width.blue-bg.no-padding.white.dashboard-header
+  .row
+    .col-md-8.align-center
+      %h1 Frequently Asked Questions
+    / Dashboard
+    .col-md-1.col-md-offset-1.col-sm-4.col-xs-4.align-center
+      .service-box
+        %a{:href => "storage_items.html"}
+          .service-icon
+            %i.fa.fa-dashboard
+          .service-desc
+            %h6 Dashboard
+/ END SECONDARY HEADER
+%br/
+%br/
+%br/
+.container.inventory.faq
+  .row
+    .col-md-10.col-md-offset-1
+      .row
+        / <div class="col-xs-1 pull-right"> </div>
+        .col-md-4.col-sm-4.col-xs-12.inventory-sidebar.pull-right
+          .row.sidebar-txtentry.light-blue-bg
+            .inner
+              %h5 Have More Questions?
+              .single-line
+              %p
+                Feel free to
+                = succeed "." do
+                  %a.blue{:href => "extra-contact.html"} contact us
+                We're here to help!
+              /
+                <ul>
+                <li><span class="order-item">You have an pickup schedules for Thursday, September 15</li>
+                <li><span class="order-item">You currently have 3 boxes at home, waiting to be picked up.</li>
+                </ul>
+          %br/
+          .row.sidebar-txtentry.bg-gray
+            .inner
+              %h5.align-center Question Inventory
+              .double-line-reg
+              %ul.no-list
+                %li.txtentry-subheading
+                  %h5 General Questions
+                  .single-line
+                %li
+                  %a{:href => ""} Standard Boxes
+                %li
+                  %a{:href => ""} Wardrobe Boxes
+                %li
+                  %a{:href => ""} Couches
+                %li.txtentry-subheading
+                  %h5 Packing and Sizes
+                  .single-line
+                %li
+                  %a{:href => ""} Standard Boxes
+                %li
+                  %a{:href => ""} Wardrobe Boxes
+                %li
+                  %a{:href => ""} Couches
+              /
+                <ul class="li"><span class="order-item">Standard Box</span><span class="order-quantity">4</span></ul>
+                <ul class="li"><span class="order-item">Wardrobe Box</span><span class="order-quantity">2</span></ul>
+          .row
+            .boxed-gray.continue-button
+              %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
+              %a{:href => "delivery-info.html", :style => "color: white;"} Ask A Question
+              %button.btn.btn-primary.gray-bg= link_to "Back To Dashboard", storage_items_path, class:"white"
+              / %button.btn.btn-primary.gray-bg{:type => "button"}/
+              / %a{:href => "delivery-info.html", :style => "color: white;"} Back To Dashboard
+        .col-md-8.col-sm-8.col-xs-12.pull-left
+          .row
+            .col-md-12.faq-section
+              %h2
+                FAQ
+                %a.pull-right{:href => ""}
+              .double-line
+              %ul.no-list
+                %li
+                  %h4 Want To Store Something Really Big? We can do that!
+                  %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna.
+                %li
+                  %h4 Nullam id dolor id nibh ultricies valera?
+                  %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna.
+                %li
+                  %h4 Cras mattis consectetur purus sit amet fermentum purus sit amet.
+                  %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna.
+                %li
+                  %h4 Can I pay with gold coins?
+                  %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna.
+                %li
+                  %h4 What is the average velocity of an African swollow?
+                  %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna.
+            .col-md-12.faq-section
+              %h2
+                Shipping
+                %a.pull-right{:href => ""} Find The Full List Here
+              .double-line
+              %ul.no-list
+                %li
+                  %h4 Want To Store Something Really Big? We can do that!
+                  %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna.
+                %li
+                  %h4 Nullam id dolor id nibh ultricies valera?
+                  %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna.
+                %li
+                  %h4 Cras mattis consectetur purus sit amet fermentum purus sit amet.
+                  %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna.
+                %li
+                  %h4 Can I pay with gold coins?
+                  %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna.
+                %li
+                  %h4 What is the average velocity of an African swollow?
+                  %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna.
+
+= render :partial => 'partials/footer'
+
