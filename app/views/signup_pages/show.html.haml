@@ -114,7 +114,7 @@
                 I agree to the
                 %a.pointer{"data-target" => "#myModal", "data-toggle" => "modal"} terms of service 
             .col-md-1
-              %input#terms-checkbox.pull-right{:type => "checkbox"}/
+              %input#terms-checkbox.pull-right{:type => "checkbox", required:true}/
             .col-md-4
               .boxed-gray.continue-button
                 = cc.submit 'confirm order', class:"btn btn-primary blue-bg-hover"

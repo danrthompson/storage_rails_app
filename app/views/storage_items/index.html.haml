@@ -15,7 +15,7 @@
             %h6
               Order Boxes
     .col-md-1.col-sm-4.col-xs-4.align-center
-      %a{:href => "box_requests/new.html"}
+      = link_to new_pickup_request_path do
         .service-box
           .service-icon
             %i.fa.fa-truck
@@ -60,34 +60,34 @@
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
                     .crop-mask
-                      = image_tag(small_item.image.url, class: "img-responsive")
-                    %h4.storage-item-title= small_item.title
-                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= small_item.description
+                      = image_tag(small_item.image_url, class: "img-responsive")
+                    %h4.storage-item-title= small_item.get_title
+                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= small_item.get_description
                     = link_to "edit", {:action => "edit", "id"=>"#{small_item.id}"}, class:"pull-right"
                       
               - @medium_items_at_home.each do |medium_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
                     .crop-mask
-                      = image_tag(medium_item.image.url, class: "img-responsive")
-                    %h4.storage-item-title= medium_item.title
-                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= medium_item.description
+                      = image_tag(medium_item.image_url, class: "img-responsive")
+                    %h4.storage-item-title= medium_item.get_title
+                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= medium_item.get_description
                     = link_to "edit", {:action => "edit", "id"=>"#{medium_item.id}"}, class:"pull-right"
               - @large_items_at_home.each do |large_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
                     .crop-mask
-                      = image_tag(large_item.image.url, class: "img-responsive")
-                    %h4.storage-item-title= large_item.title
-                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= large_item.description
+                      = image_tag(large_item.image_url, class: "img-responsive")
+                    %h4.storage-item-title= large_item.get_title
+                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= large_item.get_description
                     = link_to "edit", {:action => "edit", "id"=>"#{large_item.id}"}, class:"pull-right"
               - @extra_large_items_at_home.each do |xl_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
                     .crop-mask
-                      = image_tag(xl_item.image.url, class: "img-responsive")
-                    %h4.storage-item-title= xl_item.title
-                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= xl_item.description
+                      = image_tag(xl_item.image_url, class: "img-responsive")
+                    %h4.storage-item-title= xl_item.get_title
+                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= xl_item.get_description
                     = link_to "edit", {:action => "edit", "id"=>"#{xl_item.id}"}, class:"pull-right"
                      
           %br/
@@ -106,10 +106,10 @@
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
                   .inner
                     .crop-mask
-                      = image_tag(storage_item.image.url, class: "img-responsive")
+                      = image_tag(storage_item.image_url, class: "img-responsive")
 
-                    %h4.storage-item-title= storage_item.title
-                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.description
+                    %h4.storage-item-title= storage_item.get_title
+                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
                     = link_to "edit", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"pull-right"
               .col-md-12.col-sm-12.col-xs-12.align-left
                 %br/

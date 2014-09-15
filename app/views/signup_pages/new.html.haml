@@ -38,6 +38,11 @@
               .boxed-gray.continue-button
                 %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-first-btn{:type => "button"}
                   Next
+            .col-md-12
+              %p.light-gray.half-opacity.onepxhigh#packing-instructions (packing supplies are optional and not required)
+              %br/ 
+              %br/ 
+
 
 
   ///////////////////////////////////////////////////
@@ -74,7 +79,7 @@
                   %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
                     Next
             .col-md-12
-              / %p.light-gray.onepxhigh#pickup-deliv-instructions (You must schedule at least one pickup or delivery to sign up)
+              %p.light-gray.onepxhigh#pickup-deliv-instructions (Scheduling a pickup is recommended but not required)
               %br/ 
               %br/ 
 
@@ -90,7 +95,7 @@
               %h2.no-margin Address for Pickup & Delivery 
               %p.align-center
                 (We are currently only serving the Boulder metro-area. Click 
-                %a.pointer{"data-target" => "#outsideAreaModal", "data-toggle" => "modal"}
+                %a.pointer.heavy-font{"data-target" => "#outsideAreaModal", "data-toggle" => "modal"}
                   here
                 if you live elsewhere)
 
