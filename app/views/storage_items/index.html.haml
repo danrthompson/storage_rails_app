@@ -51,18 +51,44 @@
             / Boxes At Home
             .row
               %h2
-                %span.items-count#boxes-at-home= @boxes_at_home
+                %span.items-count#boxes-at-home #{@items_at_home}
                 Items Awaiting Pickup: 
                 =link_to "Add to Pickup", {:controller => "packing_supplies_requests", :action => "new"}, :class => "pull-right"
               .double-line
-              - 3.times do
+              / - 3.times do
+              - @boxes_at_home.each do |small_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
                     .crop-mask
-                      %img.img-responsive{:alt => "", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg"}/
-                    %h4 Standard Box
-                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 Click "request pickup" when you're done packing.
-                    %input.hidden{:name => "vehicle", :type => "checkbox", :value => "\#{}"}/
+                      = image_tag(small_item.image.url, class: "img-responsive")
+                    %h4.storage-item-title= small_item.title
+                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= small_item.description
+                    = link_to "edit", {:action => "edit", "id"=>"#{small_item.id}"}, class:"pull-right"
+                      
+              - @medium_items_at_home.each do |medium_item|
+                .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
+                  .inner
+                    .crop-mask
+                      = image_tag(medium_item.image.url, class: "img-responsive")
+                    %h4.storage-item-title= medium_item.title
+                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= medium_item.description
+                    = link_to "edit", {:action => "edit", "id"=>"#{medium_item.id}"}, class:"pull-right"
+              - @large_items_at_home.each do |large_item|
+                .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
+                  .inner
+                    .crop-mask
+                      = image_tag(large_item.image.url, class: "img-responsive")
+                    %h4.storage-item-title= large_item.title
+                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= large_item.description
+                    = link_to "edit", {:action => "edit", "id"=>"#{large_item.id}"}, class:"pull-right"
+              - @extra_large_items_at_home.each do |xl_item|
+                .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
+                  .inner
+                    .crop-mask
+                      = image_tag(xl_item.image.url, class: "img-responsive")
+                    %h4.storage-item-title= xl_item.title
+                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= xl_item.description
+                    = link_to "edit", {:action => "edit", "id"=>"#{xl_item.id}"}, class:"pull-right"
                      
           %br/
           %br/
@@ -71,7 +97,7 @@
           %form#delivery-form{:action => ""}
             .row
               %h2
-                / %span.items-count#items-in-storage #{@num_storage_items}
+                %span.items-count#items-in-storage #{@num_storage_items}
                 / %span.items-count#items-in-storage 0
                 Items In Storage
                 =link_to "Click items to select them for delivery", {}, :class => "pull-right", disabled: true
@@ -92,28 +118,36 @@
         .col-md-4.inventory-sidebar
           .row.sidebar-txtentry.light-blue-bg
             .innert
-              %h5 Notifications
+              %h5.align-center Notifications
               .single-line
               %ul
                 %li
                   %span.order-item You have an pickup schedules for Thursday, September 15
                 %li
-                  %span.order-item You currently have #{@boxes_at_home} boxes at home, waiting to be picked up.
+                  %span.order-item You currently have #{@items_at_home} items at home waiting to be picked up.
           %br/
           .row.sidebar-txtentry.bg-gray
-            .inner
-              %h5 Inventory
-              .single-line
-              %ul.no-list
-                %li
-                  %span.order-item Standard Boxes
-                  %span.pull-right 4
-                %li
-                  %span.order-item Wardrobe Boxes
-                  %span.pull-right 1
-                %li
-                  %span.order-item Couches
-                  %span.pull-right 1
+            .inner.align-center
+              %h5 Share and Save
+              %p.small-text
+                For each friend you invite to TSYN we'll take $50 off your monthly bill.
+                %br/  
+                %a.black-hover{:href => ""} Click Here
+                to get started
+          / .row.sidebar-txtentry.bg-gray
+          /   .inner
+          /     %h5 Inventory in Storage
+          /     .single-line
+          /     %ul.no-list
+          /       %li
+          /         %span.order-item  Boxes
+          /         %span.pull-right 4
+          /       %li
+          /         %span.order-item Wardrobe Boxes
+          /         %span.pull-right 1
+          /       %li
+          /         %span.order-item Couches
+          /         %span.pull-right 1
           .row
             .boxed-gray.continue-button
               %button#pickup-button.btn.btn-primary.gray-bg{:disabled => false, :type => "button"} Request Pickup
