@@ -3,10 +3,6 @@ class StorageItemsController < ApplicationController
 
 	before_action :verify_user_is_ready!
 
-	def new
-		@storage_item = StorageItem.new
-	end
-
 	def edit
 		@storage_item = StorageItem.find(params[:id])
 		redirect_to new_user_session_url and return unless @storage_item.user_id == current_user.id
@@ -18,10 +14,6 @@ class StorageItemsController < ApplicationController
 		redirect_to new_user_session_url and return unless @storage_item.user_id == current_user.id
 		@storage_item.update(update_storage_item_params(params))
 		redirect_to @storage_item
-	end
-
-	def create
-		@storage_item = StorageItem.create storage_params
 	end
 
 	def show

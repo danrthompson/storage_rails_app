@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+	before_action :no_user!, only: [:homepage]
 
 	def homepage
 
