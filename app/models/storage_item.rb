@@ -3,7 +3,7 @@ class StorageItem < ActiveRecord::Base
 		{box: 5.0, medium: 7.5, large: 10.0, extra_large: 20.0}
 	end
 
-	has_attached_file :image, default_url: 'https://s3.amazonaws.com/storage_rails_app_dev/images/1419618-unicorn2.jpg'
+	has_attached_file :image
 	belongs_to :user
 	belongs_to :delivery_request
 	belongs_to :pickup_request
@@ -18,11 +18,58 @@ class StorageItem < ActiveRecord::Base
 		StorageItem.item_types[self.item_type]
 	end
 
+	def image_url
+		if self.image?
+			self.image.url
+		else
+			box_option = 'https://s3.amazonaws.com/storage_rails_app_dev/images/small-item.png'
+			medium_option = 'https://s3.amazonaws.com/storage_rails_app_dev/images/med-item.png'
+			large_option = 'https://s3.amazonaws.com/storage_rails_app_dev/images/large-item.png'
+			extra_large_option = 'https://s3.amazonaws.com/storage_rails_app_dev/images/xlg-item.png'
+			case_statement_item_types(box_option, medium_option, large_option, extra_large_option)
+		end
+	end
+
+	def get_title
+		if self.title.blank?
+			box_option = 'Standard Box'
+			medium_option = 'Medium Item'
+			large_option = 'Large Item'
+			extra_large_option = 'XL Item'
+			case_statement_item_types(box_option, medium_option, large_option, extra_large_option)
+		else
+			self.title
+		end
+	end
+
+	def get_description
+		if self.description.blank?
+			'Click "edit" to give this item a description'
+		else
+			self.description
+		end
+	end
+
 	private
 
 	def add_user_item_number
 		self.user_item_number = self.user.storage_item_number
 		self.user.storage_item_number += 1
 		self.user.save
+	end
+
+	def case_statement_item_types(box_option, medium_option, large_option, extra_large_option)
+		case self.item_type
+		when 'box'
+			box_option
+		when 'medium'
+			medium_option
+		when 'large'
+			large_option
+		when 'extra_large'
+			extra_large_option
+		else
+			nil
+		end
 	end
 end
