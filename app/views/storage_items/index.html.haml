@@ -71,7 +71,7 @@
           %form#delivery-form{:action => ""}
             .row
               %h2
-                %span.items-count#items-in-storage #{@num_storage_items}
+                / %span.items-count#items-in-storage #{@num_storage_items}
                 / %span.items-count#items-in-storage 0
                 Items In Storage
                 =link_to "Click items to select them for delivery", {}, :class => "pull-right", disabled: true

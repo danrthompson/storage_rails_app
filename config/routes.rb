@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
   post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'
   get 'signup/:id', to: 'signup_pages#show', as: 'confirm_signup_pages'
-  post 'signup/:id', to: 'signup_pages#add_payment', as: 'add_payment_signup_pages'
+  patch 'signup/:id', to: 'signup_pages#add_payment', as: 'add_payment_signup_pages'
 
   root 'static_pages#homepage'    
 
