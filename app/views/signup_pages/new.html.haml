@@ -60,6 +60,9 @@
         .div
           = fields_for @pickup_request do |pickup_field|
             = render partial: "partials/storage_items", locals:{f:pickup_field}
+            .col-md-8.col-md-offset-2
+              %br/ 
+              %p.light-gray.align-left You can always add more items to your pickup when our driver arrives. By selecting your items now we will be able to determine what sized truck is needed.
             .col-md-10.col-md-offset-1
               %br/ 
               .col-md-4.bottom-buttons
@@ -71,7 +74,7 @@
                   %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-second-btn{:type => "button"}
                     Next
             .col-md-12
-              %p.light-gray.onepxhigh#pickup-deliv-instructions (You must schedule at least one pickup or delivery to sign up)
+              / %p.light-gray.onepxhigh#pickup-deliv-instructions (You must schedule at least one pickup or delivery to sign up)
               %br/ 
               %br/ 
 
@@ -82,9 +85,15 @@
     .heading-about.marginbot-20
       .container
         .row
-          .col-lg-8.col-lg-offset-2
+          .col-lg-10.col-lg-offset-1
             .section-heading
               %h2.no-margin Address for Pickup & Delivery 
+              %p.align-center
+                (We are currently only serving the Boulder metro-area. Click 
+                %a.pointer{"data-target" => "#outsideAreaModal", "data-toggle" => "modal"}
+                  here
+                if you live elsewhere)
+
     .container
       .row
         .div
@@ -183,6 +192,7 @@
 
 = render :partial => "partials/footer"
 = render :partial => "partials/storageSizeModal"
+= render :partial => "partials/outsideAreaModal"
 
 = javascript_include_tag "item_selector"
 

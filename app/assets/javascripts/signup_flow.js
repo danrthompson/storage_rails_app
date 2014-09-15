@@ -41,7 +41,7 @@ $(document).ready(function() {
         message: 'The zip code field is not valid',
         validators: {
           notEmpty: {
-            message: 'The zip code cannot be empty'
+            message: 'zip required'
           },
           stringLength: {
             min: 5,

@@ -81,6 +81,9 @@
       }
 
     }
+    else if ((total < 1 ) && !($("#delivery-time").hasClass("hidden"))){
+      $("#delivery-time").toggleClass("hidden");
+    }
   }
 
 
@@ -113,6 +116,9 @@
         $("#pickup-deliv-instructions").toggleClass("hidden");
         // $("#signup-second-btn").removeAttr("disabled");
       }
+    }
+    else if ((total < 1 ) && !($("#pickup-time").hasClass("hidden"))){
+      $("#delivery-time").toggleClass("hidden");
     }
     
   }

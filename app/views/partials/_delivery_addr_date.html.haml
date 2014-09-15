@@ -9,7 +9,7 @@
           .col-md-6.col-sm-6.col-xs-6.col-lg-6
             = field.text_field :city,  autofocus: true, placeholder:"City", class:"col-md-6 form-control", id:""
           .col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
-            = field.text_field :state,  autofocus: true, placeholder:"st", class:"form-control", id:""
+            = field.text_field :state,  autofocus: true, class:"form-control", id:"", value: "CO", readonly: true
           .col-md-3.col-sm-3.col-xs-3.col-lg-3.form-field-wrapper
             = field.text_field :zip,  autofocus: true, placeholder:"zip", class:"form-control", id:""
     .col-md-6
@@ -21,7 +21,7 @@
             %br/
             %label{:for => "name"} Any Special Instructions?
             = field.text_area :special_instructions, placeholder:"Message", rows:1, class:"form-control"
-          %br/ 
+          %br/
 
 :javascript
   $(document).ready(function() {
@@ -44,7 +44,7 @@
             },
             stringLength: {
               min: 10,
-              message: 'The address must be a real'
+              message: '*The address must be a real'
             },
           }
         },
@@ -52,7 +52,7 @@
           message: 'The city field is not valid',
           validators: {
             notEmpty: {
-              message: 'The city is required'
+              message: '*The city is required'
             },  
             stringLength:{
               min: 2,
@@ -64,7 +64,7 @@
           message: 'The zip code field is not valid',
           validators: {
             notEmpty: {
-              message: 'The zip code cannot be empty'
+              message: '*zip required'
             },
             stringLength: {
               min: 5,
@@ -89,7 +89,7 @@
           message: 'The address field is not valid',
           validators: {
             notEmpty: {
-              message: 'The phone number is required'
+              message: '*phone number required'
             },
             stringLength: {
               min: 10,
