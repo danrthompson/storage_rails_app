@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   devise_for :users, except: [:edit, :update, :destroy]
-  resources :storage_items, only: [:index, :show, :edit, :update]
+
+  resources :storage_items, only: [:index, :edit, :update]
   resources :delivery_requests, only: [:show, :create]
   resources :packing_supplies_requests, :pickup_requests, only: [:show, :create, :new]
 

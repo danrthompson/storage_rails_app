@@ -13,11 +13,7 @@ class StorageItemsController < ApplicationController
 		@storage_item = StorageItem.find(params[:id])
 		redirect_to new_user_session_url and return unless @storage_item.user_id == current_user.id
 		@storage_item.update(update_storage_item_params(params))
-		redirect_to @storage_item
-	end
-
-	def show
-		redirect_to :storage_items and return
+		redirect_to storage_items_url
 	end
 
 	def index

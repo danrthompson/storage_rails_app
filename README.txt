@@ -6,6 +6,9 @@ me:
 	revise routes
 	figure out how to render available pickup times
 
+for DH (new new):
+	on edit page, even if there is an image, it says "No current image"
+
 for DH (new):
 	on the signup flow, for the packing supplies page, the price should not be per month
 	on the signup flow, it might be good to tell the user that the packing supplies order and the pickup order are both optional. now they can click forward with 0'ed quantities, but they might not know that doing so is "ok." it almost seems like theyre setting up a pickup without anything in it.

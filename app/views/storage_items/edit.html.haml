@@ -10,7 +10,7 @@
         .col-lg-8.col-lg-offset-2
           .section-heading
             %h2 Edit Your Listing
-  = form_for @storage_item, url: storage_item_path(@storage_item), :html => { multipart: true, method: "patch" } do |form|
+  = form_for @storage_item, :html => { multipart: true } do |form|
     .container
       .row
         .col-md-10.col-md-offset-1
