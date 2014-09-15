@@ -7,7 +7,7 @@
       .single-line.no-opacity
       %h1 HERE ARE YOUR THINGS
     .col-md-1.col-md-offset-2.col-sm-4.col-xs-4.align-center
-      %a{:href => "packing_supplies_requests/new.html"}
+      = link_to new_packing_supplies_request_path do
         .service-box
           .service-icon
             %i.fa.fa-dropbox
@@ -45,7 +45,7 @@
       .row
         .col-md-8
           .div#storage-empty.hidden.width-90
-            %a{:href => "box_requests/new.html"}
+            = link_to new_pickup_request_path do
               %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/nothing-in-storage.png", :alt => ""}/ 
           %form#pickup-form{:action => ""}
             / Boxes At Home
@@ -149,7 +149,7 @@
           /         %span.order-item Couches
           /         %span.pull-right 1
           .row
-            .boxed-gray.continue-button
+            .boxed-gray.continue-button  
               %button#pickup-button.btn.btn-primary.gray-bg{:disabled => false, :type => "button"} Request Pickup
               %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:disabled => "true", :type => "button"} Request Delivery
 %br/
@@ -231,7 +231,7 @@
       event.preventDefault();
      var selectedEntries = $(".selected-item.pickup-entry");
      console.log(selectedEntries.size());
-     var destinationURL = "/pickup_requests/new/" + selectedEntries.size();
+     var destinationURL = "/pickup_requests/new/";
      window.location.href = destinationURL;
   });
 
