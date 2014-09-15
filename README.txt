@@ -1,4 +1,5 @@
 me:
+	edit storage items from dash
 	delivery requests from dash
 	user edit
 	admin

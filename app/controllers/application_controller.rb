@@ -3,12 +3,19 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  private
+
+  def after_sign_in_path_for(resource)
+    storage_items_url
+  end
+
   def verify_user_is_ready!
   	redirect_to new_user_session_url and return unless current_user
   	redirect_to confirm_signup_pages_url(current_user.id) and return unless current_user.ready?
   end
 
-  def after_sign_in_path_for(resource)
-  	storage_items_url
+  def no_user!
+    redirect_to confirm_signup_pages_url(current_user.id) and return if current_user and not current_user.ready?
+    redirect_to storage_items_url and return if current_user and current_user.ready?
   end
 end
