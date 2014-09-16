@@ -680,6 +680,7 @@ h3.double-underlined{
 			}
 			p{
 				padding-left: 0;
+				text-align: center;
 			}
 			a{
 				position: absolute;
@@ -692,6 +693,8 @@ h3.double-underlined{
 				color: @gray-regular;
 				text-transform: uppercase;
 				border:1px solid white;
+				border-bottom: 1px solid @light-gray;
+				border-left: 1px solid @light-gray;
 				font-weight: 400;
 				border-top: 1px solid white;
 				border-right: 1px solid white;
@@ -904,16 +907,27 @@ h3.double-underlined{
 /// HOME Page
 
 .home-screen-links{
-	// position: relative;
-	// bottom: 0px;
+	position: absolute;
+	width: 100%;
+	bottom: 65px;
+	left: 0;
+	margin-left:0;
+	// padding-bottom: 15px;
+	background-color: rgba(0, 0, 0, 0.65);
 	text-align: center;
-	.col-md-2{
-		// padding: 15px 20px;
-		// background-color: white;
-		// padding: 0;
-		// border-radius: 10px;
-		// margin:10px;
+	h3 a{
+		position: relative;
+		top: 6px;
+		color: white;
+		font-size: 36px;
+		text-transform: none;
+		font-weight: 300;
+		opacity: 0.65;
+		&:hover{
+			opacity: 1;
+		}
 	}
+
 	a{
 		color: @gray-regular;
 		// color: white;

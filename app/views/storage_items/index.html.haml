@@ -53,7 +53,7 @@
               %h2
                 %span.items-count#boxes-at-home #{@items_at_home}
                 Items Awaiting Pickup: 
-                =link_to "Add to Pickup", {:controller => "packing_supplies_requests", :action => "new"}, :class => "pull-right"
+                / # =link_to "Add to Pickup", {:controller => "pickup_requests", :action => "new"}, :class => "pull-right"
               .double-line
               / - 3.times do
               - @boxes_at_home.each do |small_item|
@@ -207,7 +207,7 @@
 
   // Pick Up Entry Selected
   $(".pickup-entry").click(function() {
-    $(this).toggleClass("selected-item");
+      // $(this).toggleClass("selected-item");
       $('input:first', this).prop('checked', true);
 
       if($(this).hasClass("selected-item")){
