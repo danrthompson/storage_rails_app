@@ -111,10 +111,11 @@
                     %h4.storage-item-title= storage_item.get_title
                     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
                     = link_to "edit", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"pull-right"
-              .col-md-12.col-sm-12.col-xs-12.align-left
+              .col-md-12.col-sm-12.col-xs-12.align-right
                 %br/
-                =link_to "Want More Boxes? Schedule a dropoff.", {:controller => "packing_supplies_requests", :action => "new"}
-
+                / # =link_to "Want to learn how deliveries work?", {:controller => "packing_supplies_requests", :action => "new"}
+                %a.pull-right.pointer{"data-target" => "#aboutDeliveriesModal", "data-toggle" => "modal"}
+                  Want to learn how deliveries work?
         .col-md-4.inventory-sidebar
           .row.sidebar-txtentry.light-blue-bg
             .innert
@@ -156,6 +157,7 @@
 %br/
 %br/
 = render partial: "partials/footer"
+= render partial: "partials/aboutDeliveriesModal"
 
 
 
