@@ -20,7 +20,6 @@ module ParamExtraction
 	end
 
 	def create_delivery_request_params(params)
-		# need to add storage item ids corresponding to what needs to be delivered
 		params.require(:delivery_request).permit(:posted_delivery_time, :posted_delivery_date)
 	end
 

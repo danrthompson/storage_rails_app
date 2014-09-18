@@ -10,11 +10,11 @@ class PickupRequestsController < ApplicationController
 
 	def create
 		@user = current_user
+		@user.update(user_address_params(params))
 
 		@pickup_request = PickupRequest.new(create_pickup_request_params(params))
-		@pickup_request.user = @user
-
-		@user.update(user_address_params(params))
+		@pickup_request.user_id = @user.id
+		
 		if @pickup_request.valid? and @user.valid?
 			@pickup_request.save!
 			redirect_to @pickup_request and return
@@ -26,6 +26,6 @@ class PickupRequestsController < ApplicationController
 	def show
 		@user = current_user
 		@pickup_request = PickupRequest.find(params[:id])
-		redirect_to new_user_session_url and return if @user != @pickup_request.user
+		redirect_to new_user_session_url and return if @user.id != @pickup_request.user_id
 	end
 end

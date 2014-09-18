@@ -10,11 +10,11 @@ class PackingSuppliesRequestsController < ApplicationController
 
 	def create
 		@user = current_user
+		@user.update(user_address_params(params))
 
 		@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))
-		@packing_supplies_request.user = @user
+		@packing_supplies_request.user_id = @user.id
 
-		@user.update(user_address_params(params))
 		if @packing_supplies_request.valid? and @user.valid?
 			@packing_supplies_request.save!
 			redirect_to @packing_supplies_request and return
@@ -26,6 +26,6 @@ class PackingSuppliesRequestsController < ApplicationController
 	def show
 		@user = current_user
 		@packing_supplies_request = PackingSuppliesRequest.find(params[:id])
-		redirect_to new_user_session_url and return if @user != @packing_supplies_request.user
+		redirect_to new_user_session_url and return if @user.id != @packing_supplies_request.user_id
 	end
 end

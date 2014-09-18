@@ -14,7 +14,7 @@
   .container
     .row
       .div
-        = form_for (@delivery_request) do |f| 
+        = form_for(@delivery_request, url: create_delivery_request_path(@id_string)) do |f| 
           / Address Info Section
           .col-md-8.col-md-offset-2
             .row

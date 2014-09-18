@@ -1,10 +1,10 @@
 me:
-	edit storage items from dash
 	delivery requests from dash
 	user edit
 	admin
 	revise routes
 	figure out how to render available pickup times
+	render errors
 
 for DH (new new):
 	on edit page, even if there is an image, it says "No current image"
