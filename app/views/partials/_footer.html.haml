@@ -2,9 +2,10 @@
 %footer
   .container
     .row.white.align-left
-      .col-md-2.col-md-offset-1
-        %img.img-responsive.footer-logo{alt: "", src: "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/syn-logo-white.png"}/
-      .col-md-2.col-md-offset-1
+      .col-md-2.col-md-offset-2.col-sm-12#footer-logo-wrapper
+        %img.img-responsive#footer-logo{alt: "", src: "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/syn-logo-white.png"}/
+      %br/ 
+      .col-md-2.col-sm-4.footer-entry
         %h4 Print Page
         %ul.no-list
           %li
@@ -14,15 +15,18 @@
             = link_to "Contact", contact_path
           %li
             = link_to "FAQ", faq_path
-      .col-md-2
+      .col-md-2.col-sm-4.footer-entry
         %h4 Contact Us
         %ul.no-list
           / %li Phone: 1-800-555-5555
           %li 
-            %a{:href => "mailto:theteam@spaceyouneed.com"} team@spaceyouneed.com
+            %a{:href => "mailto:theteam@spaceyouneed.com"}
+            team@
+            %br/ 
+            spaceyouneed.com
           / %li
           /   %a{href: "contact-us.html"} Contact Form
-      .col-md-2
+      .col-md-2.col-sm-4.footer-entry
         %h4 Get Social
         %ul.no-list
           %li

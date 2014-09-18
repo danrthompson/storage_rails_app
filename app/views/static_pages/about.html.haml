@@ -1,4 +1,7 @@
-= render :partial => 'partials/logged_in_header'
+- if @user
+  = render :partial => 'partials/logged_in_header'
+- else
+  = render :partial => 'partials/signup_header'
 
 / BLUE HEADER BAR
 .container.full-width.blue-bg.no-padding.white.dashboard-header.single-row
@@ -19,18 +22,15 @@
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %img.half-width{:alt => "", :src => "img/team/5.jpg"}/
+            = image_tag "https://s3.amazonaws.com/storage_rails_app_dev/images/syn-logo.png", class:"width-30"
             %br/
             %br/
             %br/
-            %h2 The IG Story
+            %h2 What We're About
             %p
-              Have a question? Maybe some feedback for the site? We want to hear from you! You can always reach us via
-              %a.heavy-font.blue theteam@infinitegarage.com
-              or calling
-              = succeed "." do
-                %span.heavy-font.blue 1-800-555-5555
-              If you prefer, you can also leave us a more specific message below. Thanks!
+              We're trying to change an industry. To learn the inside scoop, get in touch at
+              %a.heavy-font.blue team@spaceyouneed.com.
+              We'd love to hear from you!
 
 = render :partial => 'partials/footer'
 = render :partial => 'partials/javascriptSource'

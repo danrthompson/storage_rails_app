@@ -1,4 +1,7 @@
-= render :partial => 'partials/logged_in_header'
+- if @user
+  = render :partial => 'partials/logged_in_header'
+- else
+  = render :partial => 'partials/signup_header'
 
 / SECONDARY HEADER BAR
 .container.full-width.blue-bg.no-padding.white.dashboard-header

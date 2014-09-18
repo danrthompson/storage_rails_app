@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get 'feedback' => 'static_pages#feedback'
   get 'faq' => 'static_pages#faq'
   get 'contact' => 'static_pages#contact'
-  get 'guestfaq' => 'static_pages#guestfaq'
 
 
   get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
