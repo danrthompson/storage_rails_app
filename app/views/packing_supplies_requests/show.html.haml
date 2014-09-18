@@ -1,18 +1,19 @@
 = render partial: "partials/logged_in_header"   
 
+
 %section#about.home-section.text-center
   .heading-about.marginbot-20
     .container
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %h2 Your Boxes Are On Their Way!
+            %h2 Your Order Has Been Recorded!
             %br/
             %p
-              Your boxes will be delivered on
-              %span.heavy-font.blue Monday, August 24 between 5:00 and 7:00PM.
+              We'll send you a confirmation email as soon as your items ship. 
               If you have any questions in the meantime, feel free to contact us at
-              %a{:href => ""} theteam@infinitegarage.com
+              %a{:href => "mailto:theteam@spaceyouneed.com"} theteam@spaceyouneed.com.
+              Thanks!
   / BODY CONTENT: SELECT ITEMS
   .container
     .row
@@ -26,6 +27,6 @@
             .boxed-gray.continue-button
               %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
               =link_to "Back To Dashboard", storage_items_path, class:"white"
-              / %a{:href => "user-dashboard.html", :style => "color: white;"} Back to Dashboard
+
 
 = render partial: "partials/footer"   
