@@ -240,17 +240,18 @@
   /////////////////////////////////////////////////////////////
   function checkFormDisableBtn(){
     if ($("#signup-form").data('bootstrapValidator').isValid()){
-
-      // If 
+      console.log("address page content is valid");
+   
       if((($("#pickup_datepicker").val().length > 0) && ($("#pickup_time").val().length > 0)) || $("#pickup-time").hasClass("hidden")) {
         if((($("#delivery_datepicker").val().length > 0) && ($("#delivery_time").val().length > 0)) || $("#delivery-time").hasClass("hidden")) {
+          console.log("disabling disabling on signup page");
           $("#signup-third-btn").removeAttr("disabled"); 
-        }
-      }
+        } else console.log("delivery is not valid");
+      } else console.log("pickup is not valid");
 
     } else{
       $("#signup-third-btn").attr("disabled", "disabled"); 
-      console.log("no");
+      console.log("Address entities are not valid");
     }
   }
 

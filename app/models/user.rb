@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates :address_line_1, :city, :state, :zip, :phone_number, presence: true
   validates :city, format: { with: /\ABoulder\z/, message: 'must be Boulder.' }
   validates :state, format: { with: /\ACO\z/, message: 'must be CO.' }
-  validates :zip, inclusion: {in: [80301, 80302, 80305, 80303], message: 'must be a boulder zip code' }
+  validates :zip, inclusion: {in: [80301, 80302, 80303, 80304, 80305, 80306, 80307, 80308, 80309, 80314, 80321, 80322, 80323, 80328, 80329], message: 'must be a boulder zip code' }
   validates :phone_number, :phony_plausible => true
   validates :exp_month, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 12}, allow_nil: true
   validates :exp_year, numericality: {only_integer: true, greater_than_or_equal_to: 2014, less_than_or_equal_to: 2035}, allow_nil: true
