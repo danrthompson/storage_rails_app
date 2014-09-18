@@ -103,7 +103,7 @@
           %img.full-width{:alt => "", :src => "https://s3.amazonaws.com/storage_rails_app_dev/images/how-it-works-2.png"}/
           %br/ 
           %br/ 
-          = link_to "Still curious about how it works? Click here.", faq_path, class: "pull-right" 
+          = link_to "Still curious about how it works? Click here.", faq_path, class: "pull-right", target: "_blank" 
 
 / Section: contact
 %section#store-what.home-section.text-center
@@ -113,9 +113,12 @@
         .section-heading
           %br/
           %h2 Any Item, Any Size
-          %p.dark-gray What do we store? Anything! Here are some of the most common items stored by our users. Have something unique or odd shaped? Let us know and we'll give it its own special home.
+          %p.dark-gray 
+            What do we store? Anything! Our sizing is broken into four main categories, which cover about everything: boxes, bikes, couches, furniture and more. For sizing details
+            %a{:href => ""} click here.
+
           %br/
-        .row.inventory
+        / .row.inventory
           / TOP ROW
           / .col-md-2.col-sm-2.col-xs-2.inventory-entries
           
@@ -128,10 +131,10 @@
         / %hr/
         .row.inventory
           / TOP ROW
-          = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", title:"Standard Boxes", description:"Small Item - $5.00/month"}
-          = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", title:"Bicycles", description:"Medium Item - $12.00/m"}
-          = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", title:"Couches", description:"Large Item - $20.00/m"}
-          = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", title:"Large Furniture", description:"XL Item - $40.00/month"}
+          = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", title:"Standard Boxes", description:"$5.00/month"}
+          = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", title:"Medium Items", description:"$12.00/m"}
+          = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", title:"Large Items", description:"$20.00/m"}
+          = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", title:"XL Items", description:"$40.00/month"}
          
           
 .row
