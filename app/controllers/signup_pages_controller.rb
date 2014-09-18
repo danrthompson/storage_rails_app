@@ -11,7 +11,7 @@ class SignupPagesController < ApplicationController
 	end
 
 	def create
-		@user = User.create user_address_params(params)
+		@user = User.create new_user_params(params)
 
 		if @user.valid?
 			@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))

@@ -3,12 +3,20 @@ module ParamExtraction
 
 	private
 
+	def new_user_params(params)
+		params.require(:user).permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation)
+	end
+
+	def user_address_params(params)
+		params.require(:user).permit(:address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number)
+	end
+
 	def user_cc_params(params)
 		params.require(:user).permit(:cc_number, :cc_name, :exp_month, :exp_year)
 	end
 
-	def user_address_params(params)
-		params.require(:user).permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation)
+	def edit_user_params(params)
+		params.require(:user).permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation, :cc_number, :cc_name, :exp_month, :exp_year)
 	end
 
 	def create_packing_supplies_request_params(params)

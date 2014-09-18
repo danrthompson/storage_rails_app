@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_many :completed_pickup_requests, class_name: 'PickupRequest', foreign_key: 'driver_id'
 
   phony_normalize :phone_number, default_country_code: 'US'
-  before_validation :normalize_city, :normalize_state
+  before_validation :normalize_city, :normalize_state, :make_password_nil_if_blank
 
   validates :address_line_1, :city, :state, :zip, :phone_number, presence: true
   validates :city, format: { with: /\ABoulder\z/, message: 'must be Boulder.' }
@@ -43,5 +43,10 @@ class User < ActiveRecord::Base
 
   def normalize_state
   	self.state = self.state.strip.upcase unless self.state.blank?
+  end
+
+  def make_password_nil_if_blank
+    self.password = nil if self.password.blank?
+    self.password_confirmation = nil if self.password_confirmation.blank?
   end
 end
