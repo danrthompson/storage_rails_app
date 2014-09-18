@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   devise_for :users, except: [:edit, :update, :destroy]
 
   resources :storage_items, only: [:index, :edit, :update]
-  resources :delivery_requests, only: [:show, :create]
+  resources :delivery_requests, only: [:show]
   resources :packing_supplies_requests, :pickup_requests, only: [:show, :create, :new]
 
   get 'delivery_requests/new/:ids', to: 'delivery_requests#new', as: 'new_delivery_request'
+  post 'delivery_requests/:ids', to: 'delivery_requests#create', as: 'create_delivery_request'
 
   get 'admin_page' => 'admin_pages#admin_page'
   post 'admin_pages/complete_request/:id', to: 'admin_pages#complete_request', as: 'complete_request'
