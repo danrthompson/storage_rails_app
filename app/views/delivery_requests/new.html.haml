@@ -33,12 +33,10 @@
                 %h5 Delivery Summary
                 %ul
                   - @requested_boxes.each do |requested_item|
-                    %li
+                    %li.delivery-line-item
                       = requested_item.title
-                      %i.pull-right
-                        1
-                        / $
-                        / = requested_item.delivery_price
+                      %i.pull-right.delivery-item-price
+                        #{requested_item.delivery_price}
                   %li#num-stdbox.hidden
                     %span.pull-left> 0
                     \&nbsp; &nbsp;Standard Boxes
@@ -60,7 +58,7 @@
                     \&nbsp; &nbsp;Art/Poster Tubes
                     %i.pull-right.light-gray $10.00/unit
                   %br/  
-                  %li.half-opacity
+                  %li.half-opacity.delivery-line-item
                     Baseline Delivery Fee
                     %span.pull-right $10.00
                 .single-line
@@ -85,5 +83,25 @@
                   = f.submit "Confirm Delivery"
 
 = render :partial => "partials/footer"
+
+:javascript
+  
+
+  function calculateDeliveryTotal(){
+      var DELIVERY_BASELINE_PRICE = 10;  
+      var total = DELIVERY_BASELINE_PRICE;
+      var items = $(".delivery-item-price");
+      items.each(function(){
+          var deliveryCostString = $(this).html();
+          total = total + parseInt(deliveryCostString);
+          $(this).html("$" + deliveryCostString);
+          
+      });
+      console.log("delivery total:" + total);
+
+      $('#order-subtotal').text("$" + total);
+  }
+
+  calculateDeliveryTotal();
 
 

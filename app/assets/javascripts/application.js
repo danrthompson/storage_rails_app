@@ -39,3 +39,17 @@ function hideParentWhenZero(classId){
   });
 }; 
 
+// function calculateDeliveryTotal(){
+//     var DELIVERY_BASELINE_PRICE = 10;
+    
+//     var total = DELIVERY_BASELINE_PRICE;
+//     var items = $(".delivery-item-price");
+//     items.each(function(){
+//         total = total + $(this).html().parseInt();
+//     });
+//     console.log("delivery total:" + total);
+
+//     $('#order-subtotal').text("$" + total);
+// }
+
+

@@ -18,6 +18,21 @@ class StorageItem < ActiveRecord::Base
 		StorageItem.item_types[self.item_type]
 	end
 
+	def delivery_price
+		case self.item_type
+		when "box"
+		  return 5
+		when "medium"
+		  return 12
+		when "large"
+		  return 20
+		when "extra_large"
+		  return 40
+		else
+		  return "ERROR"
+		end
+	end
+
 	def image_url
 		if self.image?
 			self.image.url
