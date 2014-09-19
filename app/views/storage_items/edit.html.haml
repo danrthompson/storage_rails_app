@@ -24,7 +24,7 @@
               %br/
               %br/
           .row
-            .col-md-4.col-md-offset-1.col-sm-4.col-xs-12.fat-white-boarder.boxed-grey
+            .col-md-4.col-md-offset-1.col-sm-4.col-xs-12.fat-white-border.boxed-grey
               .crop-mask
                 - if @storage_item.image_file_name
                   = image_tag "#{@storage_item.image.url}"
@@ -35,7 +35,7 @@
               .single-line.width-80.no-padding
               = form.file_field :image, class:"align-center"
               %br/ 
-            .boxed-grey.col-md-6.col-sm-8.col-xs-12.fat-white-boarder
+            .boxed-grey.col-md-6.col-sm-8.col-xs-12.fat-white-border
               #contact-form
                 .row
                   .col-md-6.align-left

@@ -118,17 +118,7 @@
             %a{:href => ""} click here.
 
           %br/
-        / .row.inventory
-          / TOP ROW
-          / .col-md-2.col-sm-2.col-xs-2.inventory-entries
-          
-          / .col-md-4.col-sm-4.col-xs-4.inventory-entries
-          /   .inner
-          /     .avatar
-          /       %img.img-responsive{:alt => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/box-default.jpg", :src => "https://s3.amazonaws.com/harnessthecrowd/SpaceYouNeed/1.jpg"}/
-          /     %h4 Standard Box
-          /     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12 $6.25/month"
-        / %hr/
+        
         .row.inventory
           / TOP ROW
           = render partial: "partials/list_item_4col", locals: {imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", title:"Standard Boxes", description:"$5.00/month"}

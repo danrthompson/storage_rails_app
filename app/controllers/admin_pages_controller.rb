@@ -2,6 +2,7 @@ class AdminPagesController < ApplicationController
 	before_action :authenticate_admin!
 
 	def admin
+		@user = current_user
 		@pending_pickup_requests = PickupRequest.where(completion_time: nil).order(:delivery_time)
 		@pending_packing_supplies_requests = PackingSuppliesRequest.where(completion_time: nil).order(:delivery_time)
 		@pending_delivery_requests = DeliveryRequest.where(completion_time: nil).order(:delivery_time)

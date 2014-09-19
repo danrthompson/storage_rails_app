@@ -1,28 +1,43 @@
 .storage-items
-	%strong
-		%p= "Items to #{activity}:"
 	- request.storage_items.each do |item|
-		.storage-item
-			- if show_id
-				%p= "Item ID: #{item.id}"
-			%p= "Item type: #{item.item_type}"
-			%p= "User item number: #{item.user_item_number}"
-			/ image
-			- if item.image?
-				%p Item image:
-				%img{src: "#{item.image_url}"}/
-			- else
-				%p No item image
+		.row.storage-item
+			.col-md-6
+				- if show_id
+					%p
+						%span Item ID:
+						#{item.id}
+				%p
+					%span Item to #{activity}:
+					#{item.item_type}
+				%p
+					%span User item number:
+					#{item.user_item_number}
 
-			/ title
-			- if item.title.blank?
-				%p No item title
-			- else
-				%p= "Title: #{item.title}"
-
-			/ description
-			- if item.description.blank?
-				%p No item description
-			- else
-				%p= "Description: #{item.description}"
-		%hr/
+				/ title
+				- if item.title.blank?
+					%p
+						%span [No item title]
+				- else
+					%p
+						%span Title: 
+						#{item.title}
+				/ description
+				- if item.description.blank?
+					%p 
+						%span No item description
+				- else
+					%p
+						%span Description:
+						#{item.description}
+			.col-md-6
+				/ image
+				- if item.image?
+					%p
+						%span Item image:
+					.crop-mask
+						%img{src: "#{item.image_url}"}/
+				- else
+					%p
+						%span [No item image]
+						\- please take one
+			%hr/
