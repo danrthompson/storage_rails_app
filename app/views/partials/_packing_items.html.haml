@@ -3,10 +3,10 @@
   %br/ 
   %br/ 
   .row
-    = render partial: "partials/list_item_4col_field", locals:{title: "Standard Box", price: "$5/unit", id:"stdbox", field_val: :box_quantity, form: f, imgURL:"http://www.ikea.com/us/en/images/products/samla-box__0144440_PE303768_S4.JPG", description:"22\" x 18\" x 12\" for books, cloths & small items. $5/ea"}
-    = render partial: "partials/list_item_4col_field", locals:{title: "Wardrobe Box", price: "$12/unit", id:"warbox", field_val: :wardrobe_box_quantity, form: f, imgURL:"http://www.ikea.com/us/en/images/products/brimnes-wardrobe-with--doors__0140624_PE300605_S4.JPG", description:"24\" x 20\" x 46\" suits, poster tubes & tall items. $12/ea"}
-    = render partial: "partials/list_item_4col_field", locals:{title: "Bubble Wrap", price: "$10 / 30ft", id:"bubble", field_val: :bubble_quantity, form: f, imgURL:"http://www.staples-3p.com/s7/is/image/Staples/s0767163_sc7?$splssku$", description:"12\" wide x 30' long. Cocoon your precious items. $10/ea"}
-    = render partial: "partials/list_item_4col_field", locals:{title: "Packing Tape", price: "$5 / 30ft", id:"tape", field_val: :tape_quantity, form: f, imgURL:"http://www.staples-3p.com/s7/is/image/Staples/s0199320_sc7?$splssku$", description:"10\" x 12\" x 15\" to keep your boxex in line. $5/roll "}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Standard Box", price: "$5/unit", id:"stdbox", field_val: :box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/supplies-box.jpg", description:"22\" x 18\" x 12\" for books, cloths & small items. $5/ea"}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Wardrobe Box", price: "$12/unit", id:"warbox", field_val: :wardrobe_box_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/supplies-wardrobe.jpg", description:"24\" x 20\" x 46\" suits, poster tubes & tall items. $12/ea"}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Bubble Wrap", price: "$10 / 30ft", id:"bubble", field_val: :bubble_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/supplies-bubble.jpg", description:"12\" wide x 30' long. Cocoon your precious items. $10/ea"}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Packing Tape", price: "$5 / 30ft", id:"tape", field_val: :tape_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/supplies-tape.jpg", description:"10\" x 12\" x 15\" to keep your boxex in line. $5/roll "}
 
 
 
@@ -48,8 +48,8 @@
               %i.pull-right.light-gray $10.00/unit
             %br/  
             %li.half-opacity
-              Valet Delivery
-              %span.pull-right Free
+              Shipping/Delivery Fee
+              %span.pull-right $5.00
           .single-line
           %ul
             %li.heavy-font
