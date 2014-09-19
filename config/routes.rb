@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   get 'delivery_requests/new/:ids', to: 'delivery_requests#new', as: 'new_delivery_request'
   post 'delivery_requests/:ids', to: 'delivery_requests#create', as: 'create_delivery_request'
 
-  get 'admin_page' => 'admin_pages#admin_page'
-  post 'admin_pages/complete_request/:id', to: 'admin_pages#complete_request', as: 'complete_request'
+  get 'admin', to: 'admin_pages#admin', as: 'admin'
+  patch 'admin/complete_packing_supplies_request/:id', to: 'admin_pages#complete_packing_supplies_request', as: 'complete_packing_supplies_request'
+  patch 'admin/complete_pickup_request/:id', to: 'admin_pages#complete_pickup_request', as: 'complete_pickup_request'
+  patch 'admin/complete_delivery_request/:id', to: 'admin_pages#complete_delivery_request', as: 'complete_delivery_request'
 
   get '404', to: redirect('/404'), as: 'not_found'
   get '500', to: redirect('/500'), as: 'error'

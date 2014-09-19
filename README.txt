@@ -1,3 +1,10 @@
+admin page:
+	drivers see upcoming requests that need to be fulfilled
+	drivers can mark requests complete
+		
+
+
+
 me:
 	delivery requests from dash
 	user edit

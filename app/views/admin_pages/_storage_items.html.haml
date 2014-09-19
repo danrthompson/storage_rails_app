@@ -1,0 +1,28 @@
+.storage-items
+	%strong
+		%p= "Items to #{activity}:"
+	- request.storage_items.each do |item|
+		.storage-item
+			- if show_id
+				%p= "Item ID: #{item.id}"
+			%p= "Item type: #{item.item_type}"
+			%p= "User item number: #{item.user_item_number}"
+			/ image
+			- if item.image?
+				%p Item image:
+				%img{src: "#{item.image_url}"}/
+			- else
+				%p No item image
+
+			/ title
+			- if item.title.blank?
+				%p No item title
+			- else
+				%p= "Title: #{item.title}"
+
+			/ description
+			- if item.description.blank?
+				%p No item description
+			- else
+				%p= "Description: #{item.description}"
+		%hr/

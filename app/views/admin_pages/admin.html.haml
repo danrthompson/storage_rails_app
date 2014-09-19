@@ -1,0 +1,50 @@
+%p admin!
+
+.pickup-requests
+	%h2 Pending Pickup Requests
+	- @pending_pickup_requests.each do |pickup_request|
+		%h4 Pending pickup request
+		%p= 'Delivery time requested: ' + pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
+
+		%strong
+			%p Customer's address:
+		%p= pickup_request.user.address_line_1
+
+		= render partial: "storage_items", locals: {activity: 'pick up', request: pickup_request, show_id: false}
+
+
+		= form_for pickup_request, url: complete_pickup_request_path(pickup_request.id) do |f|
+			= f.submit 'Submit'
+		%hr/
+
+.packing-supplies-requests
+	%h2 Pending Packing Supplies Requests
+	- @pending_packing_supplies_requests.each do |packing_request|
+		%h4 Pending packing supplies request
+		%p= "Boxes ordered: #{packing_request.box_quantity}"
+		%p= "Wardrobe boxes ordered: #{packing_request.wardrobe_box_quantity}"
+		%p= "Bubble wrap items ordered: #{packing_request.bubble_quantity}"
+		%p= "Packing tape items ordered: #{packing_request.tape_quantity}"
+		%strong
+			%p Customer's address:
+		%p= packing_request.user.address_line_1
+
+		= form_for packing_request, url: complete_packing_supplies_request_path(packing_request.id) do |f|
+			= f.submit 'Shipped'
+		%hr/
+
+.delivery-requests
+	%h2 Pending Delivery Requests
+	- @pending_delivery_requests.each do |delivery_request|
+		%h4 Pending delivery request
+		%p= 'Delivery time requested: ' + delivery_request.delivery_time.strftime("%B %d at %l:%M %p")
+
+		%strong
+			%p Customer's address:
+		%p= delivery_request.user.address_line_1
+
+		= render partial: "storage_items", locals: {activity: 'deliver', request: delivery_request, show_id: true}
+
+		= form_for delivery_request, url: complete_delivery_request_path(delivery_request.id) do |f|
+			= f.submit 'Delivery complete'
+		%hr/
