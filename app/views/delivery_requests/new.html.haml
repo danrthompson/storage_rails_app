@@ -81,13 +81,30 @@
                   / %a{:href => "user-newbox.html", :style => "color: white;"} Back
               .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                 .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
-                  = f.submit "Confirm Delivery"
+                  %button.btn.btn-primary.blue-bg.blue-bg-hover#continue-btn{ disabled: true}
+                    = f.submit "Confirm Delivery"
 
 = render :partial => "partials/footer"
 
 :javascript
   
+  $(document).ready(function() {
+    
+    var all_form = $("#delivery_time");
+    all_form.on('input', function() {
+      checkFormDisableBtn();
+    });
+
+  });
+
+  function checkFormDisableBtn(){
+    
+      if(($("#delivery_datepicker").val().length > 0) && ($("#delivery_time").val().length > 0)) {
+          console.log("disabling disabling on signup page");
+          $("#continue-btn").removeAttr("disabled"); 
+      }
+      else console.log("pickup is not valid");
+  }
 
   function calculateDeliveryTotal(){
       var DELIVERY_BASELINE_PRICE = 10;  
@@ -100,10 +117,11 @@
           
       });
       console.log("delivery total:" + total);
-
       $('#order-subtotal').text("$" + total);
   }
 
   calculateDeliveryTotal();
+
+  
 
 
