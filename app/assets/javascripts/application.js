@@ -50,15 +50,13 @@ function valQuantityAndAddress(formID, buttonID, fieldClass){
 
 function valQuantityAddrDelivery(formID, buttonID, fieldClass, datepickerID, timeFieldId){
   if (valQuantityAndAddress(formID, buttonID, fieldClass)) {
-    // console.log("checking pickup");
     validatePickup(datepickerID, timeFieldId, buttonID);
-  } else{
-    // console.log("form or quanitity not valid");
-    $(buttonID).attr("disabled", "disabled"); 
-  }
+  } 
 }
 
-
+function valAddrDelivery(formID, buttonID, datepickerID, timeFieldId){
+  if (checkFormValidation(formID, buttonID)) validatePickup(datepickerID, timeFieldId, buttonID);
+}
 // Validates address form
 function checkFormValidation(formID, buttonID){
   // console.log("checking form");
@@ -76,17 +74,13 @@ function checkFormValidation(formID, buttonID){
 function makeSureQuantityEntered(fieldClass, buttonID){
   // console.log("checking quanitity");
   total = 0;
-
   $(fieldClass).each(function(){
     var fieldVal = $(this).val();
     if ((fieldVal)){
-      // console.log("Int" + parseInt(fieldVal));
       total = total + parseInt(fieldVal);   
     }
   });
-  // console.log("Total after sum: "+ total);
   if (total > 0){
-    // console.log("Quantity:" + total + ", Returning true");
     $(buttonID).removeAttr("disabled");
     return true;
   } else{
@@ -100,14 +94,24 @@ function makeSureQuantityEntered(fieldClass, buttonID){
 function validatePickup(datepickerID, timeFieldId, buttonID){
   // console.log("checking pickup");
   if(($(datepickerID).val().length > 0) && ($(timeFieldId).val().length > 0)) {
-      // console.log("disabling disabling on signup page");
-      $(buttonID).removeAttr("disabled"); 
-      return true;
+    $(buttonID).removeAttr("disabled"); 
+    return true;
   }
   else {
-    // console.log("pickup is not valid");
     $(buttonID).attr("disabled", true); 
     return false;
   }
+}
+
+// SUMS DELIVERY ITEMS
+
+function sumItemList(itemClass, displayId){
+  sumTotal = 0;
+  $(itemClass).each(function(){
+    console.log($(this).html());
+    sumTotal += parseInt($(this).html());
+  });
+  console.log("$" + sumTotal);
+  $(displayId).html("$" + sumTotal);
 }
 

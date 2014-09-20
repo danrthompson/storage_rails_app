@@ -9,6 +9,7 @@ class DeliveryRequestsController < ApplicationController
 		item_ids = @id_string.split(',').map { |x| x.to_i }
 		@requested_boxes = StorageItem.where(user_id: current_user.id, id: item_ids)
 		@user = current_user
+		@storage_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil, delivery_request_id: nil).where.not(entered_storage_at: nil).order(:item_type, :entered_storage_at)
 	end
 
 	def create

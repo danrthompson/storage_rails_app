@@ -9,65 +9,70 @@
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %h2 Request A New Delivery
+            %h2 Delivery Information
 
   .container
     .row
       .div
         = form_for(@delivery_request, url: create_delivery_request_path(@id_string)) do |f| 
           / Address Info Section
-          .col-md-8.col-md-offset-2
-            .row
-              = fields_for @user do |field|
-                = render partial: "partials/delivery_addr_date", locals: {field:field, f:f, id:"datepicker"}
-                = render partial: "partials/delivery_date_time", locals: {field:field, f:f,  id:"delivery_datepicker", select_id:"delivery_time"}
+          .row
+            .col-md-8.col-md-offset-2
+              .row
+                = fields_for @user do |field|
+                  = render partial: "partials/delivery_addr_date", locals: {field:field, f:f, id:"datepicker"}
+                  = render partial: "partials/delivery_date_time", locals: {field:field, f:f,  id:"delivery_datepicker", select_id:"delivery_time"}
         
-          / Final summary Section
-        
-          .col-md-6.col-md-offset-3.half-opacity.charges-box
+          %br/ 
+          %br/ 
+          %br/ 
+          .section-heading
+            %h2 What Shall We Deliver?
+          .row.inventory  
+            .col-md-8.col-md-offset-2
+              / %h2.align-center
+                
+              /   Choose The Items You Would Like
+              /   / %p.pull-right.half-opacity Click items to select them for delivery
+              / .double-line
+              - @storage_items.each do |storage_item|
+                .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
+                  .inner
+                    .crop-mask
+                      = image_tag(storage_item.image_url, class: "img-responsive")
+
+                    %h4.storage-item-title= storage_item.get_title
+                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
             %br/
-            
-          .col-md-10.col-md-offset-1
-            .row.charges-box
-              .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
-                %h5 Delivery Summary
-                %ul
-                  - @requested_boxes.each do |requested_item|
-                    %li.delivery-line-item
-                      = requested_item.title
-                      %i.pull-right.delivery-item-price
-                        #{requested_item.delivery_price}
-                  %li#num-stdbox.hidden
-                    %span.pull-left> 0
-                    \&nbsp; &nbsp;Standard Boxes
-                    %i.pull-right.light-gray $6.50/unit
-                  %li#num-warbox.hidden
-                    %span.pull-left> 0
-                    \&nbsp; &nbsp;Wardrobe Boxes
-                    %i.pull-right.light-gray $12.00/unit
-                  %li#num-bubble.hidden
-                    %span.pull-left> 0
-                    \&nbsp; &nbsp;Rolls of Bubble Wrap
-                    %i.pull-right.light-gray $4.50/unit
-                  %li#num-filebox.hidden
-                    %span.pull-left> 0
-                    \&nbsp; &nbsp;File Boxes
-                    %i.pull-right.light-gray $9.50/unit
-                  %li#num-tube.hidden
-                    %span.pull-left> 0
-                    \&nbsp; &nbsp;Art/Poster Tubes
-                    %i.pull-right.light-gray $10.00/unit
-                  %br/  
-                  %li.half-opacity.delivery-line-item
-                    Baseline Delivery Fee
-                    %span.pull-right $10.00
-                .single-line
-                %ul
-                  %li.heavy-font
-                    Subtotal
-                    %span#order-subtotal.pull-right $00.00
-                    %p#not-month.hidden 0
-            %br/ 
+          %br/ 
+           
+          .row  
+            .col-md-10.col-md-offset-1
+              .row.charges-box
+                .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
+                  %h5 Delivery Summary
+                  %ul
+                    - @requested_boxes.each do |requested_item|
+                      %li.delivery-line-item
+                        = requested_item.title
+                        %i.pull-right
+                          $
+                          %span.delivery-item-price 
+                            #{requested_item.delivery_price}
+                    %br/ 
+                    %li.half-opacity.delivery-line-item
+                      Baseline Delivery Fee
+                      %span.pull-right
+                        $
+                        %span.delivery-item-price 
+                          10
+                  .single-line
+                  %ul
+                    %li.heavy-font
+                      Subtotal
+                      %span#order-subtotal.pull-right $00.00
+                      %p#not-month.hidden 0
+              %br/ 
 
           / Bottom Buttons Section
           .col-md-8.col-md-offset-2
@@ -86,35 +91,18 @@
 
 = render :partial => "partials/footer"
 
+
 :javascript
-  
-  $(document).ready(function() {
-    
-    var all_form = $("#delivery_time");
-    all_form.on('input', function() {
-      checkFormDisableBtn();
+  $(document).ready(function() { 
+    valAddrDelivery("#validator-id", "#continue-btn", "#delivery_datepicker", "#delivery_time");
+
+    $(".form-control").on('input', function() {
+      valAddrDelivery("#validator-id", "#continue-btn", "#delivery_datepicker", "#delivery_time")
     });
 
+    sumItemList(".delivery-item-price", "#order-subtotal");
   });
-  
 
-  function calculateDeliveryTotal(){
-      var DELIVERY_BASELINE_PRICE = 10;  
-      var total = DELIVERY_BASELINE_PRICE;
-      var items = $(".delivery-item-price");
-      items.each(function(){
-          var deliveryCostString = $(this).html();
-          total = total + parseInt(deliveryCostString);
-          $(this).html("$" + deliveryCostString);
-          
-      });
-      console.log("delivery total:" + total);
-
-      $('#order-subtotal').text("$" + total);
-      checkFormDisableBtn();
-  }
-
-  calculateDeliveryTotal();
 
   
 
