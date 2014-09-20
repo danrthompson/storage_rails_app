@@ -54,24 +54,21 @@
 = javascript_include_tag "item_selector"
 
 :javascript
-  $(document).ready(function() {
-    
-    var all_form = $("#delivery_time");
-    all_form.on('input', function() {
-      checkFormDisableBtn();
+  
+
+  $(document).ready(function() { 
+    valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#delivery_datepicker", "#delivery_time");
+
+    $(".form-control").on('input', function() {
+      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#delivery_datepicker", "#delivery_time");
+    });
+
+    $(".btn-inc").click(function() {
+      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#delivery_datepicker", "#delivery_time");
     });
 
   });
 
-  function checkFormDisableBtn(){
-    
-      if(($("#delivery_datepicker").val().length > 0) && ($("#delivery_time").val().length > 0)) {
-          console.log("disabling disabling on signup page");
-          $("#continue-btn").removeAttr("disabled"); 
-      }
-      else console.log("pickup is not valid");
-  }
-
-
+ 
 
    

@@ -44,11 +44,24 @@ function hideParentWhenZero(classId){
 // Makes sure required fields are filled out on address/delivery page
 /////////////////////////////////////////////////////////////
 function valQuantityAndAddress(formID, buttonID, fieldClass){
-  var formValid = enableButtonWhenValid(formID, buttonID); 
-  if (formValid) makeSureQuantityEntered(fieldClass, buttonID);
+  var formValid = checkFormValidation(formID, buttonID); 
+  if (formValid) return makeSureQuantityEntered(fieldClass, buttonID);
 }
 
-function enableButtonWhenValid(formID, buttonID){
+function valQuantityAddrDelivery(formID, buttonID, fieldClass, datepickerID, timeFieldId){
+  if (valQuantityAndAddress(formID, buttonID, fieldClass)) {
+    // console.log("checking pickup");
+    validatePickup(datepickerID, timeFieldId, buttonID);
+  } else{
+    // console.log("form or quanitity not valid");
+    $(buttonID).attr("disabled", "disabled"); 
+  }
+}
+
+
+// Validates address form
+function checkFormValidation(formID, buttonID){
+  // console.log("checking form");
   $(formID).data('bootstrapValidator').validate();
   if ($(formID).data('bootstrapValidator').isValid()){
       $(buttonID).removeAttr("disabled");    
@@ -59,15 +72,42 @@ function enableButtonWhenValid(formID, buttonID){
   }
 }
 
+// Makes sure user selects at least one item
 function makeSureQuantityEntered(fieldClass, buttonID){
-  var fieldsToSum = $(fieldClass);
-  var total = 0;
-  fieldsToSum.each(function(){
-    total += parseInt($(this).val());
-    if (total <= 0) $(buttonID).attr("disabled", "disabled");    
-    else $(buttonID).removeAttr("disabled");    
+  // console.log("checking quanitity");
+  total = 0;
+
+  $(fieldClass).each(function(){
+    var fieldVal = $(this).val();
+    if ((fieldVal)){
+      // console.log("Int" + parseInt(fieldVal));
+      total = total + parseInt(fieldVal);   
+    }
   });
+  // console.log("Total after sum: "+ total);
+  if (total > 0){
+    // console.log("Quantity:" + total + ", Returning true");
+    $(buttonID).removeAttr("disabled");
+    return true;
+  } else{
+    $(buttonID).attr("disabled", "disabled"); 
+    return false;
+  }
+
 }
 
-
+// Makes sure pickup day and time is selected
+function validatePickup(datepickerID, timeFieldId, buttonID){
+  // console.log("checking pickup");
+  if(($(datepickerID).val().length > 0) && ($(timeFieldId).val().length > 0)) {
+      // console.log("disabling disabling on signup page");
+      $(buttonID).removeAttr("disabled"); 
+      return true;
+  }
+  else {
+    // console.log("pickup is not valid");
+    $(buttonID).attr("disabled", true); 
+    return false;
+  }
+}
 
