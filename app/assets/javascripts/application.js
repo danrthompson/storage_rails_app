@@ -39,17 +39,35 @@ function hideParentWhenZero(classId){
   });
 }; 
 
-// function calculateDeliveryTotal(){
-//     var DELIVERY_BASELINE_PRICE = 10;
-    
-//     var total = DELIVERY_BASELINE_PRICE;
-//     var items = $(".delivery-item-price");
-//     items.each(function(){
-//         total = total + $(this).html().parseInt();
-//     });
-//     console.log("delivery total:" + total);
 
-//     $('#order-subtotal').text("$" + total);
-// }
+/////////////////////////////////////////////////////////////
+// Makes sure required fields are filled out on address/delivery page
+/////////////////////////////////////////////////////////////
+function valQuantityAndAddress(formID, buttonID, fieldClass){
+  var formValid = enableButtonWhenValid(formID, buttonID); 
+  if (formValid) makeSureQuantityEntered(fieldClass, buttonID);
+}
+
+function enableButtonWhenValid(formID, buttonID){
+  $(formID).data('bootstrapValidator').validate();
+  if ($(formID).data('bootstrapValidator').isValid()){
+      $(buttonID).removeAttr("disabled");    
+      return true;
+  } else{
+    $(buttonID).attr("disabled", "disabled"); 
+    return false;
+  }
+}
+
+function makeSureQuantityEntered(fieldClass, buttonID){
+  var fieldsToSum = $(fieldClass);
+  var total = 0;
+  fieldsToSum.each(function(){
+    total += parseInt($(this).val());
+    if (total <= 0) $(buttonID).attr("disabled", "disabled");    
+    else $(buttonID).removeAttr("disabled");    
+  });
+}
+
 
 

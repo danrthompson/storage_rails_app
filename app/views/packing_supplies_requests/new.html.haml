@@ -12,7 +12,7 @@
             %h2 Order Packing Supplies
 
   / BODY CONTENT: SELECT ITEMS
-  = form_for (@packing_supplies_request) do |f| 
+  = form_for (@packing_supplies_request), id:"test" do |f| 
     .container
       .row
         .div
@@ -20,7 +20,6 @@
             .row
               = fields_for @user do |field|
                 = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
-                / # = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"delivery_datepicker", select_id:"delivery_time"}
           .col-md-6.col-md-offset-3.half-opacity.charges-box
             %br/
             %br/ 
@@ -35,11 +34,30 @@
               = link_to "Back", storage_items_path, class:"white"
           .col-md-4.col-md-offset-4.bottom-buttons.charges-box
             .boxed-gray.continue-button
-              %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
+              %button.btn.btn-primary.blue-bg.blue-bg-hover#continue-btn{:type => "button", disabled: true}/
               = f.submit "Confirm Order"
 
 
 = render :partial => "partials/footer"
 
 = javascript_include_tag "item_selector"
+
+
+:javascript
+  $(document).ready(function() { 
+    valQuantityAndAddress("#validator-id", "#continue-btn", ".quantity-field");
+
+    $(".form-control").on('input', function() {
+      valQuantityAndAddress("#validator-id", "#continue-btn", ".quantity-field");
+    });
+
+    $(".btn-inc").click(function() {
+      valQuantityAndAddress("#validator-id", "#continue-btn", ".quantity-field");
+    });
+
+  });
+
+ 
+
+
 
