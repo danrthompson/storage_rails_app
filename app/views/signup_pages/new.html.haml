@@ -178,7 +178,7 @@
                   %div.extra-form-padding
                     = userAcct.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm Password"
                 .col-md-8.col-md-offset-2.bottom-buttons
-                  %a= userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-third-btn"                  
+                  %a= userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"                  
                   %a.pointer
                     %h1.btn.btn-default.pull-left#signup-fourth-back Back
             %br/
@@ -225,9 +225,19 @@
 
     var all_form = $(".form-control");
     all_form.on('input', function() {
-      checkFormDisableBtn();
+      if (!($("#signup-third").hasClass("hidden"))){
+        checkFormDisableBtn();
+      }
+      if (!($("#signup-fourth").hasClass("hidden"))){
+        if ($("#user_email").html().length > 0 && $("#user_password").html().length > 0){
+          var error = $(".help-block");
+          if (error.length <= 0){
+            $("#signup-fourth-btn").removeAttr("disabled"); 
+            console.log("show fourth button");
+          } 
+        } 
+      } 
     });
-
   });
 
 
@@ -236,14 +246,13 @@
   // Makes sure required fields are filled out on address/delivery page
   /////////////////////////////////////////////////////////////
   function checkFormDisableBtn(){
+    $("#signup-form").data('bootstrapValidator').validate();
     if ($("#signup-form").data('bootstrapValidator').isValid()){
       console.log("address page content is valid");
    
       if((($("#pickup_datepicker").val().length > 0) && ($("#pickup_time").val().length > 0)) || $("#pickup-time").hasClass("hidden")) {
-          console.log("disabling disabling on signup page");
           $("#signup-third-btn").removeAttr("disabled"); 
       } else console.log("pickup is not valid");
-
     } else{
       $("#signup-third-btn").attr("disabled", "disabled"); 
       console.log("Address entities are not valid");
