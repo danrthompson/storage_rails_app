@@ -228,6 +228,8 @@
       if (!($("#signup-third").hasClass("hidden"))){
         checkFormDisableBtn();
       }
+
+      // THIS SHIT NEEDS TO BE FIXED
       if (!($("#signup-fourth").hasClass("hidden"))){
         if ($("#user_email").html().length > 0 && $("#user_password").html().length > 0){
           var error = $(".help-block");
@@ -236,7 +238,7 @@
             console.log("show fourth button");
           } 
         } 
-      } 
+      }
     });
   });
 
