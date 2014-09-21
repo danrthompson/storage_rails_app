@@ -1,6 +1,8 @@
 = javascript_include_tag "signup_flow"
 = render :partial => 'partials/signup_header'
 
+= render :partial => 'partials/nudge_icon'
+
 .container.full-width.blue-bg.no-padding.white.align-center
   %br/ 
   %h1#lets-doit LET'S DO THIS
@@ -238,10 +240,8 @@
       console.log("address page content is valid");
    
       if((($("#pickup_datepicker").val().length > 0) && ($("#pickup_time").val().length > 0)) || $("#pickup-time").hasClass("hidden")) {
-        if((($("#delivery_datepicker").val().length > 0) && ($("#delivery_time").val().length > 0)) || $("#delivery-time").hasClass("hidden")) {
           console.log("disabling disabling on signup page");
           $("#signup-third-btn").removeAttr("disabled"); 
-        } else console.log("delivery is not valid");
       } else console.log("pickup is not valid");
 
     } else{
@@ -289,6 +289,8 @@
   $("#signup-second-btn").click(function(e){
     e.preventDefault();
     moveFromTo("#signup-second", "#signup-third");
+    $(".nudge-icon").toggleClass("hidden");
+
   })
 
   $("#signup-third-btn").click(function(e){

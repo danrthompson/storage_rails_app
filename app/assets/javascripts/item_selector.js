@@ -107,7 +107,7 @@
 
     var total = (numBox * BOX_PRICE) + (numMedium * MEDIUM_PRICE) + (numLarge * LARGE_PRICE) + (numXLarge * XLARGE_PRICE);
     console.log("total:" + total);
-    $('#pickup-subtotal').text("$" + total+"/m");
+    $('#pickup-subtotal').text("$" + total+"/month");
     if ((total > 1) && ($("#pickup-time").hasClass("hidden"))){
       $("#pickup-time").toggleClass("hidden");
       
