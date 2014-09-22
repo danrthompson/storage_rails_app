@@ -26,6 +26,7 @@ class DeliveryRequestsController < ApplicationController
 			items_to_deliver.update_all(delivery_request_id: @delivery_request.id)
 			redirect_to @delivery_request and return
 		else
+			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
 			render action: :new and return
 		end
 	end

@@ -19,6 +19,7 @@ class PickupRequestsController < ApplicationController
 			@pickup_request.save!
 			redirect_to @pickup_request and return
 		else
+			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
 			render action: :new and return
 		end
 	end

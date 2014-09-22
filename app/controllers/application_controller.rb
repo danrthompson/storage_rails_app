@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def verify_user_is_ready!
-  	redirect_to new_user_session_url and return unless current_user
+  	redirect_to new_user_session_url, alert: 'You need to be signed in to access this page.' and return unless current_user
   	redirect_to confirm_signup_pages_url(current_user.id) and return unless current_user.ready?
   end
 

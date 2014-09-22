@@ -20,7 +20,7 @@ module ParamExtraction
 	end
 
 	def create_packing_supplies_request_params(params)
-		params.require(:packing_supplies_request).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, :posted_delivery_time, :posted_delivery_date)
+		params.require(:packing_supplies_request).permit(:box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity)
 	end
 
 	def create_pickup_request_params(params)

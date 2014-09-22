@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
-  devise_for :users, except: [:edit, :update, :destroy]
+  devise_for :users
 
   resources :storage_items, only: [:index, :edit, :update]
   resources :delivery_requests, only: [:show]

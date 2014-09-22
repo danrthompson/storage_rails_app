@@ -16,7 +16,11 @@ class UsersController < ApplicationController
 		
 		@user.update(new_user_values)
 		sign_in @user, bypass: true if signin_changed
-		# errors
-		redirect_to edit_user_url @user
+		if @user.valid?
+			redirect_to edit_user_url @user and return
+		else
+			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
+			redirect_to edit_user_url @user 
+		end
 	end
 end
