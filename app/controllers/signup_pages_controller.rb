@@ -12,10 +12,10 @@ class SignupPagesController < ApplicationController
 
 	def create
 		@user = User.create new_user_params(params)
+		@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))
+		@pickup_request = PickupRequest.new(create_pickup_request_params(params))
 
 		if @user.valid?
-			@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))
-			@pickup_request = PickupRequest.new(create_pickup_request_params(params))
 			@packing_supplies_request.user_id = @user.id
 			@pickup_request.user_id = @user.id
 			@packing_supplies_request.save
@@ -23,8 +23,7 @@ class SignupPagesController < ApplicationController
 			sign_in @user
 			redirect_to confirm_signup_pages_url(@user.id) and return
 		else
-			@packing_supplies_request = PackingSuppliesRequest.new
-			@pickup_request = PickupRequest.new
+			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
 			render action: :new and return
 		end
 	end

@@ -3,9 +3,12 @@ class PickupRequest < Request
 
 	has_many :storage_items
 
+	before_validation :normalize_delivery_time
 	after_create :create_associated_storage_items
 
+	validates :delivery_time, presence: true
 	validates :box_quantity, :bubble_quantity, :tape_quantity, :wardrobe_box_quantity, absence: true
+	validate :delivery_time_is_available
 
 	def small_item_quantity=(small_item_quantity)
 		@small_item_quantity = small_item_quantity.to_i

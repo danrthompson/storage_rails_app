@@ -4,10 +4,7 @@ class Request < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :driver, class_name: 'User'
 
-	before_validation :normalize_delivery_time
-
-	validates :user_id, :delivery_time, presence: true
-	validate :delivery_time_is_available
+	validates :user_id, presence: true
 
 	def self.delivery_time_available?(time)
 		within_standard_times?(time) and fits_with_other_delivery_times?(time, all)
