@@ -22,7 +22,7 @@
               .row
                 = fields_for @user do |field|
                   = render partial: "partials/delivery_addr_date", locals: {field:field, f:f, id:"datepicker"}
-                  = render partial: "partials/delivery_date_time", locals: {field:field, f:f,  id:"delivery_datepicker", select_id:"delivery_time"}
+                  = render partial: "partials/delivery_date_time", locals: {field:field, f:f,  id:"pickup_datepicker", select_id:"delivery_time"}
         
           %br/ 
           %br/ 
@@ -95,10 +95,10 @@
 
 :javascript
   $(document).ready(function() { 
-    valAddrDelivery("#validator-id", "#continue-btn", "#delivery_datepicker", "#delivery_time");
+    valAddrDelivery("#validator-id", "#continue-btn", "#pickup_datepicker", "#delivery_time");
 
     $(".form-control").on('input', function() {
-      valAddrDelivery("#validator-id", "#continue-btn", "#delivery_datepicker", "#delivery_time")
+      valAddrDelivery("#validator-id", "#continue-btn", "#pickup_datepicker", "#delivery_time")
     });
 
     sumItemList(".delivery-item-price", "#order-subtotal");
