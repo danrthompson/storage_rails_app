@@ -157,7 +157,8 @@
             .boxed-gray.continue-button  
               %button#pickup-button.btn.btn-primary.gray-bg{:disabled => false, :type => "button"}
                 Request New Pickup
-              %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Request Delivery
+              = link_to new_delivery_request_path do
+                %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Request Delivery
 %br/
 %br/
 %br/
@@ -242,25 +243,25 @@
      window.location.href = destinationURL;
   });
 
-  $("#delivery-button").click(function(){
-     event.preventDefault();
-     var selectedEntries = $(".selected-item.delivery-entry");
-     var itemsList = "";
-     var numItems = 0;
-     selectedEntries.each(function(){
-      var elemId = $(this).attr('id');
-      if(numItems == 0){
-        itemsList = elemId;
-      } else{
-        itemsList = itemsList + "," + elemId;
-      }
-      numItems += 1;
-     });
-     console.log(selectedEntries.size());
-     console.log(itemsList);
+  // $("#delivery-button").click(function(){
+  //    event.preventDefault();
+  //    var selectedEntries = $(".selected-item.delivery-entry");
+  //    var itemsList = "";
+  //    var numItems = 0;
+  //    selectedEntries.each(function(){
+  //     var elemId = $(this).attr('id');
+  //     if(numItems == 0){
+  //       itemsList = elemId;
+  //     } else{
+  //       itemsList = itemsList + "," + elemId;
+  //     }
+  //     numItems += 1;
+  //    });
+  //    console.log(selectedEntries.size());
+  //    console.log(itemsList);
 
-     var destinationURL = "/delivery_requests/new/" + itemsList;
-     window.location.href = destinationURL;
-  });
+  //    var destinationURL = "/delivery_requests/new/" + itemsList;
+  //    window.location.href = destinationURL;
+  // });
 
   
