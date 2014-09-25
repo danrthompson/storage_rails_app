@@ -61,11 +61,17 @@
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
                   .inner
                     .crop-mask
-                      = image_tag(storage_item.image_url, class: "img-responsive")
+                      .crop-mask-img-wrapper
+                        = image_tag(storage_item.image_url, class: "img-responsive")
+                      .item-description
+                        %p.subtitle.box-subtitle
+                          = storage_item.get_description
+                        = link_to "(click here to endit entry)", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"align-center description-edit-boxed"
+
 
                     %h4.storage-item-title= storage_item.get_title
-                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
-                    = link_to "edit", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"pull-right"
+                    / %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
+                    / # = link_to "edit", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"pull-right edit-btn"
               .col-md-12.col-sm-12.col-xs-12.align-right
                 %br/
                 / # =link_to "Want to learn how deliveries work?", {:controller => "packing_supplies_requests", :action => "new"}
@@ -98,35 +104,50 @@
                   / = link_to {:action => "edit", "id"=>"#{small_item.id}"}, class:"inner" do
                   .inner
                     .crop-mask
-                      = image_tag(small_item.image_url, class: "img-responsive")
+                      .crop-mask-img-wrapper
+                        = image_tag(small_item.image_url, class: "img-responsive")
+                      .item-description
+                        %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= small_item.get_description
+
+
                     %h4.storage-item-title= small_item.get_title
-                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= small_item.get_description
-                    = link_to "edit", {:action => "edit", "id"=>"#{small_item.id}"}, class:"pull-right"
+                    / %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= small_item.get_description
+                    = link_to "(click here to endit entry)", {:action => "edit", "id"=>"#{small_item.id}"}, class:"align-center bottom-edit-btn"
+                    / = link_to "edit", {:action => "edit", "id"=>"#{small_item.id}"}, class:"pull-right edit-btn visible"
                       
               - @medium_items_at_home.each do |medium_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
                     .crop-mask
-                      = image_tag(medium_item.image_url, class: "img-responsive")
+                      .crop-mask-img-wrapper
+                        = image_tag(medium_item.image_url, class: "img-responsive")
+                      .item-description
+                        %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= medium_item.get_description
                     %h4.storage-item-title= medium_item.get_title
-                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= medium_item.get_description
-                    = link_to "edit", {:action => "edit", "id"=>"#{medium_item.id}"}, class:"pull-right"
+                    = link_to "(click here to endit entry)", {:action => "edit", "id"=>"#{medium_item.id}"}, class:"align-center bottom-edit-btn"
+                    / = link_to "edit", {:action => "edit", "id"=>"#{medium_item.id}"}, class:"pull-right edit-btn visible"
               - @large_items_at_home.each do |large_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
                     .crop-mask
-                      = image_tag(large_item.image_url, class: "img-responsive")
+                      .crop-mask-img-wrapper
+                        = image_tag(large_item.image_url, class: "img-responsive")
+                      .item-description
+                        %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= large_item.get_description
                     %h4.storage-item-title= large_item.get_title
-                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= large_item.get_description
-                    = link_to "edit", {:action => "edit", "id"=>"#{large_item.id}"}, class:"pull-right"
+                    = link_to "(click here to endit entry)", {:action => "edit", "id"=>"#{large_item.id}"}, class:"align-center bottom-edit-btn"
+                    / = link_to "edit", {:action => "edit", "id"=>"#{large_item.id}"}, class:"pull-right edit-btn visible"
               - @extra_large_items_at_home.each do |xl_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
                     .crop-mask
-                      = image_tag(xl_item.image_url, class: "img-responsive")
+                      .crop-mask-img-wrapper
+                        = image_tag(xl_item.image_url, class: "img-responsive")
+                      .item-description
+                        %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= xl_item.get_description
                     %h4.storage-item-title= xl_item.get_title
-                    %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= xl_item.get_description
-                    = link_to "edit", {:action => "edit", "id"=>"#{xl_item.id}"}, class:"pull-right"
+                    = link_to "(click here to endit entry)", {:action => "edit", "id"=>"#{xl_item.id}"}, class:"align-center bottom-edit-btn"
+                    / = link_to "edit", {:action => "edit", "id"=>"#{xl_item.id}"}, class:"pull-right edit-btn visible"
                      
     
           

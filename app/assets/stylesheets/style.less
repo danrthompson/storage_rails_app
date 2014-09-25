@@ -172,6 +172,10 @@
 	cursor: pointer;
 }
 
+.visible{
+	display: block ! important;
+}
+
 
 .small-text{
 	font-size: 12px;
@@ -690,6 +694,7 @@ h3.double-underlined{
 		&.no-hover{
 			&:hover{
 				background-color: @gray-background;
+				cursor: default;
 			}
 		}
 
@@ -705,8 +710,9 @@ h3.double-underlined{
 			margin-bottom: 15px;
 		}
 
+		
 		.inner{
-			text-align: left;
+			text-align: center;
 			margin-top: 20px;
 			h4{
 				margin-bottom: 5px;
@@ -715,30 +721,40 @@ h3.double-underlined{
 				padding-left: 0;
 				text-align: center;
 			}
-			a{
+			.edit-btn{
 				position: absolute;
 				top: 0px;
 				right: 0px;
 				padding-top: 15px;
 				padding: 15px 15px 10px 15px;
-				border-bottom-left-radius: 10px;
 				background-color: @default-blue;
-				// color: @gray-regular;
 				color: white;
 				text-transform: uppercase;
-				border:1px solid white;
-				border-bottom: 1px solid @light-gray;
-				border-left: 1px solid @light-gray;
 				font-weight: 600;
 				border-top: 1px solid white;
 				border-right: 1px solid white;
 				opacity: 0.8;
-
 				display: none;
+
+				border:1px solid white;
+				border-bottom: 1px solid @light-gray;
+				border-left: 1px solid @light-gray;
+				border-bottom-left-radius: 10px;
+
 				&:hover{
 					opacity: 1;
 					// color: @dark-gray;
+				}
 
+			}
+			.bottom-edit-btn{
+				font-weight: 500;
+				color: @default-blue;
+				opacity: 0.5;
+				position: relative;
+				top:-20px;
+				&:hover{
+					opacity: 1;
 				}
 			}
 		}
@@ -759,6 +775,10 @@ h3.double-underlined{
 				}
 
 			}
+			.item-description{
+				display: block;
+			}
+
 		}
 		.button-group{
 			padding-top: 10px;
@@ -1105,9 +1125,46 @@ p.alert  , p.notice {
 	height: 165px;
 	overflow: hidden;
 	margin-bottom: 20px;
+	.crop-mask-img-wrapper{
+		width: 100%;
+		height:165px;
+		background-color: white;
+	}
 	img{
 		width: 100%;
 		height: auto;
+	}
+	.item-description{
+		position:relative;
+		top:-165px;
+		// background-color: rgba(238, 238, 238, 0.85);
+		// color: @gray-regular;
+		background-color: rgba(32, 109, 171, 0.9);
+		color: white;
+		// background-color: @default-blue;
+		padding: 10px;
+		padding-top:30px;
+		border: 2px solid @light-gray;
+		height:165px;
+		font-weight: 500;
+		display:none;
+		
+		.description-edit-boxed{
+			font-size: 14px;
+			color: @default-blue;
+			opacity: 0.5;
+			margin-bottom: 5px;
+			font-weight: 300;
+			padding: 5px 10px;
+			background-color: white;
+			width: initial;
+			border-radius: 5px;
+			// background-color: pink;
+			&:hover{
+				opacity: 1;
+				color: @default-blue;
+			}
+		}
 	}
 }
 
