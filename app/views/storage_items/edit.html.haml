@@ -51,12 +51,12 @@
                     = form.text_area :description, placeholder:"Shoes, books, you name it!", rows:4, class:"form-control"
 
                 .row
-                  %br/ 
                   .col-md-8.col-md-offset-4.bottom-buttons
                     = form.submit "Save Changes", class:"btn btn-primary pull-right" 
                     = link_to "Cancel", :storage_items, class:"btn gray-bg white half-opacity"
 
                     %p.pull-left.no-opacity p
+                %br/ 
 
 = render :partial => 'partials/footer'
 

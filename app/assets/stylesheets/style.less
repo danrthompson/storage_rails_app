@@ -1135,6 +1135,7 @@ p.alert  , p.notice {
 		height: auto;
 	}
 	.item-description{
+
 		position:relative;
 		top:-165px;
 		// background-color: rgba(238, 238, 238, 0.85);
@@ -1143,16 +1144,17 @@ p.alert  , p.notice {
 		color: white;
 		// background-color: @default-blue;
 		padding: 10px;
-		padding-top:30px;
 		border: 2px solid @light-gray;
 		height:165px;
 		font-weight: 500;
 		display:none;
-		
+		.box-subtitle{
+			margin-top: 20px;
+		}
 		.description-edit-boxed{
 			font-size: 14px;
 			color: @default-blue;
-			opacity: 0.5;
+			opacity: 0.6;
 			margin-bottom: 5px;
 			font-weight: 300;
 			padding: 5px 10px;
@@ -1165,6 +1167,23 @@ p.alert  , p.notice {
 				color: @default-blue;
 			}
 		}
+		
+		// Add this clas if there is no existing description
+		// .no-description-edit-btn{
+		// 	font-size: 14px;
+		// 	color: white;
+		// 	opacity: 0.8;
+		// 	border: 1px solid #206dab;
+		// 	margin-bottom: 5px;
+		// 	font-weight: 300;
+		// 	padding: 5px 10px;
+		// 	background-color: #206dab;
+		// 	width: initial;
+		// 	border-radius: 5px;
+		// 	position: absolute;
+		// 	top: 3px;
+		// 	right: 2px;
+		// }
 	}
 }
 
