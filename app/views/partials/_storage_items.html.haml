@@ -3,14 +3,32 @@
 .col-md-8.col-md-offset-2.inventory
   %br/ 
   %br/ 
+  // FIX THIS BY REMOVING HIDDEN
   .row
     = render partial: "partials/list_item_4col_field", locals:{title: "Boxes", price: "$5/month", id:"box", field_val: :small_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"$5/m - Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
     = render partial: "partials/list_item_4col_field", locals:{title: "Medium  Item", price: "$12/month", id:"medium", field_val: :medium_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"$12/m -Wardrobe Boxes, Chairs, Lamps, Skis, Bikes, Small Furniture, Equivalent"}
     = render partial: "partials/list_item_4col_field", locals:{title: "Large  Item", price: "$20/month", id:"large", field_val: :large_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:"$20/m - Mattresses, desks, couches, tables, or furniture that takes two to move."}
     = render partial: "partials/list_item_4col_field", locals:{title: "XL Item", price: "$40/month", id:"extra_large", field_val: :extra_large_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", description:"$40/m - Sectional couches, large dining tables, items over 200lbs or 60 cubic feet"}
     / %button.btn.btn-primary.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal"}
-    %a.pull-right.pointer{"data-target" => "#storageSizeModal", "data-toggle" => "modal"}
-      Not sure which size to choose? Click here
+  .row
+    %br/ 
+    %h4.align-center.pointer#not-sure-txt
+      Prefer a list of specific items?
+      %span.blue Click here!
+    %br/ 
+  .row#small-entries-list.hidden
+    = render partial: "partials/small_entry", locals: {name:"armoire", linked_to: "small"}
+    = render partial: "partials/small_entry", locals: {name:"bike", linked_to: "medium"}
+    = render partial: "partials/small_entry", locals: {name:"lamp", linked_to: "medium"}
+    = render partial: "partials/small_entry", locals: {name:"fridge", linked_to: "medium"}
+    = render partial: "partials/small_entry", locals: {name:"couch", linked_to: "large"}
+    = render partial: "partials/small_entry", locals: {name:"desk", linked_to: "large"}
+    = render partial: "partials/small_entry", locals: {name:"hat", linked_to: "large"}
+    = render partial: "partials/small_entry", locals: {name:"cat", linked_to: "large"}
+    = render partial: "partials/small_entry", locals: {name:"piano", linked_to: "large"}
+    = render partial: "partials/small_entry", locals: {name:"cheese", linked_to: "large"}
+    = render partial: "partials/small_entry", locals: {name:"tomatoe", linked_to: "large"}
+    = render partial: "partials/small_entry", locals: {name:"house", linked_to: "large"}
 
 
 .col-md-6.col-md-offset-3.half-opacity.charges-box

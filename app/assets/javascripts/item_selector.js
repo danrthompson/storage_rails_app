@@ -18,6 +18,88 @@
     refreshOrder(val, orderEntrySpan);
   });
 
+  //////////
+  // BOX BUTTON CLICK
+  // VERY REPETITIVE BUT ITS 3AM AND IM TOO TIRED TO THINK
+  //////////
+  $(".small-inc").click(function(){
+    var id = $(this).attr('id');
+    var field = $("#txt-"+id);
+    var val2 = $(field).val();
+    val2 = +val2 + 1;
+    $(field).val(val2);
+    var field = $("#txt-box");
+    var resutVal = sumFieldsFor(".small-txt");
+    $(field).val(resutVal);
+    var orderEntrySpan = $('#num-'+ "box"+ " span");
+    refreshOrder(field.val(), orderEntrySpan);
+  });
+
+  $(".medium-inc").click(function(){
+    var id = $(this).attr('id');
+    var field = $("#txt-"+id);
+    var val2 = $(field).val();
+    val2 = +val2 + 1;
+    $(field).val(val2);
+    var field = $("#txt-medium");
+    var resutVal = sumFieldsFor(".medium-txt");
+    $(field).val(resutVal);
+    var orderEntrySpan = $('#num-'+ "medium"+ " span");
+    refreshOrder(field.val(), orderEntrySpan);
+  });
+
+  $(".large-inc").click(function(){
+    var id = $(this).attr('id');
+    var field = $("#txt-"+id);
+    var val2 = $(field).val();
+    val2 = +val2 + 1;
+    $(field).val(val2);
+    var field = $("#txt-large");
+    var resutVal = sumFieldsFor(".large-txt");
+    $(field).val(resutVal);
+    var orderEntrySpan = $('#num-'+ "large"+ " span");
+    refreshOrder(field.val(), orderEntrySpan);
+  });
+
+  $(".xl-inc").click(function(){
+    var id = $(this).attr('id');
+    var field = $("#txt-"+id);
+    var val2 = $(field).val();
+    val2 = +val2 + 1;
+    $(field).val(val2);
+    var field = $("#txt-extra_large");
+    var resutVal = sumFieldsFor(".xl-txt");
+    $(field).val(resutVal);
+    var orderEntrySpan = $('#num-'+ "extra_large"+ " span");
+    refreshOrder(field.val(), orderEntrySpan);
+  });
+
+
+
+
+  fieldsSum = 0;
+  function sumFieldsFor(txt_field){
+    fieldsSum = 0;
+    console.log("fieldsSum: " + fieldsSum);
+    var objects = $(txt_field);
+    console.log(objects.length);
+    objects.each(function(){
+      var fieldVal = parseInt($(this).val());
+      if (!isNaN(fieldVal)) fieldsSum = +fieldsSum + fieldVal;
+      console.log("Field val: " + fieldVal + "  fieldsSum" + fieldsSum);
+    });
+    console.log(" returning fieldsSum" + fieldsSum);
+    return fieldsSum;
+  }
+  // function incOnClassClick(mainFieldID, buttonFieldId){
+  //   var mainField = $("#txt-"+mainFieldID); //gets main item field
+  //   var mainFieldVal = $(mainFieldID).val(); // gets val for field
+  //   $(mainFieldID).val(mainFieldVal + 1); // updates val
+  //   $(buttonFieldId).val($(#"txt-" + buttonFieldId).val() + 1); // same for small entry
+  //   var orderEntrySpan = $($"num-" + mainFieldID + " span");
+  //   refreshOrder(mainFieldVal, orderEntrySpan); // updates all
+  // }
+
 
   /////////////////////////////////////////////////////////////
   // Changes quantity, updates field when text manually changed
@@ -31,6 +113,7 @@
     var orderEntrySpan = $('#num-'+idRoot+ " span");
     refreshOrder(field.val(), orderEntrySpan);
   });
+
 
 
   /////////////////////////////////////////////////////////////
@@ -122,4 +205,14 @@
     }
     
   }
+
+  $("#not-sure-txt").click(function(){
+    var entries = $("#small-entries-list");
+    entries.toggleClass("hidden");
+    if (!entries.hasClass("hidden")){
+      $(this).html("Click To Hide List");
+    } else{
+      $(this).html("Prefer to choose specific items? Click here!");
+    }
+  });
 
