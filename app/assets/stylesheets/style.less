@@ -185,6 +185,14 @@ img{
 	width: 100%;
 }
 
+p{
+	margin-bottom: 10px;
+}
+
+br.small-spacer{
+	font-size: 5px;
+}
+
 .default-hide{
 	display: none;
 }
@@ -679,6 +687,12 @@ h3.double-underlined{
 		background-color: @gray-background;
 		border: 5px solid white;
 		padding: 0px 20px;
+		&.no-hover{
+			&:hover{
+				background-color: @gray-background;
+			}
+		}
+
 		.storage-item-title{
 			height:35px;
 			margin-bottom: 15px;

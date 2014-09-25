@@ -82,6 +82,16 @@
                 Items Awaiting Pickup
                 / # =link_to "Add to Pickup", {:controller => "pickup_requests", :action => "new"}, :class => "pull-right"
               .double-line
+            .row
+              .col-md-12.inventory-entries.no-hover.boxed-gray.align-center
+                %br/ 
+                %p.blue.heavy-font
+                  These are the items we will pick up on {insert date here}
+                %p
+                  If you like, you can give them an image, title, and description to help find them later.
+                  Otherwise our drivers will help catalog your items when they arrive for pickup. 
+                %br/ 
+            .row
               / - 3.times do
               - @boxes_at_home.each do |small_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
