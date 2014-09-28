@@ -1,6 +1,6 @@
 class StorageItem < ActiveRecord::Base
 	def self.item_types
-		{box: 5.0, medium: 7.5, large: 10.0, extra_large: 20.0}
+		{'small' => 5.0, 'medium' => 7.5, 'large' => 10.0, 'extra_large' => 20.0}
 	end
 
 	has_attached_file :image

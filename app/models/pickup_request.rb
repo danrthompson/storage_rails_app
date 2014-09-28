@@ -3,12 +3,15 @@ class PickupRequest < Request
 
 	has_many :storage_items
 
+	after_initialize :make_quantities_zero_not_nil
 	before_validation :normalize_delivery_time
 	after_create :create_associated_storage_items
 
 	validates :delivery_time, presence: true
 	validates :box_quantity, :bubble_quantity, :tape_quantity, :wardrobe_box_quantity, absence: true
 	validate :delivery_time_is_available
+	validate :is_real?
+	validate :no_other_pickups?
 
 	def small_item_quantity=(small_item_quantity)
 		@small_item_quantity = small_item_quantity.to_i
@@ -26,7 +29,29 @@ class PickupRequest < Request
 		@extra_large_item_quantity = extra_large_item_quantity.to_i
 	end
 
+	def is_real?
+		unless self.storage_items.count > 0 or self.small_item_quantity > 0 or self.medium_item_quantity > 0 or self.large_item_quantity > 0 or self.extra_large_item_quantity > 0
+			errors.add(:small_item_quantity, 'and all other quantities are 0.')
+			return false
+		else
+			return true
+		end
+	end
+
+	def make_quantities_zero_not_nil
+		['small', 'medium', 'large', 'extra_large'].each { |item| self.send("#{item}_item_quantity=", 0) if self.send("#{item}_item_quantity").nil? }
+	end
+
 	private
+
+	def no_other_pickups?
+		if self.user.pickup_requests.where(completion_time: nil).where.not(id: self.id).count > 0
+			errors.add(:delivery_time, 'cannot be added while there is a pending pickup.')
+			return false
+		else
+			return true
+		end
+	end
 
 	def create_associated_storage_items
 		basic_storage_item_values = {user: self.user, pickup_request: self}
