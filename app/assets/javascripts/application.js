@@ -18,6 +18,7 @@
 //= require bootstrap
 //= require bootstrapValidator
 //= require custom
+//= require bootstrap-datepicker
 // require syn-dashboard
 // require classie
 // require nivo-lightbox

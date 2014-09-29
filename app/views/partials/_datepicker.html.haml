@@ -1,0 +1,12 @@
+#datepicker.input-append.date{"data-date" => "dateValue: Customer.DateOfBirth", "data-date-format" => "dd-mm-yyyy"}
+  %input.span2.form-control{"data-bind" => "value: Customer.DateOfBirth", :size => "16", :type => "text"}/
+  %span.add-on
+    %i.icon-calendar
+
+
+:javascript
+  var start = Date();
+  $('#datepicker').datepicker();
+  console.log("start: " + start);
+  $('#datepicker').datepicker('setStartDate', start);
+

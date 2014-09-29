@@ -20,6 +20,7 @@
 *= require bootstrap_less/bootstrap
 *= require style
 *= require pikaday 
+*= require datepicker
 *= require_self
 
  */
