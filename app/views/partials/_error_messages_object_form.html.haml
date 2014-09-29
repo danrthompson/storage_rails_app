@@ -1,6 +1,7 @@
 - if object.errors.any?
-  .error_explanation
+  .error_explanation.align-center.col-md-6.col-md-offset-3.light-blue-bg
     %h2= "#{pluralize(object.errors.count, "error")} prohibited this post from being saved:"
     %ul
     - object.errors.full_messages.each do |msg|
-      %li= msg
+      %li
+        %p= msg

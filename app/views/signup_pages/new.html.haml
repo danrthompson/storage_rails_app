@@ -6,15 +6,14 @@
 .container.full-width.blue-bg.no-padding.white.align-center
   %br/ 
   %h1#lets-doit LET'S DO THIS
-%br/ 
-%br/ 
-%br/ 
-%br/ 
-%br/ 
-
 = render partial: 'partials/error_messages_object_form', locals: {object: @user}
 = render partial: 'partials/error_messages_object_form', locals: {object: @packing_supplies_request}
 = render partial: 'partials/error_messages_object_form', locals: {object: @pickup_request}
+%br/ 
+%br/ 
+%br/ 
+%br/ 
+%br/ 
 
 / = form_for :signup, :html => {:id => 'signup-form'}, url: {action: 'create'} do |f| 
 = form_for @packing_supplies_request, url: create_signup_pages_path, :html => {:id => 'signup-form'} do |f| 
@@ -182,7 +181,7 @@
                   %div.extra-form-padding
                     = userAcct.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm Password"
                 .col-md-8.col-md-offset-2.bottom-buttons
-                  %a= userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"                  
+                  %a#signup-fourth-btn= userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"                  
                   %a.pointer
                     %h1.btn.btn-default.pull-left#signup-fourth-back Back
             %br/
@@ -256,7 +255,7 @@
     if ($("#signup-form").data('bootstrapValidator').isValid()){
       console.log("address page content is valid");
    
-      if((($("#pickup_datepicker").val().length > 0) && ($("#pickup_time").val().length > 0)) || $("#pickup-time").hasClass("hidden")) {
+      if((($("#pickup_request_posted_delivery_date").val().length > 0) && ($("#pickup_time").val().length > 0)) || $("#pickup-time").hasClass("hidden")) {
           $("#signup-third-btn").removeAttr("disabled"); 
       } else console.log("pickup is not valid");
     } else{
@@ -315,7 +314,7 @@
 
   $("#signup-fourth-btn").click(function(e){
     e.preventDefault();
-    moveFromTo("#signup-fourth", "#signup-fifth");
+    moveFromTo("#signup-fourth", "#signup-first");
   })
 
 
