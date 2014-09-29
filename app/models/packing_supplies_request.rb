@@ -2,7 +2,7 @@ class PackingSuppliesRequest < Request
 	after_initialize :make_quantities_zero_not_nil
 
 	validates :box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
-	validate :includes_at_least_one_item
+	validate :is_real?
 
 	def self.packing_items
 		{bubble: 1.0, tape: 2.0, box: 4.0, wardrobe_box: 5.0}
@@ -20,13 +20,17 @@ class PackingSuppliesRequest < Request
 		total + PackingSuppliesRequest.delivery_price
 	end
 
-	private
 
-	def includes_at_least_one_item
+	def is_real?
 		unless PackingSuppliesRequest.packing_items.keys.any? { |item| self.send("#{item}_quantity") > 0 }
 			errors.add :box_quantity, 'and all other quantities are zero.'
+			return false
+		else
+			return true
 		end
 	end
+
+	private
 
 	def make_quantities_zero_not_nil
 		PackingSuppliesRequest.packing_items.keys.each { |item| self.send("#{item}_quantity=", 0) if self.send("#{item}_quantity").nil? }

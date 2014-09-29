@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :packing_supplies_requests
   has_many :delivery_requests
   has_many :pickup_requests
+  has_many :notifications
 
   has_many :unavailable_times
   has_many :completed_storage_items, class_name: 'StorageItem', foreign_key: 'driver_id'

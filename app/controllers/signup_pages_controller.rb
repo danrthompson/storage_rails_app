@@ -15,7 +15,7 @@ class SignupPagesController < ApplicationController
 		@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))
 		@pickup_request = PickupRequest.new(create_pickup_request_params(params))
 
-		if @user.valid?
+		if @user.valid? and (@packing_supplies_request.valid? or not @packing_supplies_request.is_real?) and (@pickup_request.valid? or not @pickup_request.is_real?)
 			@packing_supplies_request.user_id = @user.id
 			@pickup_request.user_id = @user.id
 			@packing_supplies_request.save
@@ -39,8 +39,10 @@ class SignupPagesController < ApplicationController
 		@user = User.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != current_user.id
 		@user.update(user_cc_params(params))
-		redirect_to storage_items_url and return if @user.ready?
-		redirect_to confirm_signup_pages_url(@user.id) and return
+		if @user.valid?	
+			redirect_to storage_items_url and return if @user.ready?
+		end
+		render action: :show
 	end
 
 	private

@@ -3,6 +3,7 @@ class Request < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :driver, class_name: 'User'
+	has_many :notifications
 
 	validates :user_id, presence: true
 
