@@ -15,7 +15,7 @@
   .container
     .row
       .div
-        = form_for(@delivery_request, url: create_delivery_request_path(@id_string)) do |f| 
+        = form_for(@delivery_request) do |f| 
           / Address Info Section
           .row
             .col-md-8.col-md-offset-2
@@ -53,7 +53,8 @@
                 .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
                   %h5 Delivery Summary
                   %ul
-                    - @requested_boxes.each do |requested_item|
+                    # - @requested_boxes.each do |requested_item|
+                    - if false
                       %li.delivery-line-item
                         = requested_item.title
                         %i.pull-right
