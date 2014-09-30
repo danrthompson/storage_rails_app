@@ -2,9 +2,9 @@
   / %i{class:"fa fa-dropbox"}
   %i{class:"icon-#{icon_name} fa"}
   %h5= name
-  %input{:type=>"text", placeholder:"#{linked_to}", class:"form-control quantity-field #{linked_to}-txt", id:"txt-#{id}"}
+  %input.align-center{:type=>"text", value:"0", class:"form-control quantity-field #{linked_to}-txt", id:"txt-#{id}"}
   %button.btn.btn-primary.rounded.full-width{:type => "button", class:"#{linked_to}-inc", id:"#{id}"} +
   %p.onepxhigh.no-opacity .
 
 
-  
+  / placeholder:"#{linked_to}"

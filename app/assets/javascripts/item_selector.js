@@ -40,17 +40,6 @@
     
   });
 
- 
-
-  // $("#not-sure-txt").click(function(){
-  //   var entries = $("#small-entries-list");
-  //   entries.toggleClass("hidden");
-  //   if (!entries.hasClass("hidden")){
-  //     $(this).html("Click To Hide List");
-  //   } else{
-  //     $(this).html("Prefer to choose specific items? Click here!");
-  //   }
-  // });
 
   /////////////////////////////////////////////////////////////
   // Increment Text Field
@@ -127,7 +116,38 @@
     refreshOrder(field.val(), orderEntrySpan);
   });
 
+  $('.small-txt').on('input', function() {
+    var field = $("#txt-box");
+    var resutVal = sumFieldsFor(".small-txt");
+    $(field).val(resutVal);
+    var orderEntrySpan = $('#num-'+ "small"+ " span");
+    refreshOrder(field.val(), orderEntrySpan);
+  });
 
+  $('.medium-txt').on('input', function() {
+    var field = $("#txt-medium");
+    var resutVal = sumFieldsFor(".medium-txt");
+    $(field).val(resutVal);
+    var orderEntrySpan = $('#num-'+ "medium"+ " span");
+    refreshOrder(field.val(), orderEntrySpan);
+  });
+
+  $('.large-txt').on('input', function() {
+    var field = $("#txt-large");
+    var resutVal = sumFieldsFor(".large-txt");
+    $(field).val(resutVal);
+    var orderEntrySpan = $('#num-'+ "large"+ " span");
+    refreshOrder(field.val(), orderEntrySpan);
+  });
+
+
+  $('.xl-txt').on('input', function() {
+    var field = $("#txt-extra_large");
+    var resutVal = sumFieldsFor(".xl-txt");
+    $(field).val(resutVal);
+    var orderEntrySpan = $('#num-'+ "extra_large"+ " span");
+    refreshOrder(field.val(), orderEntrySpan);
+  });
 
 
   fieldsSum = 0;
@@ -237,7 +257,7 @@
     // Pricing Per Box
     var BOX_PRICE =  5.00;
     var MEDIUM_PRICE =  12.00;
-    var LARGE_PRICE =  20.00;
+    var LARGE_PRICE =  25.00;
     var XLARGE_PRICE =  40.00;
 
 

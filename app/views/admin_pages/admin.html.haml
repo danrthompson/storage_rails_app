@@ -6,30 +6,7 @@
     .col-md-12.col-xs-12.align-center
       .single-line.no-opacity
       %h1.no-side-margin ADMIN PAGE
-    / .col-md-1.col-md-offset-2.col-sm-4.col-xs-4.align-center  
-    /   %a{:href => "#pickup-requests"} 
-    /     .service-box
-    /       .service-icon
-    /         %i.fa.fa-truck
-    /       .service-desc
-    /         %h6
-    /           Pickup Requests
-    / .col-md-1.col-sm-4.col-xs-4.align-center
-    /   %a{:href => "#supplies-requests"} 
-    /     .service-box
-    /       .service-icon
-    /         %i.fa.fa-dropbox
-    /       .service-desc
-    /         %h6
-    /           Supplies Requests
-    / .col-md-1.col-sm-4.col-xs-4.align-center
-    /   %a{:href => "#delivery-requests"} 
-    /     .service-box
-    /       .service-icon
-    /         %i.fa.fa-question-circle.fa-3x
-    /       .service-desc
-    /         %h6
-    /           Delivery Requests
+
 
 .container#admin-page
   %br/ 
@@ -37,7 +14,6 @@
   %section.no-padding
     .row
       .col-lg-8.col-md-offset-2
-      
         // Order Recap
         .col-md-4.confirm-elem
           %h5.align-center Pickup Requests
@@ -63,14 +39,11 @@
               %span.order-item Pending Requests
               %span.pull-right #{@pending_delivery_requests.count}
       
-      / %br/
-      / %h3.double-underlined 
-      / .double-line
   %br/ 
   %br/ 
   .single-line
   .single-line
-  %section.text-center#pickup-requests
+  %section.text-center#pickup-requests 
     .heading-about.marginbot-20
       .container
         .row
@@ -78,34 +51,35 @@
             .section-heading
               %h2.no-margin Pending Pickup Requests
               %p.align-center Outstanding Pickup Requests: #{@pending_pickup_requests.count}
-    .container
-      .row
+    .container.request-entry
+      // For Each Pickup Request
+      .row  
         - @pending_pickup_requests.each do |pickup_request|
           .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
             .request-content.no-margin.row
-              .col-md-4
-                %h4.blue Pending pickup request
-              .col-md-8
-                %p
-                  %span.heavy-font Delivery time requested:
-                  = pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
-                %p.no-margin
-                  %span.heavy-font  Customer's address:
-                  = pickup_request.user.address_line_1
-
+              .col-md-5
+                %h3.blue.heavy-font Pending Pickup
+              .col-md-3.pull-left
+                %a.pointer.white
+                  %h1.btn.btn-default.red Mark Assigned
+              .col-md-3.pull-left
+                %a.btn.btn-skin.white{:href => ""} Record & Complete 
+            .row
+              
             .request-content
             = render partial: "storage_items", locals: {activity: 'pick up', request: pickup_request, show_id: false}
 
-            .row
-              .col-md-12
-                %br/ 
-                = form_for pickup_request, url: complete_pickup_request_path(pickup_request.id) do |f|
-                  = f.submit 'Mark Complete', class:"pull-right btn btn-skin"
-                  %a.btn.white.gray-bg.pull-right{:href => "mailto:#{pickup_request.user.email}"}  Email Customer
-                %br/
-                %br/ 
-                %br/  
-        %br/ 
+          / .row
+          /   .col-md-12
+          /     %br/ 
+          /     = form_for pickup_request, url: complete_pickup_request_path(pickup_request.id) do |f|
+          /       = f.submit 'Mark Complete', class:"pull-right btn btn-skin"
+          /       %a.btn.white.gray-bg.pull-right{:href => "mailto:#{pickup_request.user.email}"}  Email Customer
+          /     %br/
+          /     %br/ 
+          /     %br/  
+        %br/
+      / # = render partial: "partials/admin_request"
   
   %br/ 
   .single-line

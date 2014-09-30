@@ -1,0 +1,27 @@
+.row  
+  - @pending_pickup_requests.each do |pickup_request|
+    .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
+      .request-content.no-margin.row
+        .col-md-4
+          %h4.blue Pending pickup request
+        .col-md-8
+          %p
+            %span.heavy-font Delivery time requested:
+            = pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
+          %p.no-margin
+            %span.heavy-font  Customer's address:
+            = pickup_request.user.address_line_1
+
+      .request-content
+      = render partial: "storage_items", locals: {activity: 'pick up', request: pickup_request, show_id: false}
+
+      .row
+        .col-md-12
+          %br/ 
+          = form_for pickup_request, url: complete_pickup_request_path(pickup_request.id) do |f|
+            = f.submit 'Mark Complete', class:"pull-right btn btn-skin"
+            %a.btn.white.gray-bg.pull-right{:href => "mailto:#{pickup_request.user.email}"}  Email Customer
+          %br/
+          %br/ 
+          %br/  
+  %br/

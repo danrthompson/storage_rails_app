@@ -66,7 +66,7 @@
                       .item-description
                         %p.subtitle.box-subtitle
                           = storage_item.get_description
-                        = link_to "(click here to endit entry)", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"align-center description-edit-boxed"
+                        = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"align-center description-edit-boxed"
 
 
                     %h4.storage-item-title= storage_item.get_title
@@ -112,7 +112,7 @@
 
                     %h4.storage-item-title= small_item.get_title
                     / %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= small_item.get_description
-                    = link_to "(click here to endit entry)", {:action => "edit", "id"=>"#{small_item.id}"}, class:"align-center bottom-edit-btn"
+                    = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{small_item.id}"}, class:"align-center bottom-edit-btn"
                     / = link_to "edit", {:action => "edit", "id"=>"#{small_item.id}"}, class:"pull-right edit-btn visible"
                       
               - @medium_items_at_home.each do |medium_item|
@@ -124,7 +124,7 @@
                       .item-description
                         %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= medium_item.get_description
                     %h4.storage-item-title= medium_item.get_title
-                    = link_to "(click here to endit entry)", {:action => "edit", "id"=>"#{medium_item.id}"}, class:"align-center bottom-edit-btn"
+                    = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{medium_item.id}"}, class:"align-center bottom-edit-btn"
                     / = link_to "edit", {:action => "edit", "id"=>"#{medium_item.id}"}, class:"pull-right edit-btn visible"
               - @large_items_at_home.each do |large_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
@@ -135,7 +135,7 @@
                       .item-description
                         %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= large_item.get_description
                     %h4.storage-item-title= large_item.get_title
-                    = link_to "(click here to endit entry)", {:action => "edit", "id"=>"#{large_item.id}"}, class:"align-center bottom-edit-btn"
+                    = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{large_item.id}"}, class:"align-center bottom-edit-btn"
                     / = link_to "edit", {:action => "edit", "id"=>"#{large_item.id}"}, class:"pull-right edit-btn visible"
               - @extra_large_items_at_home.each do |xl_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
@@ -146,7 +146,7 @@
                       .item-description
                         %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= xl_item.get_description
                     %h4.storage-item-title= xl_item.get_title
-                    = link_to "(click here to endit entry)", {:action => "edit", "id"=>"#{xl_item.id}"}, class:"align-center bottom-edit-btn"
+                    = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{xl_item.id}"}, class:"align-center bottom-edit-btn"
                     / = link_to "edit", {:action => "edit", "id"=>"#{xl_item.id}"}, class:"pull-right edit-btn visible"
                      
     
