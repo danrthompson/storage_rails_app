@@ -1,3 +1,56 @@
+  ///////////////////////////////
+  $("#by-item-btn").click(function(){
+    console.log("clicked!");
+    var entries = $("#small-entries-list");
+    var categories = $("#entries-category-list");
+
+    if (entries.hasClass("hidden")){
+          $("#by-category-btn").toggleClass("third-opacity");
+          $(this).toggleClass("third-opacity");
+    
+          $("#by-category-btn").toggleClass("gray-bg");
+          $(this).toggleClass("gray-bg");
+    
+          $("#by-category-btn").toggleClass("blue-bg");
+          $(this).toggleClass("blue-bg");
+    
+          entries.toggleClass("hidden");   
+          categories.toggleClass("hidden");    
+     }
+    });
+
+  $("#by-category-btn").click(function(){
+    console.log("cat clicked!");
+    var categories = $("#entries-category-list");
+    var entries = $("#small-entries-list");
+    if (categories.hasClass("hidden")){
+          $("#by-item-btn").toggleClass("third-opacity");
+          $(this).toggleClass("third-opacity");
+    
+          $("#by-item-btn").toggleClass("gray-bg");
+          $(this).toggleClass("gray-bg");
+    
+          $("#by-item-btn").toggleClass("blue-bg");
+          $(this).toggleClass("blue-bg");
+    
+          entries.toggleClass("hidden");   
+          categories.toggleClass("hidden");    
+        }
+         
+    
+  });
+
+ 
+
+  // $("#not-sure-txt").click(function(){
+  //   var entries = $("#small-entries-list");
+  //   entries.toggleClass("hidden");
+  //   if (!entries.hasClass("hidden")){
+  //     $(this).html("Click To Hide List");
+  //   } else{
+  //     $(this).html("Prefer to choose specific items? Click here!");
+  //   }
+  // });
 
   /////////////////////////////////////////////////////////////
   // Increment Text Field
@@ -206,13 +259,5 @@
     
   }
 
-  $("#not-sure-txt").click(function(){
-    var entries = $("#small-entries-list");
-    entries.toggleClass("hidden");
-    if (!entries.hasClass("hidden")){
-      $(this).html("Click To Hide List");
-    } else{
-      $(this).html("Prefer to choose specific items? Click here!");
-    }
-  });
+
 

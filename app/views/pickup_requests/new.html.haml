@@ -28,11 +28,24 @@
           / Add to Order Section
           .col-md-6.col-md-offset-3.half-opacity
             %br/
-            / .single-line
+            %br/ 
+            .single-line
             %br/
+            %br/ 
           .col-md-12
             %h1.no-margin Add To Pickup
-          
+            %br/ 
+          / .col-md-8.col-md-offset-2
+          /   .row
+          /     .col-md-6
+          /       .boxed-gray.continue-button
+          /         %button.btn.btn-primary.blue-bg#by-category-btn{:type => "button"}
+          /           Choose By Category
+          /         / %a{:href => "user-newbox.html", :style => "color: white;"} Back
+          /     .col-md-6
+          /       .boxed-gray.continue-button
+          /         %button.btn.btn-primary.third-opacity.gray-bg#by-item-btn{:type => "button"}
+          /           Choose By Item
           = render partial: "partials/storage_items", locals:{f:f}
           
 

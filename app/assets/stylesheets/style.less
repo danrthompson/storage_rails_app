@@ -25,6 +25,10 @@
 .half-opacity{
 	opacity: 0.5;
 }
+
+.third-opacity{
+	opacity: 0.33;
+}
 .no-opacity{
 	opacity: 0;
 }
@@ -1250,3 +1254,17 @@ p.alert  , p.notice {
 	margin-top: 20px;
 	margin-bottom: 50px;
 }
+
+#by-category-btn, #by-item-btn{
+	&:hover{
+		opacity: 1;
+		cursor: default;
+	}
+	&.third-opacity{
+		&:hover{
+			cursor: pointer;
+			background-color: @dark-gray !important;
+		}
+	}
+}
+
