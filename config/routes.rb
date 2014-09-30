@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :storage_items, only: [:index, :edit, :update]
-  resources :delivery_requests, only: [:show, :new, :create]
-  resources :packing_supplies_requests, :pickup_requests, only: [:show, :create, :new]
+  resources :delivery_requests, :packing_supplies_requests, :pickup_requests, only: [:show, :create, :new, :edit, :update]
 
   get 'admin', to: 'admin_pages#admin', as: 'admin'
   patch 'admin/complete_packing_supplies_request/:id', to: 'admin_pages#complete_packing_supplies_request', as: 'complete_packing_supplies_request'

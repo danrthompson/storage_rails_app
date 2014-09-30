@@ -28,6 +28,7 @@ class Request < ActiveRecord::Base
 	end
 
 	def self.within_standard_times?(time)
+		return false if time < Time.now + 8.hours
 		return true
 		# if time.saturday? or time.sunday?
 		# 	return time.hour.in? 12..19
