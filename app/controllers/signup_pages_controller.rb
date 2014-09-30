@@ -14,15 +14,18 @@ class SignupPagesController < ApplicationController
 		@user = User.create new_user_params(params)
 		@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))
 		@pickup_request = PickupRequest.new(create_pickup_request_params(params))
+		@packing_supplies_request.user = @user
+		@pickup_request.user = @user
 
 		if @user.valid? and (@packing_supplies_request.valid? or not @packing_supplies_request.is_real?) and (@pickup_request.valid? or not @pickup_request.is_real?)
-			@packing_supplies_request.user_id = @user.id
-			@pickup_request.user_id = @user.id
 			@packing_supplies_request.save
 			@pickup_request.save
 			sign_in @user
 			redirect_to confirm_signup_pages_url(@user.id) and return
 		else
+			@user.destroy
+			@packing_supplies_request = PackingSuppliesRequest.new unless @packing_supplies_request.is_real?
+			@pickup_request = PickupRequest.new unless @pickup_request.is_real?
 			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
 			render action: :new and return
 		end
