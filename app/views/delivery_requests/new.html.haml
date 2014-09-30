@@ -53,8 +53,7 @@
                 .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
                   %h5 Delivery Summary
                   %ul
-                    # - @requested_boxes.each do |requested_item|
-                    - if false
+                    - @requested_boxes.each do |requested_item|
                       %li.delivery-line-item
                         = requested_item.title
                         %i.pull-right
