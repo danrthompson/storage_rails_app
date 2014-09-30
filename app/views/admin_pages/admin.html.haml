@@ -64,20 +64,100 @@
                   %h1.btn.btn-default.red Mark Assigned
               .col-md-3.pull-left
                 %a.btn.btn-skin.white{:href => ""} Record & Complete 
+              / .row
+              /   .col-md-12
+              /     %br/ 
+              /     = form_for pickup_request, url: complete_pickup_request_path(pickup_request.id) do |f|
+              /       = f.submit 'Mark Complete', class:"pull-right btn btn-skin"
+              /       %a.btn.white.gray-bg.pull-right{:href => "mailto:#{pickup_request.user.email}"}  Email Customer
+              /     %br/
+              /     %br/ 
+              /     %br/  
             .row
               
             .request-content
-            = render partial: "storage_items", locals: {activity: 'pick up', request: pickup_request, show_id: false}
+              .storage-items
+                .row.storage-item
+                  .col-md-4
+                    %p
+                      %span Delivery Time:
+                      %br/ 
+                      = pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
+                      %br/ 
+                      %br/ 
+                      %span Customer Email
+                      %a{:href => ""}
+                        = pickup_request.user.email
+                  .col-md-4      
+                    %p 
+                      %span Address:
+                      %br/ 
+                      = pickup_request.user.address_line_1
+                      = pickup_request.user.address_line_2
+                      %br/ 
+                      #{pickup_request.user.city}, #{pickup_request.user.state}, #{pickup_request.user.zip}
+                      %br/ 
+                      %span Notes: 
+                      = pickup_request.user.special_instructions
+                  .col-md-4
+                    %p
+                      %span Items Requested
+                      %ul.no-list
+                        %li
+                          Boxes:
+                          %span.pull-right= pickup_request.small_item_quantity
+                        %li
+                          Medium Items:
+                          %span.pull-right= pickup_request.medium_item_quantity
+                        %li
+                          Large Items:
+                          %span.pull-right= pickup_request.large_item_quantity
+                        %li
+                          XL Items:
+                          %span.pull-right= pickup_request.extra_large_item_quantity
+                // THIS IS ONLY FOR DETAIL VIEWS
+                / - pickup_request.storage_items.each do |item|
+                /   .row.storage-item
+                /     .col-md-6
+                /       - if false
+                /         %p
+                /           %span Item ID:
+                /           #{item.id}
+                /       %p
+                /         %span Item to Pick Up:
+                /         #{item.item_type}
+                /       %p
+                /         %span User item number:
+                /         #{item.user_item_number}
 
-          / .row
-          /   .col-md-12
-          /     %br/ 
-          /     = form_for pickup_request, url: complete_pickup_request_path(pickup_request.id) do |f|
-          /       = f.submit 'Mark Complete', class:"pull-right btn btn-skin"
-          /       %a.btn.white.gray-bg.pull-right{:href => "mailto:#{pickup_request.user.email}"}  Email Customer
-          /     %br/
-          /     %br/ 
-          /     %br/  
+                /       / title
+                /       - if item.title.blank?
+                /         %p
+                /           %span [No item title]
+                /       - else
+                /         %p
+                /           %span Title: 
+                /           #{item.title}
+                /       / description
+                /       - if item.description.blank?
+                /         %p 
+                /           %span No item description
+                /       - else
+                /         %p
+                /           %span Description:
+                /           #{item.description}
+                /     .col-md-6
+                /       / image
+                /       - if item.image?
+                /         %p
+                /           %span Item image:
+                /         .crop-mask
+                /           %img{src: "#{item.image_url}"}/
+                /       - else
+                /         %p
+                /           %span [No item image]
+                /           \- please take one
+                /     %hr/
         %br/
       / # = render partial: "partials/admin_request"
   
