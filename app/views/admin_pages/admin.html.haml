@@ -43,7 +43,11 @@
   %br/ 
   .single-line
   .single-line
-  %section.text-center#pickup-requests 
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////// PICKUP REQUESTS ///////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  %section.text-center#pickup-requests
     .heading-about.marginbot-20
       .container
         .row
@@ -64,41 +68,10 @@
                   %h1.btn.btn-default.red Mark Assigned
               .col-md-3.pull-left
                 %a.btn.btn-skin.white{:href => ""} Record & Complete 
-              / .row
-              /   .col-md-12
-              /     %br/ 
-              /     = form_for pickup_request, url: complete_pickup_request_path(pickup_request.id) do |f|
-              /       = f.submit 'Mark Complete', class:"pull-right btn btn-skin"
-              /       %a.btn.white.gray-bg.pull-right{:href => "mailto:#{pickup_request.user.email}"}  Email Customer
-              /     %br/
-              /     %br/ 
-              /     %br/  
-            .row
-              
             .request-content
               .storage-items
                 .row.storage-item
-                  .col-md-4
-                    %p
-                      %span Delivery Time:
-                      %br/ 
-                      = pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
-                      %br/ 
-                      %br/ 
-                      %span Customer Email
-                      %a{:href => ""}
-                        = pickup_request.user.email
-                  .col-md-4      
-                    %p 
-                      %span Address:
-                      %br/ 
-                      = pickup_request.user.address_line_1
-                      = pickup_request.user.address_line_2
-                      %br/ 
-                      #{pickup_request.user.city}, #{pickup_request.user.state}, #{pickup_request.user.zip}
-                      %br/ 
-                      %span Notes: 
-                      = pickup_request.user.special_instructions
+                  = render partial: "partials/admin_driver_details", locals:{request:pickup_request}
                   .col-md-4
                     %p
                       %span Items Requested
@@ -115,55 +88,94 @@
                         %li
                           XL Items:
                           %span.pull-right= pickup_request.extra_large_item_quantity
-                // THIS IS ONLY FOR DETAIL VIEWS
-                / - pickup_request.storage_items.each do |item|
-                /   .row.storage-item
-                /     .col-md-6
-                /       - if false
-                /         %p
-                /           %span Item ID:
-                /           #{item.id}
-                /       %p
-                /         %span Item to Pick Up:
-                /         #{item.item_type}
-                /       %p
-                /         %span User item number:
-                /         #{item.user_item_number}
+              / # = render partial: "partials/admin_pickup_detail", locals: {pickup_request: pickup_request}
+              %p.no-opacity a
 
-                /       / title
-                /       - if item.title.blank?
-                /         %p
-                /           %span [No item title]
-                /       - else
-                /         %p
-                /           %span Title: 
-                /           #{item.title}
-                /       / description
-                /       - if item.description.blank?
-                /         %p 
-                /           %span No item description
-                /       - else
-                /         %p
-                /           %span Description:
-                /           #{item.description}
-                /     .col-md-6
-                /       / image
-                /       - if item.image?
-                /         %p
-                /           %span Item image:
-                /         .crop-mask
-                /           %img{src: "#{item.image_url}"}/
-                /       - else
-                /         %p
-                /           %span [No item image]
-                /           \- please take one
-                /     %hr/
         %br/
-      / # = render partial: "partials/admin_request"
   
   %br/ 
   .single-line
   .single-line
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////// DELIVERY REQUESTS /////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  %section.text-center#delivery-requests
+    .heading-about.marginbot-20
+      .container
+        .row
+          .col-lg-8.col-lg-offset-2
+            .section-heading
+              %h2.no-margin Pending Delivery Requests
+              %p.align-center Outstanding Delivery Requests: #{@pending_delivery_requests.count}
+    .container.request-entry
+      .row
+        - @pending_delivery_requests.each do |delivery_request|
+          .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border.request-entry
+            .request-content.no-margin
+              .col-md-5
+                %h3.blue.heavy-font Pending Delivery
+              .col-md-3.pull-left
+                %a.pointer.white
+                  %h1.btn.btn-default.red Mark Assigned
+              .col-md-3.pull-left
+                %a.btn.btn-skin.white{:href => ""} Record & Complete 
+              /     = form_for pickup_request, url: complete_pickup_request_path(delivery_request.id) do |f|
+              /       = f.submit 'Mark Complete', class:"pull-right btn btn-skin"
+
+            .row
+              
+            .request-content
+              .storage-items
+                .row.storage-item
+                  = render partial: "partials/admin_driver_details", locals:{request:delivery_request}
+                  .col-md-4
+                    %p
+                      %ul.no-list
+                        %li.heavy-font 
+                          %span Boxes:
+                          %span.pull-right ID
+
+                        - delivery_request.storage_items.where(item_type: 'small').each do |small_item|
+                          %li.delivery-detail
+                            small_item.title
+                            %span.pull-right #{small_item.user_item_number}
+                        %li.heavy-font
+                          %span Medium Items:
+                          %span.pull-right ID
+                        - delivery_request.storage_items.where(item_type: 'medium').each do |medium_item|
+                          %li.delivery-detail 
+                            medium_item.title
+                            %span.pull-right #{medium_item.user_item_number}
+
+                        %li.heavy-font
+                          %span Large Items: 
+                          %span.pull-right ID
+                        - delivery_request.storage_items.where(item_type: 'large').each do |large_item|
+                          %li.delivery-detail 
+                            large_item.title
+                            %span.pull-right #{large_item.user_item_number}
+
+                        %li.heavy-font
+                          %span XL Items
+                          %span.pull-right ID
+                        - delivery_request.storage_items.where(item_type: 'extra_large').each do |extra_large_item|
+                          %li.delivery-detail
+                            = extra_large_item.title
+                            %span.pull-right #{extra_large_item.user_item_number}
+                %p.no-opacity a
+
+            .request-content
+              / # = render partial: "storage_items", locals: {activity: 'deliver', request: delivery_request, show_id: true}
+
+
+  %br/ 
+  %br/ 
+  .single-line
+  .single-line
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////// SUPPLIES REQUESTS /////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////
   %section.text-center#supplies-requests
     .heading-about.marginbot-20
       .container
@@ -173,67 +185,49 @@
               %h2.no-margin Pending Packing Supplies Requests
               %p.align-center Outstanding Supplies Requests: #{@pending_packing_supplies_requests.count}
 
-    .container
+    .container.request-entry  
       .row
         - @pending_packing_supplies_requests.each do |packing_request|
-          .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
-            .request-content.no-margin.row
-              .col-md-6
-                %h4.blue Pending Packing Supplies Request
-                %p.no-margin
-                  %span.heavy-font  Customer's address:
-                  = packing_request.user.address_line_1
-                %p.no-margin
-                  %span.heavy-font  Date Ordered:
-                  Sample Date Time
-              .col-md-6
-                %p= "Boxes ordered: #{packing_request.box_quantity}"
-                %p= "Wardrobe boxes ordered: #{packing_request.wardrobe_box_quantity}"
-                %p= "Bubble wrap items ordered: #{packing_request.bubble_quantity}"
-                %p= "Packing tape items ordered: #{packing_request.tape_quantity}"
-            %br/ 
+          .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border.request-entry
+            .request-content.no-margin
+              .col-md-5
+                %h3.blue.heavy-font Supplies Request
+              .col-md-3.pull-left
+                %a.pointer.white
+                  %h1.btn.btn-default.red Mark Assigned
+              .col-md-3.pull-left
+                %a.btn.btn-skin.white{:href => ""} Record & Complete 
             .row
-              .col-md-12
-                = form_for packing_request, url: complete_packing_supplies_request_path(packing_request.id) do |f|
-                  = f.submit 'Mark Shipped', class:"pull-right btn btn-skin"
-                  %a.btn.white.gray-bg.pull-right{:href => "mailto:#{packing_request.user.email}"}  Email Customer
-
-            %br/ 
-  
-  %br/ 
-  .single-line
-  .single-line
-  %section.text-center#delivery-requests
-    .heading-about.marginbot-20
-      .container
-        .row
-          .col-lg-8.col-lg-offset-2
-            .section-heading
-              %h2.no-margin Pending Delivery Requests
-              %p.align-center Outstanding Delivery Requests: #{@pending_delivery_requests.count}
-    .container
-      .row
-        - @pending_delivery_requests.each do |delivery_request|
-          .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
-            .request-content.no-margin.row
-              .col-md-4
-                %h4.blue Pending Delivery Request
-              .col-md-8
-                %p
-                  %span.heavy-font Delivery time requested:
-                  = delivery_request.delivery_time.strftime("%B %d at %l:%M %p")
-                %p.no-margin
-                  %span.heavy-font  Customer's address:
-                  = delivery_request.user.address_line_1
-
             .request-content
-              = render partial: "storage_items", locals: {activity: 'deliver', request: delivery_request, show_id: true}
+              .storage-items
+                .row.storage-item
+                  .col-md-5
+                    %p.no-margin
+                      %span.heavy-font  Customer's address:
+                      %br/ 
+                      = packing_request.user.address_line_1
+                      = packing_request.user.address_line_2
+                      %br/ 
+                      #{packing_request.user.city}, #{packing_request.user.state}, #{packing_request.user.zip}
 
-            = form_for delivery_request, url: complete_delivery_request_path(delivery_request.id) do |f|
-              = f.submit 'Mark Complete',class:"pull-right btn btn-skin"
-              %a.btn.white.gray-bg.pull-right{:href => "mailto:#{delivery_request.user.email}"}  Email Customer
-            %br/ 
-            %br/ 
+                    %p.no-margin
+                      %br/ 
+                      %span.heavy-font  Date Ordered:
+                      Sample Date Time
+                  .col-md-5.col-md-offset-2
+                    %p
+                      %span Boxes:
+                      #{packing_request.box_quantity}
+                    %p
+                      %span Wardrobe Boxes:
+                      #{packing_request.wardrobe_box_quantity}
+                    %p
+                      %span Bubble Wrap:
+                      #{packing_request.bubble_quantity}
+                    %p
+                      %span Packing Tape:
+                      #{packing_request.tape_quantity}                   
+
 
 %br/ 
 %br/ 

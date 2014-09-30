@@ -1,0 +1,43 @@
+/ THIS IS ONLY FOR DETAIL VIEWS
+- pickup_request.storage_items.each do |item|
+  .row.storage-item.detail-item
+    .col-md-6
+      - if false
+        %p
+          %span Item ID:
+          #{item.id}
+      %p
+        %span Item to Pick Up:
+        #{item.item_type}
+      %p
+        %span User item number:
+        #{item.user_item_number}
+
+      / title
+      - if item.title.blank?
+        %p
+          %span [No item title]
+      - else
+        %p
+          %span Title: 
+          #{item.title}
+      / description
+      - if item.description.blank?
+        %p 
+          %span No item description
+      - else
+        %p
+          %span Description:
+          #{item.description}
+    .col-md-6
+      / image
+      - if item.image?
+        %p
+          %span Item image:
+        .crop-mask
+          %img{src: "#{item.image_url}"}/
+      - else
+        %p
+          %span [No item image]
+          \- please take one
+    %hr/

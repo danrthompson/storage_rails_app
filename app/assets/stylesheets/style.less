@@ -67,6 +67,10 @@
 	background-color: #ba1f25;
 	color: white;
 	border: 1px solid#ba1f25;
+	&:hover{
+		background-color: @dark-gray;
+		color: white;
+	}
 }
 
 
@@ -1253,6 +1257,11 @@ p.alert  , p.notice {
 		}
 
 	}
+
+	.detail-item{
+		background-color: rgba(255, 255, 255, 0.55);
+		border: 5px solid white;
+	}
 }
 
 .error_explanation{
@@ -1276,7 +1285,12 @@ p.alert  , p.notice {
 
 .request-entry{
 	h3{
-		margin-top: 0px;
+		margin-top: 3px;
 		margin-bottom: 15px;
+		font-size: 26px;
 	}
+}
+
+.delivery-detail{
+	padding-left: 20px;
 }

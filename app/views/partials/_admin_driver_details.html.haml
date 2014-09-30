@@ -1,0 +1,25 @@
+
+
+.col-md-4
+  %p
+    %span Delivery Time:
+    %br/ 
+    = request.delivery_time.strftime("%B %d at %l:%M %p")
+    %br/ 
+    %br/ 
+    %span Customer Email
+    %br/ 
+    %a{:href => ""}
+      = request.user.email
+.col-md-4      
+  %p 
+    %span Address:
+    %br/ 
+    = request.user.address_line_1
+    = request.user.address_line_2
+    %br/ 
+
+    #{request.user.city}, #{request.user.state}, #{request.user.zip}
+    %br/ 
+    %span Notes: 
+    = request.user.special_instructions
