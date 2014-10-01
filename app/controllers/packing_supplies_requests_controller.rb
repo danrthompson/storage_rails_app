@@ -21,7 +21,12 @@ class PackingSuppliesRequestsController < ApplicationController
 		@packing_supplies_request = request_update_verification(params, @user)
 		return if @packing_supplies_request.nil?
 		@packing_supplies_request.update(create_packing_supplies_request_params(params))
-
+		if @packing_supplies_request.valid?
+			redirect_to storage_items_url, notice: 'Packing supplies request updated successfully.' and return
+		else
+			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
+			render action: :new and return
+		end
 	end
 
 	def create

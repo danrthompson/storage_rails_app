@@ -21,7 +21,8 @@ class DeliveryRequestsController < ApplicationController
 
 	def update
 		@user = current_user
-		@delivery_request = request_by_id!(params, @user)
+		@delivery_request = request_update_verification(params, @user)
+		return if @delivery_request.nil?
 	end
 
 	def create

@@ -34,4 +34,8 @@ module ParamExtraction
 	def update_storage_item_params(params)
 		params.require(:storage_item).permit(:title, :description, :image)
 	end
+
+	def edit_pickup_request_params(params)
+		params.require(:pickup_request).permit(:posted_delivery_time, :posted_delivery_date)
+	end
 end
