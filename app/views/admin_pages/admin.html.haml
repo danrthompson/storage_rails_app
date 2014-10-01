@@ -62,6 +62,7 @@
           .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
             .request-content.no-margin.row
               .col-md-5
+                %i.icon-pickup.fa.pull-left 
                 %h3.blue.heavy-font Pending Pickup
               .col-md-3.pull-left
                 %a.pointer.white.details-btn{:id => "#{pickup_request.id}"}
@@ -116,6 +117,7 @@
           .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border.request-entry
             .request-content.no-margin
               .col-md-5
+                %i.icon-delivery.fa.pull-left 
                 %h3.blue.heavy-font Pending Delivery
               .col-md-3.pull-left
                 %a.pointer.white.details-btn{:id => "#{delivery_request.id}"} 
@@ -190,6 +192,7 @@
           .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border.request-entry
             .request-content.no-margin
               .col-md-5
+                %i.icon-icon-box.fa.pull-left 
                 %h3.blue.heavy-font Supplies Request
               .col-md-3.pull-left
                 %a.pointer.white
