@@ -14,7 +14,7 @@
     %li.pull-right
       = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover"
    
-   
+    / - if mainpage
     %li.pull-right.no-border
       %a.light-gray.black-hover{:href => "#delivery-requests"} Deliveries
     %li.pull-right.no-border
@@ -23,6 +23,9 @@
       %a.light-gray.black-hover{:href => "#pickup-requests"} Pickups
     %li.pull-right.no-border
       %a.light-gray.black-hover{:href => ""} Top of Page
-
+    / - else
+    %li.pull-right.no-border
+      = link_to "Admin Main", admin_path, class:"light-gray black-hover"
+      / %a.light-gray.black-hover{:href => ""} Top of Page
 
 

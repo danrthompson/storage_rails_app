@@ -1,4 +1,4 @@
-= render partial: "partials/admin_header"
+= render partial: "partials/admin_header", locals:{mainText:"Item Pickup"}
 
 .container.full-width.blue-bg.no-padding.white.dashboard-header
   
@@ -67,7 +67,7 @@
                 %a.pointer.white.details-btn{:id => "#{pickup_request.id}"}
                   %h1.btn.btn-default.gray-bg View Details
               .col-md-3.pull-left
-                %a.btn.btn-skin.white{:href => ""} Record & Complete 
+                = link_to "Record & Complete", admin_record_pickup_request_path(id: pickup_request.id), class: "btn btn-skin white"
             .request-content
               .storage-items
                 .row.storage-item

@@ -247,6 +247,12 @@ br.small-spacer{
 	padding-top: 5px;
 	margin-bottom: 10px;
 	border-bottom: 1px solid @light-gray;
+}
+
+.single-dashed-line{
+	padding-top: 5px;
+	margin-bottom: 10px;
+	border-bottom: 1px dashed @light-gray;
 
 }
 .rounded{
@@ -1263,8 +1269,18 @@ p.alert  , p.notice {
 	}
 
 	.detail-item{
-		background-color: rgba(255, 255, 255, 0.55);
-		border: 5px solid white;
+		background-color: rgba(255, 255, 255, 0.95);
+		// background-color: @light-blue;
+		border: 3px solid @light-gray;
+		.crop-mask{
+			border: 1px solid @gray-regular;
+		}
+		img{
+			text-align: center;
+			// height:100%;
+			// width:auto;
+			// max-width: 100%;
+		}
 	}
 }
 
@@ -1287,6 +1303,8 @@ p.alert  , p.notice {
 	}
 }
 
+
+// ADMIN PAGES
 .request-entry{
 	h3{
 		margin-top: 3px;
@@ -1297,4 +1315,9 @@ p.alert  , p.notice {
 
 .delivery-detail{
 	padding-left: 20px;
+}
+
+.new-item-attribute{
+	// margin-top: 10px;
+	// margin-bottom: 10px;
 }

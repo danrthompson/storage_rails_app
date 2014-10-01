@@ -1,0 +1,113 @@
+= render partial: "partials/admin_header"
+
+.container.full-width.blue-bg.no-padding.white.dashboard-header
+  
+  .row
+    .col-md-12.col-xs-12.align-center
+      .single-line.no-opacity
+      %h1.no-side-margin ADMIN PAGE
+
+
+.container#admin-page
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////// PICKUP REQUESTS ///////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  %section.text-center#pickup-requests
+    .heading-about.marginbot-20
+      .container
+        .row
+          .col-lg-8.col-lg-offset-2
+            .section-heading
+              %h2.no-margin Pending Pickup Requests
+    .container.request-entry
+      // For Each Pickup Request
+      = fields_for @pickup_request do |field|  
+        .row  
+          .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
+            .request-content.row
+              .col-md-5
+                %h3.blue.heavy-font Pending Pickup
+              .col-md-4.col-md-offset-3.pull-right.align-right
+                = link_to "Back To Dashboard", admin_path, class: "btn btn-skin gray-bg white"
+            .request-content
+              .storage-items
+                .row.storage-item
+                  .div
+                    = render partial: "partials/admin_driver_details", locals:{request:@pickup_request}
+                    .col-md-4
+                      %p
+                        %span Items Requested
+                        %ul.no-list
+                          %li
+                            Boxes:
+                            %span.pull-right= @pickup_request.storage_items.where(item_type: 'small').count
+
+                          %li
+                            Medium Items:
+                            %span.pull-right= @pickup_request.storage_items.where(item_type: 'medium').count
+                          %li
+                            Large Items:
+                            %span.pull-right= @pickup_request.storage_items.where(item_type: 'large').count
+                          %li
+                            XL Items:
+                            %span.pull-right= @pickup_request.storage_items.where(item_type: 'extra_large').count
+                  / %p.onepxhigh test
+                  %br/ 
+                  %br/ 
+                  .single-line
+                    %p.no-opacity invisible
+                  .row
+                    .col-md-6
+                      = field.label "Picked Up By:"
+                      = field.text_field :driver,  autofocus: true, placeholder:"Driver Name", class:"col-md-6 form-control", id:""
+                    .col-md-6
+                      = field.label "Notes:"
+                      = field.text_field :driver,  autofocus: true, placeholder:"Driver Name", class:"col-md-6 form-control", id:""
+              .admin-details{:id => "#{@pickup_request.id}-details"}
+                = render partial: "partials/admin_pickup_form", locals: {pickup_request: @pickup_request}
+            / .col-md-10.col-md-offset-1
+            .row
+              .col-md-12.align-center
+                %a.pointer.white.details-btn.pull-right
+                  %h1.btn.btn-default.blue-bg.white Add Entry
+              %br/ 
+              %p.no-opacity ps
+            %br/ 
+            .row
+              .col-md-4.align-center
+                = link_to admin_path, class: "pointer white details-btn", id: "#{@pickup_request.id}" do
+                  %h1.btn.btn-default.gray-bg Back
+              .col-md-4.pull-right.align-center
+                = link_to "Record & Complete", admin_record_pickup_request_path(id: @pickup_request.id), class: "btn btn-skin white"
+            .row
+              %p.no-opacity ps
+          %br/
+
+  
+  %br/ 
+  .single-line
+  .single-line
+
+
+
+
+
+
+= render partial: "partials/footer"
+
+:javascript
+  $(".details-btn").click(function(){
+    var id = $(this).attr("id");
+    var details = $("#" + id + "-details");
+    console.log(id+"-details");
+    if ($(details).hasClass("hidden")) {
+      $("#" + id + " h1").html("Hide Details");
+      $(details).removeClass("hidden");
+    }
+    else {
+      $("#" + id + " h1").html("View Details");
+      $(details).addClass("hidden");
+    }
+  });
+
+// admin/record_pickup_request/id

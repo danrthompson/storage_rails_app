@@ -1,0 +1,62 @@
+/ THIS IS ONLY FOR DETAIL VIEWS
+- pickup_request.storage_items.each do |item|
+  = fields_for item do |field|  
+    .row.storage-item.detail-item
+      .row
+        .col-md-6
+          - if false
+            %p
+              %span Item ID:
+              #{item.id}
+          .new-item-attribute
+            = field.label "Title:"
+            = field.text_field :title,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
+            .no-opacity hidden
+          .new-item-attribute
+            = field.label "Description:"
+            = field.text_field :description,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
+            .no-opacity hidden
+          .new-item-attribute
+            = field.label "Item Image"
+            = field.file_field :image, class:"align-center"
+            .no-opacity hidden
+        .col-md-6
+          / image
+          - if item.image?
+            %p
+              / # = image_tag "#{item.image.url}"
+              %span Item image:
+            .crop-mask
+              %img{src: "#{item.image_url}"}/
+          - else
+            %p
+              %span [No item image]
+              \- please take one
+            .crop-mask
+              %img{src: "#{item.image_url}"}/
+      .single-dashed-line
+      .row
+        .col-md-6
+          .new-item-attribute
+            = field.label "Storage Location:"
+            = field.text_field :title,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
+            .no-opacity hidden
+          .new-item-attribute
+            = field.label "Item Type:"
+            = field.select  :item_type, options_for_select([["box","box"], ["medium","medium"], ["large","large"], ["extra_large","extra_large"]]),{}, {class:"form-control selectpicker"}
+            / # = field.text_field :description,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
+            .no-opacity hidden
+        .col-md-6
+          .new-item-attribute
+            = field.label "ID:"
+            = field.text_field :id,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:"", readonly: true
+            .no-opacity hidden
+          .new-item-attribute
+            = field.label "Notes:"
+            = field.text_field :description,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
+            .no-opacity hidden
+      .row
+        .col-md-12
+          %a{:href => ""} Delete item
+
+         
