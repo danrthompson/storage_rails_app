@@ -64,8 +64,8 @@
               .col-md-5
                 %h3.blue.heavy-font Pending Pickup
               .col-md-3.pull-left
-                %a.pointer.white
-                  %h1.btn.btn-default.red Mark Assigned
+                %a.pointer.white.details-btn{:id => "#{pickup_request.id}"}
+                  %h1.btn.btn-default.gray-bg View Details
               .col-md-3.pull-left
                 %a.btn.btn-skin.white{:href => ""} Record & Complete 
             .request-content
@@ -78,17 +78,19 @@
                       %ul.no-list
                         %li
                           Boxes:
-                          %span.pull-right= pickup_request.small_item_quantity
+                          %span.pull-right= pickup_request.storage_items.where(item_type: 'small').count
+
                         %li
                           Medium Items:
-                          %span.pull-right= pickup_request.medium_item_quantity
+                          %span.pull-right= pickup_request.storage_items.where(item_type: 'medium').count
                         %li
                           Large Items:
-                          %span.pull-right= pickup_request.large_item_quantity
+                          %span.pull-right= pickup_request.storage_items.where(item_type: 'large').count
                         %li
                           XL Items:
-                          %span.pull-right= pickup_request.extra_large_item_quantity
-              / # = render partial: "partials/admin_pickup_detail", locals: {pickup_request: pickup_request}
+                          %span.pull-right= pickup_request.storage_items.where(item_type: 'extra_large').count
+              .admin-details.hidden{:id => "#{pickup_request.id}-details"}
+                = render partial: "partials/admin_pickup_detail", locals: {pickup_request: pickup_request}
               %p.no-opacity a
 
         %br/
@@ -116,13 +118,10 @@
               .col-md-5
                 %h3.blue.heavy-font Pending Delivery
               .col-md-3.pull-left
-                %a.pointer.white
-                  %h1.btn.btn-default.red Mark Assigned
+                %a.pointer.white.details-btn{:id => "#{delivery_request.id}"} 
+                  %h1.btn.btn-default.gray-bg View Details
               .col-md-3.pull-left
                 %a.btn.btn-skin.white{:href => ""} Record & Complete 
-              /     = form_for pickup_request, url: complete_pickup_request_path(delivery_request.id) do |f|
-              /       = f.submit 'Mark Complete', class:"pull-right btn btn-skin"
-
             .row
               
             .request-content
@@ -163,11 +162,10 @@
                           %li.delivery-detail
                             = extra_large_item.title
                             %span.pull-right #{extra_large_item.user_item_number}
-                %p.no-opacity a
-
-            .request-content
-              / # = render partial: "storage_items", locals: {activity: 'deliver', request: delivery_request, show_id: true}
-
+            / .request-content
+            .admin-details.hidden{:id => "#{delivery_request.id}-details"}
+              = render partial: "storage_items", locals: {activity: 'deliver', request: delivery_request, show_id: true}
+            %p.no-opacity a
 
   %br/ 
   %br/ 
@@ -194,7 +192,7 @@
                 %h3.blue.heavy-font Supplies Request
               .col-md-3.pull-left
                 %a.pointer.white
-                  %h1.btn.btn-default.red Mark Assigned
+                  / %h1.btn.btn-default.gray-bg View Details
               .col-md-3.pull-left
                 %a.btn.btn-skin.white{:href => ""} Record & Complete 
             .row
@@ -232,3 +230,20 @@
 %br/ 
 %br/ 
 = render partial: "partials/footer"
+
+:javascript
+  $(".details-btn").click(function(){
+    var id = $(this).attr("id");
+    var details = $("#" + id + "-details");
+    console.log(id+"-details");
+    if ($(details).hasClass("hidden")) {
+      $("#" + id + " h1").html("Hide Details");
+      $(details).removeClass("hidden");
+    }
+    else {
+      $("#" + id + " h1").html("View Details");
+      $(details).addClass("hidden");
+    }
+  });
+
+// admin/record_pickup_request/id
