@@ -220,29 +220,29 @@
   });
 
   // Delivery Entry Selected
-  $(".delivery-entry").click(function() {
-    $(this).toggleClass("selected-item");
+  // $(".delivery-entry").click(function() {
+    // $(this).toggleClass("selected-item");
 
-      if($(this).hasClass("selected-item")){
-      numDeliveryItems = numDeliveryItems + 1;
-        $('input:first', this).prop('checked', true);
+    //   if($(this).hasClass("selected-item")){
+    //   numDeliveryItems = numDeliveryItems + 1;
+    //     $('input:first', this).prop('checked', true);
 
-    } else {
-      numDeliveryItems = numDeliveryItems - 1;
-      $('input:first', this).prop('checked', false);
+    // } else {
+    //   numDeliveryItems = numDeliveryItems - 1;
+    //   $('input:first', this).prop('checked', false);
 
-    }
-    console.log("numDeliveryItems:" + numDeliveryItems);
+    // }
+    // console.log("numDeliveryItems:" + numDeliveryItems);
 
-    if (numDeliveryItems == 0) $("#delivery-button").attr("disabled", "disabled");
-    else {
-      console.log("Delivery BUTTON REMOVING DISABLED");
-      $("#delivery-button").removeAttr("disabled"); 
-      $(".pickup-entry").removeClass("selected-item");
-      // $("#pickup-button").attr("disabled", "disabled");
-      numPickupItems = 0;  
-     } 
-  });
+  //   if (numDeliveryItems == 0) $("#delivery-button").attr("disabled", "disabled");
+  //   else {
+  //    console.log("Delivery BUTTON REMOVING DISABLED");
+  //     $("#delivery-button").removeAttr("disabled"); 
+  //     $(".pickup-entry").removeClass("selected-item");
+  //     // $("#pickup-button").attr("disabled", "disabled");
+  //     numPickupItems = 0;  
+  //    } 
+  // });
 
   // Pick Up Entry Selected
   $(".pickup-entry").click(function() {
