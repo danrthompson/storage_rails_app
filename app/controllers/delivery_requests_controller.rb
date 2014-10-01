@@ -1,5 +1,6 @@
 class DeliveryRequestsController < ApplicationController
 	include ParamExtraction
+	include RequestProcessing
 
 	before_action :verify_user_is_ready!
 
@@ -7,6 +8,21 @@ class DeliveryRequestsController < ApplicationController
 		@delivery_request = DeliveryRequest.new
 		@user = current_user
 		@storage_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil, delivery_request_id: nil).where.not(entered_storage_at: nil).order(:item_type, :entered_storage_at)
+	end
+
+	def edit
+		@user = current_user
+		@delivery_request = request_update_verification(params, @user)
+		return if @delivery_request.nil?
+		@storage_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil, delivery_request_id: nil).where.not(entered_storage_at: nil).order(:item_type, :entered_storage_at)
+		@orginally_selected_item_ids = @delivery_request.storage_items.map {|item| item.id}
+		render action: :new
+	end
+
+	def update
+		@user = current_user
+		@delivery_request = request_update_verification(params, @user)
+		return if @delivery_request.nil?
 	end
 
 	def create
@@ -33,5 +49,15 @@ class DeliveryRequestsController < ApplicationController
 		@user = current_user
 		@delivery_request = DeliveryRequest.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != @delivery_request.user_id
+	end
+
+	private
+
+	def request_update_verification(params, user)
+		delivery_request = request_by_id!(params, user)
+		return nil if delivery_request.nil?
+		return nil if redirect_if_complete!(delivery_request)
+		return nil if redirect_if_too_late!(delivery_request)
+		return delivery_request
 	end
 end

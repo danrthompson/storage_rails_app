@@ -29,6 +29,18 @@ class AdminPagesController < ApplicationController
 		redirect_to :admin, notice: 'Delivery request marked complete' and return
 	end
 
+	def record_pickup_request
+		@pickup_request = PickupRequest.find(params[:id])
+	end
+
+	def record_delivery_request
+		@delivery_request = DeliveryRequest.find(params[:id])
+	end
+
+	def record_packing_supplies_request
+		@packing_supplies_request = PackingSuppliesRequest.find(params[:id])
+	end
+
 	private
 
 	def authenticate_admin!
