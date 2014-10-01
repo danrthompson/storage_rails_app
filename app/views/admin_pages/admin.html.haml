@@ -121,7 +121,8 @@
                 %a.pointer.white.details-btn{:id => "#{delivery_request.id}"} 
                   %h1.btn.btn-default.gray-bg View Details
               .col-md-3.pull-left
-                %a.btn.btn-skin.white{:href => ""} Record & Complete 
+                = link_to "Record & Complete", admin_record_delivery_request_path(id: delivery_request.id), class: "btn btn-skin white"
+                / %a.btn.btn-skin.white{:href => ""} Record & Complete 
             .row
               
             .request-content
