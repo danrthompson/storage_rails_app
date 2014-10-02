@@ -23,8 +23,23 @@ class DeliveryRequestsController < ApplicationController
 
 	def update
 		@user = current_user
+		@user.update(user_address_params(params))
+
 		@delivery_request = request_update_verification(params, @user)
 		return if @delivery_request.nil?
+		@delivery_request.update(create_delivery_request_params(params))
+
+		item_ids = params[:storage_item_entries][:storage_item_ids].split(',').map { |x| x.to_i }
+		items_to_deliver = StorageItem.where(user_id: current_user.id, id: item_ids, left_storage_at: nil).where.not(entered_storage_at: nil)
+
+		if @delivery_request.valid? and @user.valid? and items_to_deliver.count > 0 then
+			@delivery_request.storage_items.delete_all
+			items_to_deliver.update_all(delivery_request_id: @delivery_request.id)
+			redirect_to @delivery_request and return
+		else
+			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
+			render action: :new and return
+		end
 	end
 
 	def create
@@ -33,13 +48,12 @@ class DeliveryRequestsController < ApplicationController
 
 		@delivery_request = DeliveryRequest.new(create_delivery_request_params(params))
 		@delivery_request.user_id = @user.id
-		# item_ids = params[:ids].split(',').map { |x| x.to_i }
-		# items_to_deliver = StorageItem.where(user_id: current_user.id, id: item_ids, delivery_request_id: nil, left_storage_at: nil).where.not(entered_storage_at: nil)
+		item_ids = params[:storage_item_entries][:storage_item_ids].split(',').map { |x| x.to_i }
+		items_to_deliver = StorageItem.where(user_id: current_user.id, id: item_ids, delivery_request_id: nil, left_storage_at: nil).where.not(entered_storage_at: nil)
 
-		# if @delivery_request.valid? and @user.valid? and items_to_deliver.count > 0 then
-		if @delivery_request.valid? and @user.valid? then
+		if @delivery_request.valid? and @user.valid? and items_to_deliver.count > 0 then
 			@delivery_request.save!
-			# items_to_deliver.update_all(delivery_request_id: @delivery_request.id)
+			items_to_deliver.update_all(delivery_request_id: @delivery_request.id)
 			redirect_to @delivery_request and return
 		else
 			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'

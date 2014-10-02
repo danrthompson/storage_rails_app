@@ -23,7 +23,11 @@ user1 = User.create!({
 	state: 'CO',
 	zip: '80301',
 	special_instructions: nil,
-	phone_number: '814.288.7620'
+	phone_number: '814.288.7620',
+	cc_name: 'Dan Thompson',
+	cc_number: '1234567890123456',
+	exp_month: '10',
+	exp_year: '2016',
 })
 
 user2 = User.create!({
