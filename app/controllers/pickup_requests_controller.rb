@@ -17,11 +17,14 @@ class PickupRequestsController < ApplicationController
 
 	def update
 		@user = current_user
+		@user.update(user_address_params(params))
+
 		@pickup_request = request_update_verification(params, @user)
 		return if @pickup_request.nil?
 		@pickup_request.update(edit_pickup_request_params(params))
-		if @pickup_request.valid?
-			redirect_to storage_items_url, notice: 'Pickup request updated successfully.' and return
+
+		if @pickup_request.valid? and @user.valid?
+			redirect_to @pickup_request and return
 		else
 			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
 			render action: :edit and return

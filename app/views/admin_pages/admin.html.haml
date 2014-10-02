@@ -198,7 +198,7 @@
                 %a.pointer.white
                   / %h1.btn.btn-default.gray-bg View Details
               .col-md-3.pull-left
-                %a.btn.btn-skin.white{:href => ""} Record & Complete 
+                = button_to 'Record & Complete', complete_packing_supplies_request_path(packing_request.id), method: :patch, class: 'btn btn-skin white'
             .row
             .request-content
               .storage-items
@@ -215,7 +215,7 @@
                     %p.no-margin
                       %br/ 
                       %span.heavy-font  Date Ordered:
-                      
+                      #{packing_request.created_at.strftime("%B %d at %l:%M %p")}
                   .col-md-5.col-md-offset-2
                     %p
                       %span Boxes:
