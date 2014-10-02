@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-PackingSuppliesRequest.delete_all
-DeliveryRequest.delete_all
-PickupRequest.delete_all
+Request.delete_all
+UnavailableTime.delete_all
 StorageItem.delete_all
 User.delete_all
+Notification.delete_all
 
 user1 = User.create!({
 	email: 'a@a.a',
@@ -70,44 +70,47 @@ PackingSuppliesRequest.create!({
 	box_quantity: 3,
 })
 
-PickupRequest.create!({
+pickup_request_1 = PickupRequest.create!({
 	user_id: user1.id,
 	delivery_time: valid_delivery_time + 3.days,
-	box_quantity: 1,
-	couch_quantity: 2,
+	small_item_quantity: 1,
+	large_item_quantity: 2,
 })
 
 PickupRequest.create!({
 	user_id: user2.id,
-	delivery_time: valid_delivery_time - 1.day,
-	box_quantity: 2,
-	couch_quantity: 1,
+	delivery_time: valid_delivery_time + 4.days,
+	extra_large_item_quantity: 2,
+	large_item_quantity: 1,
 	driver_id: admin.id,
-	completion_time: valid_delivery_time - 1.day + 2.hours + 30.minutes,
+	completion_time: valid_delivery_time + 4.days + 2.hours + 30.minutes,
 })
 
 StorageItem.create!({
 	user_id: user1.id,
 	entered_storage_at: valid_delivery_time - 1.day,
-	item_type: 'box',
+	item_type: 'small',
 	title: "cocaine and sex toys",
-		description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	pickup_request_id: pickup_request_1.id
 })
 
 StorageItem.create!({
 	user_id: user1.id,
 	entered_storage_at: valid_delivery_time - 1.day,
-	item_type: 'box',
+	item_type: 'small',
 	title: "guitars & music items",
-	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	pickup_request_id: pickup_request_1.id
 })
 
 StorageItem.create!({
 	user_id: user1.id,
 	entered_storage_at: valid_delivery_time - 1.day,
-	item_type: 'couch',
+	item_type: 'medium',
 	title: "sex_couch",
-	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	pickup_request_id: pickup_request_1.id
 })
 
 

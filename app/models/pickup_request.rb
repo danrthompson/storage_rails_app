@@ -57,7 +57,7 @@ class PickupRequest < Request
 		basic_storage_item_values = {user: self.user, pickup_request: self}
 
 		small_storage_item_values = basic_storage_item_values.clone
-		small_storage_item_values[:item_type] = 'box'
+		small_storage_item_values[:item_type] = 'small'
 
 		medium_storage_item_values = basic_storage_item_values.clone
 		medium_storage_item_values[:item_type] = 'medium'
