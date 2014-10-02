@@ -10,8 +10,10 @@
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %h2 Delivery Information
-
+            - if @edit_page 
+              %h2 Edit Delivery
+            - else 
+              %h2 New Delivery
   .container
     .row
       .div
@@ -82,8 +84,10 @@
                       %span#order-subtotal.pull-right $00.00
                       %p#not-month.hidden 0
               %br/ 
-          .hidden-form.hidden
-            = f.text_field :user_id, class:"form-control", id:"delivery-list"
+          = fields_for :storage_item_entries do |f_hidden|
+            = f_hidden.hidden_field :storage_item_ids, class:"form-control", id:"delivery-list"
+          / .hidden-form.hidden
+          /   = f.text_field :user_id, class:"form-control", id:"delivery-list"
 
           / Bottom Buttons Section
           .col-md-8.col-md-offset-2
