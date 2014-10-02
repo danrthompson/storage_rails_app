@@ -27,40 +27,50 @@
           %br/ 
           %br/ 
           %br/ 
-          .section-heading
-            %h2.no-margin What Shall We Deliver?
+          - if @storage_items.count == 0
+            .section-heading
+              %h2.align-center.blue.no-margin You have nothing in storage
+            .row.inventory  
+              .col-md-8.col-md-offset-2
+                %h2.align-center  
+                  (we can only deliver what you have in storage)
+            %br/ 
+            %br/ 
+          - else 
+            .section-heading
+              %h2.no-margin What Shall We Deliver?
 
-          .row.inventory  
-            .col-md-8.col-md-offset-2
-              %h2.align-center  
-                (these are your items in storage)
-              /   / %p.pull-right.half-opacity Click items to select them for delivery
-              / .double-line
-              - @storage_items.each do |storage_item|
-                .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
-                  .inner
-                    .crop-mask
-                      .crop-mask-img-wrapper
-                        = image_tag(storage_item.image_url, class: "img-responsive")
-                      .item-description
-                        %p.subtitle.box-subtitle.delivery-entry-title= storage_item.get_description
-                        %p.hidden{:id => "#{storage_item.id}_price"}= storage_item.delivery_price
-                        / = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"align-center description-edit-boxed"
-                    %input.pull-left.form-control.delivery-checkbox{:type => "checkbox", required:true, id:"#{storage_item.id}"}/
-                    %h4.storage-item-title.pull-left{:id => "#{storage_item.id}_title"}= storage_item.get_title
+            .row.inventory  
+              .col-md-8.col-md-offset-2
+                %h2.align-center  
+                  (these are your items in storage)
+                /   / %p.pull-right.half-opacity Click items to select them for delivery
+                / .double-line
+                - @storage_items.each do |storage_item|
+                  .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
+                    .inner
+                      .crop-mask
+                        .crop-mask-img-wrapper
+                          = image_tag(storage_item.image_url, class: "img-responsive")
+                        .item-description
+                          %p.subtitle.box-subtitle.delivery-entry-title= storage_item.get_description
+                          %p.hidden{:id => "#{storage_item.id}_price"}= storage_item.delivery_price
+                          / = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"align-center description-edit-boxed"
+                      %input.pull-left.form-control.delivery-checkbox{:type => "checkbox", required:true, id:"#{storage_item.id}"}/
+                      %h4.storage-item-title.pull-left{:id => "#{storage_item.id}_title"}= storage_item.get_title
 
 
-                / .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
-                /   .inner
-                /     .crop-mask
-                /       = image_tag(storage_item.image_url, class: "img-responsive")
+                  / .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
+                  /   .inner
+                  /     .crop-mask
+                  /       = image_tag(storage_item.image_url, class: "img-responsive")
 
-                /     %h4.storage-item-title= storage_item.get_title
-                /     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
-            %br/
-          %br/ 
-          %br/  
-          %br/ 
+                  /     %h4.storage-item-title= storage_item.get_title
+                  /     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
+              %br/
+            %br/ 
+            %br/  
+            %br/ 
           .row  
             .col-md-10.col-md-offset-1
               .row.charges-box
