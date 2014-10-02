@@ -215,7 +215,7 @@
                     %p.no-margin
                       %br/ 
                       %span.heavy-font  Date Ordered:
-                      
+                      #{packing_request.created_at.strftime("%B %d at %l:%M %p")}
                   .col-md-5.col-md-offset-2
                     %p
                       %span Boxes:
