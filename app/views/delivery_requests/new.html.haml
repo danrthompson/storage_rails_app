@@ -58,15 +58,6 @@
                           / = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"align-center description-edit-boxed"
                       %input.pull-left.form-control.delivery-checkbox{:type => "checkbox", required:true, id:"#{storage_item.id}"}/
                       %h4.storage-item-title.pull-left{:id => "#{storage_item.id}_title"}= storage_item.get_title
-
-
-                  / .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
-                  /   .inner
-                  /     .crop-mask
-                  /       = image_tag(storage_item.image_url, class: "img-responsive")
-
-                  /     %h4.storage-item-title= storage_item.get_title
-                  /     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
               %br/
             %br/ 
             %br/  
