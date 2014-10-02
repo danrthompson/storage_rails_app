@@ -19,6 +19,9 @@ class StorageItemsController < ApplicationController
 	def index
 		@user = current_user
 
+		@has_existing_pickup = (@user.pickup_requests.where(completion_time: nil).count > 0)
+		@has_existing_delivery = (@user.delivery_requests.where(completion_time: nil).count > 0)
+
 		# Items At Home
 		@items_at_home = StorageItem.where(user_id: current_user.id, entered_storage_at: nil).count
 		@boxes_at_home = StorageItem.where(user_id: current_user.id, item_type: 'small', entered_storage_at: nil)
