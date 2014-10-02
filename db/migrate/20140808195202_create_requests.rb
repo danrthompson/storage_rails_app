@@ -8,6 +8,7 @@ class CreateRequests < ActiveRecord::Migration
     	t.integer :couch_quantity
     	t.belongs_to :driver
     	t.string :type
+        t.timestamps
     end
   end
 end

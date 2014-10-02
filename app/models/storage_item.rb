@@ -20,7 +20,7 @@ class StorageItem < ActiveRecord::Base
 
 	def delivery_price
 		case self.item_type
-		when "box"
+		when "small"
 		  return 5
 		when "medium"
 		  return 12
@@ -37,21 +37,21 @@ class StorageItem < ActiveRecord::Base
 		if self.image?
 			self.image.url
 		else
-			box_option = 'https://s3.amazonaws.com/storage_rails_app_dev/images/small-item.png'
+			small_option = 'https://s3.amazonaws.com/storage_rails_app_dev/images/small-item.png'
 			medium_option = 'https://s3.amazonaws.com/storage_rails_app_dev/images/med-item.png'
 			large_option = 'https://s3.amazonaws.com/storage_rails_app_dev/images/large-item.png'
 			extra_large_option = 'https://s3.amazonaws.com/storage_rails_app_dev/images/xlg-item.png'
-			case_statement_item_types(box_option, medium_option, large_option, extra_large_option)
+			case_statement_item_types(small_option, medium_option, large_option, extra_large_option)
 		end
 	end
 
 	def get_title
 		if self.title.blank?
-			box_option = 'Standard Box'
+			small_option = 'Standard Box'
 			medium_option = 'Medium Item'
 			large_option = 'Large Item'
 			extra_large_option = 'XL Item'
-			case_statement_item_types(box_option, medium_option, large_option, extra_large_option)
+			case_statement_item_types(small_option, medium_option, large_option, extra_large_option)
 		else
 			self.title
 		end
@@ -73,10 +73,10 @@ class StorageItem < ActiveRecord::Base
 		self.user.save
 	end
 
-	def case_statement_item_types(box_option, medium_option, large_option, extra_large_option)
+	def case_statement_item_types(small_option, medium_option, large_option, extra_large_option)
 		case self.item_type
-		when 'box'
-			box_option
+		when 'small'
+			small_option
 		when 'medium'
 			medium_option
 		when 'large'

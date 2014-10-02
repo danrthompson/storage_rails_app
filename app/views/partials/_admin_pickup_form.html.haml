@@ -43,7 +43,7 @@
             .no-opacity hidden
           .new-item-attribute
             = field.label "Item Type:"
-            = field.select  :item_type, options_for_select([["box","box"], ["medium","medium"], ["large","large"], ["extra_large","extra_large"]]),{}, {class:"form-control selectpicker"}
+            = field.select  :item_type, options_for_select([["small","small"], ["medium","medium"], ["large","large"], ["extra_large","extra_large"]]),{}, {class:"form-control selectpicker"}
             / # = field.text_field :description,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
             .no-opacity hidden
         .col-md-6

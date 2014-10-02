@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20140928002444) do
     t.integer  "box_quantity"
     t.integer  "driver_id"
     t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "wardrobe_box_quantity"
     t.integer  "bubble_quantity"
     t.integer  "tape_quantity"
@@ -44,6 +46,8 @@ ActiveRecord::Schema.define(version: 20140928002444) do
   create_table "storage_items", force: true do |t|
     t.integer  "user_id"
     t.string   "item_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

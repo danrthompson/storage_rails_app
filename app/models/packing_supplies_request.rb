@@ -5,7 +5,7 @@ class PackingSuppliesRequest < Request
 	validate :is_real?
 
 	def self.packing_items
-		{bubble: 1.0, tape: 2.0, box: 4.0, wardrobe_box: 5.0}
+		{bubble: 1.0, tape: 2.0, small: 4.0, wardrobe_box: 5.0}
 	end
 
 	def self.delivery_price
