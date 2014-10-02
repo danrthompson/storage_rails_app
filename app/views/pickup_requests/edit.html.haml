@@ -10,7 +10,11 @@
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %h2 Edit Your Pickup
+            %h2 Reschedule Your Pickup
+      .row.inventory  
+        .col-md-10.col-md-offset-1
+          %h2.align-center  
+            (you can change the items requested when we arrive)
 
   .container
     .row
@@ -47,14 +51,15 @@
   
 
   $(document).ready(function() { 
-    valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#pickup_request_posted_delivery_date", "#delivery_time");
+    
+    valAddrDelivery("#validator-id", "#continue-btn", "#pickup_request_posted_delivery_date", "#delivery_time");
 
     $(".form-control").on('input', function() {
-      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#pickup_request_posted_delivery_date", "#delivery_time");
+      valAddrDelivery("#validator-id", "#continue-btn", "#pickup_request_posted_delivery_date", "#delivery_time");
     });
 
     $(".btn-inc").click(function() {
-      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#pickup_request_posted_delivery_date", "#delivery_time");
+      valAddrDelivery("#validator-id", "#continue-btn", "#pickup_request_posted_delivery_date", "#delivery_time");
     });
 
   });

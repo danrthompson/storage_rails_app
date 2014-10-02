@@ -10,8 +10,10 @@
       .row
         .col-lg-8.col-lg-offset-2
           .section-heading
-            %h2 Delivery Information
-
+            - if @edit_page 
+              %h2 Edit Delivery
+            - else 
+              %h2 New Delivery
   .container
     .row
       .div
@@ -58,15 +60,6 @@
                           / = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"align-center description-edit-boxed"
                       %input.pull-left.form-control.delivery-checkbox{:type => "checkbox", required:true, id:"#{storage_item.id}"}/
                       %h4.storage-item-title.pull-left{:id => "#{storage_item.id}_title"}= storage_item.get_title
-
-
-                  / .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
-                  /   .inner
-                  /     .crop-mask
-                  /       = image_tag(storage_item.image_url, class: "img-responsive")
-
-                  /     %h4.storage-item-title= storage_item.get_title
-                  /     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
               %br/
             %br/ 
             %br/  
@@ -91,8 +84,10 @@
                       %span#order-subtotal.pull-right $00.00
                       %p#not-month.hidden 0
               %br/ 
-          .hidden-form.hidden
-            = f.text_field :user_id, class:"form-control", id:"delivery-list"
+          = fields_for :storage_item_entries do |f_hidden|
+            = f_hidden.hidden_field :storage_item_ids, class:"form-control", id:"delivery-list"
+          / .hidden-form.hidden
+          /   = f.text_field :user_id, class:"form-control", id:"delivery-list"
 
           / Bottom Buttons Section
           .col-md-8.col-md-offset-2
