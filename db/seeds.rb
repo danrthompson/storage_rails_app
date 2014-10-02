@@ -70,7 +70,7 @@ PackingSuppliesRequest.create!({
 	box_quantity: 3,
 })
 
-PickupRequest.create!({
+pickup_request_1 = PickupRequest.create!({
 	user_id: user1.id,
 	delivery_time: valid_delivery_time + 3.days,
 	small_item_quantity: 1,
@@ -79,11 +79,11 @@ PickupRequest.create!({
 
 PickupRequest.create!({
 	user_id: user2.id,
-	delivery_time: valid_delivery_time - 1.day,
+	delivery_time: valid_delivery_time + 4.days,
 	extra_large_item_quantity: 2,
 	large_item_quantity: 1,
 	driver_id: admin.id,
-	completion_time: valid_delivery_time - 1.day + 2.hours + 30.minutes,
+	completion_time: valid_delivery_time + 4.days + 2.hours + 30.minutes,
 })
 
 StorageItem.create!({
@@ -91,7 +91,8 @@ StorageItem.create!({
 	entered_storage_at: valid_delivery_time - 1.day,
 	item_type: 'small',
 	title: "cocaine and sex toys",
-		description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	pickup_request_id: pickup_request_1.id
 })
 
 StorageItem.create!({
@@ -99,7 +100,8 @@ StorageItem.create!({
 	entered_storage_at: valid_delivery_time - 1.day,
 	item_type: 'small',
 	title: "guitars & music items",
-	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	pickup_request_id: pickup_request_1.id
 })
 
 StorageItem.create!({
@@ -107,7 +109,8 @@ StorageItem.create!({
 	entered_storage_at: valid_delivery_time - 1.day,
 	item_type: 'medium',
 	title: "sex_couch",
-	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	description: "La ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	pickup_request_id: pickup_request_1.id
 })
 
 
