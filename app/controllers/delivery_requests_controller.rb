@@ -5,12 +5,14 @@ class DeliveryRequestsController < ApplicationController
 	before_action :verify_user_is_ready!
 
 	def new
+		@edit_page = false
 		@delivery_request = DeliveryRequest.new
 		@user = current_user
 		@storage_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil, delivery_request_id: nil).where.not(entered_storage_at: nil).order(:item_type, :entered_storage_at)
 	end
 
 	def edit
+		@edit_page = true
 		@user = current_user
 		@delivery_request = request_update_verification(params, @user)
 		return if @delivery_request.nil?
