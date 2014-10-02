@@ -187,10 +187,18 @@
           /         %span.pull-right 1
           .row
             .boxed-gray.continue-button  
-              %button#pickup-button.btn.btn-primary.gray-bg{:disabled => false, :type => "button"}
-                Request New Pickup
-              = link_to new_delivery_request_path do
-                %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Request Delivery
+              - if !@has_existing_pickup
+                %button#pickup-button.btn.btn-primary.gray-bg{:disabled => false, :type => "button"}
+                  Request New Pickup
+              - else
+                = link_to edit_pickup_request_path(id: @existing_pickup) do
+                  %button#pickup-button.btn.btn-primary.gray-bg.blue-bg-hover.no-border{:type => "button"} Edit Pickup
+              - if !@has_existing_delivery
+                = link_to new_delivery_request_path do
+                  %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Request Delivery
+              - else
+                = link_to edit_pickup_request_path(id: @existing_delivery) do
+                  %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Edit Delivery
 %br/
 %br/
 %br/

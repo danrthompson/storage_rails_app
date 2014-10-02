@@ -44,31 +44,37 @@
               - if @pickup_request
                 // Storage Items
                 %li
-                  %span.order-item Packing Box
-                  %span.pull-right.hide-when-zero= @pickup_request.small_item_quantity
+                  %span.order-item Packing Boxes
+                  %span.pull-right.hide-when-zero= (@pickup_request.storage_items.where(item_type: 'small').count)
+                  %span.item-amount.hidden= (@pickup_request.storage_items.where(item_type: 'small').count) * 5.0 
                 %li
-                  %span.order-item Medium Item
-                  %span.pull-right.hide-when-zero= @pickup_request.small_item_quantity
+                  %span.order-item Medium Items
+                  %span.pull-right.hide-when-zero= @pickup_request.storage_items.where(item_type: 'medium').count
+                  %span.item-amount.hidden= @pickup_request.storage_items.where(item_type: 'medium').count * 12
                 %li
-                  %span.order-item Large Item
-                  %span.pull-right.hide-when-zero= @pickup_request.small_item_quantity
+                  %span.order-item Large Items
+                  %span.pull-right.hide-when-zero= @pickup_request.storage_items.where(item_type: 'large').count
+                  %span.item-amount.hidden= @pickup_request.storage_items.where(item_type: 'large').count * 25
+
                 %li
-                  %span.order-item XL Item
-                  %span.pull-right.hide-when-zero= @pickup_request.small_item_quantity
+                  %span.order-item XL Items
+                  %span.pull-right.hide-when-zero= @pickup_request.storage_items.where(item_type: 'extra_large').count
+                  %span.item-amount.hidden= @pickup_request.storage_items.where(item_type: 'extra_large').count * 40
+
 
             .single-line
             %ul
-              %li.light-gray
-                %span.order-item Cost of Supplies:
-                / %span.pull-right.hide-when-zero$ #{@packing_supplies_request.one_time_price}
+              / %li.light-gray
+              /   %span.order-item Cost of Supplies:
+              /  / %span.pull-right.hide-when-zero$ #{@packing_supplies_request.one_time_price}
               %li.light-gray
                 %span.order-item Price of Storage:
-                / %span.pull-right.hide-when-zero$ #{@packing_supplies_request.monthly_price}/m
+                %span.pull-right#subtotal $0.00
            
           // Delivery Recap
           .col-md-4.confirm-elem
             %h5 Delivery Time
-            %p= @delivery_date
+            %p= @pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
             .delivery-confirm-instructions
               %br/ 
               %h6.no-margin Special Instructions
@@ -144,4 +150,7 @@
 :javascript
   hideParentWhenZero("hide-when-zero");
   hideParentWhenNotUsed("hide-unused");
+
+  sumItemList(".item-amount", "#subtotal");
+
   
