@@ -27,55 +27,57 @@
           %br/ 
           %br/ 
           %br/ 
-          .section-heading
-            %h2.no-margin What Shall We Deliver?
+          - if @storage_items.count == 0
+            .section-heading
+              %h2.align-center.blue.no-margin You have nothing in storage
+            .row.inventory  
+              .col-md-8.col-md-offset-2
+                %h2.align-center  
+                  (we can only deliver what you have in storage)
+            %br/ 
+            %br/ 
+          - else 
+            .section-heading
+              %h2.no-margin What Shall We Deliver?
 
-          .row.inventory  
-            .col-md-8.col-md-offset-2
-              %h2.align-center  
-                (these are your items in storage)
-              /   / %p.pull-right.half-opacity Click items to select them for delivery
-              / .double-line
-              - @storage_items.each do |storage_item|
-                .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
-                  .inner
-                    .crop-mask
-                      .crop-mask-img-wrapper
-                        = image_tag(storage_item.image_url, class: "img-responsive")
-                      .item-description
-                        %p.subtitle.box-subtitle
-                          = storage_item.get_description
-                        / = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"align-center description-edit-boxed"
-                    .checkbox-wrapper
+            .row.inventory  
+              .col-md-8.col-md-offset-2
+                %h2.align-center  
+                  (these are your items in storage)
+                /   / %p.pull-right.half-opacity Click items to select them for delivery
+                / .double-line
+                - @storage_items.each do |storage_item|
+                  .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
+                    .inner
+                      .crop-mask
+                        .crop-mask-img-wrapper
+                          = image_tag(storage_item.image_url, class: "img-responsive")
+                        .item-description
+                          %p.subtitle.box-subtitle.delivery-entry-title= storage_item.get_description
+                          %p.hidden{:id => "#{storage_item.id}_price"}= storage_item.delivery_price
+                          / = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"align-center description-edit-boxed"
                       %input.pull-left.form-control.delivery-checkbox{:type => "checkbox", required:true, id:"#{storage_item.id}"}/
-                      %h4.storage-item-title.pull-left= storage_item.get_title
+                      %h4.storage-item-title.pull-left{:id => "#{storage_item.id}_title"}= storage_item.get_title
 
 
-                / .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
-                /   .inner
-                /     .crop-mask
-                /       = image_tag(storage_item.image_url, class: "img-responsive")
+                  / .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
+                  /   .inner
+                  /     .crop-mask
+                  /       = image_tag(storage_item.image_url, class: "img-responsive")
 
-                /     %h4.storage-item-title= storage_item.get_title
-                /     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
-            %br/
-          %br/ 
-          %br/  
-          %br/ 
+                  /     %h4.storage-item-title= storage_item.get_title
+                  /     %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
+              %br/
+            %br/ 
+            %br/  
+            %br/ 
           .row  
             .col-md-10.col-md-offset-1
               .row.charges-box
                 .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
                   %h5 Delivery Summary
-                  %ul
-                    / - @requested_boxes.each do |requested_item|
-                    /   %li.delivery-line-item
-                    /     = requested_item.title
-                    /     %i.pull-right
-                    /       $
-                    /       %span.delivery-item-price 
-                    /         #{requested_item.delivery_price}
-                    / %br/ 
+                  %ul#delivery-summary-list
+                    %br/ 
                     %li.half-opacity.delivery-line-item
                       Baseline Delivery Fee
                       %span.pull-right
@@ -89,7 +91,7 @@
                       %span#order-subtotal.pull-right $00.00
                       %p#not-month.hidden 0
               %br/ 
-          .hidden-form
+          .hidden-form.hidden
             = f.text_field :user_id, class:"form-control", id:"delivery-list"
 
           / Bottom Buttons Section
@@ -112,31 +114,58 @@
 
 :javascript
   $(document).ready(function() { 
-    valAddrDelivery("#validator-id", "#continue-btn", "#pickup_datepicker", "#delivery_time");
+    sumItemList(".delivery-item-price", "#order-subtotal");
+    valAddrDelivery("#validator-id", "#continue-btn", "#delivery_request_posted_delivery_date", "#delivery_time");
 
     $(".form-control").on('input', function() {
-      valAddrDelivery("#validator-id", "#continue-btn", "#pickup_datepicker", "#delivery_time")
-    });
-
-    sumItemList(".delivery-item-price", "#order-subtotal");
+      deliveryCheckBtn();
+    });    
   });
 
   var requestedItemsList = "";
+
   $(".delivery-checkbox").click(function(){
     console.log("test");
     requestedItemsList = "";
     $(".delivery-checkbox").each(function(){
-      
+      var checkboxID = $(this).attr("id");
+      var newDivId = checkboxID + "_new_entry";
+
+      // Checks if item has been included      
       if($(this).prop('checked')){
-        var checkedId = $(this).attr("id");
-        requestedItemsList += checkedId+",";
+
+        console.log("Div Id: #" + newDivId);
+          requestedItemsList += checkboxID+",";
+
+        // Updates Payments Summary
+        if (!$(this).hasClass("hasBeenIncluded")){
+          var existingHTML = $("#delivery-summary-list").html();
+          var price = $("#" + checkboxID + "_price").html();
+          var title = $("#" + checkboxID + "_title").html();
+          existingHTML = "<li class=\"delivery-line-item\" id=\"" + newDivId + "\">" +  title + "<i class=\"pull-right\">$<span class=\"delivery-item-price\">" + price + "</span></i></li>" + existingHTML;
+          $("#delivery-summary-list").html(existingHTML);
+          $(this).addClass("hasBeenIncluded");
+        }
+      } else{
+        console.log("Removing: #" + newDivId);
+        $("#"+newDivId).remove();
+        $(this).removeClass("hasBeenIncluded");
       }
     });
     requestedItemsList = requestedItemsList.substring(0, requestedItemsList.length-1);
     console.log("internal test: " + requestedItemsList);
     $("#delivery-list").val(requestedItemsList);
+    sumItemList(".delivery-item-price", "#order-subtotal");
+    deliveryCheckBtn();
+    
   });
 
-  
+  function deliveryCheckBtn(){
+    if ($("#delivery-list").val() != "" && valAddrDelivery("#validator-id", "#continue-btn", "#delivery_request_posted_delivery_date", "#delivery_time")){
+      $("#continue-btn").removeAttr("disabled"); 
+    } else{
+      $("#continue-btn").attr("disabled", true); 
+    }
+  }
 
 
