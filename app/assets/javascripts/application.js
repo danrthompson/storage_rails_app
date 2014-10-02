@@ -56,7 +56,8 @@ function valQuantityAddrDelivery(formID, buttonID, fieldClass, datepickerID, tim
 }
 
 function valAddrDelivery(formID, buttonID, datepickerID, timeFieldId){
-  if (checkFormValidation(formID, buttonID)) validatePickup(datepickerID, timeFieldId, buttonID);
+  if (checkFormValidation(formID, buttonID)) return validatePickup(datepickerID, timeFieldId, buttonID);
+  else return false;
 }
 // Validates address form
 function checkFormValidation(formID, buttonID){
@@ -109,7 +110,7 @@ function validatePickup(datepickerID, timeFieldId, buttonID){
 function sumItemList(itemClass, displayId){
   sumTotal = 0;
   $(itemClass).each(function(){
-    console.log($(this).html());
+    console.log("HTML: " + $(this).html());
     sumTotal += parseInt($(this).html());
   });
   console.log("$" + sumTotal);
