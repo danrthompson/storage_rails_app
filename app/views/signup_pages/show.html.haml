@@ -44,7 +44,7 @@
               - if @pickup_request
                 // Storage Items
                 %li
-                  %span.order-item Packing Boxes
+                  %span.order-item Boxes
                   %span.pull-right.hide-when-zero= (@pickup_request.storage_items.where(item_type: 'small').count)
                   %span.item-amount.hidden= (@pickup_request.storage_items.where(item_type: 'small').count) * 5.0 
                 %li

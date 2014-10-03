@@ -16,6 +16,8 @@
           %h2.align-center  
             (you can change the items requested when we arrive)
 
+
+
   .container
     .row
       .div
@@ -26,7 +28,17 @@
             .row
               = fields_for @user do |field|
                 = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
+                %br/ 
+                %br/ 
+                %p.no-opacity a
+                %p.align-center.light-gray
+                  You pickup is currently scheduled for:
+                  =@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"delivery_time"}
+
+            .row.align-left
+              %a.align-left{:href => ""} Cancel Pickup
+            %br/ 
                 
           / Bottom Buttons Section
           .col-md-8.col-md-offset-2

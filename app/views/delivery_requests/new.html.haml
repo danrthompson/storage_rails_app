@@ -12,6 +12,9 @@
           .section-heading
             - if @edit_page 
               %h2 Edit Delivery
+              %p.align-center.light-gray
+                You delivery is currently scheduled for
+                =@delivery_request.delivery_time.strftime("%B %d at %l:%M %p")
             - else 
               %h2 New Delivery
   .container
@@ -25,6 +28,10 @@
                 = fields_for @user do |field|
                   = render partial: "partials/delivery_addr_date", locals: {field:field, f:f, id:"datepicker"}
                   = render partial: "partials/delivery_date_time", locals: {field:field, f:f,  id:"pickup_datepicker", select_id:"delivery_time"}
+              - if @edit_page
+                .row.align-left
+                  %a{:href => ""} Cancel Delivery
+
         
           %br/ 
           %br/ 

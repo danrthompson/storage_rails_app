@@ -25,6 +25,7 @@
               = fields_for @user do |field|
                 = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"delivery_time"}
+
                 
           
           / Add to Order Section
