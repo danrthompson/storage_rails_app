@@ -110,10 +110,8 @@ function validatePickup(datepickerID, timeFieldId, buttonID){
 function sumItemList(itemClass, displayId){
   sumTotal = 0;
   $(itemClass).each(function(){
-    console.log("HTML: " + $(this).html());
     sumTotal += parseInt($(this).html());
   });
-  console.log("$" + sumTotal);
   $(displayId).html("$" + sumTotal);
 }
 

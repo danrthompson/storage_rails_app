@@ -16,7 +16,7 @@ class DeliveryRequestsController < ApplicationController
 		@user = current_user
 		@delivery_request = request_update_verification(params, @user)
 		return if @delivery_request.nil?
-		@storage_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil, delivery_request_id: nil).where.not(entered_storage_at: nil).order(:item_type, :entered_storage_at)
+		@storage_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil).where.not(entered_storage_at: nil).order(:item_type, :entered_storage_at)
 		@orginally_selected_item_ids = @delivery_request.storage_items.map {|item| item.id}
 		render action: :new
 	end

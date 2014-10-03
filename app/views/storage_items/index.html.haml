@@ -80,6 +80,28 @@
                 / Want to learn how deliveries work?
          
           %br/
+
+          .row
+            %h2
+              %span.items-count#items-in-storage #{@num_storage_items}
+              / %span.items-count#items-in-storage 0
+              Items Pending Delivery
+              %p.pull-right.half-opacity Delivery scheduled for: 
+            .double-line
+            - @delivery_items.each do |delivery_item|
+              .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{delivery_item.id}"}
+                .inner
+                  .crop-mask
+                    .crop-mask-img-wrapper
+                      = image_tag(delivery_item.image_url, class: "img-responsive")
+                    .item-description
+                      %p.subtitle.box-subtitle
+                        = delivery_item.get_description
+                      = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{delivery_item.id}"}, class:"align-center description-edit-boxed"
+                  %h4.storage-item-title= delivery_item.get_title
+
+        
+          %br/
           %br/
           %form#pickup-form{:action => ""}
             / Boxes At Home
