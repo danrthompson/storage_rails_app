@@ -48,8 +48,13 @@
                   (these are your items in storage)
                 /   / %p.pull-right.half-opacity Click items to select them for delivery
                 / .double-line
+                - if @edit_page
+                  .hidden
+                    - @orginally_selected_item_ids.each do |item|
+                      %p.existing-delivery-entry= item
+                    
                 - @storage_items.each do |storage_item|
-                  .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
+                  .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry
                     .inner
                       .crop-mask
                         .crop-mask-img-wrapper
@@ -110,14 +115,24 @@
 :javascript
   $(document).ready(function() { 
     sumItemList(".delivery-item-price", "#order-subtotal");
+    checkExistingBoxes();
     valAddrDelivery("#validator-id", "#continue-btn", "#delivery_request_posted_delivery_date", "#delivery_time");
 
     $(".form-control").on('input', function() {
       deliveryCheckBtn();
-    });    
+    });  
+
+
   });
 
   var requestedItemsList = "";
+  function checkExistingBoxes(){
+    $(".existing-delivery-entry").each(function(){
+      var id = $(this).html();
+      console.log("id: " + id);
+      $("#" + id).prop('checked');
+    });
+  };
 
   $(".delivery-checkbox").click(function(){
     console.log("test");
