@@ -25,6 +25,8 @@ class StorageItemsController < ApplicationController
 
 		@has_existing_pickup = if user_pickup_requests.count == 0 then nil else user_pickup_requests.first.id end
 		@has_existing_delivery = if user_delivery_requests.count == 0 then nil else user_delivery_requests.first.id end
+		@existing_delivery = user_delivery_requests.first;
+		@existing_pickup = user_pickup_requests.first;
 
 		# Items At Home
 		@items_at_home = StorageItem.where(user_id: current_user.id, entered_storage_at: nil).count

@@ -115,7 +115,9 @@
               .col-md-12.inventory-entries.no-hover.boxed-gray.align-center
                 %br/ 
                 %p.blue.heavy-font
-                  These are the items we will pick up on {insert date here}
+                  These are the items we will pick up on 
+                  - if @has_existing_pickup
+                    =@existing_pickup.delivery_time.strftime("%B %d at %l:%M %p")
                 %p
                   If you like, you can give them an image, title, and description to help find them later.
                   Otherwise our drivers will help catalog your items when they arrive for pickup. 
@@ -180,10 +182,14 @@
               %h5.align-center Notifications
               .single-line
               %ul
-                %li
-                  %span.order-item You have a pickup schedules for Thursday, September 15
-                %li
-                  %span.order-item You currently have #{@items_at_home} items at home waiting to be picked up.
+                - if @has_existing_pickup
+                  %li 
+                    %span.order-item You have #{@items_at_home} items scheduled for pickup on
+                    =@existing_pickup.delivery_time.strftime("%B %d at %l:%M %p")
+                - if @has_existing_delivery
+                  %li 
+                    %span.order-item You have #{@delivery_items.count} items scheduled for delivery on
+                    =@existing_delivery.delivery_time.strftime("%B %d at %l:%M %p")
           %br/
           .row.sidebar-txtentry.bg-gray
             .inner.align-center
