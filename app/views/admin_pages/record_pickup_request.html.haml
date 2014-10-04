@@ -21,7 +21,7 @@
               %h2.no-margin Pending Pickup Requests
     .container.request-entry
       // For Each Pickup Request
-      = fields_for @pickup_request do |field|  
+      = form_for @pickup_request, url: complete_pickup_request_path(@pickup_request.id)  do |field|  
         .row  
           .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
             .request-content.row
@@ -58,13 +58,13 @@
                     %p.no-opacity invisible
                   .row
                     .col-md-6
-                      = field.label "Picked Up By:"
-                      = field.text_field :driver,  autofocus: true, placeholder:"Driver Name", class:"col-md-6 form-control", id:""
+                      = field.label :driver_name, "Picked Up By:"
+                      = field.text_field :driver_name,  autofocus: true, placeholder:"Driver Name", class:"col-md-6 form-control", id:""
                     .col-md-6
-                      = field.label "Notes:"
-                      = field.text_field :driver,  autofocus: true, placeholder:"Driver Name", class:"col-md-6 form-control", id:""
+                      = field.label :driver_notes, "Notes:"
+                      = field.text_field :driver_notes,  autofocus: true, placeholder:"Notes", class:"col-md-6 form-control", id:""
               .admin-details{:id => "#{@pickup_request.id}-details"}
-                = render partial: "partials/admin_pickup_form", locals: {pickup_request: @pickup_request}
+                = render partial: "partials/admin_pickup_form", locals: {pickup_request: @pickup_request, form: field}
             / .col-md-10.col-md-offset-1
             .row
               .col-md-12.align-center
@@ -78,7 +78,7 @@
                 = link_to admin_path, class: "pointer white details-btn", id: "#{@pickup_request.id}" do
                   %h1.btn.btn-default.gray-bg Back
               .col-md-4.pull-right.align-center
-                = link_to "Record & Complete", admin_record_pickup_request_path(id: @pickup_request.id), class: "btn btn-skin white"
+                = field.submit "Record & Complete", class: "btn btn-skin white"
             .row
               %p.no-opacity ps
           %br/
