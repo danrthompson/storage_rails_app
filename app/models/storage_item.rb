@@ -12,7 +12,7 @@ class StorageItem < ActiveRecord::Base
 
 	validates :user_id, :item_type, :pickup_request_id, presence: true
 	validates :item_type, inclusion: { in: self.item_types.keys.map { |item| item.to_s }, message: 'must be a real type.' }
-	validates_attachment :image, size: { less_than: 1.megabytes }, content_type: { content_type: /\Aimage\/.*\Z/ }
+	validates_attachment :image, size: { less_than: 10.megabytes }, content_type: { content_type: /\Aimage\/.*\Z/ }
 
 	def price
 		StorageItem.item_types[self.item_type]

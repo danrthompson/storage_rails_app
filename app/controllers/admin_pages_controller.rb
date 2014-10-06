@@ -27,7 +27,7 @@ class AdminPagesController < ApplicationController
 			item.save
 			monthly_cost += item.price
 		end
-		stripe_user = Stripe::Customer.retrieve pickup_request.user.stripe_customer_identifier
+		stripe_user = pickup_request.user.stripe_user
 		if stripe_user.subscriptions.first
 			subscription = stripe_user.subscriptions.first
 			subscription.quantity += monthly_cost * 100
@@ -49,7 +49,7 @@ class AdminPagesController < ApplicationController
 			monthly_cost += item.price
 			item.save!
 		end
-		stripe_user = Stripe::Customer.retrieve delivery_request.user.stripe_customer_identifier
+		stripe_user = delivery_request.user.stripe_user
 		subscription = stripe_user.subscriptions.first
 		subscription.quantity -= monthly_cost * 100
 		subscription.save
