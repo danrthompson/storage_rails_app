@@ -2,6 +2,7 @@ class PickupRequest < Request
 	attr_reader :small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity
 
 	has_many :storage_items
+	accepts_nested_attributes_for :storage_items, allow_destroy: true
 
 	after_initialize :make_quantities_zero_not_nil
 	before_validation :normalize_delivery_time
