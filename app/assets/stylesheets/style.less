@@ -56,6 +56,10 @@
 	color: @default-yellow;
 }
 
+.green{
+	color: #26C251 !important;
+}
+
 .white{
 	color: white;
 	&:hover{
@@ -90,7 +94,7 @@
 }
 
 .width-30{
-	width: 30%;
+	width: 33%;
 }
 
 
@@ -1162,7 +1166,33 @@ p.alert  , p.notice {
 	font-size: 48px;
 }
 
+#signup-progress{
+	background-color: @gray-background;
+	height: 50px;
+	span{
+		position: relative;
+		bottom:-3px;
+		opacity:0;
+	}
+	li{
+		color: @light-gray;
+		padding-top: 17px;
+		width: 33%;
+		float: left;
+	}
+	li.signup-completed{
+		margin-top: -4px;
 
+		span{
+			opacity: 1 !important;
+		}
+		// color: @light-gray;
+	}
+	li.signup-active{
+		color: @default-blue;
+	}
+	
+}
 
 .crop-mask{
 	width: 100%;

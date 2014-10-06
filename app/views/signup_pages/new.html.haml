@@ -9,6 +9,27 @@
 = render partial: 'partials/error_messages_object_form', locals: {object: @user}
 = render partial: 'partials/error_messages_object_form', locals: {object: @packing_supplies_request}
 = render partial: 'partials/error_messages_object_form', locals: {object: @pickup_request}
+#signup-progress.row.align-center
+  .col-md-8.col-md-offset-2
+    %ul.no-list
+      %li.signup-active#step-1  
+        %h4
+          %span.green.hidden{:data => {'icon' => "D"}}
+          1. Select Items    
+      %li#step-2
+        %h4
+          %span.green.hidden{:data => {'icon' => "D"}}
+          2. Schedule Pickup
+      %li#step-3
+        %h4
+          %span.green.hidden{:data => {'icon' => "D"}}
+          3. Create Account
+
+  /   %h4 1. Select Items
+  / .col-md-3
+  /   %h4 1. Schedule Delivery
+  / .col-md-3
+  /   %h4 1. Create Password
 %br/ 
 %br/ 
 %br/ 
@@ -60,7 +81,7 @@
           .col-lg-10.col-lg-offset-1
             .section-heading
               %h2.no-margin What Would You Like To Store?
-              %p.align-center (you can edit the details of your pickup anytime)
+              / %p.align-center (you can edit the details of your pickup anytime)
 
     .col-md-4.col-md-offset-4.half-opacity.charges-box
       %br/ 
@@ -304,12 +325,13 @@
     e.preventDefault();
     moveFromTo("#signup-second", "#signup-third");
     $(".nudge-icon").toggleClass("hidden");
-
+    markStepComplete("#step-1", "#step-2");
   })
 
   $("#signup-third-btn").click(function(e){
     e.preventDefault();
     moveFromTo("#signup-third", "#signup-fourth");
+    markStepComplete("#step-2", "#step-3");
   })
 
   $("#signup-fourth-btn").click(function(e){
@@ -324,16 +346,36 @@
   $("#signup-second-back").click(function(){
     $("#lets-doit").parent().show();
     moveFromTo("#signup-second", "#signup-first");
+
   })
 
   $("#signup-third-back").click(function(){
     moveFromTo("#signup-third", "#signup-second");
+    goBackStep("#step-2", "#step-1");
   })
 
   $("#signup-fourth-back").click(function(e){
     e.preventDefault();
     moveFromTo("#signup-fourth", "#signup-third");
+    goBackStep("#step-3", "#step-2");
   })
+
+  function markStepComplete(completedStep, nextStep){
+    console.log("marking step complete" + completedStep);
+    console.log("marking step active" + nextStep);
+    $(completedStep).removeClass("signup-active");
+    $(completedStep).addClass("signup-completed");
+    $(completedStep + " span").removeClass("hidden");
+    $(nextStep).addClass("signup-active");
+  }
+
+  function goBackStep(currentStep, previousStep){
+    console.log("going back to:" + previousStep);
+    $(currentStep).removeClass("signup-active");
+    $(previousStep).removeClass("signup-completed");
+    $(currentStep + " span").addClass("hidden");
+    $(previousStep).addClass("signup-active");
+  }
 
  
 

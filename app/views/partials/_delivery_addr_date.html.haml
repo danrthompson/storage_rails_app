@@ -30,6 +30,11 @@
       $(".form-control").on('input', function() {
         $('#validator-id').data('bootstrapValidator').validate();
       });
+    
+      $(".form-control").focusout(function() {
+        $('#validator-id').data('bootstrapValidator').validate();
+      });
+
 
       $('#validator-id')
           .bootstrapValidator({
@@ -103,4 +108,7 @@
             }
           }
         })
+
+        $('#validator-id').data('bootstrapValidator').validate();
+
     });
