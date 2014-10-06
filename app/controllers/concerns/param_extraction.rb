@@ -3,6 +3,10 @@ module ParamExtraction
 
 	private
 
+	def complete_pickup_request_params(params)
+		params.require(:pickup_request).permit(:driver_name, :driver_notes, storage_items_attributes: [:title, :description, :image, :item_type, :_destroy, :id, :storage_location, :notes])
+	end
+
 	def new_user_params(params)
 		params.require(:user).permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation)
 	end

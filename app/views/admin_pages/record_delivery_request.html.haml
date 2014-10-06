@@ -58,10 +58,10 @@
                   .row
                     .col-md-6
                       = field.label "Delivered By:"
-                      = field.text_field :driver,  autofocus: true, placeholder:"Driver Name", class:"col-md-6 form-control", id:""
+                      = field.text_field :driver_name,  autofocus: true, placeholder:"Driver Name", class:"col-md-6 form-control", id:""
                     .col-md-6
                       = field.label "Notes:"
-                      = field.text_field :driver,  autofocus: true, placeholder:"Driver Name", class:"col-md-6 form-control", id:""
+                      = field.text_field :driver_notes,  autofocus: true, placeholder:"Notes", class:"col-md-6 form-control", id:""
               .admin-details{:id => "#{@delivery_request.id}-details"}
                 = render partial: "partials/admin_delivery_form", locals: {delivery_request: @delivery_request, form: field}
             .row.no-margin
@@ -71,7 +71,7 @@
                 = link_to admin_path, class: "pointer white details-btn", id: "#{@delivery_request.id}" do
                   %h1.btn.btn-default.gray-bg Back
               .col-md-4.pull-right.align-right
-                = link_to "Record & Complete", admin_record_delivery_request_path(id: @delivery_request.id), class: "no-margin btn btn-skin white"
+                = field.submit "Record & Complete", class: "no-margin btn btn-skin white"
             .row
               %p.no-opacity ps
           %br/
