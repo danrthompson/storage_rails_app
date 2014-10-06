@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 	def edit
 		redirect_to new_user_session_url and return if current_user.id != params[:id].to_i
 		@user = current_user
+		stripe_user = @user.stripe_user
+		@user_last_4 = stripe_user.cards.first.last4
 	end
 
 	def update

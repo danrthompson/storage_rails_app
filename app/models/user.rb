@@ -40,6 +40,10 @@ class User < ActiveRecord::Base
     return false
   end
 
+  def stripe_user
+    Stripe::Customer.retrieve self.stripe_customer_identifier
+  end
+
   protected
 
   def normalize_city
@@ -67,7 +71,7 @@ class User < ActiveRecord::Base
   def send_card_info_to_stripe
     # if self.exp_month and self.exp_year and self.cc_number and self.cc_name and self.cc_cvc and self.stripe_customer_identifier
     if self.exp_month and self.exp_year and self.cc_number and self.cc_name and self.stripe_customer_identifier
-      customer = Stripe::Customer.retrieve(self.stripe_customer_identifier)
+      customer = self.stripe_user
       customer.cards.create(card:{
         number: self.cc_number,
         exp_month: self.exp_month.to_i,

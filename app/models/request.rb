@@ -1,4 +1,7 @@
 class Request < ActiveRecord::Base
+	# 0 = Sunday, 1 = Monday, and so on
+	@@standard_times_by_day = [0..23, 1..22, 2..21, 3..20, 4..19, 5..18, 6..17]
+
 	attr_accessor :posted_delivery_date, :posted_delivery_time
 
 	belongs_to :user
@@ -10,6 +13,27 @@ class Request < ActiveRecord::Base
 	def self.delivery_time_available?(time)
 		within_standard_times?(time) and fits_with_other_delivery_times?(time, all)
 	end
+
+	def self.available_delivery_times(from_time=Time.now)
+		available_times = {}
+		available_times[from_time.strftime('%m/%d/%y')] = @@standard_times_by_day[from_time.wday].to_a.select {|time| time >= from_time.hour + 8}
+		29.times do |i|
+			time = from_time + (i+1).days
+			available_times[time.strftime('%m/%d/%y')] = @@standard_times_by_day[time.wday].to_a
+		end
+		self.where(completion_time: nil, delivery_time:(from_time.to_date..(from_time+30.days).to_date)).select(:delivery_time).each do |request|
+			delivery_time = request.delivery_time
+			date_string = delivery_time.strftime('%m/%d/%y')
+			hour1 = delivery_time.hour
+			hour2 = if delivery_time.min > 10 then delivery_time.hour + 1 else nil end
+			if available_times[date_string]
+				available_times[date_string].delete(hour1)
+				if hour2 then available_times[date_string].delete(hour2) end
+			end
+		end
+		available_times
+	end
+
 
 	private
 
@@ -29,14 +53,8 @@ class Request < ActiveRecord::Base
 
 	def self.within_standard_times?(time)
 		return false if time < Time.now + 8.hours
-		return true
-		# if time.saturday? or time.sunday?
-		# 	return time.hour.in? 12..19
-		# elsif time.monday? or time.wednesday? or time.friday?
-		# 	return time.hour.in? 8..19
-		# elsif time.tuesday? or time.thursday?
-		# 	return time.hour.in? 17..22
-		# end
+		# return true
+		return time.hour.in? @@standard_times_by_day[time.wday]
 	end
 
 	def self.fits_with_other_delivery_times?(time, requests)
