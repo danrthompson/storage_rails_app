@@ -6,9 +6,6 @@
 .container.full-width.blue-bg.no-padding.white.align-center
   %br/ 
   %h1#lets-doit LET'S DO THIS
-= render partial: 'partials/error_messages_object_form', locals: {object: @user}
-= render partial: 'partials/error_messages_object_form', locals: {object: @packing_supplies_request}
-= render partial: 'partials/error_messages_object_form', locals: {object: @pickup_request}
 #signup-progress.row.align-center
   .col-md-8.col-md-offset-2
     %ul.no-list
@@ -25,6 +22,7 @@
           %span.green.hidden{:data => {'icon' => "D"}}
           3. Create Account
 
+
   /   %h4 1. Select Items
   / .col-md-3
   /   %h4 1. Schedule Delivery
@@ -33,6 +31,11 @@
 %br/ 
 %br/ 
 %br/ 
+
+.container
+  = render partial: 'partials/error_messages_object_form', locals: {object: @user}
+  = render partial: 'partials/error_messages_object_form', locals: {object: @packing_supplies_request}
+  = render partial: 'partials/error_messages_object_form', locals: {object: @pickup_request}
 %br/ 
 %br/ 
 
