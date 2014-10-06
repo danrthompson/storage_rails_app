@@ -106,12 +106,13 @@
                   = cc.text_field :cc_number,  autofocus: true, placeholder:"e.g. 1234 5678 9012 3456", class:"form-control", id:""
                   %br/
                   .row
-                    .col-md-6.col-sm-6.col-xs-6.col-lg-6
+                    .col-md-3.col-sm-3.col-xs-3.col-lg-3
                       = cc.label :exp_month, "Expiration Month", class:"no-margin"
                       = cc.text_field :exp_month,  autofocus: true, placeholder:"mm", class:"form-control", id:""
-                    .col-md-6.col-sm-6.col-xs-6.col-lg-6
+                    .col-md-3.col-sm-3.col-xs-3.col-lg-3
                       = cc.label :exp_year, "Expiration Year", class:"no-margin"
                       = cc.text_field :exp_year,  autofocus: true, placeholder:"yyyy", class:"form-control", id:""
+                   
               .col-md-8.col-md-offset-2
             %br/
           %br/
