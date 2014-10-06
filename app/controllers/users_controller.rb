@@ -14,13 +14,16 @@ class UsersController < ApplicationController
 
 		signin_changed = if new_user_values['email'] != @user.email or not new_user_values['password'].blank? then true else false end
 		
-		@user.update(new_user_values)
+		begin
+			@user.update(new_user_values)
+		rescue Stripe::CardError => e
+			redirect_to edit_user_url(@user), alert: e.message and return
+		end
 		sign_in @user, bypass: true if signin_changed
 		if @user.valid?
 			redirect_to edit_user_url @user and return
 		else
-			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
-			redirect_to edit_user_url @user 
+			redirect_to edit_user_url(@user), alert: 'Sorry, there were some errors that you need to correct.'
 		end
 	end
 end

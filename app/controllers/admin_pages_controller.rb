@@ -15,7 +15,7 @@ class AdminPagesController < ApplicationController
 
 	def complete_pickup_request
 		pickup_request = PickupRequest.find(params[:id])
-		pickup_request.update(params.require(:pickup_request).permit(:driver_name, :driver_notes, storage_items_attributes: [:title, :description, :image, :item_type, :_destroy, :id, :storage_location, :notes]))
+		pickup_request.update(complete_pickup_request_params(params))
 		pickup_request.completion_time = Time.now
 		pickup_request.driver = current_user
 		pickup_request.save

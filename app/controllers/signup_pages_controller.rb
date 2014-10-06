@@ -41,7 +41,12 @@ class SignupPagesController < ApplicationController
 	def add_payment
 		@user = User.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != current_user.id
-		@user.update(user_cc_params(params))
+		begin
+			@user.update(user_cc_params(params))
+		rescue Stripe::CardError => e
+			flash.now[:alert] = e.message
+			render action: :show and return
+		end
 		if @user.valid?	
 			redirect_to storage_items_url and return if @user.ready?
 		end
