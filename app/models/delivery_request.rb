@@ -1,5 +1,6 @@
 class DeliveryRequest < Request
 	has_many :storage_items
+	accepts_nested_attributes_for :storage_items, allow_destroy: true
 
 	before_validation :normalize_delivery_time
 

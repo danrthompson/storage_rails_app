@@ -20,8 +20,7 @@
             .section-heading
               %h2.no-margin Pending Pickup Requests
     .container.request-entry
-      // For Each Pickup Request
-      = fields_for @delivery_request do |field|  
+      = form_for @delivery_request, url: complete_delivery_request_path(@delivery_request.id)  do |field|  
         .row  
           .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
             .request-content.row
@@ -64,56 +63,7 @@
                       = field.label "Notes:"
                       = field.text_field :driver,  autofocus: true, placeholder:"Driver Name", class:"col-md-6 form-control", id:""
               .admin-details{:id => "#{@delivery_request.id}-details"}
-                / # = render partial: "partials/admin_pickup_form", locals: {pickup_request: @delivery_request}
-                / THIS IS ONLY FOR DETAIL VIEWS
-                - @delivery_request.storage_items.each do |item|
-                  = fields_for item do |field|  
-                    .row.storage-item.detail-item
-                      .row
-                        .col-md-6
-                          %ul.no-list 
-                            %li 
-                              %p 
-                                ID:
-                                %span.pull-right= item.id
-                            %li 
-                              %p 
-                                Title:
-                                %span.pull-right= item.title
-                            %li 
-                              %p 
-                                Item Type
-                                %span.pull-right #{item.item_type}
-                            %li 
-                              %p 
-                                Location:
-                                %span.pull-right * FIX THIS *                               
-                            %li 
-                              %p 
-                                Notes:
-                                %span.pull-right * FIX THIS *
-                                / %span.pull-right #{item.item_type}
-                            %li 
-                              .single-dashed-line
-                            %li 
-                              %a.blue.pull-right This Item Was Note Delivered
-                              %input.pull-left{:type => "checkbox", required:true, id:"box-#{item.id}"}/
-
-                        .col-md-6
-                          / image
-                          - if item.image?
-                            %p
-                              / # = image_tag "#{item.image.url}"
-                              %span Item image:
-                            .crop-mask
-                              %img{src: "#{item.image_url}"}/
-                          - else
-                            %p
-                              %span Item Image:
-                            .crop-mask
-                              %img{src: "#{item.image_url}"}/
-                      
-
+                = render partial: "partials/admin_delivery_form", locals: {delivery_request: @delivery_request, form: field}
             .row.no-margin
               %br/ 
               %br/ 

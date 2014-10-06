@@ -92,7 +92,7 @@ homepage:
 	get started doesnt work
 	get social: facebook and twitter
 
-need to create team@spaceyouneed.com
+need to create team@quickbox.com
 about page
 contact page
 faq

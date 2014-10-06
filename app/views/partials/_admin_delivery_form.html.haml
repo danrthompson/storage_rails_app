@@ -1,0 +1,49 @@
+
+
+= form.fields_for :storage_items do |field|  
+  .row.storage-item.detail-item
+    .row
+      .col-md-6
+        %ul.no-list 
+          %li 
+            %p 
+              ID:
+              %span.pull-right= field.object.id
+              / #{field.object.id}
+          %li 
+            %p 
+              Title:
+              %span.pull-right= field.object.title
+          %li 
+            %p 
+              Item Type
+              %span.pull-right #{field.object.item_type}
+          %li 
+            %p 
+              Location:
+              %span.pull-right= field.object.storage_location                            
+          %li 
+            %p 
+              Notes:
+              %span.pull-right= field.object.notes
+              / %span.pull-right #{item.item_type}
+          %li 
+            .single-dashed-line
+          %li 
+            %a.blue.pull-right This Item Was Note Delivered
+            %input.pull-left{:type => "checkbox", id:"box-#{field.object.id}"}/
+
+      .col-md-6
+        / image
+        - if field.object.image?
+          %p
+            / # = image_tag "#{item.image.url}"
+            %span Item image:
+          .crop-mask
+            %img{src: "#{field.object.image_url}"}/
+        - else
+          %p
+            %span Item Image:
+          .crop-mask
+            %img{src: "#{field.object.image_url}"}/
+      

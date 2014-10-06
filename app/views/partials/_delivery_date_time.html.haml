@@ -10,14 +10,31 @@
      
     .col-md-6.align-left
       %label{:for => "date-picker"} Time Of Day
-      = f.select  :posted_delivery_time, options_for_select([["1:00", "13"], ["2:00", "14"]]),{}, {class:"form-control selectpicker", id:"#{select_id}"}
+      = f.select  :posted_delivery_time, options_for_select([["Choose a time"],["1:00", "13"], ["2:00", "14"]]),{}, {class:"form-control selectpicker", id:"#{select_id}"}
       %br/ 
 
 :javascript
-  var start = Date();
-  $('#datepicker').datepicker();
+
+  var start = new Date();
+  var end = new Date();
+  end.setDate(start.getDate()+30);
+
+  $('#datepicker').datepicker({
+      daysOfWeekDisabled: "0",
+      autoclose: true,
+      todayHighlight: true
+  });
+
   console.log("start: " + start);
+  console.log("end:" + end);
   $('#datepicker').datepicker('setStartDate', start);
+  $('#datepicker').datepicker('setEndDate', end);
+
+
+
+
+
+
   // var picker2 = new Pikaday({ field: document.getElementById('pickup_datepicker') });
   //var picker = new Pikaday({ field: document.getElementById('pickup_request_posted_delivery_date') });
   

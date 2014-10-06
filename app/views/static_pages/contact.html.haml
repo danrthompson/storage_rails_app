@@ -3,19 +3,19 @@
   = render partial: "partials/blue_bar", locals:{mainText:"Item Delivery", dashboard:true, faq:true}
 
 - else
-.container.full-width.blue-bg.no-padding.white.dashboard-header.single-row
-  .col-md-6.align-center.col-sm-6.col-sm-offset-1
-    %h1 GET IN TOUCH!
-  .col-md-1.col-md-offset-2.col-sm-4.col-xs-12.align-center
-    %a{:href => "/faq.html"} 
-      .service-box.no-label
-        .service-icon
-          %i.fa.fa-question-circle.fa-3x
-        .service-desc
-          %h6
-            FAQ
   = render :partial => 'partials/signup_header'
-  / BLUE HEADER BAR
+  .container.full-width.blue-bg.no-padding.white.dashboard-header.single-row
+    .col-md-6.align-center.col-sm-6.col-sm-offset-1
+      %h1 GET IN TOUCH!
+    .col-md-1.col-md-offset-2.col-sm-4.col-xs-12.align-center
+      %a{:href => "/faq.html"} 
+        .service-box.no-label
+          .service-icon
+            %i.fa.fa-question-circle.fa-3x
+          .service-desc
+            %h6
+              FAQ
+    / BLUE HEADER BAR
 
 
 
@@ -33,7 +33,7 @@
             %br/
             %p
               Have a question? Maybe some feedback for the site? We want to hear from you! You can always reach us via
-              %a.heavy-font.blue{:href => "mailto:team@spaceyouneed.com"}  team@spaceyouneed.com
+              %a.heavy-font.blue{:href => "mailto:team@quickbox.com"}  team@quickbox.com
 
 
 
