@@ -94,9 +94,9 @@
          
           %br/
 
-          .row
+          .row#pending-delivery-form
             %h2
-              %span.items-count#items-in-storage #{@num_storage_items}
+              %span.items-count#items-pending-delivery #{@num_storage_items}
               / %span.items-count#items-in-storage 0
               Items Pending Delivery
               - if @has_existing_delivery
@@ -205,15 +205,19 @@
                   %li 
                     %span.order-item You have #{@delivery_items.count} items scheduled for delivery on
                     =@existing_delivery.delivery_time.strftime("%B %d at %l:%M %p")
+                - if !@has_existing_pickup && !@has_existing_delivery
+                  %li 
+                    %span.order-item You have no new notifications!
+
           %br/
-          / .row.sidebar-txtentry.bg-gray
-          /   .inner.align-center
-          /     %h5 Share and Save
-          /     %p.small-text
-          /       For each friend you invite to TSYN we'll take $50 off your monthly bill.
-          /       %br/  
-          /       %a.black-hover{:href => ""} Click Here
-          /       to get started
+          .row.sidebar-txtentry.bg-gray
+            .inner.align-center
+              %h5 Share and Save
+              %p.small-text
+                For each friend you invite to TSYN we'll take $25 off your monthly bill.
+                %br/  
+                %a.black-hover{:href => ""} Click Here
+                to get started
           / .row.sidebar-txtentry.bg-gray
           /   .inner
           /     %h5 Inventory in Storage
@@ -257,6 +261,7 @@
   $(document).ready(function(){
     var atHome = parseInt($("#boxes-at-home").html());
     var inStorage =parseInt($("#items-in-storage").html());
+    var pendingDelivery = parseInt($("#items-pending-delivery").html());
     console.log(atHome);
     console.log(inStorage);
     if (atHome == 0){
@@ -264,6 +269,9 @@
     }
     if (inStorage == 0){
       $("#delivery-form").addClass("hidden");
+    }
+    if(pendingDelivery == 0){
+      $("#pending-delivery-form").addClass("hidden");
     }
     if (atHome == 0 && inStorage == 0){
       $("#storage-empty").toggleClass("hidden");
