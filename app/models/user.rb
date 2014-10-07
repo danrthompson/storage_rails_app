@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   end
 
   def ready?
-    return true if self.cc_number and self.cc_name and self.exp_year and self.exp_month
+    return true if self.stripe_user.cards.first
     return false
   end
 
@@ -69,16 +69,23 @@ class User < ActiveRecord::Base
   end
 
   def send_card_info_to_stripe
-    # if self.exp_month and self.exp_year and self.cc_number and self.cc_name and self.cc_cvc and self.stripe_customer_identifier
-    if self.exp_month and self.exp_year and self.cc_number and self.cc_name and self.stripe_customer_identifier
+    if not (self.exp_month.blank? or self.exp_year.blank? or self.cc_number.blank? or self.cc_name.blank? or self.cc_cvc.blank? or self.stripe_customer_identifier.blank?)
       customer = self.stripe_user
       customer.cards.create(card:{
         number: self.cc_number,
         exp_month: self.exp_month.to_i,
         exp_year: self.exp_year.to_i,
-        # cvc: self.cc_cvc,
+        cvc: self.cc_cvc,
         name: self.cc_name,
       })
+      begin
+        unless self.promo_code.blank?
+          customer.coupon = self.promo_code
+          customer.save
+        end
+      rescue Stripe::InvalidRequestError
+        errors.add(:promo_code, 'is invalid.')
+      end
     end
   end
 end
