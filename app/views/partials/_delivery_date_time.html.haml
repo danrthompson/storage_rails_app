@@ -14,7 +14,8 @@
       %br/ 
 
 :javascript
-
+  var available_delivery_times = #{Request.available_delivery_times.to_json};
+  console.log(available_delivery_times);
   var start = new Date();
   var end = new Date();
   end.setDate(start.getDate()+30);
@@ -33,7 +34,7 @@
 
 
 
-
+  
 
   // var picker2 = new Pikaday({ field: document.getElementById('pickup_datepicker') });
   //var picker = new Pikaday({ field: document.getElementById('pickup_request_posted_delivery_date') });
