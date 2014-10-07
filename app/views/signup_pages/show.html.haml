@@ -129,11 +129,11 @@
                 .form-group.address-form
                   .row
                     .col-md-6.light-gray
-                      = cc.label :cc_name, "Have a promo code?", class:"no-margin"
-                      = cc.text_field :cc_name,  autofocus: true, placeholder:"", class:"form-control"
+                      = cc.label :promo_code, "Have a promo code?", class:"no-margin"
+                      = cc.text_field :promo_code,  autofocus: true, placeholder:"", class:"form-control"
                     .col-md-6
-                      = cc.label :cc_name, "How did you har about us?"
-                      = cc.select  :cc_name, options_for_select([["Divine Inspiration"], ["A Wise Man Told Me"], ["A Flyer"], ["A Friend"], ["Other"]]),{}, {class:"form-control"}
+                      = cc.label :referrer, "How did you hear about us?"
+                      = cc.select  :referrer, options_for_select([["Divine Inspiration"], ["A Wise Man Told Me"], ["A Flyer"], ["A Friend"], ["Other"]]),{}, {class:"form-control"}
                     
             %br/
           %br/

@@ -16,7 +16,7 @@ module ParamExtraction
 	end
 
 	def user_cc_params(params)
-		params.require(:user).permit(:cc_number, :cc_name, :exp_month, :exp_year)
+		params.require(:user).permit(:cc_number, :cc_name, :exp_month, :exp_year, :cc_cvc, :promo_code, :referrer)
 	end
 
 	def edit_user_params(params)
