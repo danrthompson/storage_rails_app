@@ -15,15 +15,16 @@ class Request < ActiveRecord::Base
 	end
 
 	def self.available_delivery_times(from_time=Time.now)
+		time_format = '%m/%d/%Y'
 		available_times = {}
-		available_times[from_time.strftime('%m/%d/%y')] = @@standard_times_by_day[from_time.wday].to_a.select {|time| time >= from_time.hour + 8}
+		available_times[from_time.strftime(time_format)] = @@standard_times_by_day[from_time.wday].to_a.select {|time| time >= from_time.hour + 8}
 		29.times do |i|
 			time = from_time + (i+1).days
-			available_times[time.strftime('%m/%d/%y')] = @@standard_times_by_day[time.wday].to_a
+			available_times[time.strftime(time_format)] = @@standard_times_by_day[time.wday].to_a
 		end
 		self.where(completion_time: nil, delivery_time:(from_time.to_date..(from_time+30.days).to_date)).select(:delivery_time).each do |request|
 			delivery_time = request.delivery_time
-			date_string = delivery_time.strftime('%m/%d/%y')
+			date_string = delivery_time.strftime(time_format)
 			hour1 = delivery_time.hour
 			hour2 = if delivery_time.min > 10 then delivery_time.hour + 1 else nil end
 			if available_times[date_string]
