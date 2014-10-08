@@ -79,7 +79,9 @@
                 = link_to admin_path, class: "pointer white details-btn", id: "#{@pickup_request.id}" do
                   %h1.btn.btn-default.gray-bg Back
               .col-md-4.pull-right.align-center
-                = field.submit "Record & Complete", class: "btn btn-skin white"
+                = link_to "Record &  Complete", complete_pickup_request_path(@pickup_request.id), class: "btn btn-skin white", id:"record-complete"
+              .col-md-4.pull-right.align-center
+                = field.submit "Save Changes", class: "btn btn-skin white red"
             .row
               %p.no-opacity ps
           %br/
@@ -97,6 +99,14 @@
 = render partial: "partials/footer"
 
 :javascript
+
+  $(document).ready(function(){
+    $(".form-control").on('input', function(){
+      console.log("changing attr");
+      $("#record-complete").attr("disabled", "disabled"); 
+    });
+  });
+
   $(".details-btn").click(function(){
     var id = $(this).attr("id");
     var details = $("#" + id + "-details");
@@ -110,5 +120,7 @@
       $(details).addClass("hidden");
     }
   });
+
+  
 
 // admin/record_pickup_request/id
