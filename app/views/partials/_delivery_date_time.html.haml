@@ -22,13 +22,35 @@
   var end = new Date();
   end.setDate(start.getDate()+30);
 
-  $('#datepicker').datepicker({
-      daysOfWeekDisabled: "0",
-      autoclose: true,
-      todayHighlight: true
-  });
+  // $('#datepicker').datepicker({
+  //    daysOfWeekDisabled: "0",
+  //    autoclose: true,
+  //    todayHighlight: true
+  //});
+  // $('#datepicker').on('changeDate', function(){
+  //   var val = $('#datepicker-value').val();
+  //   console.log("Value:" + val);
 
-  $('#datepicker').on('changeDate', function(){
+  //   $("#delivery_time option").each(function() {
+  //       $(this).remove();
+  //   });
+
+  //   var times = available_delivery_times[val];
+  //   console.log("about to iterate");
+  //   $.each( times, function(value) {
+  //     console.log("value:" + value);
+  //      $('#pickup_time')
+  //        .append($("<option></option>")
+  //        .attr("value",value)
+  //        .text(value + ":00")); 
+
+  //      $('#delivery_time')
+  //        .append($("<option></option>")
+  //        .attr("value",value)
+  //        .text(value + ":00")); 
+  //   });
+  // });
+  $('.form-control').on('input', function(){
     var val = $('#datepicker-value').val();
     console.log("Value:" + val);
 
@@ -36,6 +58,7 @@
         $(this).remove();
     });
 
+  
     var times = available_delivery_times[val];
     console.log("about to iterate");
     $.each( times, function(value) {
