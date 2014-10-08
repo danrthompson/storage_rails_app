@@ -1,0 +1,37 @@
+.col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
+  .request-content.no-margin.row
+    .col-md-3
+      %i.icon-pickup.fa.pull-left 
+      %h3.blue.heavy-font Pickup
+    .col-md-2.pull-left
+      = link_to admin_assign_driver_path(id: pickup_request.id), class: "pointer white details-btn" do
+        %h1.btn.btn-default.red Assign
+    .col-md-3.pull-left
+      %a.pointer.white.details-btn{:id => "#{pickup_request.id}"}
+        %h1.btn.btn-default.gray-bg View Details
+    .col-md-3.pull-left
+      = link_to "Record & Complete", admin_record_pickup_request_path(id: pickup_request.id), class: "btn btn-skin white"
+  .request-content
+    .storage-items
+      .row.storage-item
+        = render partial: "partials/admin_driver_details", locals:{request:pickup_request}
+        .col-md-4
+          %p
+            %span Items Requested
+            %ul.no-list
+              %li
+                Boxes:
+                %span.pull-right= pickup_request.storage_items.where(item_type: 'small').count
+
+              %li
+                Medium Items:
+                %span.pull-right= pickup_request.storage_items.where(item_type: 'medium').count
+              %li
+                Large Items:
+                %span.pull-right= pickup_request.storage_items.where(item_type: 'large').count
+              %li
+                XL Items:
+                %span.pull-right= pickup_request.storage_items.where(item_type: 'extra_large').count
+    .admin-details.hidden{:id => "#{pickup_request.id}-details"}
+      = render partial: "partials/admin_pickup_detail", locals: {pickup_request: pickup_request}
+    %p.no-opacity a
