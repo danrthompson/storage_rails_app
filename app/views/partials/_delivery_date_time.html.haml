@@ -37,8 +37,14 @@
     });
 
     var times = available_delivery_times[val];
+    console.log("about to iterate");
     $.each( times, function(value) {
       console.log("value:" + value);
+       $('#pickup_time')
+         .append($("<option></option>")
+         .attr("value",value)
+         .text(value + ":00")); 
+
        $('#delivery_time')
          .append($("<option></option>")
          .attr("value",value)
