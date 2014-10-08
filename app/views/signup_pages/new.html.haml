@@ -152,7 +152,7 @@
           /       .col-md-8.col-md-offset-2
           /         .row
           /           / # = fields_for @user do |field|
-          /           = render partial: "partials/delivery_date_time", locals: {f:f, id:"pickup_request_posted_delivery_date", select_id:"delivery_time"}
+          /           = render partial: "partials/delivery_date_time", locals: {f:f, id:"datepicker-value", select_id:"delivery_time"}
 
         
     .container#pickup-time.hidden
@@ -279,8 +279,8 @@
     $("#signup-form").data('bootstrapValidator').validate();
     if ($("#signup-form").data('bootstrapValidator').isValid()){
       console.log("address page content is valid");
-   
-      if((($("#pickup_request_posted_delivery_date").val().length > 0) && ($("#pickup_time").val().length > 0)) || $("#pickup-time").hasClass("hidden")) {
+      
+      if($("#pickup-time").hasClass("hidden") || (($("#datepicker-value").val().length > 0) && ($("#pickup_time").val().length > 0))) {
           $("#signup-third-btn").removeAttr("disabled"); 
       } else console.log("pickup is not valid");
     } else{

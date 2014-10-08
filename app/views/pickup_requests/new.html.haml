@@ -75,14 +75,14 @@
   
 
   $(document).ready(function() { 
-    valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#pickup_request_posted_delivery_date", "#delivery_time");
+    valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#datepicker-value", "#delivery_time");
 
     $(".form-control").on('input', function() {
-      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#pickup_request_posted_delivery_date", "#delivery_time");
+      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#datepicker-value", "#delivery_time");
     });
 
     $(".btn-inc").click(function() {
-      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#pickup_request_posted_delivery_date", "#delivery_time");
+      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#datepicker-value", "#delivery_time");
     });
 
   });
