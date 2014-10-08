@@ -6,8 +6,16 @@ class AdminPagesController < ApplicationController
 	def admin
 		@user = current_user
 		@pending_pickup_requests = PickupRequest.where(completion_time: nil).order(:delivery_time)
+		@pending_pickup_requests_assigned = PickupRequest.where(completion_time: nil).where.not(driver_name: nil).order(:delivery_time)
+		@pending_pickup_requests_unassigned = PickupRequest.where(completion_time: nil, driver_name: nil).order(:delivery_time)
+
 		@pending_packing_supplies_requests = PackingSuppliesRequest.where(completion_time: nil).order(:delivery_time)
+		@pending_packing_supplies_requests_assigned = PackingSuppliesRequest.where(completion_time: nil).where.not(driver_name: nil).order(:delivery_time)
+		@pending_packing_supplies_requests_unassigned = PackingSuppliesRequest.where(completion_time: nil, driver_name: nil).order(:delivery_time)
+
 		@pending_delivery_requests = DeliveryRequest.where(completion_time: nil).order(:delivery_time)
+		@pending_delivery_requests_assigned = DeliveryRequest.where(completion_time: nil).where.not(driver_name: nil).order(:delivery_time)
+		@pending_delivery_requests_unassigned = DeliveryRequest.where(completion_time: nil, driver_name: nil).order(:delivery_time)
 	end
 
 	def complete_packing_supplies_request
@@ -64,6 +72,12 @@ class AdminPagesController < ApplicationController
 
 	def assign_driver
 		@request = Request.find(params[:id])
+	end
+
+	def update_assign_driver
+		@request = Request.find(params[:id])
+		@request.update(params.require(:request).permit(:driver_name, :driver_notes))
+		redirect_to :admin, notice: 'Driver has been assigned to the request.' and return
 	end
 
 	def record_pickup_request

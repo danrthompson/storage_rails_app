@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'admin/record_pickup_request/:id', to: 'admin_pages#record_pickup_request', as: 'admin_record_pickup_request'
   get 'admin/record_delivery_request/:id', to: 'admin_pages#record_delivery_request', as: 'admin_record_delivery_request'
   get 'admin/assign_driver/:id', to: 'admin_pages#assign_driver', as: 'admin_assign_driver'
+  post 'admin/assign_driver/:id', to: 'admin_pages#update_assign_driver'
   get 'users/referral', to: 'users#referral', as: 'users_referral'
   post 'admin/assign_driver/:id', to: 'admin_pages#update_driver'
   patch 'admin/complete_packing_supplies_request/:id', to: 'admin_pages#complete_packing_supplies_request', as: 'complete_packing_supplies_request'
