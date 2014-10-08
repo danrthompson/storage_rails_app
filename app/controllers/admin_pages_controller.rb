@@ -1,4 +1,6 @@
 class AdminPagesController < ApplicationController
+	include ParamExtraction
+
 	before_action :authenticate_admin!
 
 	def admin
@@ -58,6 +60,10 @@ class AdminPagesController < ApplicationController
 		delivery_request.completion_time = delivery_completion_time
 		delivery_request.save
 		redirect_to :admin, notice: 'Delivery request marked complete' and return
+	end
+
+	def assign_driver
+		@request = Request.find(params[:id])
 	end
 
 	def record_pickup_request

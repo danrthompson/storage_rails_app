@@ -132,7 +132,11 @@
               .col-md-12.inventory-entries.no-hover.boxed-gray.align-center
                 %br/ 
                 %p.blue.heavy-font
-                  These are the items we will pick up. 
+                  These are the items we will pick up
+                  - if @has_existing_pickup
+                    on
+                    =@existing_pickup.delivery_time.strftime("%B %d at %l:%M %p")
+
                 %p
                   If you like, you can give them an image, title, and description to help find them later.
                   Otherwise our drivers will help catalog your items when they arrive for pickup. 
@@ -235,8 +239,9 @@
           .row
             .boxed-gray.continue-button  
               - if !@has_existing_pickup
-                %button#pickup-button.btn.btn-primary.gray-bg{:disabled => false, :type => "button"}
-                  Request New Pickup
+                = link_to new_pickup_request_path do
+                  %button#pickup-button.btn.btn-primary.gray-bg{:disabled => false, :type => "button"}
+                    Request New Pickup
               - else
                 = link_to edit_pickup_request_path(id: @has_existing_pickup) do
                   %button#pickup-button.btn.btn-primary.gray-bg.blue-bg-hover.no-border{:type => "button"} Edit Pickup
@@ -304,27 +309,27 @@
   //    } 
   // });
 
-  // Pick Up Entry Selected
-  $(".pickup-entry").click(function() {
-      // $(this).toggleClass("selected-item");
-      $('input:first', this).prop('checked', true);
+  /// Pick Up Entry Selected
+  // $(".pickup-entry").click(function() {
+  //     // $(this).toggleClass("selected-item");
+  //     $('input:first', this).prop('checked', true);
 
-      if($(this).hasClass("selected-item")){
-      numPickupItems = numPickupItems + 1;
-    } else {
-      numPickupItems = numPickupItems - 1;
-    }
-    console.log("numPickupItems:" + numPickupItems);
+  //     if($(this).hasClass("selected-item")){
+  //     numPickupItems = numPickupItems + 1;
+  //   } else {
+  //     numPickupItems = numPickupItems - 1;
+  //   }
+  //   console.log("numPickupItems:" + numPickupItems);
 
-    if (numPickupItems == 0) console.log("the pickup button would be disabled here bc there are no items selected");
-    else {
-      console.log("pickup BUTTON REMOVING DISABLED");
-      $("#pickup-button").removeAttr("disabled");   
-      $(".delivery-entry").removeClass("selected-item");
-      $("#delivery-button").attr("disabled", "disabled");
-      numDeliveryItems = 0;
-     } 
-  });
+  //   if (numPickupItems == 0) console.log("the pickup button would be disabled here bc there are no items selected");
+  //   else {
+  //     console.log("pickup BUTTON REMOVING DISABLED");
+  //     $("#pickup-button").removeAttr("disabled");   
+  //     $(".delivery-entry").removeClass("selected-item");
+  //     $("#delivery-button").attr("disabled", "disabled");
+  //     numDeliveryItems = 0;
+  //    } 
+  // });
 
   // $("#pickup-button").click(function(event){
   //     event.preventDefault();
