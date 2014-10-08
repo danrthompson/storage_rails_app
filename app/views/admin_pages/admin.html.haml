@@ -61,15 +61,15 @@
         - @pending_pickup_requests.each do |pickup_request|
           .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
             .request-content.no-margin.row
-              .col-md-4
+              .col-md-3
                 %i.icon-pickup.fa.pull-left 
-                %h3.blue.heavy-font Pending Pickup
-              .col-md-2.pull-left
-                %a.pointer.white.details-btn{:id => "#{pickup_request.id}"}
-                  %h1.btn.btn-default.gray-bg Details
+                %h3.blue.heavy-font Pickup
               .col-md-2.pull-left
                 = link_to admin_assign_driver_path(id: pickup_request.id), class: "pointer white details-btn" do
                   %h1.btn.btn-default.red Assign
+              .col-md-3.pull-left
+                %a.pointer.white.details-btn{:id => "#{pickup_request.id}"}
+                  %h1.btn.btn-default.gray-bg View Details
               .col-md-3.pull-left
                 = link_to "Record & Complete", admin_record_pickup_request_path(id: pickup_request.id), class: "btn btn-skin white"
             .request-content
@@ -121,15 +121,15 @@
             .request-content.no-margin
               
 
-              .col-md-5
+              .col-md-4
                 %i.icon-delivery.fa.pull-left 
-                %h3.blue.heavy-font Pending Delivery
-              .col-md-2.pull-left
-                %a.pointer.white.details-btn{:id => "#{delivery_request.id}"}
-                  %h1.btn.btn-default.gray-bg Details
+                %h3.blue.heavy-font Pend Delivery
               .col-md-2.pull-left
                 = link_to admin_assign_driver_path(id: delivery_request.id), class: "pointer white details-btn" do
                   %h1.btn.btn-default.red Assign
+              .col-md-3.pull-left
+                %a.pointer.white.details-btn{:id => "#{delivery_request.id}"}
+                  %h1.btn.btn-default.gray-bg View Details
               .col-md-3.pull-left.no-padding
                 = link_to "Record & Complete", admin_record_delivery_request_path(id: delivery_request.id), class: "btn btn-skin white"
 
