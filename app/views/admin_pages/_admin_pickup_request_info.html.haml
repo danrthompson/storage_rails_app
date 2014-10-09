@@ -1,8 +1,13 @@
 .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
   .request-content.no-margin.row
-    .col-md-3
-      %i.icon-pickup.fa.pull-left 
-      %h3.blue.heavy-font Pickup
+    - if assigned
+      .col-md-3
+        %i.icon-pickup.fa.pull-left 
+        %h3.blue.heavy-font Pickup
+    - else
+      .col-md-3.red-font
+        %i.icon-pickup.fa.pull-left 
+        %h3.heavy-font Pending Pickup    
     .col-md-2.pull-left
       = link_to admin_assign_driver_path(id: pickup_request.id), class: "pointer white details-btn" do
         %h1.btn.btn-default.red Assign

@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update]
   devise_for :users
 
+  devise_scope :user do
+    get 'users/sign_out(.:format)', to: 'devise/sessions#destroy'
+  end
+
   resources :storage_items, only: [:index, :edit, :update]
   resources :delivery_requests, :packing_supplies_requests, :pickup_requests, only: [:show, :create, :new, :edit, :update]
 

@@ -9,13 +9,11 @@ class AdminPagesController < ApplicationController
 		@pending_pickup_requests_assigned = PickupRequest.where(completion_time: nil).where.not(driver_name: nil).order(:delivery_time)
 		@pending_pickup_requests_unassigned = PickupRequest.where(completion_time: nil, driver_name: nil).order(:delivery_time)
 
-		@pending_packing_supplies_requests = PackingSuppliesRequest.where(completion_time: nil).order(:delivery_time)
-		@pending_packing_supplies_requests_assigned = PackingSuppliesRequest.where(completion_time: nil).where.not(driver_name: nil).order(:delivery_time)
-		@pending_packing_supplies_requests_unassigned = PackingSuppliesRequest.where(completion_time: nil, driver_name: nil).order(:delivery_time)
-
 		@pending_delivery_requests = DeliveryRequest.where(completion_time: nil).order(:delivery_time)
 		@pending_delivery_requests_assigned = DeliveryRequest.where(completion_time: nil).where.not(driver_name: nil).order(:delivery_time)
 		@pending_delivery_requests_unassigned = DeliveryRequest.where(completion_time: nil, driver_name: nil).order(:delivery_time)
+
+		@pending_packing_supplies_requests = PackingSuppliesRequest.where(completion_time: nil).order(:delivery_time)
 	end
 
 	def complete_packing_supplies_request
