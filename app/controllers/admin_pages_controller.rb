@@ -74,6 +74,10 @@ class AdminPagesController < ApplicationController
 		@request = Request.find(params[:id])
 	end
 
+	def block_time
+		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!! <3 Daniel
+		@request = Request.last
+	end
 	def update_assign_driver
 		@request = Request.find(params[:id])
 		@request.update(params.require(:request).permit(:driver_name, :driver_notes))

@@ -14,8 +14,7 @@
       %br/ 
 
 :javascript
-  var available_delivery_times = #{Request.available_delivery_times.to_json};
-  console.log(available_delivery_times);
+  
 
 
   var start = new Date();
@@ -27,85 +26,16 @@
       autoclose: true,
       todayHighlight: true
   });
-
-  $('#datepicker').on('changeDate', function(){
-    var val = $('#datepicker-value').val();
-    console.log("Value:" + val);
-
-    $("#delivery_time option").each(function() {
-        $(this).remove();
-    });
-
-    var times = available_delivery_times[val];
-    console.log("about to iterate");
-    $.each( times, function(value) {
-      console.log("value:" + value);
-       $('#pickup_time')
-         .append($("<option></option>")
-         .attr("value",value)
-         .text(value + ":00")); 
-
-       $('#delivery_time')
-         .append($("<option></option>")
-         .attr("value",value)
-         .text(value + ":00")); 
-    });
-  });
-
-
-  //  $('.form-control').on('input', function(){
-  //    var val = $('#datepicker-value').val();
-  //    console.log("Value:" + val);
-  //
-  //    $("#delivery_time option").each(function() {
-  //        $(this).remove();
-  //    });
-  //
-  //  
-  //    var times = available_delivery_times[val];
-  //    console.log("about to iterate");
-  //    $.each( times, function(value) {
-  //      console.log("value:" + value);
-  //       $('#pickup_time')
-  //         .append($("<option></option>")
-  //         .attr("value",value)
-  //         .text(value + ":00")); 
-  //
-  //       $('#delivery_time')
-  //         .append($("<option></option>")
-  //         .attr("value",value)
-  //         .text(value + ":00")); 
-  //    });
-  //  });
-
-  console.log("start: " + start);
-  console.log("end:" + end);
   $('#datepicker').datepicker('setStartDate', start);
   $('#datepicker').datepicker('setEndDate', end);
 
 
-
-
-  
-
-  // var picker2 = new Pikaday({ field: document.getElementById('pickup_datepicker') });
-  //var picker = new Pikaday({ field: document.getElementById('datepicker-value') });
-  
-  
-  $(document).ready(function() {
-    $('#time-validator-id')
-      .bootstrapValidator({
-      feedbackIcons: {
-      },
-      fields: {
-        'packing_supplies_request[posted_delivery_date]': {
-          message: 'The address field is not valid',
-          validators: {
-            notEmpty: {
-              message: 'You must select a date for delivery'
-            }
-          }
-        }
-      }
-    })
+  $('#datepicker').on('changeDate', function(){
+    var available_delivery_times = #{Request.available_delivery_times.to_json};
+    var dropdownID = "#" + #{select_id.to_json};
+    updateDropdownDates('#datepicker-value', dropdownID, available_delivery_times);
   });
+
+
+  
+

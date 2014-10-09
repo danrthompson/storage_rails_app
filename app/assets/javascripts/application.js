@@ -115,3 +115,25 @@ function sumItemList(itemClass, displayId){
   $(displayId).html("$" + sumTotal);
 }
 
+////////////////
+// DatePicker Functions
+////////////////
+
+function updateDropdownDates(datePickerField, dropdownID, available_delivery_times){
+  var val = $(datePickerField).val();
+  console.log("Value:" + val);
+
+  $(dropdownID + " option").each(function() {
+      $(this).remove();
+  });
+  
+  if (!available_delivery_times) return;
+  var times = available_delivery_times[val];
+  console.log("about to iterate");
+  $.each( times, function(value) {
+     $(dropdownID)
+       .append($("<option></option>")
+       .attr("value",value)
+       .text(value + ":00"));
+  });
+}

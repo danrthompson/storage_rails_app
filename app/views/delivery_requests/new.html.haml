@@ -123,7 +123,7 @@
   $(document).ready(function() { 
     sumItemList(".delivery-item-price", "#order-subtotal");
     checkExistingBoxes();
-    valAddrDelivery("#validator-id", "#continue-btn", "#delivery_request_posted_delivery_date", "#delivery_time");
+    valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
 
     $(".form-control").on('input', function() {
       deliveryCheckBtn();
@@ -184,7 +184,7 @@
   });
 
   function deliveryCheckBtn(){
-    if ($("#delivery-list").val() != "" && valAddrDelivery("#validator-id", "#continue-btn", "#delivery_request_posted_delivery_date", "#delivery_time")){
+    if ($("#delivery-list").val() != "" && valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time")){
       $("#continue-btn").removeAttr("disabled"); 
     } else{
       $("#continue-btn").attr("disabled", true); 
