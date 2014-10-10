@@ -71,7 +71,7 @@
                 = link_to admin_path, class: "pointer white details-btn", id: "#{@delivery_request.id}" do
                   %h1.btn.btn-default.gray-bg Back
               .col-md-4.pull-right.align-center
-                = link_to "Record &  Complete", complete_delivery_request_path(@delivery_request.id), class: "btn btn-skin white", id:"record-complete"
+                = link_to "Record & Complete", complete_delivery_request_path(@delivery_request.id), class: "btn btn-skin white", id:"record-complete"
               .col-md-4.pull-right.align-center
                 = field.submit "Save Changes", class: "btn btn-skin white red"
             .row

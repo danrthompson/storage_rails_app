@@ -1,0 +1,67 @@
+.col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border.request-entry
+  .request-content.no-margin
+    
+
+    .col-md-4
+      %i.icon-delivery.fa.pull-left 
+      %h3.blue.heavy-font Pend Delivery
+    .col-md-2.pull-left
+      = link_to admin_assign_driver_path(id: delivery_request.id), class: "pointer white details-btn" do
+        %h1.btn.btn-default.red Assign
+    .col-md-3.pull-left
+      %a.pointer.white.details-btn{:id => "#{delivery_request.id}"}
+        %h1.btn.btn-default.gray-bg View Details
+    .col-md-3.pull-left.no-padding
+      = link_to "Record & Complete", admin_record_delivery_request_path(id: delivery_request.id), class: "btn btn-skin white"
+
+
+      / .col-md-3.pull-left
+      /   %a.pointer.white.details-btn{:id => "#{delivery_request.id}"} 
+      /     %h1.btn.btn-default.gray-bg View Details
+      / .col-md-3.pull-left
+      /   = link_to "Record & Complete", admin_record_delivery_request_path(id: delivery_request.id), class: "btn btn-skin white"
+      / %a.btn.btn-skin.white{:href => ""} Record & Complete 
+  .row
+    
+  .request-content
+    .storage-items
+      .row.storage-item
+        = render partial: "partials/admin_driver_details", locals:{request:delivery_request}
+        .col-md-4
+          %p
+            %ul.no-list
+              %li.heavy-font 
+                %span Boxes:
+                %span.pull-right ID
+
+              - delivery_request.storage_items.where(item_type: 'small').each do |small_item|
+                %li.delivery-detail
+                  small_item.title
+                  %span.pull-right #{small_item.user_item_number}
+              %li.heavy-font
+                %span Medium Items:
+                %span.pull-right ID
+              - delivery_request.storage_items.where(item_type: 'medium').each do |medium_item|
+                %li.delivery-detail 
+                  medium_item.title
+                  %span.pull-right #{medium_item.user_item_number}
+
+              %li.heavy-font
+                %span Large Items: 
+                %span.pull-right ID
+              - delivery_request.storage_items.where(item_type: 'large').each do |large_item|
+                %li.delivery-detail 
+                  large_item.title
+                  %span.pull-right #{large_item.user_item_number}
+
+              %li.heavy-font
+                %span XL Items
+                %span.pull-right ID
+              - delivery_request.storage_items.where(item_type: 'extra_large').each do |extra_large_item|
+                %li.delivery-detail
+                  = extra_large_item.title
+                  %span.pull-right #{extra_large_item.user_item_number}
+  / .request-content
+  .admin-details.hidden{:id => "#{delivery_request.id}-details"}
+    = render partial: "storage_items", locals: {activity: 'deliver', request: delivery_request, show_id: true}
+  %p.no-opacity a

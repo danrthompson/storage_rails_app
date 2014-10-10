@@ -1,4 +1,6 @@
 class StorageItem < ActiveRecord::Base
+	attr_accessor :item_not_delivered
+
 	def self.item_types
 		{'small' => 5.0, 'medium' => 12.0, 'large' => 25.0, 'extra_large' => 40.0}
 	end
@@ -13,6 +15,8 @@ class StorageItem < ActiveRecord::Base
 	validates :user_id, :item_type, :pickup_request_id, presence: true
 	validates :item_type, inclusion: { in: self.item_types.keys.map { |item| item.to_s }, message: 'must be a real type.' }
 	validates_attachment :image, size: { less_than: 10.megabytes }, content_type: { content_type: /\Aimage\/.*\Z/ }
+
+	before_save :remove_delivery_request_if_item_not_delivered
 
 	def price
 		StorageItem.item_types[self.item_type]
@@ -66,6 +70,12 @@ class StorageItem < ActiveRecord::Base
 	end
 
 	private
+
+	def remove_delivery_request_if_item_not_delivered
+		if self.item_not_delivered == true
+			self.delivery_request = nil
+		end
+	end
 
 	def add_user_item_number
 		self.user_item_number = self.user.storage_item_number
