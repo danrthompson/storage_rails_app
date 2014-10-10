@@ -129,8 +129,9 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
   
   if (!available_delivery_times) return;
   var times = available_delivery_times[val];
-  console.log("about to iterate");
+  // console.log("about to iterate");
   $.each( times, function(value) {
+    // console.log (dropdownID +":"+ value);
      $(dropdownID)
        .append($("<option></option>")
        .attr("value",value)
