@@ -18,9 +18,9 @@
         .row
           .col-lg-8.col-lg-offset-2
             .section-heading
-              %h2.no-margin Pending Pickup Requests
+              %h2.no-margin Pending Delivery Requests
     .container.request-entry
-      = form_for @delivery_request, url: complete_delivery_request_path(@delivery_request.id)  do |field|  
+      = form_for @delivery_request, url: admin_record_delivery_request_path(@delivery_request.id), method: :patch  do |field|  
         .row  
           .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
             .request-content.row
@@ -71,7 +71,7 @@
                 = link_to admin_path, class: "pointer white details-btn", id: "#{@delivery_request.id}" do
                   %h1.btn.btn-default.gray-bg Back
               .col-md-4.pull-right.align-center
-                = link_to "Record & Complete", complete_delivery_request_path(@delivery_request.id), class: "btn btn-skin white", id:"record-complete"
+                = link_to "Record & Complete", complete_delivery_request_path(@delivery_request.id), class: "btn btn-skin white", id:"record-complete", method: :patch
               .col-md-4.pull-right.align-center
                 = field.submit "Save Changes", class: "btn btn-skin white red"
             .row

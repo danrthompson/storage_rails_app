@@ -22,7 +22,7 @@
               %h2.no-margin Pending Pickup Requests
     .container.request-entry
       // For Each Pickup Request
-      = form_for @pickup_request, url: complete_pickup_request_path(@pickup_request.id)  do |field|  
+      = form_for @pickup_request, url: admin_record_pickup_request_path(@pickup_request.id), method: :patch  do |field|  
         .row  
           .col-md-8.col-md-offset-2.align-left.boxed-grey.fat-white-border
             .request-content.row
@@ -79,7 +79,7 @@
                 = link_to admin_path, class: "pointer white details-btn", id: "#{@pickup_request.id}" do
                   %h1.btn.btn-default.gray-bg Back
               .col-md-4.pull-right.align-center
-                = link_to "Record &  Complete", complete_pickup_request_path(@pickup_request.id), class: "btn btn-skin white", id:"record-complete"
+                = link_to "Record & Complete", complete_pickup_request_path(@pickup_request.id), class: "btn btn-skin white", id:"record-complete", method: :patch
               .col-md-4.pull-right.align-center
                 = field.submit "Save Changes", class: "btn btn-skin white red"
             .row

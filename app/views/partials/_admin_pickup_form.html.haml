@@ -3,10 +3,6 @@
   .row.storage-item.detail-item
     .row
       .col-md-6
-        - if false
-          %p
-            %span Item ID:
-            #{field.object.id}
         .new-item-attribute
           = field.label :title, "Title:"
           = field.text_field :title, class:"col-md-6 form-control", id:""

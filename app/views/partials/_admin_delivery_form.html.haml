@@ -32,7 +32,7 @@
           %li 
             = field.label :item_not_delivered, 'This Item Was Not Delivered', class: 'blue pull-right'
             = field.check_box :item_not_delivered, {class: 'pull-left', id: "box-#{field.object.id}"}
-
+            = field.hidden_field :id
       .col-md-6
         / image
         - if field.object.image?
