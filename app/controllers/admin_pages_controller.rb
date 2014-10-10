@@ -16,6 +16,46 @@ class AdminPagesController < ApplicationController
 		@pending_packing_supplies_requests = PackingSuppliesRequest.where(completion_time: nil).order(:delivery_time)
 	end
 
+	def assign_driver
+		@request = Request.find(params[:id])
+	end
+
+	def update_assign_driver
+		@request = Request.find(params[:id])
+		@request.update(params.require(:request).permit(:driver_name, :driver_notes))
+		redirect_to :admin, notice: 'Driver has been assigned to the request.' and return
+	end
+
+	def record_pickup_request
+		@pickup_request = PickupRequest.find(params[:id])
+	end
+
+	def record_delivery_request
+		@delivery_request = DeliveryRequest.find(params[:id])
+	end
+
+	def save_changes_pickup_request
+		@pickup_request = PickupRequest.find(params[:id])
+		@pickup_request.update(complete_pickup_request_params(params))
+		if @pickup_request.valid?
+			flash.now[:notice] = 'Changes saved.'
+		else
+			flash.now[:alert] = 'There were some errors that prevented saving.'
+		end
+		render action: :record_pickup_request
+	end
+
+	def save_changes_delivery_request
+		@delivery_request = DeliveryRequest.find(params[:id])
+		@delivery_request.update(complete_delivery_request_params(params))
+		if @delivery_request.valid?
+			flash.now[:notice] = 'Changes saved.'
+		else
+			flash.now[:alert] = 'There were some errors that prevented saving.'
+		end
+		render action: :record_delivery_request
+	end
+
 	def complete_packing_supplies_request
 		packing_supplies_request = PackingSuppliesRequest.find(params[:id])
 		Stripe::Charge.create(amount: packing_supplies_request.price * 100, currency: 'usd', customer: packing_supplies_request.user.stripe_customer_identifier, description: "Packing supplies shipped on #{Time.now.strftime('%m/%d')}", statement_description: "QUICKBOX SHPMT")
@@ -68,30 +108,9 @@ class AdminPagesController < ApplicationController
 		redirect_to :admin, notice: 'Delivery request marked complete' and return
 	end
 
-	def assign_driver
-		@request = Request.find(params[:id])
-	end
-
 	def block_time
-		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!!		# CHANGE THIS!!!!! <3 Daniel
+		# CHANGE THIS!!!!!
 		@request = Request.last
-	end
-	def update_assign_driver
-		@request = Request.find(params[:id])
-		@request.update(params.require(:request).permit(:driver_name, :driver_notes))
-		redirect_to :admin, notice: 'Driver has been assigned to the request.' and return
-	end
-
-	def record_pickup_request
-		@pickup_request = PickupRequest.find(params[:id])
-	end
-
-	def record_delivery_request
-		@delivery_request = DeliveryRequest.find(params[:id])
-	end
-
-	def record_packing_supplies_request
-		@packing_supplies_request = PackingSuppliesRequest.find(params[:id])
 	end
 
 	private
