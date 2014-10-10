@@ -1,5 +1,5 @@
 class StorageItem < ActiveRecord::Base
-	attr_accessor :item_not_delivered
+	@item_not_delivered = false
 
 	def self.item_types
 		{'small' => 5.0, 'medium' => 12.0, 'large' => 25.0, 'extra_large' => 40.0}
@@ -17,6 +17,15 @@ class StorageItem < ActiveRecord::Base
 	validates_attachment :image, size: { less_than: 10.megabytes }, content_type: { content_type: /\Aimage\/.*\Z/ }
 
 	before_save :remove_delivery_request_if_item_not_delivered
+
+	def item_not_delivered=(item_not_delivered)
+		attribute_will_change!(:item_not_delivered)
+		@item_not_delivered = if item_not_delivered and item_not_delivered.to_i == 1 then true else false end
+	end
+
+	def item_not_delivered
+		if @item_not_delivered then @item_not_delivered else false end
+	end
 
 	def price
 		StorageItem.item_types[self.item_type]

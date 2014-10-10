@@ -38,22 +38,22 @@ class AdminPagesController < ApplicationController
 		@pickup_request = PickupRequest.find(params[:id])
 		@pickup_request.update(complete_pickup_request_params(params))
 		if @pickup_request.valid?
-			flash.now[:notice] = 'Changes saved.'
+			redirect_to({action: :record_pickup_request}, notice: 'Changes saved') and return
 		else
-			flash.now[:alert] = 'There were some errors that prevented saving.'
+			flash.now[:alert] = 'There were some errors that prevented saving'
+			render action: :record_pickup_request and return
 		end
-		render action: :record_pickup_request
 	end
 
 	def save_changes_delivery_request
 		@delivery_request = DeliveryRequest.find(params[:id])
 		@delivery_request.update(complete_delivery_request_params(params))
 		if @delivery_request.valid?
-			flash.now[:notice] = 'Changes saved.'
+			redirect_to({action: :record_delivery_request}, notice: 'Changes saved') and return
 		else
 			flash.now[:alert] = 'There were some errors that prevented saving.'
+			render action: :record_delivery_request and return
 		end
-		render action: :record_delivery_request
 	end
 
 	def complete_packing_supplies_request
@@ -66,13 +66,12 @@ class AdminPagesController < ApplicationController
 	def complete_pickup_request
 		pickup_completion_time = Time.now
 		pickup_request = PickupRequest.find(params[:id])
-		pickup_request.update(complete_pickup_request_params(params))
 		pickup_request.completion_time = pickup_completion_time
 		pickup_request.driver = current_user
 		monthly_cost = 0.0
 		pickup_request.storage_items.each do |item|
 			item.entered_storage_at = pickup_completion_time
-			item.save
+			item.save!
 			monthly_cost += item.price
 		end
 		stripe_user = pickup_request.user.stripe_user
@@ -84,6 +83,7 @@ class AdminPagesController < ApplicationController
 		else
 			subscription = stripe_user.subscriptions.create(plan: 'plan_1', quantity: monthly_cost * 100)
 		end
+		
 		pickup_request.save
 		redirect_to :admin, notice: 'Pickup request marked complete.' and return
 	end
@@ -91,6 +91,8 @@ class AdminPagesController < ApplicationController
 	def complete_delivery_request
 		delivery_completion_time = Time.now
 		delivery_request = DeliveryRequest.find(params[:id])
+		delivery_request.completion_time = delivery_completion_time
+		delivery_request.driver = current_user
 		monthly_cost = 0.0
 		delivery_request.storage_items.each do |item|
 			item.left_storage_at = delivery_completion_time
@@ -103,7 +105,6 @@ class AdminPagesController < ApplicationController
 		subscription.save
 		Stripe::Charge.create(amount: delivery_request.price * 100, currency: 'usd', customer: stripe_user.id, description: "Quickbox delivery on #{Time.now.strftime('%m/%d')}", statement_description: "QUICKBOX DLVRY")
 
-		delivery_request.completion_time = delivery_completion_time
 		delivery_request.save
 		redirect_to :admin, notice: 'Delivery request marked complete' and return
 	end
