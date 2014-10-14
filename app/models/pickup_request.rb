@@ -10,7 +10,7 @@ class PickupRequest < Request
 
 	validates :delivery_time, presence: true
 	validates :box_quantity, :bubble_quantity, :tape_quantity, :wardrobe_box_quantity, absence: true
-	validate :delivery_time_is_available
+	validate :delivery_time_is_available, unless: :skip_delivery_validation
 	validate :is_real?
 	validate :no_other_pickups?
 

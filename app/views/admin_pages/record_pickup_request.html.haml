@@ -70,11 +70,7 @@
                       = field.text_field :driver_notes,  autofocus: true, placeholder:"Notes", class:"col-md-6 form-control", id:""
               .admin-details{:id => "#{@pickup_request.id}-details"}
                 = render partial: "partials/admin_pickup_form", locals: {pickup_request: @pickup_request, form: field}
-            / .col-md-10.col-md-offset-1
-            .row
-              .col-md-12.align-center
-                %a.pointer.white.details-btn.pull-right
-                  %h1.btn.btn-default.blue-bg.white Add Entry
+                = link_to_add_fields "Add entry", field, :storage_items
               %br/ 
               %p.no-opacity ps
             %br/ 
@@ -103,4 +99,5 @@
 
 
 = render partial: "partials/footer"
+
 

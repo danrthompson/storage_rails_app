@@ -28,3 +28,11 @@ $(".details-btn").click(function(){
     $(details).addClass("hidden");
   }
 });
+
+
+$('form').on('click', '.add_fields', function(e){
+  var time = new Date().getTime();
+  var regexp = new RegExp($(this).data('id'), 'g');
+  $(this).before($(this).data('fields').replace(regexp, time));
+  e.preventDefault();
+});

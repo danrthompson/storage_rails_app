@@ -22,6 +22,7 @@ class AdminPagesController < ApplicationController
 
 	def update_assign_driver
 		@request = Request.find(params[:id])
+		@request.skip_delivery_validation = true
 		@request.update(params.require(:request).permit(:driver_name, :driver_notes))
 		redirect_to :admin, notice: 'Driver has been assigned to the request.' and return
 	end
@@ -36,6 +37,7 @@ class AdminPagesController < ApplicationController
 
 	def save_changes_pickup_request
 		@pickup_request = PickupRequest.find(params[:id])
+		@pickup_request.skip_delivery_validation = true
 		@pickup_request.update(complete_pickup_request_params(params))
 		if @pickup_request.valid?
 			redirect_to({action: :record_pickup_request}, notice: 'Changes saved') and return
@@ -47,6 +49,7 @@ class AdminPagesController < ApplicationController
 
 	def save_changes_delivery_request
 		@delivery_request = DeliveryRequest.find(params[:id])
+		@delivery_request.skip_delivery_validation = true
 		@delivery_request.update(complete_delivery_request_params(params))
 		if @delivery_request.valid?
 			redirect_to({action: :record_delivery_request}, notice: 'Changes saved') and return
@@ -66,6 +69,7 @@ class AdminPagesController < ApplicationController
 	def complete_pickup_request
 		pickup_completion_time = Time.now
 		pickup_request = PickupRequest.find(params[:id])
+		pickup_request.skip_delivery_validation = true
 		pickup_request.completion_time = pickup_completion_time
 		pickup_request.driver = current_user
 		monthly_cost = 0.0
@@ -91,6 +95,7 @@ class AdminPagesController < ApplicationController
 	def complete_delivery_request
 		delivery_completion_time = Time.now
 		delivery_request = DeliveryRequest.find(params[:id])
+		delivery_request.skip_delivery_validation = true
 		delivery_request.completion_time = delivery_completion_time
 		delivery_request.driver = current_user
 		monthly_cost = 0.0
