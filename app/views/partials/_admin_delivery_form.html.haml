@@ -30,8 +30,8 @@
           %li 
             .single-dashed-line
           %li 
-            = field.label :item_not_delivered, 'This Item Was Not Delivered', class: 'blue pull-right'
-            = field.check_box :item_not_delivered, {class: 'pull-left', id: "box-#{field.object.id}"}
+            = field.check_box :item_not_delivered
+            = field.label :item_not_delivered, 'This Item Was Not Delivered'
             = field.hidden_field :id
       .col-md-6
         / image

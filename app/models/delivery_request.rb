@@ -6,7 +6,7 @@ class DeliveryRequest < Request
 
 	validates :delivery_time, presence: true
 	validates :box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, absence: true
-	validate :delivery_time_is_available
+	validate :delivery_time_is_available, unless: :skip_delivery_validation
 	validate :no_other_deliveries?
 
 	def price
@@ -20,6 +20,7 @@ class DeliveryRequest < Request
 	private
 
 	def no_other_deliveries?
+		return unless self.user
 		if self.user.delivery_requests.where(completion_time: nil).where.not(id: self.id).count > 0
 			errors.add(:delivery_time, 'cannot be added while there is a pending delivery.')
 			return false

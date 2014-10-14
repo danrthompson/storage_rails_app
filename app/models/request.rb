@@ -2,7 +2,7 @@ class Request < ActiveRecord::Base
 	# 0 = Sunday, 1 = Monday, and so on
 	@@standard_times_by_day = [0..23, 1..22, 2..21, 3..20, 4..19, 5..18, 6..17]
 
-	attr_accessor :posted_delivery_date, :posted_delivery_time
+	attr_accessor :posted_delivery_date, :posted_delivery_time, :skip_delivery_validation
 
 	belongs_to :user
 	belongs_to :driver, class_name: 'User'
