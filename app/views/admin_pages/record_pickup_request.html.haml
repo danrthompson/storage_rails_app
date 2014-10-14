@@ -1,3 +1,4 @@
+= javascript_include_tag  "admin_record"
 = render partial: "partials/admin_record_header"
 
 
@@ -7,6 +8,7 @@
     .col-md-12.col-xs-12.align-center
       .single-line.no-opacity
       %h1.no-side-margin ADMIN PAGE
+
 
 
 .container#admin-page
@@ -20,6 +22,8 @@
           .col-lg-8.col-lg-offset-2
             .section-heading
               %h2.no-margin Pending Pickup Requests
+    .container
+      = render partial: 'partials/error_messages_object_form', locals: {object: @pickup_request}
     .container.request-entry
       // For Each Pickup Request
       = form_for @pickup_request, url: admin_record_pickup_request_path(@pickup_request.id), method: :patch  do |field|  
@@ -82,6 +86,8 @@
                 = link_to "Record & Complete", complete_pickup_request_path(@pickup_request.id), class: "btn btn-skin white", id:"record-complete", method: :patch
               .col-md-4.pull-right.align-center
                 = field.submit "Save Changes", class: "btn btn-skin white red"
+
+             
             .row
               %p.no-opacity ps
           %br/
@@ -98,29 +104,3 @@
 
 = render partial: "partials/footer"
 
-:javascript
-
-  $(document).ready(function(){
-    $(".form-control").on('input', function(){
-      console.log("changing attr");
-      $("#record-complete").attr("disabled", "disabled"); 
-    });
-  });
-
-  $(".details-btn").click(function(){
-    var id = $(this).attr("id");
-    var details = $("#" + id + "-details");
-    console.log(id+"-details");
-    if ($(details).hasClass("hidden")) {
-      $("#" + id + " h1").html("Hide Details");
-      $(details).removeClass("hidden");
-    }
-    else {
-      $("#" + id + " h1").html("View Details");
-      $(details).addClass("hidden");
-    }
-  });
-
-  
-
-// admin/record_pickup_request/id

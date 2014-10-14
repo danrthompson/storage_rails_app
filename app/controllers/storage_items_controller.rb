@@ -38,6 +38,7 @@ class StorageItemsController < ApplicationController
 		# Items in Storage
 		@storage_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil, delivery_request_id: nil).where.not(entered_storage_at: nil).order(:item_type, :entered_storage_at)
 		@delivery_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil).where.not(entered_storage_at: nil, delivery_request_id: nil).order(:item_type, :entered_storage_at)
+		@num_delivery_items = @delivery_items.count
 
 		@num_storage_items = @storage_items.count
 		@num_boxes_in_storage = StorageItem.where(user_id: current_user.id, item_type: 'small').where.not(entered_storage_at: nil).count

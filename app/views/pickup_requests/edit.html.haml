@@ -3,6 +3,9 @@
 = render partial: "partials/blue_bar", locals:{mainText:"Item Pickup", dashboard:true, faq:true}
 = render :partial => 'partials/nudge_icon'
 
+.container
+  = render partial: 'partials/error_messages_object_form', locals: {object: @pickup_request}
+
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
   .heading-about.marginbot-20
@@ -50,7 +53,7 @@
                   / %a{:href => "user-newbox.html", :style => "color: white;"} Back
               .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                 .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.blue-bg-hover#continue-btn{:type => "button", disabled: true}
+                  %button.loadingOnClick.btn.btn-primary.blue-bg.blue-bg-hover#continue-btn{:type => "button", disabled: true}
                     = f.submit "Confirm Change"
 
 = render :partial => "partials/footer"
@@ -74,6 +77,7 @@
       valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
     });
 
+  
   });
 
  

@@ -24,6 +24,18 @@
 // require nivo-lightbox
 // require stellar
 
+// On document load
+$(function() { 
+  $(".loadingOnClick").click(function(){
+    $(this + " ").attr("disabled", true);
+    // $(this).html("Loading...");
+  });
+
+  $(".disableOnClick").click(function(e){
+    $(".disableOnClick").attr("disabled", true);
+  });
+});
+
 function hideParentWhenNotUsed(classId){
   var objectToHide = $("." + classId);
   objectToHide.each(function(){
@@ -137,4 +149,14 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
        .attr("value",value)
        .text(value + ":00"));
   });
+}
+
+/////////////////
+// Change To "Loading" On Button Click
+/////////////////
+
+function loadingOnClick(className){
+
+  $(className).html("Loading...");
+  $(className).attr("disabled", true);
 }

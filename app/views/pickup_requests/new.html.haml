@@ -38,17 +38,6 @@
           .col-md-12
             %h1.no-margin Add To Pickup
             %br/ 
-          / .col-md-8.col-md-offset-2
-          /   .row
-          /     .col-md-6
-          /       .boxed-gray.continue-button
-          /         %button.btn.btn-primary.blue-bg#by-category-btn{:type => "button"}
-          /           Choose By Category
-          /         / %a{:href => "user-newbox.html", :style => "color: white;"} Back
-          /     .col-md-6
-          /       .boxed-gray.continue-button
-          /         %button.btn.btn-primary.third-opacity.gray-bg#by-item-btn{:type => "button"}
-          /           Choose By Item
           = render partial: "partials/storage_items", locals:{f:f}
           
 
@@ -62,7 +51,7 @@
                   / %a{:href => "user-newbox.html", :style => "color: white;"} Back
               .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                 .boxed-gray.continue-button
-                  %button.btn.btn-primary.blue-bg.blue-bg-hover#continue-btn{:type => "button", disabled: true}
+                  %button.btn.btn-primary.blue-bg.blue-bg-hover.loadingOnClick#continue-btn{:type => "button", disabled: true}
                     = f.submit "Confirm Delivery"
 
 = render :partial => "partials/footer"
@@ -85,6 +74,9 @@
       valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#datepicker-value", "#delivery_time");
     });
 
+    $(".small-entry .btn").click(function() {
+      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#datepicker-value", "#delivery_time");
+    });
   });
 
  

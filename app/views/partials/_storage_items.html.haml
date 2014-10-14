@@ -3,17 +3,18 @@
   .row
     .col-md-5
       .boxed-gray.continue-button
-        %button.btn.btn-primary.blue-bg#by-category-btn{:type => "button"}
-          Choose By Category
-        / %a{:href => "user-newbox.html", :style => "color: white;"} Back
+        %button.btn.btn-primary.blue-bg#by-item-btn{:type => "button"}
+          Choose By Item
+      
     .col-md-2.align-center.light-gray
       %h4.light-gray#storage-item-or (or)
     .col-md-5
       .boxed-gray.continue-button
-        %button.btn.btn-primary.third-opacity.gray-bg#by-item-btn{:type => "button"}
-          Choose By Item
+        %button.btn.btn-primary.third-opacity.gray-bg#by-category-btn{:type => "button"}
+          Choose By Category
+        / %a{:href => "user-newbox.html", :style => "color: white;"} Back
 .col-md-8.col-md-offset-2.inventory
-  .row#entries-category-list
+  .row#entries-category-list.hidden
     = render partial: "partials/list_item_4col_field", locals:{title: "Boxes", price: "$5/month", id:"box", field_val: :small_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"$5/m - Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
     = render partial: "partials/list_item_4col_field", locals:{title: "Medium  Item", price: "$12/month", id:"medium", field_val: :medium_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"$12/m -Wardrobe Boxes, Chairs, Lamps, Skis, Bikes, Small Furniture, Equivalent"}
     = render partial: "partials/list_item_4col_field", locals:{title: "Large  Item", price: "$20/month", id:"large", field_val: :large_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:"$25/m - Mattresses, desks, couches, tables, or furniture that takes two to move."}
@@ -25,7 +26,7 @@
   /     Prefer a list of specific items?
   /     %span.blue Click here!
   /   %br/ 
-  .row#small-entries-list.hidden
+  .row#small-entries-list
     .row
       %h2
         Small Items
@@ -95,9 +96,11 @@
         %br/ 
         .signle-line
         %p.light-gray
-          %span.blue Can't find a particular item?
+          %span.heavy-font Can't find a particular item?
           %br/ 
           Our drivers can help you choose the right categories for your items when they arrive for pickup. 
+          %br/ 
+          You can also change your pickup with them when they arrive.
 
 
 

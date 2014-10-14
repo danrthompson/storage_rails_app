@@ -205,7 +205,7 @@
                   %div.extra-form-padding
                     = userAcct.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm Password"
                 .col-md-8.col-md-offset-2.bottom-buttons
-                  %a#signup-fourth-btn= userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"                  
+                  %a#signup-fourth-btn.loadingOnClick= userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"                  
                   %a.pointer
                     %h1.btn.btn-default.pull-left#signup-fourth-back Back
             %br/

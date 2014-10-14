@@ -51,14 +51,35 @@
     var id = $(this).attr('id');
 
     // update text field - incrememnt by one
-    var field = $("#txt-"+id);
+    var field_name = "#txt-"+id;
+    var field = $(field_name);
     var val = $(field).val();
     val = +val + 1;
     $(field).val(val);
 
+    // console.log(field_name);
+    switch(field_name) {
+      case "#txt-box":
+        var itemVal = $("#txt-parcel").val();
+        // console.log("itemVal:" + itemVal);
+        $("#txt-parcel").val(+itemVal + 1);
+        break;
+      case "#txt-medium":
+        var itemVal = $("#txt-barrel").val();
+        $("#txt-barrel").val(+itemVal + 1);
+        break;
+      case "#txt-large":
+        var itemVal = $("#txt-crate").val();
+        $("#txt-crate").val(+itemVal + 1);
+        break;
+      case "#txt-extra_large":
+        var itemVal = $("#txt-elephant").val();
+        $("#txt-elephant").val(+itemVal + 1);
+        break;
+    }
     // update subtotal text
     var orderEntrySpan = $('#num-'+id+" span");
-    console.log("#num-"+id+" span");
+    // console.log("#num-"+id+" span");
     refreshOrder(val, orderEntrySpan);
   });
 
@@ -155,15 +176,15 @@
   fieldsSum = 0;
   function sumFieldsFor(txt_field){
     fieldsSum = 0;
-    console.log("fieldsSum: " + fieldsSum);
+    // console.log("fieldsSum: " + fieldsSum);
     var objects = $(txt_field);
-    console.log(objects.length);
+    // console.log(objects.length);
     objects.each(function(){
       var fieldVal = parseInt($(this).val());
       if (!isNaN(fieldVal)) fieldsSum = +fieldsSum + fieldVal;
-      console.log("Field val: " + fieldVal + "  fieldsSum" + fieldsSum);
+      // console.log("Field val: " + fieldVal + "  fieldsSum" + fieldsSum);
     });
-    console.log(" returning fieldsSum" + fieldsSum);
+    // console.log(" returning fieldsSum" + fieldsSum);
     return fieldsSum;
   }
   // function incOnClassClick(mainFieldID, buttonFieldId){

@@ -11,7 +11,7 @@
           = field.text_field :description,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
         .new-item-attribute
           = field.label :image, "Item Image"
-          = field.file_field :image, class:"align-center"
+          = field.file_field :image, class:"align-center image_uploader"
       .col-md-6
         / image
         - if field.object.image?
@@ -45,7 +45,7 @@
           = field.text_field :notes,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
     .row
       .col-md-12
-        = field.check_box :_destroy
+        = field.check_box :_destroy, class:"delete_checkbox"
         = label :_destroy, "Delete Item"
 
        
