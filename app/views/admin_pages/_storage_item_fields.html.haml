@@ -1,3 +1,47 @@
-%fieldset
-	= f.label :title, "Title"
-	= f.text_field :title
+.row.storage-item.detail-item
+  .row
+    .col-md-6
+      .new-item-attribute
+        = f.label :title, "Title:"
+        = f.text_field :title, class:"col-md-6 form-control", id:""
+      .new-item-attribute
+        = f.label :description, "Description:"
+        = f.text_field :description,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
+      .new-item-attribute
+        = f.label :image, "Item Image"
+        = f.file_field :image, class:"align-center image_uploader"
+    .col-md-6
+      / image
+      - if f.object.image?
+        %p
+          / # = image_tag "#{f.object.image.url}"
+          %span Item image:
+        .crop-mask
+          %img{src: "#{f.object.image_url}"}/
+      - else
+        %p
+          %span [No item image]
+          \- please take one
+        .crop-mask
+          %img{src: "#{f.object.image_url}"}/
+  .single-dashed-line
+  .row
+    .col-md-6
+      .new-item-attribute
+        = f.label :storage_location, "Storage Location:"
+        = f.text_field :storage_location,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
+      .new-item-attribute
+        = f.label "Item Type:"
+        = f.select  :item_type, options_for_select(["small", "medium", "large", "extra_large"], selected: f.object.item_type), {}, {class:"form-control selectpicker"}
+    .col-md-6
+      .new-item-attribute
+        = f.label "ID:"
+        = f.text_field :id,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:"", readonly: true
+        .no-opacity hidden
+      .new-item-attribute
+        = f.label :notes, "Notes:"
+        = f.text_field :notes,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
+  .row
+    .col-md-12
+      = f.check_box :_destroy, class:"delete_checkbox"
+      = label :_destroy, "Delete Item"
