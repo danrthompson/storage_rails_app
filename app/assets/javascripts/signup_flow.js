@@ -97,24 +97,6 @@ $(document).ready(function() {
           }
         }
       });
-    var start = new Date();
-    var end = new Date();
-    end.setDate(start.getDate()+30);
-
-    $('#datepicker').datepicker({
-        daysOfWeekDisabled: "0",
-        autoclose: true,
-        todayHighlight: true
-    });
-    $('#datepicker').datepicker('setStartDate', start);
-    $('#datepicker').datepicker('setEndDate', end);
-
-
-    $('#datepicker').on('changeDate', function(){
-      var available_delivery_times = #{Request.available_delivery_times.to_json};
-      var dropdownID = "#" + #{select_id.to_json};
-      updateDropdownDates('#datepicker-value', dropdownID, available_delivery_times);
-    });
   });
 
 
