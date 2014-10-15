@@ -152,16 +152,16 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
     val = value;
     AMPM = " AM"
 
-    if (value == 0){
-      val = "12";
-    } else if (value > 0 && value < 12){
-      AMPM = " AM";
-    } else if (value == 12){
-      AMPM = " PM";
-    } else if (value > 12){
-      AMPM = " PM";
-      val = value - 12; 
-    }
+    // if (value == 0){
+    //   val = "12";
+    // } else if (value > 0 && value < 12){
+    //   AMPM = " AM";
+    // } else if (value == 12){
+    //   AMPM = " PM";
+    // } else if (value > 12){
+    //   AMPM = " PM";
+    //   val = value - 12; 
+    // }
 
     $(dropdownID)
        .append($("<option></option>")

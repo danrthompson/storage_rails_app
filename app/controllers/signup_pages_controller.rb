@@ -20,6 +20,9 @@ class SignupPagesController < ApplicationController
 		if @user.valid? and (@packing_supplies_request.valid? or not @packing_supplies_request.is_real?) and (@pickup_request.valid? or not @pickup_request.is_real?)
 			@packing_supplies_request.save
 			@pickup_request.save
+			# Mails out welcome email to users
+	#         UserMailer.welcome_email(@user).deliver
+			UserMailer.new_customer().deliver
 			sign_in @user
 			redirect_to confirm_signup_pages_url(@user.id) and return
 		else
