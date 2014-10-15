@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'feedback' => 'static_pages#feedback'
   get 'faq' => 'static_pages#faq'
   get 'contact' => 'static_pages#contact'
+  get 'email' => 'static_pages#email_example'
 
 
 
