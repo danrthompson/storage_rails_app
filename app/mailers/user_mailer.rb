@@ -8,5 +8,6 @@ class UserMailer < ActionMailer::Base
 	end
 
 	def new_customer()
-		mail(to:"team@quickbox.com", subject: "You Have A New Customer")
+		mail(to:"danh@quickbox.com", subject: "You Have A New Customer")
 	end
+end
