@@ -68,17 +68,21 @@ class AdminPagesController < ApplicationController
 
 	def complete_pickup_request
 		pickup_completion_time = Time.now
-		pickup_request = PickupRequest.find(params[:id])
-		pickup_request.skip_delivery_validation = true
-		pickup_request.completion_time = pickup_completion_time
-		pickup_request.driver = current_user
+		@pickup_request = PickupRequest.find(params[:id])
+		@pickup_request.skip_delivery_validation = true
+		@pickup_request.completion_time = pickup_completion_time
+		@pickup_request.driver = current_user
 		monthly_cost = 0.0
-		pickup_request.storage_items.each do |item|
+		@pickup_request.storage_items.each do |item|
 			item.entered_storage_at = pickup_completion_time
-			item.save!
+			item.save
+			if not item.valid?
+				flash.now[:alert] = item.errors.full_messages.first
+				render :record_pickup_request and return
+			end
 			monthly_cost += item.price
 		end
-		stripe_user = pickup_request.user.stripe_user
+		stripe_user = @pickup_request.user.stripe_user
 		if stripe_user.subscriptions.first
 			subscription = stripe_user.subscriptions.first
 			subscription.quantity += (monthly_cost * 100).to_i
@@ -88,7 +92,7 @@ class AdminPagesController < ApplicationController
 			subscription = stripe_user.subscriptions.create(plan: 'plan_1', quantity: (monthly_cost * 100).to_i)
 		end
 		
-		pickup_request.save
+		@pickup_request.save
 		redirect_to :admin, notice: 'Pickup request marked complete.' and return
 	end
 

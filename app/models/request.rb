@@ -2,6 +2,7 @@ class Request < ActiveRecord::Base
 	# 0 = Sunday, 1 = Monday, and so on
 	@@standard_times_by_day = [8..16,8..16,8..16,8..16,8..16,8..16,8..16]
 
+
 	attr_accessor :posted_delivery_date, :posted_delivery_time, :skip_delivery_validation
 
 	belongs_to :user

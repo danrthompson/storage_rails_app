@@ -15,6 +15,7 @@ class StorageItem < ActiveRecord::Base
 	validates :user_id, :item_type, :pickup_request_id, presence: true
 	validates :item_type, inclusion: { in: self.item_types.keys.map { |item| item.to_s }, message: 'must be a real type.' }
 	validates_attachment :image, size: { less_than: 10.megabytes }, content_type: { content_type: /\Aimage\/.*\Z/ }
+	validate :if_entered_storage_then_must_have_title_and_image
 
 	before_save :remove_delivery_request_if_item_not_delivered
 
@@ -79,6 +80,13 @@ class StorageItem < ActiveRecord::Base
 	end
 
 	private
+
+	def if_entered_storage_then_must_have_title_and_image
+		unless self.entered_storage_at.blank?
+			errors.add :title, 'must not be blank.' if self.title.blank?
+			errors.add :image, 'must be present.' unless self.image?
+		end
+	end
 
 	def remove_delivery_request_if_item_not_delivered
 		if self.item_not_delivered == true
