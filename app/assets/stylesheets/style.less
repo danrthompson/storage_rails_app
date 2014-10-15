@@ -591,6 +591,9 @@ input[type=submit]{
 		background-color: white;
 
 	}
+	.nav-links{
+		text-align: center;
+	}
 	.nav-links > a{
 		width: 100%;
 		// padding: 0 30px;
@@ -606,18 +609,6 @@ input[type=submit]{
 	}
 }
 
-// Main Header Updated
-@media all and (max-width: 768) {
-  .header-nav{
-  	// background-color: pink ! important;
-  	position: static ! important;
-  	// height: 60px;
-  }
-  #menu-spacer{
-  	display: none ! important;
-  }
-
-}
 
 #menu-img{
 	padding:12px;
@@ -1466,4 +1457,26 @@ p.alert  , p.notice {
 		height:50px;
 		width: auto;
 	}
+}
+
+
+// Main Header Updated
+@media all and (max-width: 768px) {
+	#signup-progress{
+		position: static ! important;
+		height: 80px;
+		// background-color: pink ! important;
+	}
+  .header-nav{
+  	// background-color: pink ! important;
+  	position: static ! important;
+  	// height: 60px;
+  }
+  .nav-links-wrapper{
+  	// display: none;
+  }
+  #menu-spacer{
+  	display: none ! important;
+  }
+
 }

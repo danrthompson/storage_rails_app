@@ -147,21 +147,22 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
   var AMPM = 0;
 
   // console.log("about to iterate");
-  $.each( times, function(value) {
+  $.each(times, function(index, value) {
     // console.log (dropdownID +":"+ value);
     val = value;
+    console.log("Val:" + val + ", Value: + " + value);
     AMPM = " AM"
 
-    // if (value == 0){
-    //   val = "12";
-    // } else if (value > 0 && value < 12){
-    //   AMPM = " AM";
-    // } else if (value == 12){
-    //   AMPM = " PM";
-    // } else if (value > 12){
-    //   AMPM = " PM";
-    //   val = value - 12; 
-    // }
+    if (value == 0){
+      val = "12";
+    } else if (value > 0 && value < 12){
+      AMPM = " AM";
+    } else if (value == 12){
+      AMPM = " PM";
+    } else if (value > 12){
+      AMPM = " PM";
+      val = value - 12; 
+    }
 
     $(dropdownID)
        .append($("<option></option>")
