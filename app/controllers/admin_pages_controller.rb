@@ -77,7 +77,7 @@ class AdminPagesController < ApplicationController
 			item.entered_storage_at = pickup_completion_time
 			item.save
 			if not item.valid?
-				flash.now[:alert] = 'All items must have titles and images before completing pickup.'
+				flash.now[:alert] = item.errors.full_messages.first
 				render :record_pickup_request and return
 			end
 			monthly_cost += item.price
