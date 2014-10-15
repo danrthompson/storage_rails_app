@@ -4,9 +4,9 @@ class UserMailer < ActionMailer::Base
 	def welcome_email(user)
 	  	@user = user
 	  	@url = "www.quickbox.com/"
-	  	mail(to:@user.email, subject: "Welcome To QuickBox");
+	  	mail(to:@user.email, subject: "Welcome To QuickBox")
 	end
 
 	def new_customer()
-		mail(to:"team@quickbox.com", subject: "You Have A New Customer");
+		mail(to:"team@quickbox.com", subject: "You Have A New Customer")
 	end

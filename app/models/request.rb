@@ -1,6 +1,6 @@
 class Request < ActiveRecord::Base
 	# 0 = Sunday, 1 = Monday, and so on
-	@@standard_times_by_day = [1..22,1..22,1..22,1..22,1..22,1..22,1..22]
+	@@standard_times_by_day = [0..16,1..17,2..18,3..19,4..20,5..21,6..22]
 
 	attr_accessor :posted_delivery_date, :posted_delivery_time, :skip_delivery_validation
 
