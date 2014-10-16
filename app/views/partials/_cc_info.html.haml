@@ -1,3 +1,4 @@
+= javascript_include_tag "cc_validations"
 .row
   .col-md-8.col-md-offset-2.align-left
     .form-group.address-form
@@ -5,8 +6,8 @@
         .col-md-12
           = cc.label :cc_name, "Name on Credit Card", class:"no-margin"
           = cc.text_field :cc_name,  autofocus: true, placeholder:"e.g. John Doe", class:"form-control", id:""
-          %br/
       .row
+        %br/
         .col-md-12.col-sm-12.col-xs-12.col-lg-12
           = cc.label :cc_number, "Credit Card Number", class:"no-margin"
           = cc.text_field :cc_number,  autofocus: true, placeholder:"e.g. 1234 5678 9012 3456", class:"form-control", id:""
@@ -20,39 +21,7 @@
           = cc.label :exp_year, "Expiration Year", class:"no-margin"
           = cc.text_field :exp_year,  autofocus: true, placeholder:"yyyy", class:"form-control", id:""
         .col-md-4.col-sm-4.col-xs-4.col-lg-4
-          = cc.label :cc_cvc, "CCV", class:"no-margin"
+          = cc.label :cc_cvc, "CVC", class:"no-margin"
           = cc.text_field :cc_cvc, autofocus: true, placeholder:"###", class:"form-control", id:""
-        / .col-md-6.col-sm-6.col-xs-6.col-lg-6.light-gray
-        /   = cc.label :exp_year, "Have a promo code?", class:"no-margin"
-        /   = cc.text_field :exp_year,  autofocus: true, placeholder:"", class:"form-control", id:""
-
-/ .boxed-grey.col-md-12.align-left
-/   .form-group.address-form
-/     .row
-/       .col-md-4.col-sm-6.col-xs-6.col-lg-6
-/         = field.label :cc_name, "Name on Credit Card", class:"no-margin"
-/         = field.text_field :cc_name,  autofocus: true, placeholder:"e.g. John Doe", class:"form-control", id:""
-/         %br/ 
-/       .col-md-8.col-sm-6.col-xs-6.col-lg-6
-/         = field.label :cc_number, "Credit Card Number", class:"no-margin"
-/         = field.text_field :cc_number,  autofocus: true, placeholder:"e.g. 1234 5678 9012 3456", class:"form-control", id:""
-/         %br/ 
-        
-/     .row
-/       .col-md-4
-/         = field.label :exp_month, "Expiration Month", class:"no-margin"
-/         = field.text_field :exp_month,  autofocus: true, placeholder:"mm", class:"form-control", id:""
-/       .col-md-4
-/         = field.label :exp_year, "Expiration Year", class:"no-margin"
-/         = field.text_field :exp_year,  autofocus: true, placeholder:"yyyy", class:"form-control", id:""
-/       / .col-md-4
-/       /   = field.label :exp_year, "Security Code", class:"no-margin"
-/       /   = field.text_field :exp_year,  autofocus: true, placeholder:"yyyy", class:"form-control", id:""
-/     %br/ 
-/ .col-md-8.col-md-offset-2
-
-
-:javascript
-
 
 

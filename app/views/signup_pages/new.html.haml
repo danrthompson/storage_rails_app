@@ -45,32 +45,32 @@
   ///////////////////////////////////////////////////
   // ITEM SELECTION /////////////////////////////////
   ///////////////////////////////////////////////////
-  / %section.text-center#signup-first.hidden
-  /   .heading-about.marginbot-20
-  /     .container
-  /       .row
-  /         .col-lg-10.col-lg-offset-1
-  /           .section-heading
-  /             %h2.no-margin Do You Need Packing Supplies?
-  /             %p.align-center (we'll ship these items right to your door)
-  /   .container
-  /     .row
-  /       .div
-  /         = render partial: "partials/packing_items", locals:{f: f}
-  /         .col-md-10.col-md-offset-1
-  /           %br/ 
-  /           .col-md-4.bottom-buttons
-  /             .boxed-gray.continue-button
-  /               %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}
-  /                 = link_to "Back", root_path, class:"white"
-  /           .col-md-4.col-md-offset-4.bottom-buttons.charges-box
-  /             .boxed-gray.continue-button
-  /               %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-first-btn{:type => "button"}
-  /                 Next
-  /           .col-md-12
-  /             %p.light-gray.half-opacity.onepxhigh#packing-instructions (packing supplies are optional and not required)
-  /             %br/ 
-  /             %br/ 
+  %section.text-center#signup-first.hidden.no-opactiy
+    .heading-about.marginbot-20
+      .container
+        .row
+          .col-lg-10.col-lg-offset-1
+            .section-heading
+              %h2.no-margin Do You Need Packing Supplies?
+              %p.align-center (we'll ship these items right to your door)
+    .container
+      .row
+        .div
+          = render partial: "partials/packing_items", locals:{f: f}
+          .col-md-10.col-md-offset-1
+            %br/ 
+            .col-md-4.bottom-buttons
+              .boxed-gray.continue-button
+                %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}
+                  = link_to "Back", root_path, class:"white"
+            .col-md-4.col-md-offset-4.bottom-buttons.charges-box
+              .boxed-gray.continue-button
+                %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-first-btn{:type => "button"}
+                  Next
+            .col-md-12
+              %p.light-gray.half-opacity.onepxhigh#packing-instructions (packing supplies are optional and not required)
+              %br/ 
+              %br/ 
 
 
 
