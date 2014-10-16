@@ -1470,13 +1470,33 @@ p.alert  , p.notice {
   .header-nav{
   	// background-color: pink ! important;
   	position: static ! important;
+	height: auto;
   	// height: 60px;
   }
+  .col-xs-1{
+  	display: none;
+  }
+  .col-xs-2{
+  	opacity: 0;
+  }
+  .hide-on-small{
+  	display: none;
+  }
+
   .nav-links-wrapper{
   	// display: none;
   }
   #menu-spacer{
   	display: none ! important;
   }
+
+}
+
+
+// Main Header Updated
+@media all and (max-width: 1000px) {
+	.hiden-on-medium{
+		display: none;
+	}
 
 }
