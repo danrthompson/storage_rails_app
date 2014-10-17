@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   phony_normalize :phone_number, default_country_code: 'US'
   before_validation :normalize_city, :normalize_state, :make_password_nil_if_blank, :send_card_info_to_stripe
 
-  validates :address_line_1, :city, :state, :zip, :phone_number, presence: true
+  validates :address_line_1, :city, :state, :zip, :phone_number, :first_name, :last_name, presence: true
   validates :city, format: { with: /\ABoulder\z/, message: 'must be Boulder.' }
   validates :state, format: { with: /\ACO\z/, message: 'must be CO.' }
   validates :zip, inclusion: {in: [80301, 80302, 80303, 80304, 80305, 80306, 80307, 80308, 80309, 80314, 80321, 80322, 80323, 80328, 80329], message: 'must be a boulder zip code' }
