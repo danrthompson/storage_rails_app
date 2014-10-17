@@ -22,9 +22,14 @@ class SignupPagesController < ApplicationController
 			@pickup_request.save
 			# Mails out welcome email to users
 	#         UserMailer.welcome_email(@user).deliver
-			UserMailer.new_customer().deliver
-			sign_in @user
-			redirect_to confirm_signup_pages_url(@user.id) and return
+			begin
+				UserMailer.new_customer().deliver
+				sign_in @user
+				redirect_to confirm_signup_pages_url(@user.id) and return
+			rescue Errno::ECONNREFUSED
+				sign_in @user
+				redirect_to confirm_signup_pages_url(@user.id), alert: 'Error with sending welcome email.' and return
+			end
 		else
 			@user.destroy
 			@packing_supplies_request = PackingSuppliesRequest.new unless @packing_supplies_request.is_real?
