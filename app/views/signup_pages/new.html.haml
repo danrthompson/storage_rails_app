@@ -177,6 +177,7 @@
             .boxed-gray.continue-button
               %button.btn.btn-primary.blue-bg.blue-bg-hover#signup-third-btn{:type => "button", disabled: true}
                 Next
+              %p#signup-instructions (some fields are incomplete)
 
 
   ///////////////////////////////////////////////////
@@ -198,6 +199,13 @@
               %br/ 
               = fields_for @user do |userAcct| 
                 .col-md-8.col-md-offset-2.form-group.address-form
+
+                  ///////// UNCOMMENT THIS TO ADD NAME FIELDS ////////
+                  %div.extra-form-padding
+                    = userAcct.first_name_field :first_name, autofocus: true, class:"form-control", placeholder: "First Name"
+                  %div.extra-form-padding
+                    = userAcct.last_name_field :last_name, autofocus: true, class:"form-control", placeholder: "Last Name"
+
                   %div.extra-form-padding
                     = userAcct.email_field :email, autofocus: true, class:"form-control", placeholder: "Email Address"
                   %div.extra-form-padding
@@ -239,6 +247,9 @@
       }
       
     });
+
+
+
 
     $('.quantity-field').on('input', function() {
       console.log("QUANTITY CHANGED");
@@ -282,9 +293,11 @@
       
       if($("#pickup-time").hasClass("hidden") || (($("#datepicker-value").val().length > 0) && ($("#pickup_time").val().length > 0))) {
           $("#signup-third-btn").removeAttr("disabled"); 
+          $("#signup-instructions").addClass("hidden");
       } else console.log("pickup is not valid");
     } else{
-      $("#signup-third-btn").attr("disabled", "disabled"); 
+      $("#signup-third-btn").attr("disabled", "disabled");
+      $("#signup-instructions").removeClass("hidden"); 
       console.log("Address entities are not valid");
     }
   }
