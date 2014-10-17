@@ -1,7 +1,7 @@
 .boxed-grey.col-md-12
   .row#validator-id
     .col-md-6.align-left
-      %label{:for => "posted_delivery_date"} Delivery Date <span class="required_label">  * required </span>
+      %label{:for => "posted_delivery_date"} Date <span class="required_label">  * required </span>
       
       #datepicker.input-append.date
         =f.text_field :posted_delivery_date, class:"span2 form-control", id: "datepicker-value", placeholder: 'Which day is best?'
