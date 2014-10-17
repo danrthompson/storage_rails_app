@@ -196,16 +196,18 @@
           .boxed-grey
             .row
               %br/ 
-              %br/ 
               = fields_for @user do |userAcct| 
                 .col-md-8.col-md-offset-2.form-group.address-form
 
-                  ///////// UNCOMMENT THIS TO ADD NAME FIELDS ////////
+                  %div.extra-form-padding
+                    = userAcct.label :first_name, "Your Name"
                   %div.extra-form-padding
                     = userAcct.text_field :first_name, autofocus: true, class:"form-control", placeholder: "First Name"
                   %div.extra-form-padding
                     = userAcct.text_field :last_name, autofocus: true, class:"form-control", placeholder: "Last Name"
-
+                  %br/ 
+                  %div.extra-form-padding
+                    = userAcct.label :first_name, "Your Account"
                   %div.extra-form-padding
                     = userAcct.email_field :email, autofocus: true, class:"form-control", placeholder: "Email Address"
                   %div.extra-form-padding
@@ -213,7 +215,7 @@
                   %div.extra-form-padding
                     = userAcct.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm Password"
                 .col-md-8.col-md-offset-2.bottom-buttons
-                  %a#signup-fourth-btn.loadingOnClick= userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"                  
+                  = userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"                  
                   %a.pointer
                     %h1.btn.btn-default.pull-left#signup-fourth-back Back
             %br/
@@ -249,8 +251,6 @@
     });
 
 
-
-
     $('.quantity-field').on('input', function() {
       console.log("QUANTITY CHANGED");
       var field = $(this);
@@ -269,15 +269,18 @@
       }
 
       // THIS SHIT NEEDS TO BE FIXED
-      if (!($("#signup-fourth").hasClass("hidden"))){
-        if ($("#user_email").html().length > 0 && $("#user_password").html().length > 0){
-          var error = $(".help-block");
-          if (error.length <= 0){
-            $("#signup-fourth-btn").removeAttr("disabled"); 
-            console.log("show fourth button");
-          } 
-        } 
-      }
+     if (!($("#signup-fourth").hasClass("hidden")) && ($("#signup-form").data('bootstrapValidator').isValid())){
+       if ($("#user_email").val().length > 0 && $("#user_password").val().length > 0 && $("#user_password_confirmation").val().length > 0 && $("#user_last_name").val().length > 0 && $("#user_first_name").val().length > 0){
+         var error = $(".help-block");
+         if (error.length <= 0){
+           $("#signup-fourth-btn").removeAttr("disabled"); 
+           console.log("show fourth button");
+         } 
+       } else{
+          console.log("disabling button");
+          $("#signup-fourth-btn").attr("disabled", true); 
+       }
+     }
     });
   });
 
