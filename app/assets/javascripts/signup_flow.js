@@ -23,7 +23,7 @@ $(document).ready(function() {
                 message: 'The address field can\'t be empty'
               },
               stringLength: {
-                min: 10,
+                min: 3,
                 message: '*The address must be a real'
               },
             }
