@@ -53,6 +53,7 @@ gem 'aws-sdk', '~> 1.5.7'
 gem "figaro"
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'unicorn'
+gem 'bootstrap-datepicker-rails'
 # gem 'activeadmin'
 # gem 'cancan'
 

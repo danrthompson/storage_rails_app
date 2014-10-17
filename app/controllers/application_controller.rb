@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource)
-    storage_items_url
+    if current_user.admin then
+      admin_url
+    else
+      storage_items_url
+    end
   end
 
   def verify_user_is_ready!
