@@ -14,13 +14,16 @@
             = field.text_field :zip,  autofocus: true, placeholder:"zip", class:"form-control", id:""
     .col-md-6
       .form-group
-        .col-md-12
-          .form-group.delivery-date-group
-            = field.label :phone_number, "Phone Number (for delivery)"
-            = field.text_field :phone_number,  autofocus: true, placeholder:"(303) 555-1111", class:"form-control", id:""
-            %br/
-            %label{:for => "name"} Any Special Instructions?
-            = field.text_area :special_instructions, placeholder:"Message", rows:1, class:"form-control"
+        .row
+          .col-md-12
+            .form-group.delivery-date-group
+              = field.label :phone_number, "Phone Number (for delivery)"
+              = field.text_field :phone_number,  autofocus: true, placeholder:"(303) 555-1111", class:"form-control", id:""
+        .row
+          .col-md-12
+            .form-group.delivery-date-group
+              %label{:for => "name"} Any Special Instructions?
+              = field.text_area :special_instructions, placeholder:"Message", rows:1, class:"form-control"
           %br/
 
 :javascript
