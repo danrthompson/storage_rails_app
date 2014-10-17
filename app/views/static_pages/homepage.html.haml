@@ -9,8 +9,8 @@
       We Make
       %br/ 
       Storage Easy
-    %h3.dark-gray
-      QuickBox
+    %h3.dark-gray.heavy-font
+      QUICKBOX
     .row
       .col-md-2.col-md-offset-5.col-sm-8.col-sm-offset-2.col-xs-8.col-xs-offset-2
         .boxed-gray.continue-button
@@ -21,8 +21,12 @@
     %br/
     %br/
   .row.home-screen-links
-    %h3.center-align 
-      %a{:href => "#what-we-do"} ( scroll to learn how )
+    / %h3.center-align 
+    /   %a{:href => "#what-we-do"} ( scroll to learn how )
+    .col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2.col-xs-8.col-xs-offset-2
+      %a.white{:href => "#what-we-do"}
+        .boxed-gray.continue-button
+          %button.btn.btn-primary.white-bg.blue-bg-hover Click To Learn How
 %br/
 %br/
 %br/
@@ -42,9 +46,8 @@
                 =image_tag "offer-1.png", :class => "offer-img"
               .service-desc
                 %h5
-                  Save With
-                  %br/
-                  Pricing By The Box
+                  Save Money
+                  
                 %p Save money by only paying for the space you use. Our fees are calculated by the item - so there's no need to pay for half-full storage containers.
           .col-sm-4.col-md-4
             .service-box
@@ -52,21 +55,18 @@
                 =image_tag "offer-2.png", :class => "offer-img"
               .service-desc
                 %h5
-                  Pickup & Delivery
-                  %br/
-                  DOOR TO DOOR
-                %p We pick up your items for free! Then when you're ready, let us know and we'll deliver  right back to your door. Easy as that!
+                  Save Time
+                  
+                %p We pick up your items for free, then deliver any or all of them any time to your door on demand! Easy as that!
           .col-sm-4.col-md-4
             .service-box
               .service-icon
                 =image_tag "offer-3.png", :class => "offer-img"
               .service-desc
                 %h5
-                  Any Item
-                  %br/
-                  \& Any Size
-                %p We're great at storing boxes, but that's not all we store. Have a couch? A bike? Old furniture? We can help. We store anything.
-        %br/
+                  Easy
+                %p Use our online interface to request a pickup, have your items delivered, or just keep track of what you have in storage. Simple!
+                %br/
         .row.homepage-started-row
           .col-md-10.col-md-offset-1.center-align
             / %h3
@@ -79,11 +79,11 @@
 .row.homepage-started-row.bg-gray
   .col-md-6.col-md-offset-2
     %h3.dark-gray
-      The best decision you'll make today
+      Make Your Life A Little Easier
   .col-md-2
     .boxed-gray.continue-button.pull-left
       = link_to new_signup_pages_path, class:"white" do
-        %button.btn.btn-primary.blue-bg-hover Get Started
+        %button.btn.btn-primary.blue-bg-hover Get Started Today
 
 .single-line.no-padding
 / Section: works
