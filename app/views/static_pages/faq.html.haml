@@ -24,7 +24,6 @@
   .row
     .col-md-10.col-md-offset-1
       .row
-        / <div class="col-xs-1 pull-right"> </div>
         .col-md-4.col-sm-4.col-xs-12.inventory-sidebar.pull-right
           .row.sidebar-txtentry.light-blue-bg
             .inner
@@ -35,11 +34,7 @@
                 = succeed "." do
                   %a.blue{:href => "extra-contact.html"} contact us
                 We're here to help!
-              /
-                <ul>
-                <li><span class="order-item">You have a pickup schedules for Thursday, September 15</li>
-                <li><span class="order-item">You currently have 3 boxes at home, waiting to be picked up.</li>
-                </ul>
+              
           %br/
           .row.sidebar-txtentry.bg-gray
             .inner
@@ -101,11 +96,10 @@
               
           .row
             .boxed-gray.continue-button
-              %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
-              / %a{:href => "delivery-info.html", :style => "color: white;"} Ask A Question
+              / %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}
+              /   %a{:href => "delivery-info.html", :style => "color: white;"} Ask A Question
               %button.btn.btn-primary.gray-bg= link_to "Back To Dashboard", storage_items_path, class:"white"
-              / %button.btn.btn-primary.gray-bg{:type => "button"}/
-              / %a{:href => "delivery-info.html", :style => "color: white;"} Back To Dashboard
+             
         .col-md-8.col-sm-8.col-xs-12.pull-left
           .row
             .col-md-12.faq-section
@@ -127,7 +121,6 @@
             .col-md-12.faq-section
               %h2
                 Pickup & Delivery
-                / %a.pull-right{:href => ""} Find The Full List Here
               .double-line
               %ul.no-list
                 %li#faq-pd-1 
@@ -162,7 +155,6 @@
             .col-md-12.faq-section
               %h2
                 Packing
-                / %a.pull-right{:href => ""} Find The Full List Here
               .double-line
               %ul.no-list
                 %li#faq-pk-1
@@ -185,7 +177,6 @@
             .col-md-12.faq-section
               %h2
                 Account Details
-                / %a.pull-right{:href => ""} Find The Full List Here
               .double-line
               %ul.no-list
                 %li#faq-ad-1

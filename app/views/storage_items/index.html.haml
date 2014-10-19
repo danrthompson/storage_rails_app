@@ -38,7 +38,7 @@
 
 
     .col-md-1.col-sm-4.col-xs-4.align-center
-      = link_to faq_path, target: "_blank" do
+      = link_to faq_path do
         .service-box
           .service-icon
             %i.fa.fa-question-circle.fa-3x
@@ -66,9 +66,7 @@
             .row
               %h2
                 %span.items-count#items-in-storage #{@num_storage_items}
-                / %span.items-count#items-in-storage 0
                 Items In Storage
-                / %p.pull-right.half-opacity Click items to select them for delivery
               .double-line
               - @storage_items.each do |storage_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
@@ -83,16 +81,13 @@
 
 
                     %h4.storage-item-title= storage_item.get_title
-
-                    / %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= storage_item.get_description
-                    / # = link_to "edit", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"pull-right edit-btn"
               .col-md-12.col-sm-12.col-xs-12.align-right
                 %br/
                 / # =link_to "Want to learn how deliveries work?", {:controller => "packing_supplies_requests", :action => "new"}
                 / %a.pull-right.pointer.half-opactiy{"data-target" => "#aboutDeliveriesModal", "data-toggle" => "modal"}
                 / Want to learn how deliveries work?
          
-          %br/
+            %br/
 
           .row#pending-delivery-form
             %h2
@@ -116,8 +111,8 @@
                   %h4.storage-item-title= delivery_item.get_title
 
         
-          %br/
-          %br/
+              %br/
+              %br/
           %form#pickup-form{:action => ""}
             / Boxes At Home
             .row

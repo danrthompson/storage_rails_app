@@ -1,22 +1,13 @@
-/ HEADER PARTIAL
-.container
-  %ul#gn-menu.gn-menu-main.main-header.full-opacity
-    %li.gn-trigger.no-border
-      %a.no-padding{href: "/storage_items"}
-        %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
-  
-    // ICON & TITLE
-    %li.pull-left.no-border.half-opacity
-      %a.no-side-padding{href: "/storage_items"}
-        %span.light-gray.black-hover#menu-title QuickBox
-
-    // RIGH SIDE LINKS    
-    %li.pull-right
-      = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover"
-   
-    / - else
-    %li.pull-right.no-border
+.row.header-nav
+  .nav-links-wrapper.col-md-4.col-xs-8
+    %a.no-padding.pull-left{href: "/"}
+      %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
+    %a.pull-left.no-side-padding{href: "/"}
+      %span.light-gray.black-hover#menu-title QuickBox
+  .nav-links-wrapper.col-md-2.col-md-offset-5.left-border.col-xs-2
+    .no-border.nav-links
       = link_to "Admin Main", admin_path, class:"light-gray black-hover"
-      / %a.light-gray.black-hover{:href => ""} Top of Page
-
+  .nav-links-wrapper.col-md-1.col-xs-2
+    .nav-links
+      = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover"
 

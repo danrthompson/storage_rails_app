@@ -145,8 +145,9 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
   var times = available_delivery_times[val];
   var val = 0;
   var AMPM = 0;
+  $(dropdownID)
+     .append($("<option></option>").text("Choose a time"));
 
-  // console.log("about to iterate");
   $.each(times, function(index, value) {
     // console.log (dropdownID +":"+ value);
     val = value;
