@@ -121,7 +121,7 @@
 
 :javascript
   $(document).ready(function() { 
-    sumItemList(".delivery-item-price", "#order-subtotal");
+    sumItemList(".delivery-item-price", "#order-subtotal","");
     checkExistingBoxes();
     valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
 
@@ -173,7 +173,7 @@
     requestedItemsList = requestedItemsList.substring(0, requestedItemsList.length-1);
     console.log("internal test: " + requestedItemsList);
     $("#delivery-list").val(requestedItemsList);
-    sumItemList(".delivery-item-price", "#order-subtotal");
+    sumItemList(".delivery-item-price", "#order-subtotal", "");
     deliveryCheckBtn();
 
 

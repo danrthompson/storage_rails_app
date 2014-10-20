@@ -1,21 +1,21 @@
 / # = javascript_include_tag "signup_show"
 // CUSTOM HEADER
-.container
-  %ul#gn-menu.gn-menu-main.main-header.full-opacity
-    %li.gn-trigger.no-border
-      %a.no-padding{href: "/storage_items"}
-        %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
-  
-    // ICON & TITLE
-    %li.pull-left.no-border
-      %a.no-side-padding{href: "/storage_items"}
-        %span.light-gray.black-hover#menu-title QuickBox
+.row.header-nav
+  .nav-links-wrapper.col-md-4.col-xs-5
+    %a.no-padding.pull-left{href: "/storage_items"}
+      %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
+    %a.pull-left.no-side-padding{href: "/storage_items"}
+      %span.light-gray.black-hover#menu-title QuickBox
+  .nav-links-wrapper.col-md-1.col-md-offset-6.left-border.col-xs-2
+    .no-border.nav-links
+      = link_to "FAQ", faq_path, class:"light-gray black-hover", :target => "_blank"
+  .nav-links-wrapper.col-md-1.col-xs-3
+    .no-border.nav-links
+      = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover blue"
 
-    // RIGH SIDE LINKS    
-    %li.pull-right
-      = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover"
-    %li.pull-right.no-border
-      = link_to "FAQ", faq_path, class:"light-gray black-hover"
+        
+
+
 
 
 = render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
@@ -85,7 +85,8 @@
             %ul
               %li.light-gray
                 %span.order-item Price of Storage:
-                %span.pull-right#subtotal $0.00
+                %span.pull-right#subtotal $0.00/month
+
            
           // Delivery Recap
           .col-md-4.confirm-elem
@@ -111,7 +112,7 @@
         %br/
         %h3.double-underlined Payment Info
         .double-line
-
+        
         // Credit Card Info Form
         = form_for @user, url:add_payment_signup_pages_path, html:{id:"credit-card-form"} do |cc|
           .bg-gray
@@ -134,6 +135,8 @@
                       = cc.select  :referrer, options_for_select([["Divine Inspiration"], ["A Wise Man Told Me"], ["A Flyer"], ["A Friend"], ["Other"]]),{}, {class:"form-control"}
                     
             %br/
+          %p.align-left.light-gray.small-text * you will only be charged after pickup
+
           %br/
           %br/
           .row
@@ -149,7 +152,8 @@
                 = cc.submit 'confirm order', class:"btn btn-primary blue-bg-hover", id:"submit-button", disabled: true
 
 
-
+%br/ 
+%br/ 
 = render :partial => "partials/footer"
 
 
@@ -171,7 +175,7 @@
   hideParentWhenZero("hide-when-zero");
   hideParentWhenNotUsed("hide-unused");
 
-  sumItemList(".item-amount", "#subtotal");
+  sumItemList(".item-amount", "#subtotal", "/month");
 
  
    $(".form-control").on('input', function(e) { 
