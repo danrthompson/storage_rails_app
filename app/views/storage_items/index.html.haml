@@ -1,6 +1,5 @@
 
 = render partial: "partials/logged_in_header"
-/ SECONDARY HEADER BAR
 .container.full-width.blue-bg.no-padding.white.dashboard-header
   .row
     .col-md-6.col-xs-12.align-center
@@ -82,17 +81,12 @@
 
                     %h4.storage-item-title= storage_item.get_title
               .col-md-12.col-sm-12.col-xs-12.align-right
-                %br/
-                / # =link_to "Want to learn how deliveries work?", {:controller => "packing_supplies_requests", :action => "new"}
-                / %a.pull-right.pointer.half-opactiy{"data-target" => "#aboutDeliveriesModal", "data-toggle" => "modal"}
-                / Want to learn how deliveries work?
-         
+                %br/         
             %br/
 
           .row#pending-delivery-form
             %h2
               %span.items-count#items-pending-delivery #{@num_delivery_items}
-              / %span.items-count#items-in-storage 0
               Items Pending Delivery
               - if @has_existing_delivery
                 %p.pull-right.half-opacity
@@ -137,10 +131,8 @@
                   Otherwise our drivers will help catalog your items when they arrive for pickup. 
                 %br/ 
             .row
-              / - 3.times do
               - @boxes_at_home.each do |small_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
-                  / = link_to {:action => "edit", "id"=>"#{small_item.id}"}, class:"inner" do
                   .inner
                     .crop-mask
                       .crop-mask-img-wrapper
@@ -148,11 +140,8 @@
                       .item-description
                         %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= small_item.get_description
 
-
                     %h4.storage-item-title= small_item.get_title
-                    / %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= small_item.get_description
                     = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{small_item.id}"}, class:"align-center bottom-edit-btn"
-                    / = link_to "edit", {:action => "edit", "id"=>"#{small_item.id}"}, class:"pull-right edit-btn visible"
                       
               - @medium_items_at_home.each do |medium_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
@@ -164,7 +153,6 @@
                         %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= medium_item.get_description
                     %h4.storage-item-title= medium_item.get_title
                     = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{medium_item.id}"}, class:"align-center bottom-edit-btn"
-                    / = link_to "edit", {:action => "edit", "id"=>"#{medium_item.id}"}, class:"pull-right edit-btn visible"
               - @large_items_at_home.each do |large_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
@@ -175,7 +163,6 @@
                         %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= large_item.get_description
                     %h4.storage-item-title= large_item.get_title
                     = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{large_item.id}"}, class:"align-center bottom-edit-btn"
-                    / = link_to "edit", {:action => "edit", "id"=>"#{large_item.id}"}, class:"pull-right edit-btn visible"
               - @extra_large_items_at_home.each do |xl_item|
                 .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
                   .inner
@@ -186,7 +173,6 @@
                         %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= xl_item.get_description
                     %h4.storage-item-title= xl_item.get_title
                     = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{xl_item.id}"}, class:"align-center bottom-edit-btn"
-                    / = link_to "edit", {:action => "edit", "id"=>"#{xl_item.id}"}, class:"pull-right edit-btn visible"
                      
     
           
@@ -218,20 +204,7 @@
                 %a.black-hover{:href => ""}
                 = link_to "Click Here",  users_referral_path
                 to get started
-          / .row.sidebar-txtentry.bg-gray
-          /   .inner
-          /     %h5 Inventory in Storage
-          /     .single-line
-          /     %ul.no-list
-          /       %li
-          /         %span.order-item  Boxes
-          /         %span.pull-right 4
-          /       %li
-          /         %span.order-item Wardrobe Boxes
-          /         %span.pull-right 1
-          /       %li
-          /         %span.order-item Couches
-          /         %span.pull-right 1
+
           .row
             .boxed-gray.continue-button  
               - if !@has_existing_pickup
@@ -280,80 +253,6 @@
 
   });
 
-  // Delivery Entry Selected
-  // $(".delivery-entry").click(function() {
-    // $(this).toggleClass("selected-item");
-
-    //   if($(this).hasClass("selected-item")){
-    //   numDeliveryItems = numDeliveryItems + 1;
-    //     $('input:first', this).prop('checked', true);
-
-    // } else {
-    //   numDeliveryItems = numDeliveryItems - 1;
-    //   $('input:first', this).prop('checked', false);
-
-    // }
-    // console.log("numDeliveryItems:" + numDeliveryItems);
-
-  //   if (numDeliveryItems == 0) $("#delivery-button").attr("disabled", "disabled");
-  //   else {
-  //    console.log("Delivery BUTTON REMOVING DISABLED");
-  //     $("#delivery-button").removeAttr("disabled"); 
-  //     $(".pickup-entry").removeClass("selected-item");
-  //     // $("#pickup-button").attr("disabled", "disabled");
-  //     numPickupItems = 0;  
-  //    } 
-  // });
-
-  /// Pick Up Entry Selected
-  // $(".pickup-entry").click(function() {
-  //     // $(this).toggleClass("selected-item");
-  //     $('input:first', this).prop('checked', true);
-
-  //     if($(this).hasClass("selected-item")){
-  //     numPickupItems = numPickupItems + 1;
-  //   } else {
-  //     numPickupItems = numPickupItems - 1;
-  //   }
-  //   console.log("numPickupItems:" + numPickupItems);
-
-  //   if (numPickupItems == 0) console.log("the pickup button would be disabled here bc there are no items selected");
-  //   else {
-  //     console.log("pickup BUTTON REMOVING DISABLED");
-  //     $("#pickup-button").removeAttr("disabled");   
-  //     $(".delivery-entry").removeClass("selected-item");
-  //     $("#delivery-button").attr("disabled", "disabled");
-  //     numDeliveryItems = 0;
-  //    } 
-  // });
-
-  // $("#pickup-button").click(function(event){
-  //     event.preventDefault();
-  //    var selectedEntries = $(".selected-item.pickup-entry");
-  //    console.log(selectedEntries.size());
-  //    var destinationURL = "/pickup_requests/new/";
-  //    window.location.href = destinationURL;
-  // });
-
-  // $("#delivery-button").click(function(){
-  //    event.preventDefault();
-  //    var selectedEntries = $(".selected-item.delivery-entry");
-  //    var itemsList = "";
-  //    var numItems = 0;
-  //    selectedEntries.each(function(){
-  //     var elemId = $(this).attr('id');
-  //     if(numItems == 0){
-  //       itemsList = elemId;
-  //     } else{
-  //       itemsList = itemsList + "," + elemId;
-  //     }
-  //     numItems += 1;
-  //    });
-  //    console.log(selectedEntries.size());
-  //    console.log(itemsList);
-
-  //    var destinationURL = "/delivery_requests/new/" + itemsList;
-  //    window.location.href = destinationURL;
-  // });
+  
 
   
