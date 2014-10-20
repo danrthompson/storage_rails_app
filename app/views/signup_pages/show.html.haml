@@ -1,4 +1,4 @@
-= javascript_include_tag "signup_show"
+/ # = javascript_include_tag "signup_show"
 // CUSTOM HEADER
 .container
   %ul#gn-menu.gn-menu-main.main-header.full-opacity
@@ -26,7 +26,7 @@
 %br/ 
 
 // Confirmation Page
-%section#signup-fourth.text-center
+%section.text-center
   .heading-about.marginbot-30
     .container
       .row
@@ -83,9 +83,6 @@
 
             .single-line
             %ul
-              / %li.light-gray
-              /   %span.order-item Cost of Supplies:
-              /  / %span.pull-right.hide-when-zero$ #{@packing_supplies_request.one_time_price}
               %li.light-gray
                 %span.order-item Price of Storage:
                 %span.pull-right#subtotal $0.00
@@ -127,11 +124,11 @@
             %br/ 
             .row
               .col-md-8.col-md-offset-2.align-left
-                .form-group.address-form
+                .form-group
                   .row
                     .col-md-6.light-gray
                       = cc.label :promo_code, "Have a promo code?", class:"no-margin"
-                      = cc.text_field :promo_code,  autofocus: true, placeholder:"", class:"form-control"
+                      = cc.text_field :promo_code, class:"form-control"
                     .col-md-6
                       = cc.label :referrer, "How did you hear about us?"
                       = cc.select  :referrer, options_for_select([["Divine Inspiration"], ["A Wise Man Told Me"], ["A Flyer"], ["A Friend"], ["Other"]]),{}, {class:"form-control"}
@@ -148,8 +145,8 @@
               / # = cc.check_box :remember_me, class: "pull-left"
               %input#terms-checkbox.pull-right{:type => "checkbox", required:true}/
             .col-md-4
-              .boxed-gray.continue-button
-                = cc.submit 'confirm order', class:"btn btn-primary blue-bg-hover"
+              .boxed-gray
+                = cc.submit 'confirm order', class:"btn btn-primary blue-bg-hover", id:"submit-button", disabled: true
 
 
 
@@ -169,7 +166,6 @@
         = render partial: "partials/terms_of_service_txt"
       .modal-footer
         %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
-        / %button.btn.btn-primary{:type => "button"} Save changes
 
 :javascript
   hideParentWhenZero("hide-when-zero");
@@ -177,4 +173,15 @@
 
   sumItemList(".item-amount", "#subtotal");
 
+ 
+   $(".form-control").on('input', function(e) { 
+     $("#credit-card-form").data('bootstrapValidator').validate();
+     if ($("#credit-card-form").data('bootstrapValidator').isValid()){
+       $("#submit-button").removeAttr("disabled");
+       console.log("submit button no longer disabled");
+     } else {
+        $("#submit-button").attr("disabled", true);
+     }        
+  
+   });
   

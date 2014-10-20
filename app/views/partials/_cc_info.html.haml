@@ -5,23 +5,23 @@
       .row
         .col-md-12
           = cc.label :cc_name, "Name on Credit Card", class:"no-margin"
-          = cc.text_field :cc_name,  autofocus: true, placeholder:"e.g. John Doe", class:"form-control", id:""
+          = cc.text_field :cc_name,   placeholder:"e.g. John Doe", class:"form-control", id:"", required:true
       .row
         %br/
         .col-md-12.col-sm-12.col-xs-12.col-lg-12
           = cc.label :cc_number, "Credit Card Number", class:"no-margin"
-          = cc.text_field :cc_number,  autofocus: true, placeholder:"e.g. 1234 5678 9012 3456", class:"form-control", id:""
+          = cc.text_field :cc_number,   placeholder:"e.g. 1234 5678 9012 3456", class:"form-control", id:"", required:true
         
       %br/
       .row
         .col-md-4.col-sm-4.col-xs-4.col-lg-4
           = cc.label :exp_month, "Exp Month", class:"no-margin"
-          = cc.text_field :exp_month,  autofocus: true, placeholder:"mm", class:"form-control", id:""
+          = cc.text_field :exp_month,   placeholder:"mm", class:"form-control", id:"", required:true
         .col-md-4.col-sm-4.col-xs-4.col-lg-4
           = cc.label :exp_year, "Expiration Year", class:"no-margin"
-          = cc.text_field :exp_year,  autofocus: true, placeholder:"yyyy", class:"form-control", id:""
+          = cc.text_field :exp_year,   placeholder:"yyyy", class:"form-control", id:"", required:true
         .col-md-4.col-sm-4.col-xs-4.col-lg-4
           = cc.label :cc_cvc, "CVC", class:"no-margin"
-          = cc.text_field :cc_cvc, autofocus: true, placeholder:"###", class:"form-control", id:""
+          = cc.text_field :cc_cvc,  placeholder:"###", class:"form-control", id:"", required:true
 
 
