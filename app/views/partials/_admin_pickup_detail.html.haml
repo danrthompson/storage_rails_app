@@ -12,7 +12,7 @@
       %p
         %span User item number:
         #{item.user_item_number}
-
+    .col-md-6
       / title
       - if item.title.blank?
         %p
@@ -29,15 +29,15 @@
         %p
           %span Description:
           #{item.description}
-    .col-md-6
-      / image
-      - if item.image?
-        %p
-          %span Item image:
-        .crop-mask
-          %img{src: "#{item.image_url}"}/
-      - else
-        %p
-          %span [No item image]
-          \- please take one
+    / .col-md-6
+    /   / image
+    /   - if item.image?
+    /     %p
+    /       %span Item image:
+    /     .crop-mask
+    /       %img{src: "#{item.image_url}"}/
+    /   - else
+    /     %p
+    /       %span [No item image]
+    /       \- please take one
     %hr/

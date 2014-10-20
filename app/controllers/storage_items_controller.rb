@@ -28,6 +28,7 @@ class StorageItemsController < ApplicationController
 		@existing_delivery = user_delivery_requests.first;
 		@existing_pickup = user_pickup_requests.first;
 
+
 		# Items At Home
 		@items_at_home = StorageItem.where(user_id: current_user.id, entered_storage_at: nil).count
 		@boxes_at_home = StorageItem.where(user_id: current_user.id, item_type: 'small', entered_storage_at: nil)
@@ -37,6 +38,8 @@ class StorageItemsController < ApplicationController
 
 		# Items in Storage
 		@storage_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil, delivery_request_id: nil).where.not(entered_storage_at: nil).order(:item_type, :entered_storage_at)
+		
+
 		@delivery_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil).where.not(entered_storage_at: nil, delivery_request_id: nil).order(:item_type, :entered_storage_at)
 		@num_delivery_items = @delivery_items.count
 

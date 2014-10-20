@@ -120,12 +120,12 @@ function validatePickup(datepickerID, timeFieldId, buttonID){
 
 // SUMS DELIVERY ITEMS
 
-function sumItemList(itemClass, displayId){
+function sumItemList(itemClass, displayId, endText){
   sumTotal = 0;
   $(itemClass).each(function(){
     sumTotal += parseInt($(this).html());
   });
-  $(displayId).html("$" + sumTotal);
+  $(displayId).html("$" + sumTotal + endText);
 }
 
 ////////////////

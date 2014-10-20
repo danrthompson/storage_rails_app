@@ -217,6 +217,8 @@
               - if !@has_existing_delivery
                 = link_to new_delivery_request_path do
                   %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Request Delivery
+                %p#delivery-subtext.light-gray.no-margin.half-opacity.pull-right
+                  (you have no items in storage)
               - else
                 = link_to edit_delivery_request_path(id: @has_existing_delivery) do
                   %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Edit Delivery
@@ -243,6 +245,11 @@
     }
     if (inStorage == 0){
       $("#delivery-form").addClass("hidden");
+      $("#delivery-button").parent().attr("disabled", true);
+      $("#delivery-button").attr("disabled", true);
+      $("#delivery-button").parent().addClass("no-pointer");
+
+
     }
     if(pendingDelivery == 0){
       $("#pending-delivery-form").addClass("hidden");
@@ -251,6 +258,11 @@
       $("#storage-empty").toggleClass("hidden");
     }
 
+    $("#delivery-button").click(function(e){
+      if (inStorage == 0){
+        e.preventDefault();
+      }
+    });
   });
 
   
