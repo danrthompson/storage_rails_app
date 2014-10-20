@@ -246,10 +246,26 @@
         event.preventDefault();
         checkFormDisableBtn();
       }
-      
     });
 
+    // If there are errors after submission, 
+    if ($(".error_explanation").length > 0){
+      console.log("THERE IS AN ERROR!");
 
+      // Need to clear value of datepicker
+      if (!($("#signup-fourth").hasClass("hidden"))){
+        moveFromTo("#signup-fourth", "#signup-second");
+      }
+      else if ($("#signup-second").hasClass("hidden")){
+        $("#signup-second").toggleClass("hidden");
+      }
+      
+      $("#datepicker-value").val("");
+      updatePickupTotal();
+      refreshAllOrders();
+    }
+
+    // Recalculate field when "+" button clicked
     $('.quantity-field').on('input', function() {
       console.log("QUANTITY CHANGED");
       var field = $(this);
@@ -354,7 +370,11 @@
   })
 
   $("#signup-fourth-btn").click(function(e){
-    moveFromTo("#signup-fourth", "#signup-second");
+    // moveFromTo("#signup-fourth", "#signup-second");
+    // console.log($(".error_explanation").length);
+    // if ($(".error_explanation").length > 0){
+    //   moveFromTo("#signup-fourth", "#signup-second");
+    // }
   })
 
 

@@ -38,7 +38,7 @@
           entries.toggleClass("hidden");   
           categories.toggleClass("hidden");    
         }
-         
+        
     
   });
 
@@ -227,7 +227,34 @@
     updatePickupTotal();
   }
 
+  ////////////////////////////
+  ///// If the page refreshes (in the event of an error) this redraws the summary of items listed before.
+  ////////////////////////////
+  function refreshAllOrders(){
+    var resutVal = $("#txt-box").val();
+    if(resutVal > 0){
+      var orderEntrySpan = $('#num-'+ "small"+ " span");
+      refreshOrder(resutVal, orderEntrySpan);
+    } else console.log("Result Val:" + resutVal);
+    
+    resutVal = $("#txt-medium").val();
+    if(resutVal > 0){
+      orderEntrySpan = $('#num-'+ "medium"+ " span");
+      refreshOrder(resutVal, orderEntrySpan);
+    } else console.log("Result Val:" + resutVal);
 
+    resutVal = $("#txt-large").val();
+    if(resutVal > 0){
+      orderEntrySpan = $('#num-'+ "large"+ " span");
+      refreshOrder(resutVal, orderEntrySpan);
+    }else console.log("Result Val:" + resutVal);
+
+    resutVal = $("#txt-extra_large").val();
+    if(resutVal > 0){
+      orderEntrySpan = $('#num-'+ "extra_large"+ " span");
+      refreshOrder(resutVal, orderEntrySpan);
+    }else console.log("Result Val:" + resutVal);
+  }
   /////////////////////////////////////////////////////////////
   // Overwrites subtotal for packing Items.
   // Hides delivery field if no items selected
@@ -271,6 +298,7 @@
   // Hides delivery field if no items selected
   /////////////////////////////////////////////////////////////
   function updatePickupTotal(){
+    console.log("updating pickup total");
     // Number of Boxes
     var numBox = $('#txt-box').val();
     var numMedium = $('#txt-medium').val();
