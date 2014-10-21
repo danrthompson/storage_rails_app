@@ -24,7 +24,7 @@
   .row.home-screen-links
     / %h3.center-align 
     /   %a{:href => "#what-we-do"} ( scroll to learn how )
-    .col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2.col-xs-8.col-xs-offset-2
+    .col-md-3.col-sm-8.col-xs-8.col-xs-offset-2.pull-right
       %a.white{:href => "#what-we-do"}
         .boxed-gray.continue-button
           %button.btn.btn-primary.white-bg Click To Learn More
@@ -41,7 +41,7 @@
         %br/
         %br/
         .row
-          .col-sm-4.col-md-4
+          .col-sm-4.col-md-4.no-pointer
             .service-box
               .service-icon
                 =image_tag "offer-1.png", :class => "offer-img"

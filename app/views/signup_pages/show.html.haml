@@ -117,7 +117,7 @@
         = form_for @user, url:add_payment_signup_pages_path, html:{id:"credit-card-form"} do |cc|
           .bg-gray
             %br/
-            = render partial: "partials/cc_info", locals:{cc: cc}
+            = render partial: "partials/cc_info", locals:{field: cc}
             %br/ 
           
           %br/ 
@@ -128,7 +128,7 @@
                 .form-group
                   .row
                     .col-md-6.light-gray
-                      = cc.label :promo_code, "Have a promo code?", class:"no-margin"
+                      = cc.label :promo_code, "Promo Code? (optional)", class:"no-margin"
                       = cc.text_field :promo_code, class:"form-control"
                     .col-md-6
                       = cc.label :referrer, "How did you hear about us?"

@@ -2,24 +2,38 @@
 
 .col-md-4
   %p
+    %span
+      Name:
+      %span.blue 
+        = request.user.first_name
+        = request.user.last_name
+    %br/ 
+    %span Phone:
+    = request.user.phone_number
+    %br/ 
+    / %span Delivery Time:
+    / %br/ 
+    / = request.delivery_time.strftime("%B %d at %l:%M %p")
+    / %br/      
+    %span Customer Email
+    %a{:href => ""}
+      = request.user.email
+    %br/ 
+    %span Notes: 
+    = request.user.special_instructions
+.col-md-4      
+  %p 
     %span Delivery Time:
     %br/ 
     = request.delivery_time.strftime("%B %d at %l:%M %p")
-    %br/ 
-    %br/ 
-    %span Customer Email
-    %br/ 
-    %a{:href => ""}
-      = request.user.email
-.col-md-4      
-  %p 
+    %br/    
     %span Address:
     %br/ 
     = request.user.address_line_1
     = request.user.address_line_2
     %br/ 
-
     #{request.user.city}, #{request.user.state}, #{request.user.zip}
-    %br/ 
-    %span Notes: 
-    = request.user.special_instructions
+    / %span Phone:
+    / = request.user.phone_number
+    / %br/ 
+
