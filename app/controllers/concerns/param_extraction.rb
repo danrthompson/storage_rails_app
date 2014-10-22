@@ -4,7 +4,7 @@ module ParamExtraction
 	private
 
 	def complete_pickup_request_params(params)
-		params.require(:pickup_request).permit(:driver_name, :driver_notes, storage_items_attributes: [:title, :description, :image, :item_type, :_destroy, :id, :storage_location, :notes])
+		params.require(:pickup_request).permit(:driver_name, :driver_notes, storage_items_attributes: [:title, :description, :image, :item_type, :_destroy, :id, :storage_location, :notes, :user_id, :pickup_request_id])
 	end
 
 	def complete_delivery_request_params(params)

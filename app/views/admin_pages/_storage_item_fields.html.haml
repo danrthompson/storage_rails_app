@@ -45,3 +45,5 @@
     .col-md-12
       = f.check_box :_destroy, class:"delete_checkbox"
       = label :_destroy, "Delete Item"
+      = f.hidden_field :user_id, value: pickup_request.user.id
+      = f.hidden_field :pickup_request_id, value: pickup_request.id

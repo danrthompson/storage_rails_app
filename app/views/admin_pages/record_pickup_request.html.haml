@@ -70,7 +70,7 @@
                       = field.text_field :driver_notes,  autofocus: true, placeholder:"Notes", class:"col-md-6 form-control", id:""
               .admin-details{:id => "#{@pickup_request.id}-details"}
                 = render partial: "partials/admin_pickup_form", locals: {pickup_request: @pickup_request, form: field}
-              = link_to_add_fields "Add Item", field, :storage_items
+              = link_to_add_fields "Add Item", field, :storage_items, @pickup_request
               %br/ 
               %p.no-opacity ps
             %br/ 
