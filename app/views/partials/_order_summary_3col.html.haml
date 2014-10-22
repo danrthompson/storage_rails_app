@@ -1,0 +1,73 @@
+%h3.double-underlined Order Details
+        .double-line
+        .row
+
+          // Order Recap
+          .col-md-4.confirm-elem
+            %h5 Your Order
+            %ul
+              - if @packing_supplies_request
+                // Packing Supplies
+                %li
+                  %span.order-item Standard Box
+                  %span.pull-right.hide-when-zero= @packing_supplies_request.box_quantity
+                %li
+                  %span.order-item Wardrobe Box
+                  %span.pull-right.hide-when-zero= @packing_supplies_request.wardrobe_box_quantity
+                %li
+                  %span.order-item Bubble Wrap
+                  %span.pull-right.hide-when-zero= @packing_supplies_request.bubble_quantity
+                %li
+                  %span.order-item Packing Tape
+                  %span.pull-right.hide-when-zero= @packing_supplies_request.tape_quantity
+              
+              - if @pickup_request
+                // Storage Items
+                %li
+                  %span.order-item Boxes
+                  %span.pull-right.hide-when-zero= (@pickup_request.storage_items.where(item_type: 'small').count)
+                  %span.item-amount.hidden= (@pickup_request.storage_items.where(item_type: 'small').count) * 5.0 
+                %li
+                  %span.order-item Medium Items
+                  %span.pull-right.hide-when-zero= @pickup_request.storage_items.where(item_type: 'medium').count
+                  %span.item-amount.hidden= @pickup_request.storage_items.where(item_type: 'medium').count * 12
+                %li
+                  %span.order-item Large Items
+                  %span.pull-right.hide-when-zero= @pickup_request.storage_items.where(item_type: 'large').count
+                  %span.item-amount.hidden= @pickup_request.storage_items.where(item_type: 'large').count * 25
+
+                %li
+                  %span.order-item XL Items
+                  %span.pull-right.hide-when-zero= @pickup_request.storage_items.where(item_type: 'extra_large').count
+                  %span.item-amount.hidden= @pickup_request.storage_items.where(item_type: 'extra_large').count * 40
+
+
+            .single-line
+            %ul
+              %li.light-gray
+                %span.order-item Price of Storage:
+                %span.pull-right#subtotal $0.00/month
+
+           
+          // Delivery Recap
+          .col-md-4.confirm-elem
+            %h5 Pickup Time
+            - if @pickup_request.nil?
+              %p no pickup requested... yet
+            - else 
+              %p= @pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
+              .delivery-confirm-instructions
+                %br/ 
+                %h6.no-margin Special Instructions
+                %p.half-opactiy.hide-unused= @user.special_instructions
+
+
+          // Address Recap
+          .col-md-4.confirm-elem
+            %h5 Your Address
+            %p= @user.address_line_1
+            %div 
+              %p.hide-unused= @user.address_line_2
+            %p #{@user.city}, #{@user.state} #{@user.zip}
+        %br/
+        %br/

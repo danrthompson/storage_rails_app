@@ -1,3 +1,18 @@
+$(document).ready(function() {
+   // Recalculate field when "+" button clicked
+    $('.quantity-field').on('input', function() {
+      console.log("QUANTITY CHANGED");
+      var field = $(this);
+      var id = field.attr("id");
+      var idRoot = id.substr(4);
+      console.log("#num-"+idRoot+" span");
+      var orderEntrySpan = $('#num-'+idRoot+ " span");
+      refreshOrder(field.val(), orderEntrySpan);
+    });
+
+
+});
+
 
 
   ///////////////////////////////

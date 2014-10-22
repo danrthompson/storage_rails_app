@@ -6,25 +6,37 @@
 %section#intro.intro
   .slogan
     %iframe{:allowfullscreen => "", :frameborder => "0", :height => "370", :mozallowfullscreen => "", :src => "//player.vimeo.com/video/109205395", :webkitallowfullscreen => "", :width => "668"}
-    
+    %br/ 
+    %br/ 
+    .col-md-6.col-md-offset-3.align-center#homepage-datetime
+      = form_for (@pickup_request) do |f| 
+        = render partial: "partials/slender_datetime", locals: {f:f, id:"pickup_datepicker", select_id:"delivery_time"}
+    .row
+      .col-md-6.col-md-offset-3.align-right
+        %p.light-gray
+          To get a price estimate for your items click
+
+          %span.white.pointer.blue-hover{"data-target" => "#quote_gen_popup", "data-toggle" => "modal"}
+            here.
+       
+          
     / %h1
     /   We Make Storage Easy
     / %h3.dark-gray.heavy-font
     /   QUICKBOX
-    %br
-    .row
-      .col-md-2.col-md-offset-5.col-sm-8.col-sm-offset-2.col-xs-8.col-xs-offset-2
-        .boxed-gray.continue-button
-          = link_to new_signup_pages_path, class:"white" do
-            %button.btn.btn-primary.blue-bg.blue-bg-hover Sign Up
-          / = link_to '[or login]', new_user_session_path, class:"white black-hover"
+    / %br
+    / .row
+    /   .col-md-2.col-md-offset-5.col-sm-8.col-sm-offset-2.col-xs-8.col-xs-offset-2
+    /     .boxed-gray.continue-button
+    /       = link_to new_signup_pages_path, class:"white" do
+    /         %button.btn.btn-primary.blue-bg.blue-bg-hover Sign Up
     %br/
     %br/
     %br/
   .row.home-screen-links
     / %h3.center-align 
     /   %a{:href => "#what-we-do"} ( scroll to learn how )
-    .col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2.col-xs-8.col-xs-offset-2
+    .col-md-3.col-sm-8.col-xs-8.col-xs-offset-2.pull-right
       %a.white{:href => "#what-we-do"}
         .boxed-gray.continue-button
           %button.btn.btn-primary.white-bg Click To Learn More
@@ -41,7 +53,7 @@
         %br/
         %br/
         .row
-          .col-sm-4.col-md-4
+          .col-sm-4.col-md-4.no-pointer
             .service-box
               .service-icon
                 =image_tag "offer-1.png", :class => "offer-img"
@@ -148,4 +160,6 @@
 
 
 = render :partial => 'partials/footer'
+= render partial: "partials/quote_gen_modal"
+= javascript_include_tag "item_selector"
 

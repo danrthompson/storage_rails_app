@@ -1,4 +1,3 @@
-/ # = javascript_include_tag "signup_show"
 // CUSTOM HEADER
 .row.header-nav
   .nav-links-wrapper.col-md-4.col-xs-5
@@ -17,141 +16,124 @@
 
 
 
+.container.full-width.blue-bg.no-padding.white.align-center
+  %br/ 
+  %h1#lets-doit Account Confirmation
 
-= render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
+#signup-progress.row.align-center
+  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1
+    %ul.no-list
+      %li.signup-completed#step-1  
+        %h4
+          %span.green{:data => {'icon' => "D"}}
+          1. Create Login    
+      %li#step-2.signup-active
+        %h4
+          %span.green.hidden{:data => {'icon' => "D"}}
+          2. Confirm Account
+      %li#step-3
+        %h4
+          %span.green.hidden{:data => {'icon' => "D"}}
+          3. Done
+/ = render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
 .errors
   = render partial: "partials/error_messages_object_form", locals: {object: @user}
 %br/ 
 %br/ 
-%br/ 
+/ %br/ 
 
 // Confirmation Page
 %section.text-center
-  .heading-about.marginbot-30
-    .container
-      .row
-        .col-lg-8.col-lg-offset-2
-          .section-heading
-            %h2.no-margin Account Confirmation
-            %h3.light-gray (the last step)
+  / .heading-about
+  /   .container
+  /     .row
+  /       .col-lg-8.col-lg-offset-2
+  /         .section-heading
+  /           %h2.no-margin Account Confirmation
+  /           %h3.light-gray (the last step)
   .container
     .row
-      .col-lg-8.col-md-offset-2
-        %h3.double-underlined Order Details
-        .double-line
-        .row
-
-          // Order Recap
-          .col-md-4.confirm-elem
-            %h5 Your Order
-            %ul
-              - if @packing_supplies_request
-                // Packing Supplies
-                %li
-                  %span.order-item Standard Box
-                  %span.pull-right.hide-when-zero= @packing_supplies_request.box_quantity
-                %li
-                  %span.order-item Wardrobe Box
-                  %span.pull-right.hide-when-zero= @packing_supplies_request.wardrobe_box_quantity
-                %li
-                  %span.order-item Bubble Wrap
-                  %span.pull-right.hide-when-zero= @packing_supplies_request.bubble_quantity
-                %li
-                  %span.order-item Packing Tape
-                  %span.pull-right.hide-when-zero= @packing_supplies_request.tape_quantity
-              
-              - if @pickup_request
-                // Storage Items
-                %li
-                  %span.order-item Boxes
-                  %span.pull-right.hide-when-zero= (@pickup_request.storage_items.where(item_type: 'small').count)
-                  %span.item-amount.hidden= (@pickup_request.storage_items.where(item_type: 'small').count) * 5.0 
-                %li
-                  %span.order-item Medium Items
-                  %span.pull-right.hide-when-zero= @pickup_request.storage_items.where(item_type: 'medium').count
-                  %span.item-amount.hidden= @pickup_request.storage_items.where(item_type: 'medium').count * 12
-                %li
-                  %span.order-item Large Items
-                  %span.pull-right.hide-when-zero= @pickup_request.storage_items.where(item_type: 'large').count
-                  %span.item-amount.hidden= @pickup_request.storage_items.where(item_type: 'large').count * 25
-
-                %li
-                  %span.order-item XL Items
-                  %span.pull-right.hide-when-zero= @pickup_request.storage_items.where(item_type: 'extra_large').count
-                  %span.item-amount.hidden= @pickup_request.storage_items.where(item_type: 'extra_large').count * 40
-
-
-            .single-line
-            %ul
-              %li.light-gray
-                %span.order-item Price of Storage:
-                %span.pull-right#subtotal $0.00/month
-
-           
-          // Delivery Recap
-          .col-md-4.confirm-elem
-            %h5 Pickup Time
-            - if @pickup_request.nil?
-              %p no pickup requested... yet
-            - else 
-              %p= @pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
-              .delivery-confirm-instructions
-                %br/ 
-                %h6.no-margin Special Instructions
-                %p.half-opactiy.hide-unused= @user.special_instructions
-
-
-          // Address Recap
-          .col-md-4.confirm-elem
-            %h5 Your Address
-            %p= @user.address_line_1
-            %div 
-              %p.hide-unused= @user.address_line_2
-            %p #{@user.city}, #{@user.state} #{@user.zip}
-        %br/
-        %br/
-        %h3.double-underlined Payment Info
-        .double-line
-        
-        // Credit Card Info Form
-        = form_for @user, url:add_payment_signup_pages_path, html:{id:"credit-card-form"} do |cc|
-          .bg-gray
-            %br/
-            = render partial: "partials/cc_info", locals:{cc: cc}
-            %br/ 
-          
-          %br/ 
-          .bg-gray
-            %br/ 
-            .row
-              .col-md-8.col-md-offset-2.align-left
-                .form-group
-                  .row
-                    .col-md-6.light-gray
-                      = cc.label :promo_code, "Have a promo code?", class:"no-margin"
-                      = cc.text_field :promo_code, class:"form-control"
-                    .col-md-6
-                      = cc.label :referrer, "How did you hear about us?"
-                      = cc.select  :referrer, options_for_select([["Divine Inspiration"], ["A Wise Man Told Me"], ["A Flyer"], ["A Friend"], ["Other"]]),{}, {class:"form-control"}
-                    
-            %br/
-          %p.align-left.light-gray.small-text * you will only be charged after pickup
-
-          %br/
-          %br/
+      .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
+        #pickup-details
           .row
-            .col-md-5.col-md-offset-2.no-side-padding
-              %p.align-right.pull-right.pt-10
-                I agree to the
-                %a.pointer{"data-target" => "#myModal", "data-toggle" => "modal"} terms of service 
-            .col-md-1
-              / # = cc.check_box :remember_me, class: "pull-left"
-              %input#terms-checkbox.pull-right{:type => "checkbox", required:true}/
-            .col-md-4
-              .boxed-gray
-                = cc.submit 'confirm order', class:"btn btn-primary blue-bg-hover", id:"submit-button", disabled: true
+            %h3.double-underlined Pickup Details
+            .double-line
+            = fields_for @user, html:{id:"delivery-form"} do |field|
+              = render partial: "partials/delivery_addr_date", locals: {field:field, id:"datepicker"}
+
+        
+          %br/ 
+          %br/ 
+
+    / .row#quote-generator.hidden
+    /   .col-md-12
+    /     %h4.pointer.pull-right#quote-close close
+    /     = fields_for @temp_pickup, html:{id:"delivery-form"} do |pickup_field|
+    /       = render partial: "partials/storage_items", locals:{f:pickup_field}
+
+    .row
+      .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
+        .row#payment-details.hidden
+          %h3.double-underlined
+            Payment Info
+            / %p.pull-right.half-opacity
+            / No charges will take place until you put items in storage
+          .double-line
+          %p.heavy-font
+            %span.half-opacity No charges will occur until you put items in storage. 
+             
+            To get a price estimate for your items click
+
+            %span.blue.pointer#quote-triggerr{"data-target" => "#quote_gen_popup", "data-toggle" => "modal"}
+              here.
+          %br/ 
+          // Credit Card Info Form
+          = form_for @user, url:add_payment_signup_pages_path, html:{id:"credit-card-form"} do |cc|
+            .bg-gray
+              %br/
+              = render partial: "partials/cc_info", locals:{field: cc}
+              %br/ 
+            
+            %br/ 
+            %div#finish-details.hidden
+              %h3.double-underlined Finish Line
+
+              .double-line
+              .bg-gray
+                %br/ 
+                .row
+
+                  .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2.align-left
+                    .form-group
+                      .row
+                        .col-md-6.light-gray
+                          = cc.label :promo_code, "Promo Code? (optional)", class:"no-margin"
+                          = cc.text_field :promo_code, class:"form-control"
+                        .col-md-6
+                          = cc.label :referrer, "How did you hear about us?"
+                          = cc.select  :referrer, options_for_select([["Divine Inspiration"], ["A Wise Man Told Me"], ["A Flyer"], ["A Friend"], ["Other"]]),{}, {class:"form-control"}
+                      
+              %br/
+
+            #submit-details.hidden
+              %p.align-left.light-gray.small-text * you will only be charged after pickup
+
+              %br/
+              %br/
+              .row
+                .col-md-5.col-md-offset-2.no-side-padding
+                  %p.align-right.pull-right.pt-10
+                    I agree to the
+                    %a.pointer{"data-target" => "#myModal", "data-toggle" => "modal"} terms of service 
+                .col-md-1
+                  / # = cc.check_box :remember_me, class: "pull-left"
+                  %input#terms-checkbox.pull-right{:type => "checkbox", required:true}/
+                .col-md-4
+                  .boxed-gray
+                    = cc.submit 'confirm order', class:"btn btn-primary blue-bg-hover", id:"submit-button", disabled: true
 
 
+%br/ 
 %br/ 
 %br/ 
 = render :partial => "partials/footer"
@@ -171,21 +153,46 @@
       .modal-footer
         %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
 
+= render partial: "partials/quote_gen_modal"
+
+= javascript_include_tag "item_selector"
+
 :javascript
   hideParentWhenZero("hide-when-zero");
   hideParentWhenNotUsed("hide-unused");
+  
 
   sumItemList(".item-amount", "#subtotal", "/month");
 
  
    $(".form-control").on('input', function(e) { 
+
      $("#credit-card-form").data('bootstrapValidator').validate();
+     $("#validator-id").data('bootstrapValidator').validate();
+     
+     if ($("#validator-id").data('bootstrapValidator').isValid()){
+      $("#payment-details").removeClass("hidden");
+      //$("#pickup-details").addClass("hidden");
+      console.log("removing hidden");
+     }
+
      if ($("#credit-card-form").data('bootstrapValidator').isValid()){
        $("#submit-button").removeAttr("disabled");
+       $("#finish-details").removeClass("hidden");
+       $("#submit-details").removeClass("hidden");
+
        console.log("submit button no longer disabled");
      } else {
         $("#submit-button").attr("disabled", true);
      }        
   
+   });
+
+   $("#quote-trigger").click(function(){
+    $("#quote-generator").removeClass("hidden");
+   });
+
+   $("#quote-close").click(function(){
+    $("#quote-generator").addClass("hidden");
    });
   

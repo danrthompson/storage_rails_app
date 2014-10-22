@@ -44,6 +44,7 @@ class SignupPagesController < ApplicationController
 		redirect_to new_user_session_url and return if @user.id != current_user.id
 		@packing_supplies_request = @user.packing_supplies_requests.first
 		@pickup_request = @user.pickup_requests.first
+		@temp_pickup = PickupRequest.new
 	end
 
 	def add_payment

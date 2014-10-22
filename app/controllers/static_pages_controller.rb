@@ -2,7 +2,8 @@ class StaticPagesController < ApplicationController
 	before_action :no_user!, only: [:homepage]
 
 	def homepage
-
+		@pickup_request = PickupRequest.new
+		@temp_pickup = PickupRequest.new
 	end
 
 	def about

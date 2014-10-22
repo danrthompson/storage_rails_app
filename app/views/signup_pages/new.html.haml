@@ -5,32 +5,42 @@
 
 .container.full-width.blue-bg.no-padding.white.align-center
   %br/ 
-  %h1#lets-doit LET'S DO THIS
+  %h1#lets-doit Create Your Account
+/ #signup-progress.row.align-center
+/   .col-md-8.col-md-offset-2
+/     %ul.no-list
+/       %li.signup-active#step-1  
+/         %h4
+/           %span.green.hidden{:data => {'icon' => "D"}}
+/           1. Select Items    
+/       %li#step-2
+/         %h4
+/           %span.green.hidden{:data => {'icon' => "D"}}
+/           2. Schedule Pickup
+/       %li#step-3
+/         %h4
+/           %span.green.hidden{:data => {'icon' => "D"}}
+/           3. Create Account
 #signup-progress.row.align-center
   .col-md-8.col-md-offset-2
     %ul.no-list
       %li.signup-active#step-1  
         %h4
           %span.green.hidden{:data => {'icon' => "D"}}
-          1. Select Items    
+          1. Create Login    
       %li#step-2
         %h4
           %span.green.hidden{:data => {'icon' => "D"}}
-          2. Schedule Pickup
+          2. Confirm Account
       %li#step-3
         %h4
           %span.green.hidden{:data => {'icon' => "D"}}
-          3. Create Account
+          3. Done
 
 
-  /   %h4 1. Select Items
-  / .col-md-3
-  /   %h4 1. Schedule Delivery
-  / .col-md-3
-  /   %h4 1. Create Password
 %br/ 
-%br/ 
-%br/ 
+/ %br/ 
+/ %br/ 
 
 .container
   = render partial: 'partials/error_messages_object_form', locals: {object: @user}
@@ -76,7 +86,7 @@
   ///////////////////////////////////////////////////
   // PICKUP   ///////////////////////////////////////
   ///////////////////////////////////////////////////
-  %section.text-center#signup-second
+  %section.text-center#signup-second.hidden
     .heading-about.marginbot-20
       .container
         .row
@@ -182,41 +192,54 @@
   ///////////////////////////////////////////////////
   // Signup /////////////////////////////////////////
   ///////////////////////////////////////////////////
-  %section.text-center#signup-fourth.hidden
-    .heading-about.marginbot-30
-      .container
-        .row
-          .col-lg-8.col-lg-offset-2
-            .section-heading
-              %h2 Create An Account
+  %section.text-center#signup-fourth
+    / .heading-about.marginbot-30
+    /   .container
+    /     .row
+    /       .col-lg-8.col-lg-offset-2
+    /         .section-heading
+    /           %h2 Create An Account
     .container
+
       .row
         .col-lg-6.col-md-offset-3
+          %h3.double-underlined Account Setup
+          .double-line
           .boxed-grey
             .row
               %br/ 
               = fields_for @user do |userAcct| 
                 .col-md-8.col-md-offset-2.form-group.address-form
 
-                  %div.extra-form-padding
-                    = userAcct.label :first_name, "Your Name"
-                  %div.extra-form-padding
-                    = userAcct.text_field :first_name, autofocus: true, class:"form-control", placeholder: "First Name"
-                  %div.extra-form-padding
-                    = userAcct.text_field :last_name, autofocus: true, class:"form-control", placeholder: "Last Name"
-                  %br/ 
-                  %div.extra-form-padding
-                    = userAcct.label :first_name, "Your Account"
-                  %div.extra-form-padding
-                    = userAcct.email_field :email, autofocus: true, class:"form-control", placeholder: "Email Address"
-                  %div.extra-form-padding
-                    = userAcct.password_field :password, autocomplete: "off", class:"form-control", placeholder: "Password"
-                  %div.extra-form-padding
-                    = userAcct.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm Password"
+                  / %div.extra-form-padding
+                  /   = userAcct.label :first_name, "Your Name"
+                  .row
+                    .col-md-6
+                      %div.extra-form-padding
+                        = userAcct.text_field :first_name, autofocus: true, class:"form-control", placeholder: "First Name"
+                    .col-md-6
+                      %div.extra-form-padding
+                        = userAcct.text_field :last_name, autofocus: true, class:"form-control", placeholder: "Last Name"
+                  .row
+                    .col-md-12
+                      %div.extra-form-padding
+                        = userAcct.email_field :email, autofocus: true, class:"form-control", placeholder: "Email Address"
+                  .row
+                    .col-md-6
+                      %div.extra-form-padding
+                        = userAcct.password_field :password, autocomplete: "off", class:"form-control", placeholder: "Password"
+                    .col-md-6
+                      %div.extra-form-padding
+                        = userAcct.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm Password"
+
+
+
                 .col-md-8.col-md-offset-2.bottom-buttons
+                  %br/ 
                   = userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"                  
-                  %a.pointer
-                    %h1.btn.btn-default.pull-left#signup-fourth-back Back
+                  %a.pointer{href:"/"}
+                    / %h1.btn.btn-default.pull-left#signup-fourth-back Back
+                    %h1.btn.btn-default.pull-left Back
             %br/
             %br/ 
     %br/ 
