@@ -1,4 +1,3 @@
-/ # = javascript_include_tag "signup_show"
 // CUSTOM HEADER
 .row.header-nav
   .nav-links-wrapper.col-md-4.col-xs-5
@@ -17,23 +16,41 @@
 
 
 
+.container.full-width.blue-bg.no-padding.white.align-center
+  %br/ 
+  %h1#lets-doit Account Confirmation
 
-= render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
+#signup-progress.row.align-center
+  .col-md-8.col-md-offset-2
+    %ul.no-list
+      %li.signup-completed#step-1  
+        %h4
+          %span.green{:data => {'icon' => "D"}}
+          1. Create Login    
+      %li#step-2.signup-active
+        %h4
+          %span.green.hidden{:data => {'icon' => "D"}}
+          2. Confirm Account
+      %li#step-3
+        %h4
+          %span.green.hidden{:data => {'icon' => "D"}}
+          3. Done
+/ = render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
 .errors
   = render partial: "partials/error_messages_object_form", locals: {object: @user}
 %br/ 
 %br/ 
-%br/ 
+/ %br/ 
 
 // Confirmation Page
 %section.text-center
-  .heading-about
-    .container
-      .row
-        .col-lg-8.col-lg-offset-2
-          .section-heading
-            %h2.no-margin Account Confirmation
-            %h3.light-gray (the last step)
+  / .heading-about
+  /   .container
+  /     .row
+  /       .col-lg-8.col-lg-offset-2
+  /         .section-heading
+  /           %h2.no-margin Account Confirmation
+  /           %h3.light-gray (the last step)
   .container
     .row
       .col-lg-8.col-md-offset-2
@@ -44,21 +61,32 @@
             = fields_for @user, html:{id:"delivery-form"} do |field|
               = render partial: "partials/delivery_addr_date", locals: {field:field, id:"datepicker"}
 
-          %p.half-opacity
-            No charges will take place until you put items in storage. 
-            %br/ 
-            To get a price estimate for your items click
-            %span.blue.pointer 
-              here.
+        
+          %br/ 
+          %br/ 
 
+    / .row#quote-generator.hidden
+    /   .col-md-12
+    /     %h4.pointer.pull-right#quote-close close
+    /     = fields_for @temp_pickup, html:{id:"delivery-form"} do |pickup_field|
+    /       = render partial: "partials/storage_items", locals:{f:pickup_field}
 
+    .row
+      .col-lg-8.col-md-offset-2
         .row#payment-details.hidden
           %h3.double-underlined
             Payment Info
             / %p.pull-right.half-opacity
             / No charges will take place until you put items in storage
           .double-line
-          
+          %p.heavy-font
+            %span.half-opacity No charges will occur until you put items in storage. 
+             
+            To get a price estimate for your items click
+
+            %span.blue.pointer#quote-triggerr{"data-target" => "#quote_gen_popup", "data-toggle" => "modal"}
+              here.
+          %br/ 
           // Credit Card Info Form
           = form_for @user, url:add_payment_signup_pages_path, html:{id:"credit-card-form"} do |cc|
             .bg-gray
@@ -86,6 +114,7 @@
                           = cc.select  :referrer, options_for_select([["Divine Inspiration"], ["A Wise Man Told Me"], ["A Flyer"], ["A Friend"], ["Other"]]),{}, {class:"form-control"}
                       
               %br/
+
             #submit-details.hidden
               %p.align-left.light-gray.small-text * you will only be charged after pickup
 
@@ -106,6 +135,7 @@
 
 %br/ 
 %br/ 
+%br/ 
 = render :partial => "partials/footer"
 
 
@@ -122,6 +152,28 @@
         = render partial: "partials/terms_of_service_txt"
       .modal-footer
         %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
+
+/ Modal
+#quote_gen_popup.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "quote_gen_popupLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#quote_gen_popupLabel.modal-title Terms of Service
+      .modal-body
+
+        / .col-md-12
+        / %h4.pointer.pull-right#quote-close close
+        = fields_for @temp_pickup, html:{id:"delivery-form"} do |pickup_field|
+          = render partial: "partials/storage_items", locals:{f:pickup_field}
+        / %p hihihi
+        / %br/ 
+      .modal-footer.no-opacity.huge-left-margin
+        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
+
+= javascript_include_tag "item_selector"
 
 :javascript
   hideParentWhenZero("hide-when-zero");
@@ -152,5 +204,13 @@
         $("#submit-button").attr("disabled", true);
      }        
   
+   });
+
+   $("#quote-trigger").click(function(){
+    $("#quote-generator").removeClass("hidden");
+   });
+
+   $("#quote-close").click(function(){
+    $("#quote-generator").addClass("hidden");
    });
   

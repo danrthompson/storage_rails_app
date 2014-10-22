@@ -17,7 +17,7 @@
   .row#entries-category-list
     = render partial: "partials/list_item_4col_field", locals:{title: "Small Item", price: "$5/month", id:"box", field_val: :small_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
     = render partial: "partials/list_item_4col_field", locals:{title: "Medium  Item", price: "$12/month", id:"medium", field_val: :medium_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"Wardrobe Boxes, Chairs, Lamps, Skis, Bikes, Small Furniture, Equivalent"}
-    = render partial: "partials/list_item_4col_field", locals:{title: "Large  Item", price: "$25/month", id:"large", field_val: :large_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:" Mattresses, desks, couches, tables, tvs, or furniture that takes two to move."}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Large  Item", price: "$25/month", id:"large", field_val: :large_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:" Mattresses, desks, couches, tables, tvs, or furniture that takes two."}
     = render partial: "partials/list_item_4col_field", locals:{title: "XL Item", price: "$40/month", id:"extra_large", field_val: :extra_large_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", description:" Sectional couches, large dining tables, items over 200lbs or 60 cubic feet"}
     / %button.btn.btn-primary.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal"}
   / .row
@@ -98,7 +98,8 @@
         %p.light-gray
           %span.heavy-font Can't find a particular item?
           %br/ 
-          Our drivers can help you choose the right categories for your items when they arrive for pickup. 
+          Our drivers can help you choose the right categories when they arrive. 
+          %br/ 
           %br/ 
           You can also change your pickup with them when they arrive.
 
@@ -109,11 +110,11 @@
 
 
 .col-md-6.col-md-offset-3.half-opacity.charges-box
-  %br/
-  %br/ 
+  / %br/
+  / %br/ 
   %br/ 
   .single-line
-  %br/ 
+  / %br/ 
   %br/ 
 .col-md-10.col-md-offset-1
   .row
