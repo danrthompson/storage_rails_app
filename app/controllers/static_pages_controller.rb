@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
 
 	def homepage
 		@pickup_request = PickupRequest.new
+		@temp_pickup = PickupRequest.new
 	end
 
 	def about

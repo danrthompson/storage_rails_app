@@ -12,9 +12,13 @@
       = form_for (@pickup_request) do |f| 
         = render partial: "partials/slender_datetime", locals: {f:f, id:"pickup_datepicker", select_id:"delivery_time"}
     .row
-      .col-md-6.col-md-offset-3.align-center
-        %p.white
-          (you'll be to choose your items on the next page) 
+      .col-md-6.col-md-offset-3.align-right
+        %p.light-gray
+          To get a price estimate for your items click
+
+          %span.white.pointer.blue-hover{"data-target" => "#quote_gen_popup", "data-toggle" => "modal"}
+            here.
+       
           
     / %h1
     /   We Make Storage Easy
@@ -156,4 +160,6 @@
 
 
 = render :partial => 'partials/footer'
+= render partial: "partials/quote_gen_modal"
+= javascript_include_tag "item_selector"
 
