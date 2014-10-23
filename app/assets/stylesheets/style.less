@@ -1138,19 +1138,23 @@ h3.double-underlined{
 }
 
 .intro .slogan { 
-	padding:100px 0 60px 0 ;
+	padding:50px 0 60px 0 ;
 	text-align: center;
 	
 }
 .intro .slogan{
 	iframe{
 		border: 2px solid rgba(255, 255, 255, .25);
+		height: 370px;
+		width: 688px;
 	}
+
 	h1{
 		color: #fff;
 		line-height: 1.1em;
-		margin-bottom: 20px;
-		 font-size: 32px;
+		margin-bottom: 40px;
+		 font-size: 60px;
+		 // margin-top: 
 	}
 	h3{
 		font-size: 38px;
@@ -1159,11 +1163,20 @@ h3.double-underlined{
 		text-transform: none;
 		margin-top: -10px;
 	}
+	h2{
+		font-size: 38px;
+	}
 }
 .intro .slogan p {
 	color: #eee;
 	margin-bottom: 50px;
 	font-size: 20px;
+	font-weight: 300;
+	span{
+		&:hover{
+			color: @default-yellow;
+		}
+	}
 }
 
 
@@ -1176,10 +1189,11 @@ h3.double-underlined{
 }
 
 #homepage-datetime{
-	background-color: @gray-background;
+	background-color:rgba(238,238,238, 0.8);
 	border: 1px solid @light-gray;
 	border-radius: 10px;
 	padding:5px 15px;
+	z-index: 10;
 	.form-control{
 		margin-top: 10px;
 		height:40px;
@@ -1209,11 +1223,13 @@ h3.double-underlined{
 
 .home-screen-links{
 	position: absolute;
-	width: 100%;
+	float: right;
+	width: 15%;
 	bottom: 35px;
-	left: 0;
+	right:20px;
 	margin-left:0;
 	opacity: 0.85;
+	z-index: 0;
 	&:hover{
 		opacity: 1;
 	}
@@ -1231,6 +1247,9 @@ h3.double-underlined{
 		&:hover{
 			opacity: 1;
 		}
+	}
+	button{
+		font-size: 12px;
 	}
 
 	a{
@@ -1588,9 +1607,26 @@ p.alert  , p.notice {
 	}
 }
 
-
+@media all and (max-width: 1000px){
+	.home-screen-links{
+		display: none;
+	}
+	#what-we-do{
+		margin-top: 50px;
+	}
+}
 // Main Header Updated
 @media all and (max-width: 768px) {
+	iframe{
+		border: 2px solid rgba(255, 255, 255, .25);
+		height: 270px ! important;
+		width: 390px ! important;
+	}
+
+
+	#company-phone{
+		display: none;
+	}
 	#signup-progress{
 		position: static ! important;
 		height: 80px;
