@@ -36,16 +36,29 @@
                 Pickup 
 
 
+
     .col-md-1.col-sm-4.col-xs-4.align-center
-      = link_to faq_path do
-        .service-box
-          .service-icon
-            %i.fa.fa-question-circle.fa-3x
-          .service-desc
-            %h6
-              Have a
-              %br>/
-              Question?
+      - if !@has_existing_delivery
+        = link_to new_delivery_request_path do
+          .service-box
+            .service-icon
+              %i.fa.fa-home
+            .service-desc
+              %h6
+                New
+                %br/ 
+                Delivery 
+      - else
+        = link_to edit_delivery_request_path(id: @has_existing_delivery) do
+          .service-box
+            .service-icon
+              %i.fa.fa-home
+            .service-desc
+              %h6
+                Edit
+                %br/ 
+                Delivery 
+
 %br/
 %br/
 %br/
