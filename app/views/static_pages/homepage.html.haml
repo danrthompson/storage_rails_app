@@ -9,7 +9,7 @@
     %br/ 
     %br/ 
     .col-md-6.col-md-offset-3.align-center#homepage-datetime
-      = form_for (@pickup_request) do |f| 
+      = form_for(@pickup_request, url: fast_signup_path) do |f| 
         = render partial: "partials/slender_datetime", locals: {f:f, id:"pickup_datepicker", select_id:"delivery_time"}
     .row
       .col-md-6.col-md-offset-3.align-right

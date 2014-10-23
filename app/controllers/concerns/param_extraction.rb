@@ -3,12 +3,20 @@ module ParamExtraction
 
 	private
 
+	def fast_signup_params(params)
+		params.require(:pickup_request).permit(:posted_delivery_date, :posted_delivery_time)
+	end
+
 	def complete_pickup_request_params(params)
 		params.require(:pickup_request).permit(:driver_name, :driver_notes, storage_items_attributes: [:title, :description, :image, :item_type, :_destroy, :id, :storage_location, :notes, :user_id, :pickup_request_id])
 	end
 
 	def complete_delivery_request_params(params)
 		params.require(:delivery_request).permit(:driver_name, :driver_notes, storage_items_attributes: [:id, :item_not_delivered])
+	end
+
+	def create_user_params(params)
+		params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name)
 	end
 
 	def new_user_params(params)
@@ -20,7 +28,7 @@ module ParamExtraction
 	end
 
 	def user_cc_params(params)
-		params.require(:user).permit(:cc_number, :cc_name, :exp_month, :exp_year, :cc_cvc, :promo_code, :referrer)
+		params.require(:user).permit(:cc_number, :cc_name, :exp_month, :exp_year, :cc_cvc, :promo_code, :referrer, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number)
 	end
 
 	def edit_user_params(params)
@@ -32,7 +40,7 @@ module ParamExtraction
 	end
 
 	def create_pickup_request_params(params)
-		params.require(:pickup_request).permit(:small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity, :posted_delivery_time, :posted_delivery_date)
+		params.require(:pickup_request).permit(:posted_delivery_time, :posted_delivery_date)
 	end
 
 	def create_delivery_request_params(params)

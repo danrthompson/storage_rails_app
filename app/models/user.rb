@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   has_many :delivery_requests
   has_many :pickup_requests
   has_many :notifications
-
   has_many :unavailable_times
   has_many :completed_storage_items, class_name: 'StorageItem', foreign_key: 'driver_id'
   has_many :completed_packing_supplies_requests, class_name: 'PackingSuppliesRequest', foreign_key: 'driver_id'
@@ -21,11 +20,11 @@ class User < ActiveRecord::Base
   phony_normalize :phone_number, default_country_code: 'US'
   before_validation :normalize_city, :normalize_state, :make_password_nil_if_blank, :send_card_info_to_stripe
 
-  validates :address_line_1, :city, :state, :zip, :phone_number, :first_name, :last_name, presence: true
-  validates :city, format: { with: /\ABoulder\z/, message: 'must be Boulder.' }
-  validates :state, format: { with: /\ACO\z/, message: 'must be CO.' }
-  validates :zip, inclusion: {in: [80301, 80302, 80303, 80304, 80305, 80306, 80307, 80308, 80309, 80314, 80321, 80322, 80323, 80328, 80329], message: 'must be a boulder zip code' }
+  validates :first_name, :last_name, presence: true
   validates :phone_number, :phony_plausible => true
+  validates :city, format: { with: /\ABoulder\z/, message: 'must be Boulder.' }, allow_nil: true
+  validates :state, format: { with: /\ACO\z/, message: 'must be CO.' }, allow_nil: true
+  validates :zip, inclusion: {in: [80301, 80302, 80303, 80304, 80305, 80306, 80307, 80308, 80309, 80314, 80321, 80322, 80323, 80328, 80329], message: 'must be a boulder zip code' }, allow_nil: true
   validates :exp_month, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 12}, allow_nil: true
   validates :exp_year, numericality: {only_integer: true, greater_than_or_equal_to: 2014, less_than_or_equal_to: 2035}, allow_nil: true
 
@@ -36,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   def ready?
-    return true if self.stripe_user.cards.first
+    return true if self.stripe_user.cards.first and self.address_line_1 and self.city and self.state and self.zip and self.phone_number
     return false
   end
 
