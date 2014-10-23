@@ -34,10 +34,7 @@
         $('#validator-id').data('bootstrapValidator').validate();
       });
     
-      $(".form-control").focusout(function() {
-        $('#validator-id').data('bootstrapValidator').validate();
-      });
-
+      
 
       $('#validator-id')
           .bootstrapValidator({
@@ -104,10 +101,15 @@
                   message: 'Phone number invalid'
                 }
               }
+            },
+            'user[special_instructions]': {
+              message: 'The address field is not valid',
+              validators: {}
             }
+
           }
         })
 
-        $('#validator-id').data('bootstrapValidator').validate();
+        // $('#validator-id').data('bootstrapValidator').validate();
 
     });

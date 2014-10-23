@@ -76,8 +76,7 @@
 
 
                 .col-md-8.col-md-offset-2.bottom-buttons
-                  %br/ 
-                  = userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"                  
+                  = userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn", disabled: true                 
                   %a.pointer{href:"/"}
                     / %h1.btn.btn-default.pull-left#signup-fourth-back Back
                     %h1.btn.btn-default.pull-left Back
@@ -107,24 +106,23 @@
   $(document).ready(function() {
  
     var all_form = $(".form-control");
+    
     all_form.on('input', function() {
-      if (!($("#signup-third").hasClass("hidden"))){
-        checkFormDisableBtn();
-      }
 
       // THIS SHIT NEEDS TO BE FIXED
      if (!($("#signup-fourth").hasClass("hidden")) && ($("#signup-form").data('bootstrapValidator').isValid())){
        if ($("#user_email").val().length > 0 && $("#user_password").val().length > 0 && $("#user_password_confirmation").val().length > 0 && $("#user_last_name").val().length > 0 && $("#user_first_name").val().length > 0){
-         var error = $(".help-block");
-         if (error.length <= 0){
-           $("#signup-fourth-btn").removeAttr("disabled"); 
-           console.log("show fourth button");
-         } 
+         $("#signup-fourth-btn").removeAttr("disabled"); 
+         console.log("show fourth button");
        } else{
           console.log("disabling button");
           $("#signup-fourth-btn").attr("disabled", true); 
        }
      }
+     else{
+         console.log("disabling button");
+         $("#signup-fourth-btn").attr("disabled", true); 
+      }
     });
   });
 
@@ -133,21 +131,21 @@
   /////////////////////////////////////////////////////////////
   // Makes sure required fields are filled out on address/delivery page
   /////////////////////////////////////////////////////////////
-  function checkFormDisableBtn(){
-    $("#signup-form").data('bootstrapValidator').validate();
-    if ($("#signup-form").data('bootstrapValidator').isValid()){
-      console.log("address page content is valid");
-      
-      if($("#pickup-time").hasClass("hidden") || (($("#datepicker-value").val().length > 0) && ($("#pickup_time").val().length > 0))) {
-          $("#signup-third-btn").removeAttr("disabled"); 
-          $("#signup-instructions").addClass("hidden");
-      } else console.log("pickup is not valid");
-    } else{
-      $("#signup-third-btn").attr("disabled", "disabled");
-      $("#signup-instructions").removeClass("hidden"); 
-      console.log("Address entities are not valid");
-    }
-  }
+  //  function checkFormDisableBtn(){
+  //    $("#signup-form").data('bootstrapValidator').validate();
+  //    if ($("#signup-form").data('bootstrapValidator').isValid()){
+  //      console.log("address page content is valid");
+  //      
+  //      if($("#pickup-time").hasClass("hidden") || (($("#datepicker-value").val().length > 0) && ($("#pickup_time").val().length > 0))) {
+  //          $("#signup-third-btn").removeAttr("disabled"); 
+  //          $("#signup-instructions").addClass("hidden");
+  //      } else console.log("pickup is not valid");
+  //    } else{
+  //      $("#signup-third-btn").attr("disabled", "disabled");
+  //      $("#signup-instructions").removeClass("hidden"); 
+  //      console.log("Address entities are not valid");
+  //    }
+  //  }
 
 
 

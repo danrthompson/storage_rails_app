@@ -60,7 +60,7 @@
             .double-line
             = fields_for @user, html:{id:"delivery-form"} do |field|
               = render partial: "partials/delivery_addr_date", locals: {field:field, id:"datepicker"}
-
+            %h5.pull-right#show-continue.light-gray.black-hover.pointer Continue
         
           %br/ 
           %br/ 
@@ -164,19 +164,28 @@
 
   sumItemList(".item-amount", "#subtotal", "/month");
 
- 
-   $(".form-control").on('input', function(e) { 
+   $(document).keypress(function(event) {
+      hideAndShowConfirmFields();
+   });
+   $("input[type=text]").blur(function(){
+      hideAndShowConfirmFields();
+   });
 
-     $("#credit-card-form").data('bootstrapValidator').validate();
+
+  function hideAndShowConfirmFields(){
      $("#validator-id").data('bootstrapValidator').validate();
-     
-     if ($("#validator-id").data('bootstrapValidator').isValid()){
+     isValid = $("#validator-id").data('bootstrapValidator').isValid();
+     console.log("isValid? " + isValid);
+     if (isValid){
       $("#payment-details").removeClass("hidden");
-      //$("#pickup-details").addClass("hidden");
+      $("#show-continue").addClass("hidden");
       console.log("removing hidden");
+     } else{
+       console.log("validator id not valid");
      }
-
-     if ($("#credit-card-form").data('bootstrapValidator').isValid()){
+    
+    $("#credit-card-form").data('bootstrapValidator').validate();
+    if ($("#credit-card-form").data('bootstrapValidator').isValid() && $("#cc_cvc").val().length >= 3){
        $("#submit-button").removeAttr("disabled");
        $("#finish-details").removeClass("hidden");
        $("#submit-details").removeClass("hidden");
@@ -184,10 +193,10 @@
        console.log("submit button no longer disabled");
      } else {
         $("#submit-button").attr("disabled", true);
-     }        
-  
-   });
+     }     
+  }
 
+    
    $("#quote-trigger").click(function(){
     $("#quote-generator").removeClass("hidden");
    });
@@ -195,4 +204,6 @@
    $("#quote-close").click(function(){
     $("#quote-generator").addClass("hidden");
    });
+
+
   

@@ -19,7 +19,7 @@ class SignupPagesController < ApplicationController
 	end
 
 	def create
-		render text: params and return
+		# render text: params and return
 		@user = User.create create_user_params(params)
 		@pickup_request = PickupRequest.new(create_pickup_request_params(params))
 		@pickup_request.user = @user
