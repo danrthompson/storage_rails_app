@@ -10,18 +10,24 @@ class SignupPagesController < ApplicationController
 		@user = User.new
 	end
 
+	def fast_signup
+		redirect_to({controller: :static_pages, action: :homepage}, notice: 'You must pick a date and time for your pickup.') and return unless params[:pickup_request] and not params[:pickup_request][:posted_delivery_date].blank? and not params[:pickup_request][:posted_delivery_time].blank?
+		@packing_supplies_request = PackingSuppliesRequest.new
+		@pickup_request = PickupRequest.new(fast_signup_params(params))
+		@user = User.new
+		render :new
+	end
+
 	def create
-		@user = User.create new_user_params(params)
-		@packing_supplies_request = PackingSuppliesRequest.new(create_packing_supplies_request_params(params))
+		render text: params and return
+		@user = User.create create_user_params(params)
 		@pickup_request = PickupRequest.new(create_pickup_request_params(params))
-		@packing_supplies_request.user = @user
 		@pickup_request.user = @user
 
-		if @user.valid? and (@packing_supplies_request.valid? or not @packing_supplies_request.is_real?) and (@pickup_request.valid? or not @pickup_request.is_real?)
-			@packing_supplies_request.save
+		if @user.valid? and @pickup_request.valid?
 			@pickup_request.save
 			# Mails out welcome email to users
-	#         UserMailer.welcome_email(@user).deliver
+			# UserMailer.welcome_email(@user).deliver
 			begin
 				UserMailer.new_customer().deliver
 				sign_in @user
@@ -32,8 +38,8 @@ class SignupPagesController < ApplicationController
 			end
 		else
 			@user.destroy
-			@packing_supplies_request = PackingSuppliesRequest.new unless @packing_supplies_request.is_real?
-			@pickup_request = PickupRequest.new unless @pickup_request.is_real?
+			@user = User.new create_user_params(params)
+			@user.valid?
 			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
 			render action: :new and return
 		end
