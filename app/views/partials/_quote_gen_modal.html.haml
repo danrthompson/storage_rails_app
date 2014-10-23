@@ -11,7 +11,7 @@
 
         / .col-md-12
         / %h4.pointer.pull-right#quote-close close
-        = fields_for @temp_pickup, html:{id:"delivery-form"} do |pickup_field|
+        = fields_for @pickup_request, html:{id:"delivery-form"} do |pickup_field|
           = render partial: "partials/storage_items", locals:{f:pickup_field}
         / %p hihihi
         / %br/ 
