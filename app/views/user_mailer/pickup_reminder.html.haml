@@ -26,7 +26,7 @@
 .container.full-width.blue-bg.no-padding.white.dashboard-header
   .row
     .col-md-12.align-center
-      %h1 Pickup Confirmation
+      %h1 Pickup Reminder
 
     / Dashboard
 
@@ -40,7 +40,18 @@
             / %h2 title
             %br/
             %p
-              Thanks for scheduling a pickup. You will find details about your pickup below. If you have any questions, please don't hesitate to reach out. We're here to help!
+
+              We wanted to let you know that you have a pickup scheduled for tomorrow.
+              
+              %br/ 
+              %br/ 
+              Your QuickBox driver will call you one hour prior to arrival to ensure there will be someone present at time of pickup.
+
+              If you have any questions in the meantime or if there is any way we can be of assistance, 
+              %a.blue{:href => "mailto:team@quickbox.com"} please let us know.
+              We're here to help. 
+
+
 
 
               %br/ 
@@ -55,7 +66,7 @@
           .double-line
           %p.align-left
             %span.heavy-font Pickup Date:
-            =@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
+            =@pickup_request.pickup_time.strftime("%B %d at %l:%M %p")
             %br/ 
             %span.heavy-font Pickup Address:
             =@pickup_request.user.address_line_1
@@ -78,32 +89,8 @@
             %span.heavy-font Phone Number:
             =@pickup_request.user.phone_number
            
-      .row
-        %br/ 
-        .width-30-centered.half-opacity
-          .single-line
-          %br/ 
-      .row
-        .col-lg-8.col-lg-offset-2
-          .section-heading
-            / %h2 title
-            %br/
-            %p
-              Your QuickBox driver will call you one hour prior to arrival. Please remember, someone must be present at time of pickup.
-
-              %br/ 
-              %br/ 
-
-              If you want to change the date or time of your pickup, log in to your QuickBox account and click the 
-              = link_to edit_pickup_request_path(id: @pickup_request.id), class:"blue" do
-                "edit request"
-              button in the top right corner. Otherwise, if you have any questions please reply to this e-mail or call us at (303) 718-7179. 
-              %br/ 
-              %br/ 
-              We make storage easy. Let us know if we can help you in any way.
-
-              %br/ 
-              %br/
+    %br/ 
+      
   / BODY CONTENT: SELECT ITEMS
   .container
     .row

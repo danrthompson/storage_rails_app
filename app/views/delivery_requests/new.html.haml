@@ -56,9 +56,9 @@
                 /   / %p.pull-right.half-opacity Click items to select them for delivery
                 / .double-line
                 - if @edit_page
-                  .hidden
-                    - @orginally_selected_item_ids.each do |item|
-                      %p.existing-delivery-entry= item
+                  / .hidden
+                  /   - @orginally_selected_item_ids.each do |item|
+                  /     %p.existing-delivery-entry= item
                     
                 - @storage_items.each do |storage_item|
                   .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry

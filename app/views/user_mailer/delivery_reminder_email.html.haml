@@ -26,7 +26,7 @@
 .container.full-width.blue-bg.no-padding.white.dashboard-header
   .row
     .col-md-12.align-center
-      %h1 Pickup Confirmation
+      %h1 Delivery Reminder
 
     / Dashboard
 
@@ -40,7 +40,18 @@
             / %h2 title
             %br/
             %p
-              Thanks for scheduling a pickup. You will find details about your pickup below. If you have any questions, please don't hesitate to reach out. We're here to help!
+
+              We wanted to let you know that you have a delivery scheduled for tomorrow.
+              
+              %br/ 
+              %br/ 
+              Your QuickBox driver will call you one hour prior to arrival to ensure there will be someone present at time of delivery.
+
+              If you have any questions in the meantime or if there is any way we can be of assistance, 
+              %a.blue{:href => "mailto:team@quickbox.com"} please let us know.
+              We're here to help. 
+
+
 
 
               %br/ 
@@ -51,59 +62,35 @@
           %br/ 
       .row
         .col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3.col-xs-10.col-xs-offset-1
-          %h3.double-underlined Pickup Details 
+          %h3.double-underlined Delivery Details 
           .double-line
           %p.align-left
-            %span.heavy-font Pickup Date:
-            =@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
+            %span.heavy-font Delivery Date:
+            =@delivery_request.delivery_time.strftime("%B %d at %l:%M %p")
             %br/ 
-            %span.heavy-font Pickup Address:
-            =@pickup_request.user.address_line_1
-            =@pickup_request.user.address_line_2
-            =@pickup_request.user.city
+            %span.heavy-font Delivery Address:
+            =@delivery_request.user.address_line_1
+            =@delivery_request.user.address_line_2
+            =@delivery_request.user.city
             ,
-            =@pickup_request.user.state
-            =@pickup_request.user.zip
+            =@delivery_request.user.state
+            =@delivery_request.user.zip
             %br/ 
             %span.heavy-font Special Instructions:
-            =@pickup_request.user.special_instructions
+            =@delivery_request.user.special_instructions
           %br/ 
           %h3.double-underlined Contact Details
           .double-line
           %p.align-left
             %span.heavy-font Contact Name:
-            =@pickup_request.user.first_name
-            =@pickup_request.user.last_name
+            =@delivery_request.user.first_name
+            =@delivery_request.user.last_name
             %br/ 
             %span.heavy-font Phone Number:
-            =@pickup_request.user.phone_number
+            =@delivery_request.user.phone_number
            
-      .row
-        %br/ 
-        .width-30-centered.half-opacity
-          .single-line
-          %br/ 
-      .row
-        .col-lg-8.col-lg-offset-2
-          .section-heading
-            / %h2 title
-            %br/
-            %p
-              Your QuickBox driver will call you one hour prior to arrival. Please remember, someone must be present at time of pickup.
-
-              %br/ 
-              %br/ 
-
-              If you want to change the date or time of your pickup, log in to your QuickBox account and click the 
-              = link_to edit_pickup_request_path(id: @pickup_request.id), class:"blue" do
-                "edit request"
-              button in the top right corner. Otherwise, if you have any questions please reply to this e-mail or call us at (303) 718-7179. 
-              %br/ 
-              %br/ 
-              We make storage easy. Let us know if we can help you in any way.
-
-              %br/ 
-              %br/
+    %br/ 
+      
   / BODY CONTENT: SELECT ITEMS
   .container
     .row

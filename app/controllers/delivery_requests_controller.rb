@@ -16,7 +16,7 @@ class DeliveryRequestsController < ApplicationController
 		@user = current_user
 		@delivery_request = request_update_verification(params, @user)
 		@storage_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil).where.not(entered_storage_at: nil).order(:item_type, :entered_storage_at)
-		@orginally_selected_item_ids = @delivery_request.storage_items.map {|item| item.id}
+		# @orginally_selected_item_ids = @delivery_request.storage_items.map {|item| item.id}
 		return if @delivery_request.nil?
 		render action: :new
 	end
@@ -25,6 +25,8 @@ class DeliveryRequestsController < ApplicationController
 		@user = current_user
 		@user.update(user_address_params(params))
 
+		# Added this line bc was getting an error on post.
+		@storage_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil).where.not(entered_storage_at: nil).order(:item_type, :entered_storage_at)
 		@delivery_request = request_update_verification(params, @user)
 		return if @delivery_request.nil?
 		@delivery_request.update(create_delivery_request_params(params))
