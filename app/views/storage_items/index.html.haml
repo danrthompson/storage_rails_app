@@ -31,7 +31,7 @@
               %i.fa.fa-truck
             .service-desc
               %h6
-                Edit
+                Change
                 %br/ 
                 Pickup 
 
@@ -39,15 +39,27 @@
 
     .col-md-1.col-sm-4.col-xs-4.align-center
       - if !@has_existing_delivery
-        = link_to new_delivery_request_path do
-          .service-box
-            .service-icon
-              %i.fa.fa-home
-            .service-desc
-              %h6
-                Request
-                %br/ 
-                Delivery 
+        - if @num_storage_items < 1
+          = link_to new_delivery_request_path do
+            .service-box.no-pointer.half-opacity.no-hover
+              .service-icon
+                %i.fa.fa-home
+              .service-desc
+                %h6
+                  Request
+                  %br/ 
+                  Delivery 
+        - else 
+          = link_to new_delivery_request_path do
+            .service-box
+              .service-icon
+                %i.fa.fa-home
+              .service-desc
+                %h6
+                  Request
+                  %br/ 
+                  Delivery 
+
       - else
         = link_to edit_delivery_request_path(id: @has_existing_delivery) do
           .service-box
@@ -190,12 +202,12 @@
                     Request New Pickup
               - else
                 = link_to edit_pickup_request_path(id: @has_existing_pickup) do
-                  %button#pickup-button.btn.btn-primary.gray-bg.blue-bg-hover.no-border{:type => "button"} Edit Pickup
+                  %button#pickup-button.btn.btn-primary.gray-bg.blue-bg-hover.no-border{:type => "button"} Change Pickup
               - if !@has_existing_delivery
                 = link_to new_delivery_request_path do
                   %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Request Delivery
-                %p#delivery-subtext.light-gray.no-margin.half-opacity.pull-right
-                  (you have no items in storage)
+                / %p#delivery-subtext.light-gray.no-margin.half-opacity.pull-right
+                /   (you have no items in storage)
               - else
                 = link_to edit_delivery_request_path(id: @has_existing_delivery) do
                   %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Edit Delivery

@@ -8,16 +8,6 @@
 
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
-  / .heading-about.marginbot-20
-  /   .container
-  /     .row
-  /       .col-lg-8.col-lg-offset-2
-  /         .section-heading
-  /           %h2 Reschedule Your Pickup
-
-
-
-
   .container
     .row
       .div
@@ -32,10 +22,6 @@
                   You pickup is currently scheduled for:
                   =@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"delivery_time"}
-
-            .row.align-left
-              %a.align-left{:href => ""} Cancel Pickup
-            %br/ 
                 
           / Bottom Buttons Section
           .col-md-8.col-md-offset-2

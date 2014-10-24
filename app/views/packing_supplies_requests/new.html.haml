@@ -1,15 +1,15 @@
 
 = render partial: "partials/logged_in_header"   
 
-= render partial: "partials/blue_bar", locals:{mainText:"Packing Items", dashboard:true, faq:true}
+= render partial: "partials/blue_bar", locals:{mainText:"Order Packing Supplies", dashboard:true, faq:true}
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
-  .heading-about.marginbot-20
-    .container
-      .row
-        .col-lg-8.col-lg-offset-2
-          .section-heading
-            %h2 Order Packing Supplies
+  / .heading-about.marginbot-20
+  /   .container
+  /     .row
+  /       .col-lg-8.col-lg-offset-2
+  /         .section-heading
+  /           %h2 Order Packing Supplies
 
   / BODY CONTENT: SELECT ITEMS
   = form_for (@packing_supplies_request), id:"test" do |f| 
@@ -26,13 +26,12 @@
             .single-line
           = render partial: "partials/packing_items", locals: {f:f}
 
-          .col-md-12
-            %br/ 
-          .col-md-4.bottom-buttons
+        .row
+          .col-md-3.bottom-buttons.col-md-offset-2
             .boxed-gray.continue-button
               %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}/
               = link_to "Back", storage_items_path, class:"white"
-          .col-md-4.col-md-offset-4.bottom-buttons.charges-box
+          .col-md-3.col-md-offset-2.bottom-buttons.charges-box
             .boxed-gray.continue-button
               %button.btn.btn-primary.blue-bg.blue-bg-hover#continue-btn{:type => "button", disabled: true}/
               = f.submit "Confirm Order"

@@ -5,21 +5,24 @@
 
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
-  .heading-about.marginbot-20
-    .container
-      .row
-        .col-lg-8.col-lg-offset-2
-          .section-heading
-            - if @edit_page 
-              %h2 Edit Delivery
-              %p.align-center.light-gray
-                You delivery is currently scheduled for
-                =@delivery_request.delivery_time.strftime("%B %d at %l:%M %p")
-            - else 
-              %h2 New Delivery
+  / .heading-about.marginbot-20
+  /   .container
+  /     .row
+  /       .col-lg-8.col-lg-offset-2
+  /         .section-heading
+  /           - if @edit_page 
+  /             / %h2 Edit Delivery
+  /             %p.align-center.light-gray
+  /               You delivery is currently scheduled for
+  /               =@delivery_request.delivery_time.strftime("%B %d at %l:%M %p")
+  
   .container
     .row
       .div
+        - if @edit_page
+          %p.align-center.light-gray
+            You delivery is currently scheduled for
+            =@delivery_request.delivery_time.strftime("%B %d at %l:%M %p")
         = form_for(@delivery_request) do |f| 
           / Address Info Section
           .row
