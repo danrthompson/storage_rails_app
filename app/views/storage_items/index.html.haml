@@ -116,12 +116,12 @@
                         = delivery_item.get_description
                       = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{delivery_item.id}"}, class:"align-center description-edit-boxed"
                   %h4.storage-item-title= delivery_item.get_title
-
-        
-          %br/
-          %br/
-          - if @has_existing_pickup
+            %br/
+            %br/
             %br/ 
+        
+          
+          - if @has_existing_pickup
             .row
               %h2
                 Your Pickup
@@ -149,81 +149,10 @@
                 .col-md-12.text-block.no-background
                   %br/  
                   %p
-                    That's all for now! Feel free to explore the site.
-                    You can
+                    That's all for now! You can 
                     = link_to "Logout", destroy_user_session_path, method: "delete"
-                    when you're ready.                  
+                    whenever you're ready.                  
                 %br/ 
-
-          / %form#pickup-form{:action => ""}
-          /   / Boxes At Home
-          /   %br/ 
-          /   .row
-          /     %h2
-          /       %span.items-count#boxes-at-home #{@items_at_home}
-          /       Items Awaiting Pickup
-          /       - if @has_existing_pickup
-          /         %p.pull-right.half-opacity
-          /           =@existing_pickup.delivery_time.strftime("%B %d at %l:%M %p")
-          /     .double-line
-          /   .row
-          /     .col-md-12.inventory-entries.no-hover.boxed-gray.align-center
-          /       %br/ 
-          /       %p.blue.heavy-font
-          /         These are the items we will pick up
-          /         - if @has_existing_pickup
-          /           on
-          /           =@existing_pickup.delivery_time.strftime("%B %d at %l:%M %p")
-
-          /       %p
-          /         If you like, you can give them an image, title, and description to help find them later.
-          /         Otherwise our drivers will help catalog your items when they arrive for pickup. 
-          /       %br/ 
-          /   .row
-          /     - @boxes_at_home.each do |small_item|
-          /       .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
-          /         .inner
-          /           .crop-mask
-          /             .crop-mask-img-wrapper
-          /               = image_tag(small_item.image_url, class: "img-responsive")
-          /             .item-description
-          /               %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= small_item.get_description
-
-          /           %h4.storage-item-title= small_item.get_title
-          /           = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{small_item.id}"}, class:"align-center bottom-edit-btn"
-                      
-          /     - @medium_items_at_home.each do |medium_item|
-          /       .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
-          /         .inner
-          /           .crop-mask
-          /             .crop-mask-img-wrapper
-          /               = image_tag(medium_item.image_url, class: "img-responsive")
-          /             .item-description
-          /               %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= medium_item.get_description
-          /           %h4.storage-item-title= medium_item.get_title
-          /           = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{medium_item.id}"}, class:"align-center bottom-edit-btn"
-          /     - @large_items_at_home.each do |large_item|
-          /       .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
-          /         .inner
-          /           .crop-mask
-          /             .crop-mask-img-wrapper
-          /               = image_tag(large_item.image_url, class: "img-responsive")
-          /             .item-description
-          /               %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= large_item.get_description
-          /           %h4.storage-item-title= large_item.get_title
-          /           = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{large_item.id}"}, class:"align-center bottom-edit-btn"
-          /     - @extra_large_items_at_home.each do |xl_item|
-          /       .col-md-6.col-sm-6.col-xs-6.inventory-entries.pickup-entry
-          /         .inner
-          /           .crop-mask
-          /             .crop-mask-img-wrapper
-          /               = image_tag(xl_item.image_url, class: "img-responsive")
-          /             .item-description
-          /               %p.subtitle.box-subtitle.col-md-12.col-sm-12.col-xs-12= xl_item.get_description
-          /           %h4.storage-item-title= xl_item.get_title
-          /           = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{xl_item.id}"}, class:"align-center bottom-edit-btn"
-                     
-    
           
         .col-md-4.inventory-sidebar
           .row.text-block.light-blue-bg
