@@ -45,7 +45,7 @@
               %i.fa.fa-home
             .service-desc
               %h6
-                New
+                Request
                 %br/ 
                 Delivery 
       - else
@@ -130,7 +130,7 @@
                     =@existing_pickup.delivery_time.strftime("%B %d at %l:%M %p")
               .double-line
             .row
-              .col-md-12.inventory-entries.no-hover.boxed-gray.align-center
+              .col-md-12.text-block
                 %br/ 
                 %p.blue.heavy-font
                   Our driver is scheduled to arrive on
@@ -141,10 +141,18 @@
                 %p
                   Please make sure your items are packed before pickup.
                   Until then if you have any questions, feel free to
-                  %a.blue.black-hover{:href => "mailto:team@quickbox.com"} reach out.
-                  Thanks! 
-
-                  
+                  %a{:href => "mailto:team@quickbox.com"} reach out.
+                  Thanks!
+                %br/ 
+            - if !@has_existing_delivery and @num_storage_items < 1  
+              .row
+                .col-md-12.text-block.no-background
+                  %br/  
+                  %p
+                    That's all for now! Feel free to explore the site.
+                    You can
+                    = link_to "Logout", destroy_user_session_path, method: "delete"
+                    when you're ready.                  
                 %br/ 
 
           / %form#pickup-form{:action => ""}
@@ -218,14 +226,14 @@
     
           
         .col-md-4.inventory-sidebar
-          .row.sidebar-txtentry.light-blue-bg
+          .row.text-block.light-blue-bg
             .innert
               %h5.align-center Notifications
               .single-line
               %ul
                 - if @has_existing_pickup
                   %li 
-                    %span.order-item You have #{@items_at_home} items scheduled for pickup on
+                    %span.order-item You have a pickup scheduled for
                     =@existing_pickup.delivery_time.strftime("%B %d at %l:%M %p")
                 - if @has_existing_delivery
                   %li 
@@ -235,8 +243,7 @@
                   %li 
                     %span.order-item You have no new notifications!
 
-          %br/
-          .row.sidebar-txtentry.bg-gray
+          .row.text-block
             .inner.align-center
               %h5 Share and Save
               %p.small-text
