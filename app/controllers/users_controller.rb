@@ -28,4 +28,9 @@ class UsersController < ApplicationController
 			redirect_to edit_user_url(@user), alert: 'Sorry, there were some errors that you need to correct.'
 		end
 	end
+
+	def referral
+		@user = current_user
+		
+	end
 end

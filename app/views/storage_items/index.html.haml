@@ -7,7 +7,7 @@
       %h1 HERE ARE YOUR THINGS
     .col-md-1.col-md-offset-2.col-sm-4.col-xs-4.align-center
       = link_to new_packing_supplies_request_path do
-        .service-box
+        .service-box.yellow-hover
           .service-icon
             %i.fa.fa-dropbox
           .service-desc
@@ -16,7 +16,7 @@
     .col-md-1.col-sm-4.col-xs-4.align-center
       - if !@has_existing_pickup
         = link_to new_pickup_request_path do
-          .service-box
+          .service-box.yellow-hover
             .service-icon
               %i.fa.fa-truck
             .service-desc
@@ -26,14 +26,14 @@
                 Pickup 
       - else
         = link_to edit_pickup_request_path(id: @has_existing_pickup) do
-          .service-box
+          .service-box.yellow-hover
             .service-icon
               %i.fa.fa-truck
             .service-desc
               %h6
-                Change
+                Edit
                 %br/ 
-                Pickup 
+                Pickup
 
 
 
@@ -41,7 +41,7 @@
       - if !@has_existing_delivery
         - if @num_storage_items < 1
           = link_to new_delivery_request_path do
-            .service-box.no-pointer.half-opacity.no-hover
+            .service-box.yellow-hover.no-pointer.half-opacity.no-hover
               .service-icon
                 %i.fa.fa-home
               .service-desc
@@ -51,7 +51,7 @@
                   Delivery 
         - else 
           = link_to new_delivery_request_path do
-            .service-box
+            .service-box.yellow-hover
               .service-icon
                 %i.fa.fa-home
               .service-desc
@@ -62,7 +62,7 @@
 
       - else
         = link_to edit_delivery_request_path(id: @has_existing_delivery) do
-          .service-box
+          .service-box.yellow-hover
             .service-icon
               %i.fa.fa-home
             .service-desc
@@ -101,7 +101,7 @@
                       .item-description
                         %p.subtitle.box-subtitle
                           = storage_item.get_description
-                        = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"align-center description-edit-boxed"
+                        = link_to "EDIT", {:action => "edit", "id"=>"#{storage_item.id}"}, class:"align-center description-edit-boxed heavy-font"
 
 
                     %h4.storage-item-title= storage_item.get_title
@@ -126,7 +126,7 @@
                     .item-description
                       %p.subtitle.box-subtitle
                         = delivery_item.get_description
-                      = link_to "(click here to edit entry)", {:action => "edit", "id"=>"#{delivery_item.id}"}, class:"align-center description-edit-boxed"
+                      = link_to "EDIT", {:action => "edit", "id"=>"#{delivery_item.id}"}, class:"align-center description-edit-boxed heavy-font"
                   %h4.storage-item-title= delivery_item.get_title
             %br/
             %br/
@@ -134,6 +134,7 @@
         
           
           - if @has_existing_pickup
+            %br/ 
             .row
               %h2
                 Your Pickup
@@ -188,11 +189,12 @@
             .inner.align-center
               %h5 Share and Save
               %p.small-text
-                For each friend you invite to TSYN we'll take $25 off your monthly bill.
+                / For each friend you invite to TSYN we'll take $25 off your monthly bill.
+                Know a friend using storage? Let them know about QuickBox!
+                %br/ 
                 %br/  
                 %a.black-hover{:href => ""}
-                = link_to "Click Here",  users_referral_path
-                to get started
+                = link_to "They'll thank you for it!",  users_referral_path, class:"black-hover"
 
           .row
             .boxed-gray.continue-button  
@@ -202,7 +204,7 @@
                     Request New Pickup
               - else
                 = link_to edit_pickup_request_path(id: @has_existing_pickup) do
-                  %button#pickup-button.btn.btn-primary.gray-bg.blue-bg-hover.no-border{:type => "button"} Change Pickup
+                  %button#pickup-button.btn.btn-primary.gray-bg.blue-bg-hover.no-border{:type => "button"} Edit Pickup time
               - if !@has_existing_delivery
                 = link_to new_delivery_request_path do
                   %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Request Delivery
