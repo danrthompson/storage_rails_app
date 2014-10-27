@@ -25,6 +25,15 @@ class Request < ActiveRecord::Base
 			time = from_time + (i+1).days
 			available_times[time.strftime(time_format)] = @@standard_times_by_day[time.wday].to_a
 		end
+		UnavailableTime.where(start_time: (from_time.to_date..(from_time+@@number_of_days_ahead_delivery_available.days).to_date)).each do |ut|
+			date_string = ut.start_time.strftime(time_format)
+			blocked_hours = (ut.start_time.hour..ut.end_time.hour).to_a
+			blocked_hours.each do |blocked_hour|
+				if available_times[date_string]
+					available_times[date_string].delete(blocked_hour)
+				end
+			end
+		end
 		self.where(completion_time: nil, delivery_time:(from_time.to_date..(from_time+@@number_of_days_ahead_delivery_available.days).to_date)).select(:delivery_time).each do |request|
 			delivery_time = request.delivery_time
 			date_string = delivery_time.strftime(time_format)

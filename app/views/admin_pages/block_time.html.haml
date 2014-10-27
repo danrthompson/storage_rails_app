@@ -34,24 +34,24 @@
                 %label{:for => "posted_delivery_date"} Delivery Date <span class="required_label">  * required </span>
                 
                 #datepicker.input-append.date
-                  =f.text_field :posted_delivery_date, class:"span2 form-control", id: "datepicker-value", placeholder: 'Which day is best?'
+                  =f.text_field :unavailable_date, class:"span2 form-control", id: "datepicker-value", placeholder: 'Which day is best?'
                   %span.add-on
                     %i.icon-calendar
                
               .col-md-4.align-left
                 %label{:for => "date-picker"} Start Time
-                = f.select  :posted_delivery_time, options_for_select([["Choose a time"]]),{}, {class:"form-control selectpicker", id:"start_block"}
+                = f.select  :start_hour, options_for_select([["Choose a time"]]),{}, {class:"form-control selectpicker", id:"start_block"}
                 %br/ 
               .col-md-4.align-left
                 %label{:for => "date-picker"} End Time
-                = f.select  :posted_delivery_time, options_for_select([["Choose a time"]]),{}, {class:"form-control selectpicker", id:"end_block"}
+                = f.select  :end_hour, options_for_select([["Choose a time"]]),{}, {class:"form-control selectpicker", id:"end_block"}
                 %br/ 
             .row
               .col-md-12.align-center
                 = f.submit "Block Off Time", class: "btn btn-skin white pull-right"
                 = link_to admin_path, class: "pointer white pull-left details-btn" do
                   %h1.btn.btn-default.gray-bg Back To Dashboard
-                %p.no-opacity hidden-spacer
+                %br/
                 %br/ 
          
           %br/ 

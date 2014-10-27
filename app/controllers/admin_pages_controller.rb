@@ -121,7 +121,7 @@ class AdminPagesController < ApplicationController
 	end
 
 	def create_block_time
-		ut = UnavailableTime.create(params.require(:unavailable_time).permit(:start_time, :start_date, :end_time, :end_date))
+		ut = UnavailableTime.create(params.require(:unavailable_time).permit(:unavailable_date, :start_hour, :end_hour))
 		if ut.valid?
 			redirect_to :admin, notice: 'Time blocked out successfully' and return
 		else
