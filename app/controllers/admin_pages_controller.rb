@@ -120,9 +120,17 @@ class AdminPagesController < ApplicationController
 		redirect_to :admin, notice: 'Delivery request marked complete' and return
 	end
 
+	def create_block_time
+		ut = UnavailableTime.create(params.require(:unavailable_time).permit(:start_time, :start_date, :end_time, :end_date))
+		if ut.valid?
+			redirect_to :admin, notice: 'Time blocked out successfully' and return
+		else
+			redirect_to :admin, alert: 'There was an error with blocking out that time.' and return
+		end
+	end
+
 	def block_time
-		# CHANGE THIS!!!!!
-		@request = Request.last
+
 	end
 
 	private

@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   resources :storage_items, only: [:index, :edit, :update]
   resources :delivery_requests, :packing_supplies_requests, :pickup_requests, only: [:show, :create, :new, :edit, :update, :destroy]
 
-  get 'admin/block_time', to: 'admin_pages#block_time', as: 'admin_block_time'
+  get 'admin/block_time', to: 'admin_pages#block_time', as: 'block_time'
+  post 'admin/block_time', to: 'admin_pages#create_block_time'
   get 'admin', to: 'admin_pages#admin', as: 'admin'
   get 'admin/record_pickup_request/:id', to: 'admin_pages#record_pickup_request', as: 'admin_record_pickup_request'
   get 'admin/record_delivery_request/:id', to: 'admin_pages#record_delivery_request', as: 'admin_record_delivery_request'
