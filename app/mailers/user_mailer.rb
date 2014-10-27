@@ -7,9 +7,9 @@ class UserMailer < ActionMailer::Base
 	  	mail(to:@user.email, subject: "Welcome To QuickBox")
 	end
 
-	def new_customer(email)
-		mail(to: email, subject: "You Have A New Customer")
-	end
+	# def new_customer(email)
+	# 	mail(to: email, subject: "You Have A New Customer")
+	# end
 
 	def confirm_pickup_email(pickup_request)
 		@pickup_request = pickup_request

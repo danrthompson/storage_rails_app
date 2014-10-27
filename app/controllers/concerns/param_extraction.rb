@@ -27,8 +27,12 @@ module ParamExtraction
 		params.require(:user).permit(:address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number)
 	end
 
+	def user_add_payment(params)
+		params.require(:user).permit(:cc_number, :cc_name, :exp_month, :exp_year, :cc_cvc, :promo_code, :referrer, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :terms_of_service_accepted)
+	end
+
 	def user_cc_params(params)
-		params.require(:user).permit(:cc_number, :cc_name, :exp_month, :exp_year, :cc_cvc, :promo_code, :referrer, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number)
+		params.require(:user).permit(:cc_number, :cc_name, :exp_month, :exp_year, :cc_cvc, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number)
 	end
 
 	def edit_user_params(params)

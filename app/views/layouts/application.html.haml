@@ -46,10 +46,10 @@
         }]);
 
         // Add default trigger to the bottom-right corner of the window:
-        UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-left' }]);
+        // UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-left' }]);
 
         // Or, use your own custom trigger:
-        //UserVoice.push(['addTrigger', '#id', { mode: 'contact' }]);
+        // UserVoice.push(['addTrigger', '#another-tab-feedback', { mode: 'contact' }]);
 
         // Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
         UserVoice.push(['autoprompt', {}]);
@@ -92,3 +92,4 @@
             $("#notice-section").hide();
         })
     = yield
+    = render partial: 'partials/feedback_tab'

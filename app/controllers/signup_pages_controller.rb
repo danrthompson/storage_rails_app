@@ -22,13 +22,14 @@ class SignupPagesController < ApplicationController
 		@user = User.create create_user_params(params)
 		@pickup_request = PickupRequest.new(create_pickup_request_params(params))
 		@pickup_request.user = @user
+		@packing_supplies_request = PackingSuppliesRequest.new
 
 		if @user.valid? and @pickup_request.valid?
 			@pickup_request.save
 			# Mails out welcome email to users
 			# UserMailer.welcome_email(@user).deliver
 			begin
-				UserMailer.new_customer(@user.email).deliver
+				UserMailer.welcome_email(@user).deliver
 				sign_in @user
 				redirect_to confirm_signup_pages_url(@user.id) and return
 			rescue Errno::ECONNREFUSED
@@ -55,7 +56,7 @@ class SignupPagesController < ApplicationController
 		@pickup_request = @user.pickup_requests.first
 		redirect_to new_user_session_url and return if @user.id != current_user.id
 		begin
-			@user.update(user_cc_params(params))
+			@user.update(user_add_payment(params))
 		rescue Stripe::CardError => e
 			flash.now[:alert] = e.message
 			render action: :show and return
