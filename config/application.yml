@@ -7,7 +7,7 @@ STRIPE_SECRET_KEY: sk_test_CGn5ko7pgIHhyey4kJi33Pcn
 
 GMAIL_DOMAIN: gmail.com
 GMAIL_USERNAME: danielrthompsonjr@gmail.com
-GMAIL_PASSWORD: ">TZQs9iuZ{Mx6B3X"
+GMAIL_PASSWORD: eomoiswiprnsrsxq
 
 PAPERCLIP_S3_BUCKET: storage_rails_app
 AWS_ACCESS_KEY_ID: AKIAISMURECTFTQXY7QA
