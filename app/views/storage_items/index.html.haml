@@ -41,7 +41,7 @@
       - if !@has_existing_delivery
         - if @num_storage_items < 1
           = link_to new_delivery_request_path do
-            .service-box.yellow-hover.no-pointer.half-opacity.no-hover
+            .service-box.no-pointer.half-opacity.no-hover
               .service-icon
                 %i.fa.fa-home
               .service-desc
@@ -190,11 +190,11 @@
               %h5 Share and Save
               %p.small-text
                 / For each friend you invite to TSYN we'll take $25 off your monthly bill.
-                Know a friend using storage? Let them know about QuickBox!
+                Know a friend using storage?
                 %br/ 
-                %br/  
-                %a.black-hover{:href => ""}
-                = link_to "They'll thank you for it!",  users_referral_path, class:"black-hover"
+                = link_to  users_referral_path, class:"black-hover" do
+                  Let them know
+                about QuickBox!
 
           .row
             .boxed-gray.continue-button  

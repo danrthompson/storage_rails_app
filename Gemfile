@@ -7,6 +7,8 @@ gem 'pry'
 gem 'less'
 
 
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use postgresql as the database for Active Record
@@ -54,6 +56,9 @@ gem "figaro"
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'unicorn'
 gem 'bootstrap-datepicker-rails'
+
+# For email stylesheet precompile
+gem 'roadie'
 # gem 'activeadmin'
 # gem 'cancan'
 
