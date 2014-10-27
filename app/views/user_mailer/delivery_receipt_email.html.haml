@@ -25,7 +25,7 @@
 .container.full-width.blue-bg.no-padding.white.dashboard-header
   .row
     .col-md-12.align-center
-      %h1 WELCOME TO QUICKBOX
+      %h1 Your Delivery Receipt
     / Dashboard
 
 %section#about.home-section.text-center
@@ -39,27 +39,35 @@
               Hi #{@user.first_name},
               %br/ 
               %br/ 
-              Welcome to QuickBox - your personal storage valet.
-              %br/ 
-              %br/ 
-              This email is to let you know that you're all set up to start using your QuickBox account. You can view your items in storage, request a pickup, or have your items returned to you all from
-              = link_to storage_items_path, class:"blue heavy-font black-hover" do
-                your dashboard.
-              If you want to edit your account details, click on the "account" button in the top left when you log in. 
-              / For a full walkthrough of how to use QuickBox, click here.
-              %br/ 
-              %br/ 
-              Please
-              %a.blue.heavy-font.black-hover{:href => "mailto:team@quickbox.com"} let us know
-              if you have any thoughts, feedback, or questions. We're here to help.
+              This is your digital receipt to confirm the delivery of #{@delivery_request.storage_items.count} items to #{@delivery_request.user.address_line_1} on #{@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")}.
 
               %br/ 
               %br/ 
 
-              With regards,
+              Please 
+              %a.blue{:href => "mailto:team@quickbox.com"} 
+                get in touch
+              if you have any questions or feedback about how we can improve your experience. We're here to help!
+              %br/ 
+              %br/ 
+              Best,
               %br/ 
               The QuickBox Team
-
+              %br/ 
+              %br/ 
+              %br/ 
+      .row
+        .col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3.col-xs-10.col-xs-offset-1
+          %h3.double-underlined Items Delivered 
+          .double-line
+          .row.inventory
+            - @delivery_request.storage_items.each do |delivery_item|
+              .col-md-6.col-sm-6.col-xs-6.inventory-entries.no-pointer.delivery-entry{:id => "#{delivery_item.id}"}
+                .inner
+                  .crop-mask
+                    .crop-mask-img-wrapper
+                      = image_tag(delivery_item.image_url, class: "img-responsive")                    
+                  %h4.storage-item-title= delivery_item.get_title
 
 
   / BODY CONTENT: SELECT ITEMS

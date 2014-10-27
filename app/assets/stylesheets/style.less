@@ -22,6 +22,10 @@
 	list-style:none;
 	padding-left: 5px;
 }
+
+.no-hover{
+	color: inherit ! important;
+}
 .half-opacity{
 	opacity: 0.5;
 }
@@ -59,6 +63,11 @@
 	color: @default-yellow;
 }
 
+.yellow-hover{
+	&:hover{
+		color: @default-yellow !important;
+	}
+}
 .green{
 	color: #26C251 !important;
 }
@@ -105,6 +114,11 @@
 .width-30{
 	width: 33%;
 }
+.width-30-centered{
+	width: 30%;
+	margin-left: 35%;
+}
+
 
 
 
@@ -208,7 +222,7 @@
 	cursor: pointer;
 }
 .no-pointer{
-	cursor: text;
+	cursor: text ! important;
 }
 .visible{
 	display: block ! important;
@@ -525,6 +539,7 @@ input[type=submit]{
 	background-color: @gray-background;
 	border: 5px solid white;
 	padding: 20px;
+	border-radius: 10px;
 	// padding-bottom: 10px;
 	text-align: left;
 	h5{
@@ -574,6 +589,26 @@ input[type=submit]{
 		margin-top: -1px;
 	}
 
+}
+#header-list{
+	float:right;
+	li{
+		display: inline;
+		padding: 0 15px;
+		height:100%;
+		a{
+			color: @light-gray;
+		}
+		i{
+			margin-right: 3px;
+		}
+	}
+	#questions-header{
+		margin-left: 10px;
+		opacity: 0.5;
+		padding: 0;
+
+	}
 }
 
 .main-header.full-opacity{
@@ -743,12 +778,55 @@ h3.double-underlined{
 
 	.service-box.no-label{
 		margin-top: 35px;
-		&:hover{ }
+		&:hover{}
 	} 
-	
+
 	margin-bottom: -20px;
 }
+.service-box{
+	&:hover{
+		// color: @default-yellow;
+	}
+}
 
+.boxed-grey {
+	background: #eee;
+	padding: 20px 15px;
+	padding-bottom: 0;
+	margin-bottom: 15px;
+	border-radius: 10px;
+}
+
+
+.text-block{
+	background: #eee;
+	padding: 30px 20px;
+	// padding-bottom: 5px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	text-align: center;
+	&:hover{
+		// background-color: @gray-background;
+		cursor: default;
+	}
+	a{
+		font-size: inherit ! important;
+		font-weight: 400;
+		color: @default-blue;
+		&:hover{
+			color: @default-yellow;
+		}
+	}
+	// opacity: 0.5;
+}
+
+.no-background{
+	background-color: transparent ! important;
+	padding:0;
+	&:hover{
+		background-color: transparent ! important;
+	}
+}
 
 .inventory{
 	
@@ -799,6 +877,7 @@ h3.double-underlined{
 		background-color: pink !important;
 	}
 	.four-by-entry{
+		border-radius: 10px;
 		h4{
 			margin-bottom: 10px;
 			margin-top: 15px;
@@ -835,7 +914,7 @@ h3.double-underlined{
 		.box-subtitle{
 			text-align: left;
 			height: 80px;
-			overflow: scroll;
+			// overflow: scroll;
 			margin-bottom: 15px;
 		}
 
@@ -1188,8 +1267,28 @@ h3.double-underlined{
     font-size: 18px;
 }
 
+#feedback-tab{
+	background-color: @default-blue;
+	color: white;
+	position: fixed;
+	bottom: -10px;
+	margin-left: 10px;
+	border-radius: 10px;
+	border: 1px solid white;
+	opacity: 0.3;
+	z-index: 10000;
+	
+	h4{
+		padding: 10px 20px;
+	}
+}
+
+#feedback-tab:hover{
+	cursor: pointer;
+	opacity: 1;
+}
 #homepage-datetime{
-	background-color:rgba(238,238,238, 0.8);
+	background-color:rgba(238,238,238, 0.9);
 	border: 1px solid @light-gray;
 	border-radius: 10px;
 	padding:5px 15px;
@@ -1284,6 +1383,7 @@ h3.double-underlined{
 
 .section-heading{
 	p{
+		color: @gray-regular;
 		font-size: 20px;
 		a{
 			font-size: 20px;
@@ -1595,7 +1695,7 @@ p.alert  , p.notice {
 .small-entry-price{
 	font-size: 18px;
 	color: @light-gray;
-	opacity: 0.6;
+	// opacity: 0.6;
 	float: right;
 	margin-top: 5px;
 }
@@ -1606,6 +1706,12 @@ p.alert  , p.notice {
 		width: auto;
 	}
 }
+@media all and (max-width: 600px){
+	
+	.invisible-at-600{
+		display: none ! important;
+	}
+}
 
 @media all and (max-width: 1000px){
 	.home-screen-links{
@@ -1614,9 +1720,15 @@ p.alert  , p.notice {
 	#what-we-do{
 		margin-top: 50px;
 	}
+	.invisible-when-small{
+		display: none ! important;
+	}
 }
 // Main Header Updated
 @media all and (max-width: 768px) {
+	.invisible-when-tiny{
+		display: none ! important;
+	}
 	iframe{
 		border: 2px solid rgba(255, 255, 255, .25);
 		height: 270px ! important;

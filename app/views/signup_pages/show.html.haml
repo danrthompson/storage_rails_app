@@ -93,7 +93,9 @@
               .bg-gray
                 %br/
                 = render partial: "partials/cc_info", locals:{field: f}
-                %br/ 
+              %br/ 
+              %h5.pull-right#cc-continue.light-gray.black-hover.pointer Continue   
+
               
               %br/ 
               %div#finish-details.hidden
@@ -112,8 +114,7 @@
                             = f.text_field :promo_code, class:"form-control"
                           .col-md-6
                             = f.label :referrer, "How did you hear about us?"
-                            = f.select  :referrer, options_for_select([["Divine Inspiration"], ["A Wise Man Told Me"], ["A Flyer"], ["A Friend"], ["Other"]]),{}, {class:"form-control"}
-                        
+                            = f.select  :referrer, options_for_select([["Word of mouth"], ["An add online"], ["A flyer"], ["Referred by a company"], ["Search"]]),{}, {class:"form-control"}
                 %br/
 
               #submit-details.hidden
@@ -190,6 +191,7 @@
        $("#submit-button").removeAttr("disabled");
        $("#finish-details").removeClass("hidden");
        $("#submit-details").removeClass("hidden");
+       $("#cc-continue").addClass("hidden");
 
        console.log("submit button no longer disabled");
      } else {

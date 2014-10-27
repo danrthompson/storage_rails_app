@@ -1,6 +1,6 @@
 
 = render partial: "partials/logged_in_header"   
-= render partial: "partials/blue_bar", locals:{mainText:"Item Pickup", dashboard:true, faq:true}
+= render partial: "partials/blue_bar", locals:{mainText:"Reschedule Your Pickup", dashboard:true, faq:true}
 = render :partial => 'partials/nudge_icon'
 
 .container
@@ -8,19 +8,6 @@
 
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
-  .heading-about.marginbot-20
-    .container
-      .row
-        .col-lg-8.col-lg-offset-2
-          .section-heading
-            %h2 Reschedule Your Pickup
-      .row.inventory  
-        .col-md-10.col-md-offset-1
-          %h2.align-center  
-            (you can change the items requested when we arrive)
-
-
-
   .container
     .row
       .div
@@ -31,14 +18,10 @@
             .row
               = fields_for @user do |field|
                 = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
-                %br/ 
-                %br/ 
-                %p.no-opacity a
                 %p.align-center.light-gray
                   Your pickup is currently scheduled for:
                   =@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"delivery_time"}
-
             .row.align-left
               = link_to "Cancel Pickup", pickup_request_path(@pickup_request), method: :delete, data: { confirm: "Are you sure you want to cancel this pickup?" }, class: 'align-left heavy-font blue'
             %br/ 

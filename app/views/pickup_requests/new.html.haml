@@ -1,44 +1,46 @@
 
 = render partial: "partials/logged_in_header"   
-= render partial: "partials/blue_bar", locals:{mainText:"Item Pickup", dashboard:true, faq:true}
+= render partial: "partials/blue_bar", locals:{mainText:"Schedule A Pickup", dashboard:true, faq:true}
 = render :partial => 'partials/nudge_icon'
 = render partial: 'partials/error_messages_object_form', locals: {object: @pickup_request}
 
 
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
-  .heading-about.marginbot-20
-    .container
-      .row
-        .col-lg-8.col-lg-offset-2
-          .section-heading
-            %h2 Request A Pickup
+  / .heading-about.marginbot-20
+  /   .container
+  /     .row
+  /       .col-lg-8.col-lg-offset-2
+  /         .section-heading
+  /           %h2 Request A Pickup
 
   .container
     .row
       .div
         = form_for (@pickup_request) do |f| 
+          .row
+            / Address Info Section
+            .col-md-8.col-md-offset-2
+              .row
+                = fields_for @user do |field|
+                  = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
+                  = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"delivery_time"}
+          .row
+            %br/     
+            .col-md-10.col-md-offset-1
+              %h5
+                %span.half-opacity No charges will occur until you put items in storage. 
+                %br/ 
+                %br/ 
+                To get a price estimate for your items
+                %span.blue.black-hover.pointer#quote-triggerr{"data-target" => "#quote_gen_popup", "data-toggle" => "modal"}
+                  click here.
+            / Add to Order Section
+            .col-md-6.col-md-offset-3.half-opacity
+              .single-line
+              %br/
+              %br/ 
          
-          / Address Info Section
-          .col-md-8.col-md-offset-2
-            .row
-              = fields_for @user do |field|
-                = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
-                = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"delivery_time"}
-
-                
-          
-          / Add to Order Section
-          .col-md-6.col-md-offset-3.half-opacity
-            %br/
-            %br/ 
-            .single-line
-            %br/
-            %br/ 
-          .col-md-12
-            %h1.no-margin Add To Pickup
-            %br/ 
-          = render partial: "partials/storage_items", locals:{f:f}
           
 
           / Bottom Buttons Section
@@ -56,6 +58,7 @@
 
 = render :partial => "partials/footer"
 = render :partial => "partials/storageSizeModal"
+= render partial: "partials/quote_gen_modal"
 
 
 = javascript_include_tag "item_selector"

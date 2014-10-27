@@ -1,0 +1,21 @@
+Thanks for scheduling a delivery. You will find details about your delivery below. If you have any questions, please don't hesitate to reach out. We're here to help!
+
+
+////// Delivery Details //////
+
+Delivery Date: #{@delivery_request.delivery_time.strftime("%B %d at %l:%M %p")}
+Delivery Address: #{@delivery_request.user.address_line_1} #{@delivery_request.user.address_line_2} #{@delivery_request.user.city}, #{@delivery_request.user.state} #{@delivery_request.user.zip}
+Special Instructions: #{@delivery_request.user.special_instructions}
+
+
+////// Contact Details //////
+
+Contact Name: #{@delivery_request.user.first_name} #{@delivery_request.user.last_name}
+Phone Number: #{@delivery_request.user.phone_number}
+
+Your QuickBox driver will call you one hour prior to arrival. Please remember, someone must be present at time of delivery.
+
+If you want to change the date or time of your delivery, log in to your QuickBox account and click the "edit request" button in the top right corner. Otherwise, if you have any questions please reply to this e-mail or call us at (303) 718-7179. 
+
+
+We make storage easy. Let us know if we can help you in any way.

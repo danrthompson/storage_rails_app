@@ -1,0 +1,30 @@
+A friendly reminder.
+
+We wanted to let you know that you have a pickup scheduled for tomorrow.
+
+Your QuickBox driver will call you one hour prior to arrival to ensure there will be someone present at time of pickup.
+
+If you have any questions in the meantime or if there is any way we can be of assistance, please let us know. We're here to help. 
+
+
+Best,
+The Quickbox Team
+
+team@quickbox.com
+(303) 718-7179
+
+
+////// Pickup Details //////
+
+Pickup Date: #{@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")}
+Pickup Address: #{@pickup_request.user.address_line_1} #{@pickup_request.user.address_line_2} #{@pickup_request.user.city}, #{@pickup_request.user.state} #{@pickup_request.user.zip}
+Special Instructions: #{@pickup_request.user.special_instructions}
+
+
+////// Contact Details //////
+
+Contact Name: #{@pickup_request.user.first_name} #{@pickup_request.user.last_name}
+Phone Number: #{@pickup_request.user.phone_number}
+
+
+We make storage easy. Let us know if we can help you in any way.

@@ -82,9 +82,13 @@
                 = link_to "Record & Complete", complete_pickup_request_path(@pickup_request.id), class: "btn btn-skin white", id:"record-complete", method: :patch
               .col-md-4.pull-right.align-center
                 = field.submit "Save Changes", class: "btn btn-skin white red"
-
+            .row.align-center
+              %br/
+              %br/ 
+              %p Remember you have to save your changes before completing a request
              
             .row
+
               %p.no-opacity ps
           %br/
 
