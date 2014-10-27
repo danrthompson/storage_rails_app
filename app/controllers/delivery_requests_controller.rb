@@ -67,6 +67,16 @@ class DeliveryRequestsController < ApplicationController
 		redirect_to new_user_session_url and return if @user.id != @delivery_request.user_id
 	end
 
+	def destroy
+		@user = current_user
+		@delivery_request = DeliveryRequest.find(params[:id])
+		redirect_to new_user_session_url and return if @user.id != @delivery_request.user_id
+		redirect_to(storage_items_url, alert: 'It is too close to the delivery time to cancel this delivery request.') and return unless @delivery_request.time_to_edit
+		@delivery_request.storage_items.clear
+		@delivery_request.destroy
+		redirect_to storage_items_url, notice: 'Delivery request cancelled.'
+	end
+
 	private
 
 	def request_update_verification(params, user)

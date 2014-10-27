@@ -35,12 +35,12 @@
                 %br/ 
                 %p.no-opacity a
                 %p.align-center.light-gray
-                  You pickup is currently scheduled for:
+                  Your pickup is currently scheduled for:
                   =@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
                 = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"delivery_time"}
 
             .row.align-left
-              %a.align-left{:href => ""} Cancel Pickup
+              = link_to "Cancel Pickup", pickup_request_path(@pickup_request), method: :delete, data: { confirm: "Are you sure you want to cancel this pickup?" }, class: 'align-left heavy-font blue'
             %br/ 
                 
           / Bottom Buttons Section

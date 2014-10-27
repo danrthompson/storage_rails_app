@@ -34,12 +34,12 @@ module StorageRailsApp
     config.paperclip_defaults = {
       storage: :s3,
       s3_credentials: {
-        bucket: 'storage_rails_app_dev',
-        access_key_id: 'AKIAISMURECTFTQXY7QA',
-        secret_access_key: '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'
+        bucket: ENV['PAPERCLIP_S3_BUCKET'],
+        access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+        secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
       },
       path: '/box-images/:id-:hash:extension',
-      hash_secret: 'f0062baa67179e4a5aeb642688ed6785817f5ab81328350e41a4188a91660ac5a79eeae051ee7707ba6cd06838385bffad45f98563bac09b79c7e4d9712e7478'
+      hash_secret: ENV['HASH_SECRET']
     }
   end
 end
