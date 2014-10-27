@@ -22,7 +22,7 @@
                   = render partial: "partials/delivery_date_time", locals: {field:field, f:f,  id:"pickup_datepicker", select_id:"delivery_time"}
               - if @edit_page
                 .row.align-left
-                  %a{:href => ""} Cancel Delivery
+                  = link_to "Cancel Delivery", delivery_request_path(@delivery_request), method: :delete, data: { confirm: "Are you sure you want to cancel this delivery?" }, class: 'align-left heavy-font blue'
 
         
           %br/ 

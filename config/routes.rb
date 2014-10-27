@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :storage_items, only: [:index, :edit, :update]
-  resources :delivery_requests, :packing_supplies_requests, :pickup_requests, only: [:show, :create, :new, :edit, :update]
+  resources :delivery_requests, :packing_supplies_requests, :pickup_requests, only: [:show, :create, :new, :edit, :update, :destroy]
 
   get 'admin/block_time', to: 'admin_pages#block_time', as: 'admin_block_time'
   get 'admin', to: 'admin_pages#admin', as: 'admin'
@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   patch 'admin/complete_pickup_request/:id', to: 'admin_pages#complete_pickup_request', as: 'complete_pickup_request'
   patch 'admin/complete_delivery_request/:id', to: 'admin_pages#complete_delivery_request', as: 'complete_delivery_request'
 
-  get '404', to: redirect('/404'), as: 'not_found'
-  get '500', to: redirect('/500'), as: 'error'
+  get '404', to: 'static_pages#error_page_404', as: 'not_found'
+  get '500', to: 'static_pages#error_page_500', as: 'error'
 
   get 'about' => 'static_pages#about'
   get 'feedback' => 'static_pages#feedback'

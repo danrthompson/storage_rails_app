@@ -67,6 +67,7 @@ group :development, :test do
 	# gem 'capybara-webkit'
 	# gem 'selenium-webdriver'
 	gem 'rb-fsevent'
+	gem 'foreman'
 end
 
 group :test do

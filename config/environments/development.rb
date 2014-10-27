@@ -1,6 +1,6 @@
 Rails.configuration.stripe = {
-  publishable_key: 'pk_test_IisHI7ZxJJdvj6jcuqOKIQ6a',
-  secret_key: 'sk_test_CGn5ko7pgIHhyey4kJi33Pcn'
+  publishable_key: ENV['STRIPE_PUBLISHABLE_KEY_DEV'],
+  secret_key: ENV['STRIPE_SECRET_KEY_DEV']
 }
 
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
@@ -18,13 +18,25 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: ENV["GMAIL_DOMAIN"],
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"]
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

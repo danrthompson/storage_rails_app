@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "team@quickbox.com"
+  default from: "danielrthompsonjr@gmail.com"
 
 	def welcome_email(user)
 	  	@user = user
@@ -7,8 +7,8 @@ class UserMailer < ActionMailer::Base
 	  	mail(to:@user.email, subject: "Welcome To QuickBox")
 	end
 
-	def new_customer()
-		mail(to:"danh@quickbox.com", subject: "You Have A New Customer")
+	def new_customer(email)
+		mail(to: email, subject: "You Have A New Customer")
 	end
 
 	def confirm_pickup_email(pickup_request)

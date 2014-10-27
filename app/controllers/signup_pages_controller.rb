@@ -28,6 +28,7 @@ class SignupPagesController < ApplicationController
 			# Mails out welcome email to users
 			# UserMailer.welcome_email(@user).deliver
 			begin
+				UserMailer.new_customer(@user.email).deliver
 				sign_in @user
 				redirect_to confirm_signup_pages_url(@user.id) and return
 			rescue Errno::ECONNREFUSED
