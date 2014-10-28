@@ -58,7 +58,10 @@ gem 'unicorn'
 gem 'bootstrap-datepicker-rails'
 
 # For email stylesheet precompile
-gem 'roadie'
+# gem 'roadie'
+# gem 'roadie-rails'
+gem 'hpricot'
+gem 'premailer-rails'
 # gem 'activeadmin'
 # gem 'cancan'
 

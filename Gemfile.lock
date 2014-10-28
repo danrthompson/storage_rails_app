@@ -124,6 +124,8 @@ GEM
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
     hike (1.2.3)
+    hpricot (0.8.6)
+    htmlentities (4.3.2)
     httparty (0.13.1)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -174,6 +176,12 @@ GEM
       countries (>= 0.8.2)
       phony (~> 2.1)
     polyglot (0.3.5)
+    premailer (1.8.2)
+      css_parser (>= 1.3.5)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.8.0)
+      actionmailer (>= 3, < 5)
+      premailer (~> 1.7, >= 1.7.9)
     pry (0.10.0)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -212,9 +220,6 @@ GEM
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    roadie (3.0.1)
-      css_parser (~> 1.3.4)
-      nokogiri (~> 1.6.0)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -300,6 +305,7 @@ DEPENDENCIES
   foreman
   guard-rspec
   haml-rails
+  hpricot
   jbuilder (~> 2.0)
   jquery-rails
   launchy
@@ -308,11 +314,11 @@ DEPENDENCIES
   paperclip (~> 4.1)
   pg
   phony_rails
+  premailer-rails
   pry
   rails (= 4.1.4)
   rails_12factor
   rb-fsevent
-  roadie
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

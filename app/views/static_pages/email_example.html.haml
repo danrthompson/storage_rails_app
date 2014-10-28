@@ -1,66 +1,57 @@
+=stylesheet_link_tag "email"
 
-.row.header-nav
-  .nav-links-wrapper.col-md-4
-    %a.no-padding.pull-left{href: "/storage_items"}
-      %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
-    %a.pull-left.no-side-padding{href: "/storage_items"}
-      %span.light-gray.black-hover#menu-title QuickBox
-  .nav-links-wrapper.col-md-1.col-md-offset-4.left-border
-    .nav-links
-      = link_to "Contact", contact_path, class:"black-hover", target:"_blank"
-  .nav-links-wrapper.col-md-1.left-border
-    .nav-links
-      = link_to "FAQ", contact_path, class:"black-hover", target:"_blank"
-  .nav-links-wrapper.col-md-2
-    .no-border.nav-links
-      = link_to "Visit QuickBox", destroy_user_session_path, method: "delete", class:"black-hover blue"
+.email
+  .row.email-header-nav
+    %ul.no-list#email-header
+      %li.align-left
+        %a{href: "/storage_items"}
+          %img#email-menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
+        %span#email-menu-title.pull-right
+          QuickBox
+          %span.no-pointer#company-phone (303) 718-7179
+      / .pull-right
+      /   %li.email-nav-links.invisible-at-600
+      /     = link_to [:edit, @user], class:"black-hover" do
+      /       Account
+            
+      /   %li.email-nav-links
+      /     = link_to destroy_user_session_path, method: "delete", class:"black-hover" do
+      /       To QuickBox
+  .email-title
+    %h1 Welcome To Quickbox
 
-        
+  .email-body
+    %br/ 
+    %p
+      Hi #{@user.first_name},
+      %br/ 
+      %br/ 
+      Welcome to QuickBox - your personal storage valet.
+      %br/ 
+      %br/ 
+      This email is to let you know that you're all set up to start using your QuickBox account. You can view your items in storage, request a pickup, or have your items returned to you all from
+      = link_to storage_items_path, class:"blue heavy-font black-hover" do
+        your dashboard.
+      If you want to edit your account details, click on the "account" button in the top left when you log in. 
+      / For a full walkthrough of how to use QuickBox, click here.
+      %br/ 
+      %br/ 
+      Please
+      %a.blue.heavy-font.black-hover{:href => "mailto:team@quickbox.com"} let us know
+      if you have any thoughts, feedback, or questions. We're here to help.
 
+      %br/ 
+      %br/ 
 
+      With regards,
+      %br/ 
+      The QuickBox Team
 
-
-
-/ SECONDARY HEADER BAR
-.container.full-width.blue-bg.no-padding.white.dashboard-header
-  .row
-    .col-md-12.align-center
-      %h1 Reset Password
-    / Dashboard
-
-%section#about.home-section.text-center
-  .heading-about.marginbot-20
-    .container
-      .row
-        .col-lg-8.col-lg-offset-2
-          .section-heading
-         
-            %p
-              Hi #{@user.first_name},
-              
-            %p Someone has requested a link to change your password. You can do this through the link below.
-            / %p= link_to 'Change my password', edit_password_url(@resource, reset_password_token: @token)
-            %p If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.
-            %br/ 
-            %p 
-              With regards,
-              %br/ 
-              The QuickBox Team
-
-
-
-  / BODY CONTENT: SELECT ITEMS
-  .container
-    .row
-      .col-md-8.col-md-offset-2
-        .row
-          / End Phone Number &amp; Instructions Box
-          .col-md-8.col-md-offset-2.half-opacity.charges-box
-            .single-line
-            %br/
-          .col-md-6.col-md-offset-3.bottom-buttons
-            .boxed-gray.continue-button
-              %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
-              =link_to "Visit The Site", storage_items_path, class:"white"
-              / # = link_to 'Change my password', edit_password_url(@resource, reset_password_token: @token), class: white
-= render partial: "partials/footer"
+    %br/ 
+    .divider-line
+    %br/ 
+    %br/ 
+    .bottom-button
+      =link_to "Visit The Site", storage_items_path
+    %br/ 
+  .blue-footer
