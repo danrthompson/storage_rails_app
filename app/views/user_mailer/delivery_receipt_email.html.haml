@@ -1,86 +1,75 @@
-
-.row.header-nav
-  .nav-links-wrapper.col-md-4
-    %a.no-padding.pull-left{href: "/storage_items"}
-      %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
-    %a.pull-left.no-side-padding{href: "/storage_items"}
-      %span.light-gray.black-hover#menu-title QuickBox
-  .nav-links-wrapper.col-md-1.col-md-offset-4.left-border
-    .nav-links
-      = link_to "Contact", contact_path, class:"black-hover", target:"_blank"
-  .nav-links-wrapper.col-md-1.left-border
-    .nav-links
-      = link_to "FAQ", contact_path, class:"black-hover", target:"_blank"
-  .nav-links-wrapper.col-md-2
-    .no-border.nav-links
-      = link_to "Visit QuickBox", destroy_user_session_path, method: "delete", class:"black-hover blue"
-
-        
+=stylesheet_link_tag "email"
 
 
+.email
+  .row.email-header-nav
+    %ul.no-list#email-header
+      %li.width-50.pull-left.align-left
+        %a{href: "http://www.quickbox.com"}
+          %img#email-menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
+        %span#email-menu-title
+          QuickBox
+          %span.no-pointer#company-phone (303) 718-7179
+  
+  .email-title
+    %h1 Delivery Receipt
+
+  .email-body
+
+    %br/
+    .div 
+      %p
+        Hi #{@user.first_name},
+        %br/ 
+        %br/ 
+        This is your digital receipt to confirm the delivery of 
+        = @delivery_request.storage_items.count
+        items to
+        = @delivery_request.user.address_line_1
+        on
+        =@delivery_request.delivery_time.strftime("%B %d at %l:%M %p")
 
 
+        %br/ 
+        %br/ 
 
-/ SECONDARY HEADER BAR
-.container.full-width.blue-bg.no-padding.white.dashboard-header
-  .row
-    .col-md-12.align-center
-      %h1 Your Delivery Receipt
-    / Dashboard
+        Please 
+        %a.blue{:href => "mailto:team@quickbox.com"} 
+          get in touch
+        if you have any questions or feedback about how we can improve your experience. We're here to help!
+        %br/ 
+        %br/ 
+        Best,
+        %br/ 
+        The QuickBox Team
+        %br/ 
 
-%section#about.home-section.text-center
-  .heading-about.marginbot-20
-    .container
-      .row
-        .col-lg-8.col-lg-offset-2
-          .section-heading
+      %br/ 
+      %br/ 
+      .divider-line
+      %br/ 
+      %br/ 
+      
+      .div
+        %h2.align-center
+          Items Delivered
+
+          
+        - @delivery_request.storage_items.each do |delivery_item|
+          / # = image_tag(delivery_item.image_url, class: "img-responsive")                    
+          %p.align-center= delivery_item.get_title
+
+      %br/ 
+      %br/ 
+      .divider-line
+      %br/ 
+      %br/ 
+
+      
          
-            %p
-              Hi #{@user.first_name},
-              %br/ 
-              %br/ 
-              This is your digital receipt to confirm the delivery of #{@delivery_request.storage_items.count} items to #{@delivery_request.user.address_line_1} on #{@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")}.
 
-              %br/ 
-              %br/ 
-
-              Please 
-              %a.blue{:href => "mailto:team@quickbox.com"} 
-                get in touch
-              if you have any questions or feedback about how we can improve your experience. We're here to help!
-              %br/ 
-              %br/ 
-              Best,
-              %br/ 
-              The QuickBox Team
-              %br/ 
-              %br/ 
-              %br/ 
-      .row
-        .col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3.col-xs-10.col-xs-offset-1
-          %h3.double-underlined Items Delivered 
-          .double-line
-          .row.inventory
-            - @delivery_request.storage_items.each do |delivery_item|
-              .col-md-6.col-sm-6.col-xs-6.inventory-entries.no-pointer.delivery-entry{:id => "#{delivery_item.id}"}
-                .inner
-                  .crop-mask
-                    .crop-mask-img-wrapper
-                      = image_tag(delivery_item.image_url, class: "img-responsive")                    
-                  %h4.storage-item-title= delivery_item.get_title
-
-
-  / BODY CONTENT: SELECT ITEMS
-  .container
-    .row
-      .col-md-8.col-md-offset-2
-        .row
-          / End Phone Number &amp; Instructions Box
-          .col-md-8.col-md-offset-2.half-opacity.charges-box
-            .single-line
-            %br/
-          .col-md-6.col-md-offset-3.bottom-buttons
-            .boxed-gray.continue-button
-              %button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}/
-              =link_to "Visit The Site", storage_items_path, class:"white"
-= render partial: "partials/footer"
+    .bottom-button
+      %a{:href => "http://www.quickbox.com"} 
+        Visit QuickBox
+    %br/ 
+  .blue-footer

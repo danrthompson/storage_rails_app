@@ -45,9 +45,42 @@
 	.align-right{
 		text-align: right;
 	}
+	.align-center{
+		text-align: center;
+	}
 	a{
 		text-decoration: none;
 	}
+
+	.double-line{
+		border-top: 1px solid @light-gray;
+		border-bottom: 1px solid @light-gray;
+		height: 5px;
+		margin-top: -20px;
+		padding-top: 0px;
+		margin-bottom: 20px;
+	}
+
+	.heavy-font{
+		font-weight: 400 ! important;
+	}
+
+	li{
+		display: inline;
+		padding: 0 15px;
+		height:100%;
+		a{
+			color: @light-gray;
+		}
+		i{
+			margin-right: 3px;
+		}	
+	}
+
+	.width-50{
+		width: 50%;
+	}
+
 }
 
 
@@ -75,22 +108,6 @@
 		padding: 0;
 
 	}
-}
-
-li{
-	display: inline;
-	padding: 0 15px;
-	height:100%;
-	a{
-		color: @light-gray;
-	}
-	i{
-		margin-right: 3px;
-	}	
-}
-
-.width-50{
-	width: 50%;
 }
 
 .email-header-nav{

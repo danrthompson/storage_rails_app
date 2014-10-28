@@ -12,16 +12,17 @@
           %span.no-pointer#company-phone (303) 718-7179
   
   .email-title
-    %h1 Delivery Confirmation
+    %h1 Pickup Confirmation
 
   .email-body
 
+    // Introduction
     %br/
     .div 
       %p
         %br/ 
         %br/ 
-        We heard you want some items back! You will find details about your delivery below. If you have any questions, please don't hesitate to reach out. We're here to help!
+        Thanks for scheduling a pickup. You will find details about your recent request below. If you have any questions, please don't hesitate to reach out. We're here to help!
       
 
       %br/ 
@@ -32,26 +33,27 @@
       
       .div
         %p.align-left
-          %span.heavy-font Delivery Date:
-          =@delivery_request.delivery_time.strftime("%B %d at %l:%M %p")
+          %span.heavy-font Pickup Date:
+          =@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
           %br/ 
-          %span.heavy-font Delivery Address:
-          =@delivery_request.user.address_line_1
-          =@delivery_request.user.address_line_2
-          =@delivery_request.user.city
+          %span.heavy-font Pickup Address:
+          =@pickup_request.user.address_line_1
+          =@pickup_request.user.address_line_2
+          =@pickup_request.user.city
           ,
-          =@delivery_request.user.state
-          =@delivery_request.user.zip
+          =@pickup_request.user.state
+          =@pickup_request.user.zip
           %br/ 
           %span.heavy-font Special Instructions:
-          =@delivery_request.user.special_instructions
-          %br/ 
+          =@pickup_request.user.special_instructions
+        %br/ 
+        %p.align-left
           %span.heavy-font Contact Name:
-          =@delivery_request.user.first_name
-          =@delivery_request.user.last_name
+          =@pickup_request.user.first_name
+          =@pickup_request.user.last_name
           %br/ 
           %span.heavy-font Phone Number:
-          =@delivery_request.user.phone_number
+          =@pickup_request.user.phone_number
 
       %br/ 
       %br/ 
@@ -61,18 +63,18 @@
 
       .div
         %p
-          Your QuickBox driver will call you one hour prior to arrival. Please remember, someone must be present to sign for your delivery.
+          Your QuickBox driver will call you one hour prior to arrival. Please remember, someone must be present at time of pickup.
 
           %br/ 
           %br/ 
 
-          If you want to change the date or time of your delivery, log in to your QuickBox account and click the 
+          If you want to change the date or time of your pickup, log in to your QuickBox account and click the 
           %a.blue{:href => "http://www.quickbox.com"} 
             "edit request"
           button in the top right corner. Otherwise, if you have any questions please reply to this e-mail or call us at (303) 718-7179. 
           %br/ 
           %br/ 
-          We make storage easy. Let us know if we can help you in anyway. 
+          We make storage easy. Let us know if we can help you in any way.
 
           %br/ 
           %br/
@@ -80,7 +82,7 @@
          
 
     .bottom-button
-      %a{:href => "http://www.quickbox.com"} 
-        Visit QuickBox
+      %a{:href => "http://www.quickbox.com"} Visit QuickBox
+      / =link_to "Visit QuickBox", storage_items_path
     %br/ 
   .blue-footer
