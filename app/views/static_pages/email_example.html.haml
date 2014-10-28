@@ -3,20 +3,16 @@
 .email
   .row.email-header-nav
     %ul.no-list#email-header
-      %li.align-left
+      %li.width-50.pull-left.align-left
         %a{href: "/storage_items"}
           %img#email-menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
-        %span#email-menu-title.pull-right
+        %span#email-menu-title
           QuickBox
           %span.no-pointer#company-phone (303) 718-7179
-      / .pull-right
-      /   %li.email-nav-links.invisible-at-600
-      /     = link_to [:edit, @user], class:"black-hover" do
-      /       Account
-            
-      /   %li.email-nav-links
-      /     = link_to destroy_user_session_path, method: "delete", class:"black-hover" do
-      /       To QuickBox
+      %li.width-50.pull-right.align-right            
+        .email-nav-links
+          = link_to destroy_user_session_path, method: "delete", class:"black-hover" do
+            To QuickBox
   .email-title
     %h1 Welcome To Quickbox
 

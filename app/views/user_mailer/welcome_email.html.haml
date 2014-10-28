@@ -3,18 +3,14 @@
 .email
   .row.email-header-nav
     %ul.no-list#email-header
-      %li.align-left
+      %li.width-50.pull-left.align-left
         %a{href: "/storage_items"}
           %img#email-menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
         %span#email-menu-title
           QuickBox
           %span.no-pointer#company-phone (303) 718-7179
-      / .pull-right
-      /   %li.email-nav-links.invisible-at-600
-      /     = link_to [:edit, @user], class:"black-hover" do
-      /       Account
-            
-      /   %li.email-nav-links
+      / %li.width-50.pull-right.align-right            
+      /   .email-nav-links
       /     = link_to destroy_user_session_path, method: "delete", class:"black-hover" do
       /       To QuickBox
   .email-title
@@ -33,7 +29,6 @@
       = link_to storage_items_path, class:"blue heavy-font black-hover" do
         your dashboard.
       If you want to edit your account details, click on the "account" button in the top left when you log in. 
-      / For a full walkthrough of how to use QuickBox, click here.
       %br/ 
       %br/ 
       Please
