@@ -54,6 +54,7 @@ gem "figaro"
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'unicorn'
 gem 'bootstrap-datepicker-rails'
+gem 'sidekiq'
 # gem 'activeadmin'
 # gem 'cancan'
 
