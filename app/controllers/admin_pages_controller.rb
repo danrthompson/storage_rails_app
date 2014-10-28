@@ -80,7 +80,12 @@ class AdminPagesController < ApplicationController
 				flash.now[:alert] = item.errors.full_messages.first
 				render :record_pickup_request and return
 			end
-			monthly_cost += item.price
+			discount = item.discount.to_f
+			if discount and discount > 0 and discount <= 1
+				monthly_cost += item.price*(1.0 - discount)
+			else
+				monthly_cost += item.price
+			end
 		end
 		stripe_user = @pickup_request.user.stripe_user
 		if stripe_user.subscriptions.first
@@ -106,7 +111,12 @@ class AdminPagesController < ApplicationController
 		monthly_cost = 0.0
 		delivery_request.storage_items.each do |item|
 			item.left_storage_at = delivery_completion_time
-			monthly_cost += item.price
+			discount = item.discount.to_f
+			if discount and discount > 0 and discount <= 1
+				monthly_cost += item.price*(1.0 - discount)
+			else
+				monthly_cost += item.price
+			end
 			item.save!
 		end
 		stripe_user = delivery_request.user.stripe_user

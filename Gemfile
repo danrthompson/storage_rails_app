@@ -57,11 +57,9 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'unicorn'
 gem 'bootstrap-datepicker-rails'
 
-# For email stylesheet precompile
-# gem 'roadie'
-# gem 'roadie-rails'
 gem 'hpricot'
 gem 'premailer-rails'
+gem 'sidekiq'
 # gem 'activeadmin'
 # gem 'cancan'
 
