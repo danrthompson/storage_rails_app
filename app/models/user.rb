@@ -6,11 +6,11 @@ class User < ActiveRecord::Base
 
   attr_accessor :exp_month, :exp_year, :cc_name, :cc_number, :cc_cvc
 
-  has_many :storage_items
-  has_many :packing_supplies_requests
-  has_many :delivery_requests
-  has_many :pickup_requests
-  has_many :notifications
+  has_many :storage_items, dependent: :destroy
+  has_many :packing_supplies_requests, dependent: :destroy
+  has_many :delivery_requests, dependent: :destroy
+  has_many :pickup_requests, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   has_many :unavailable_times
   has_many :completed_storage_items, class_name: 'StorageItem', foreign_key: 'driver_id'
   has_many :completed_packing_supplies_requests, class_name: 'PackingSuppliesRequest', foreign_key: 'driver_id'
