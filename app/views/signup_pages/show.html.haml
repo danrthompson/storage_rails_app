@@ -133,7 +133,7 @@
                     = f.check_box :terms_of_service_accepted, {id: 'terms-checkbox', class: 'pull-right', required: 'true'}
                   .col-md-4
                     .boxed-gray
-                      = f.submit 'confirm order', class:"btn btn-primary blue-bg-hover", id:"submit-button", disabled: true
+                      = f.submit 'confirm order', class:"btn btn-primary blue-bg-hover", id:"submit-button"
 
 
 %br/ 
@@ -183,6 +183,7 @@
       $("#payment-details").removeClass("hidden");
       $("#show-continue").addClass("hidden");
       console.log("removing hidden");
+      $("#submit-details").removeClass("hidden");
      } else{
        console.log("validator id not valid");
      }
@@ -196,7 +197,9 @@
 
        console.log("submit button no longer disabled");
      } else {
+        console.log("removing hidden class");
         $("#submit-button").attr("disabled", true);
+
      }     
   }
 
