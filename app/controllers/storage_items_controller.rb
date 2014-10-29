@@ -50,6 +50,13 @@ class StorageItemsController < ApplicationController
 		@num_extra_large_items_in_storage = StorageItem.where(user_id: current_user.id, item_type: 'extra_large').where.not(entered_storage_at: nil).count
 		
 		@storage_items_pending_delivery = StorageItem.where(user_id: current_user.id, left_storage_at: nil).where.not(delivery_request_id: nil, entered_storage_at: nil).order(:item_type, :entered_storage_at)
+
+		@promo_result = if current_user.promo_code.blank?
+			nil
+		else
+			coupon = Stripe::Coupon.retrieve(current_user.promo_code)
+			coupon.amount_off / 100
+		end 
 	end
 
 

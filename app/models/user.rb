@@ -84,7 +84,10 @@ class User < ActiveRecord::Base
         end
       rescue Stripe::InvalidRequestError
         errors.add(:promo_code, 'is invalid.')
+        self.promo_code = nil
       end
+    else
+      self.promo_code = nil
     end
   end
 end
