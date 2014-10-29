@@ -37,7 +37,7 @@
           = field.text_field :storage_location,  autofocus: true, placeholder:"", class:"col-md-6 form-control", id:""
         .new-item-attribute
           = field.label "Item Type:"
-          = field.select  :item_type, options_for_select(["small", "medium", "large", "extra_large"], selected: field.object.item_type), {}, {class:"form-control selectpicker"}
+          = field.select  :item_type, options_for_select(["small", "medium", "large", "extra_large"], :prompt => "Select One"), {}, {class:"form-control selectpicker"}, required: true
       .col-md-6
         .new-item-attribute
           = field.label "ID:"
