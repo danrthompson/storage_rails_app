@@ -167,13 +167,25 @@
 
   sumItemList(".item-amount", "#subtotal", "/month");
 
-   $(document).keypress(function(event) {
-      hideAndShowConfirmFields();
-   });
-   $("input[type=text]").blur(function(){
-      hideAndShowConfirmFields();
-   });
+  $(document).keypress(function(event) {
+    hideAndShowConfirmFields();
+  });
+  $("input[type=text]").blur(function(){
+    hideAndShowConfirmFields();
+  });
 
+  $("#cc-continue").click{
+    $("#finish-details").removeClass("hidden");
+    $("#submit-details").removeClass("hidden");
+    $(this).addClass("hidden");
+  }
+  
+
+  $("#show-continue").click{
+    $("#payment-details").removeClass("hidden");
+    $(this).addClass("hidden");
+  }
+  
 
   function hideAndShowConfirmFields(){
      $("#validator-id").data('bootstrapValidator').validate();
