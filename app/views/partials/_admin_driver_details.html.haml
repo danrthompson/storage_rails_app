@@ -29,7 +29,11 @@
     %span Delivery Time:
     %br/ 
     = request.delivery_time.strftime("%B %d at %l:%M %p")
-    %br/    
+    %br/
+    %span Request Created:
+    %br/ 
+    = request.created_at.strftime("%B %d at %l:%M %p")
+    %br/
     %span Address:
     %br/ 
     = request.user.address_line_1
