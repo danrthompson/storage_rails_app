@@ -22,13 +22,11 @@ class StaticPagesController < ApplicationController
 		@user = current_user
 	end
 
-	def email_example
-		@user = current_user
-		
-		user_pickup_requests = @user.pickup_requests.where(completion_time: nil)
-		user_delivery_requests = @user.delivery_requests.where(completion_time: nil)
+	def not_found
+		render status: 404
+	end
 
-		@pickup_request = user_pickup_requests.first
-		@delivery_request = user_delivery_requests.first
+	def server_error
+		render status: 500
 	end
 end

@@ -52,7 +52,7 @@ gem 'devise'
 gem 'phony_rails'
 gem "paperclip", "~> 4.1"
 gem 'aws-sdk', '~> 1.5.7'
-gem "figaro"
+gem 'figaro', '~> 1.0.0'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'unicorn'
 gem 'bootstrap-datepicker-rails'
