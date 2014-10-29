@@ -67,21 +67,19 @@
   
 
   $(document).ready(function() { 
-    valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#datepicker-value", "#delivery_time");
+    valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
 
     $(".form-control").on('input', function() {
-      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#datepicker-value", "#delivery_time");
+      valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
     });
 
     $(".btn-inc").click(function() {
-      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#datepicker-value", "#delivery_time");
+      valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
     });
 
     $(".small-entry .btn").click(function() {
-      valQuantityAddrDelivery("#validator-id", "#continue-btn", ".quantity-field", "#datepicker-value", "#delivery_time");
+      valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
     });
   });
 
  
-
-   
