@@ -59,6 +59,7 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'hpricot'
 gem 'premailer-rails'
+gem 'autoscaler'
 gem 'sidekiq'
 # gem 'activeadmin'
 # gem 'cancan'
