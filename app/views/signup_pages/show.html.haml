@@ -118,7 +118,7 @@
                 %br/
 
               #submit-details.hidden
-                %p.align-left.light-gray.small-text * you will only be charged after pickup
+                / %p.align-left.light-gray.small-text * you will only be charged after pickup
 
                 %br/
                 %br/
@@ -126,7 +126,7 @@
                   .col-md-5.col-md-offset-2.no-side-padding
                     %p.align-right.pull-right.pt-10
                       I agree to the
-                      %a.pointer{"data-target" => "#myModal", "data-toggle" => "modal"} terms of service 
+                      %a.pointer.blue.yellow-hover{"data-target" => "#myModal", "data-toggle" => "modal"} terms of service 
                   .col-md-1
                     / # = cc.check_box :remember_me, class: "pull-left"
                     / %input#terms-checkbox.pull-right{:type => "checkbox", required:true}/
@@ -178,7 +178,7 @@
     $("#finish-details").removeClass("hidden");
     $("#submit-details").removeClass("hidden");
     $(this).addClass("hidden");
-  });
+  }); 
   
 
   $("#show-continue").click(function(){
@@ -194,8 +194,11 @@
      if (isValid){
       $("#payment-details").removeClass("hidden");
       $("#show-continue").addClass("hidden");
+      $("#cc-continue").addClass("hidden");
+
       console.log("removing hidden");
       $("#submit-details").removeClass("hidden");
+      $("#finish-details").removeClass("hidden");
      } else{
        console.log("validator id not valid");
      }
