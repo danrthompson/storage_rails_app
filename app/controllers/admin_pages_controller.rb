@@ -98,18 +98,18 @@ class AdminPagesController < ApplicationController
 		end
 		
 		@pickup_request.save
-		# UserMailer.pickup_receipt_email(@pickup_request).deliver
+		UserMailer.delay.pickup_receipt_email(@pickup_request.id)
 		redirect_to :admin, notice: 'Pickup request marked complete.' and return
 	end
 
 	def complete_delivery_request
 		delivery_completion_time = Time.now
-		delivery_request = DeliveryRequest.find(params[:id])
-		delivery_request.skip_delivery_validation = true
-		delivery_request.completion_time = delivery_completion_time
-		delivery_request.driver = current_user
+		@delivery_request = DeliveryRequest.find(params[:id])
+		@delivery_request.skip_delivery_validation = true
+		@delivery_request.completion_time = delivery_completion_time
+		@delivery_request.driver = current_user
 		monthly_cost = 0.0
-		delivery_request.storage_items.each do |item|
+		@delivery_request.storage_items.each do |item|
 			item.left_storage_at = delivery_completion_time
 			discount = item.discount.to_f
 			if discount and discount > 0 and discount <= 1
@@ -119,14 +119,14 @@ class AdminPagesController < ApplicationController
 			end
 			item.save!
 		end
-		stripe_user = delivery_request.user.stripe_user
+		stripe_user = @delivery_request.user.stripe_user
 		subscription = stripe_user.subscriptions.first
 		subscription.quantity -= (monthly_cost * 100).to_i
 		subscription.save
-		Stripe::Charge.create(amount: (delivery_request.price * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "Quickbox delivery on #{Time.now.strftime('%m/%d')}", statement_description: "QUICKBOX DLVRY")
+		Stripe::Charge.create(amount: (@delivery_request.price * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "Quickbox delivery on #{Time.now.strftime('%m/%d')}", statement_description: "QUICKBOX DLVRY")
 
-		delivery_request.save
-		# UserMailer.delivery_receipt_email(delivery_request).deliver
+		@delivery_request.save
+		UserMailer.delay.delivery_receipt_email(@delivery_request.id)
 		redirect_to :admin, notice: 'Delivery request marked complete' and return
 	end
 

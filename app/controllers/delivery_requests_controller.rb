@@ -56,8 +56,7 @@ class DeliveryRequestsController < ApplicationController
 		if @delivery_request.valid? and @user.valid? and items_to_deliver.count > 0 then
 			@delivery_request.save!
 			items_to_deliver.update_all(delivery_request_id: @delivery_request.id)
-			# UserMailer.confirm_delivery_email(@delivery_request).deliver
-
+			UserMailer.delay.confirm_delivery_email(@delivery_request.id)
 			redirect_to @delivery_request and return
 		else
 			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
