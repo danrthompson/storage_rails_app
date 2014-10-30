@@ -61,7 +61,7 @@ class SignupPagesController < ApplicationController
 		end
 		if @user.valid?	and @user.ready?
 			UserMailer.delay.confirm_pickup_email(@pickup_request.id)
-			redirect_to storage_items_url and return
+			redirect_to @pickup_request and return
 		end
 		render action: :show
 	end
