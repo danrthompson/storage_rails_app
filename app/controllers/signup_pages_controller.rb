@@ -28,7 +28,6 @@ class SignupPagesController < ApplicationController
 			@pickup_request.save
 			begin
 				UserMailer.delay.welcome_email(@user.id)
-				UserMailer.delay.confirm_pickup_email(@pickup_request.id)
 				sign_in @user
 				redirect_to confirm_signup_pages_url(@user.id) and return
 			rescue Errno::ECONNREFUSED
@@ -60,15 +59,14 @@ class SignupPagesController < ApplicationController
 			flash.now[:alert] = e.message
 			render action: :show and return
 		end
-		if @user.valid?	
-			redirect_to storage_items_url and return if @user.ready?
+		if @user.valid?	and @user.ready?
+			UserMailer.delay.confirm_pickup_email(@pickup_request.id)
+			redirect_to storage_items_url and return
 		end
 		render action: :show
 	end
 
 	private
-
-
 
 	def user_but_no_cc_info!
 		redirect_to new_user_session_url and return unless current_user
