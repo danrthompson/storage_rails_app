@@ -9,7 +9,12 @@
             %p
               = description
               %span.heavy-font.blue= deliveryTime
-
+              \.
+            %p 
+              You can always cancel or edit your pickup from the
+              = link_to edit_pickup_request_path(id: @pickup_request.id) do
+                edit pickup page.
+            %p 
               If you have any questions in the meantime, feel free to contact us at
               %a{:href => "mailto:team@quickbox.com"} team@quickbox.com
   / BODY CONTENT: SELECT ITEMS
