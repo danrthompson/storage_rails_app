@@ -174,17 +174,17 @@
     hideAndShowConfirmFields();
   });
 
-  $("#cc-continue").click{
+  $("#cc-continue").click(function(){
     $("#finish-details").removeClass("hidden");
     $("#submit-details").removeClass("hidden");
     $(this).addClass("hidden");
-  }
+  });
   
 
-  $("#show-continue").click{
+  $("#show-continue").click(function(){
     $("#payment-details").removeClass("hidden");
     $(this).addClass("hidden");
-  }
+  });
   
 
   function hideAndShowConfirmFields(){
