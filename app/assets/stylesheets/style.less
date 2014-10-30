@@ -37,6 +37,10 @@
 	opacity: 0;
 	z-index: -1;
 }
+
+.full-opacity{
+	opacity: 1 ! important;
+}
 .huge-left-margin{
 	margin-left: 10000px;
 }
@@ -299,6 +303,11 @@ br.small-spacer{
 
 a{
 	font-size: 16px;
+	color: @default-blue;
+	font-weight: 400;
+	&:hover{
+		color: @default-yellow;
+	}
 }
 
 input[type=submit]{
@@ -611,9 +620,7 @@ input[type=submit]{
 	}
 }
 
-.main-header.full-opacity{
-	opacity: 1;
-}
+
 
 
 .header-nav{
