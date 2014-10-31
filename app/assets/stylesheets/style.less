@@ -1326,6 +1326,12 @@ h3.double-underlined{
 	cursor: pointer;
 	opacity: 1;
 }
+#homepage{
+	.row{
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
 #homepage-datetime{
 	background-color:rgba(238,238,238, 0.9);
 	border: 1px solid @light-gray;
@@ -1771,13 +1777,22 @@ p.alert  , p.notice {
 }
 // Main Header Updated
 @media all and (max-width: 768px) {
+	.intro{
+		.slogan{
+			h1{
+				font-size: 38px;
+			}
+		}
+	}
 	.invisible-when-tiny{
 		display: none ! important;
 	}
 	iframe{
 		border: 2px solid rgba(255, 255, 255, .25);
-		height: 270px ! important;
-		width: 390px ! important;
+		// height: 270px ! important;
+		// width: 390px ! important;
+		height: 208px ! important;
+		width: 300px ! important;
 	}
 
 
@@ -1823,3 +1838,4 @@ p.alert  , p.notice {
 	}
 
 }
+

@@ -154,7 +154,7 @@
                 %p
                   Please make sure your items are packed before pickup.
                   Until then if you have any questions, feel free to
-                  %a{:href => "mailto:team@quickbox.com"} reach out.
+                  %a{:href => "mailto:team@quickbox.com"} contact us.
                   Thanks!
                 %br/ 
             - if !@has_existing_delivery and @num_storage_items < 1  
@@ -173,6 +173,10 @@
               %h5.align-center Notifications
               .single-line
               %ul
+                - if @promo_result
+                  %li 
+                    %span.order-item Successful promocode activation: 
+                    =@promo_result
                 - if @has_existing_pickup
                   %li 
                     %span.order-item You have a pickup scheduled for
