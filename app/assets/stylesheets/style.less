@@ -72,6 +72,7 @@
 		color: @default-yellow !important;
 	}
 }
+
 .green{
 	color: #26C251 !important;
 }
@@ -682,11 +683,21 @@ input[type=submit]{
 		span{
 			color: @light-gray;
 		}
+		#company-phone{
+			color: @default-blue;
+		}
 	}
 	span{
 		font-size: 14px;
 		margin-left: 5px;
 		opacity: .7;
+	}
+}
+
+#company-phone{
+	color: @default-blue;
+	&:hover{
+		color: @default-blue
 	}
 }
 
