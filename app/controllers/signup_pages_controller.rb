@@ -27,6 +27,44 @@ class SignupPagesController < ApplicationController
 		if @user.valid? and @pickup_request.valid?
 			@pickup_request.save
 			begin
+
+				# put your own credentials here 
+				account_sid = 'ACda3cd5ce74576762c3a0e1afffad264e' 
+				auth_token = '7a3e64418237ff2405b3a3fc60d1cbd9' 
+				message = 'You have a new user signup: ' + @user.first_name + " " + @user.last_name + ". Email: " + @user.email
+				
+				# set up a client to talk to the Twilio REST API 
+				@client = Twilio::REST::Client.new account_sid, auth_token 		 
+				
+				# To Daniel H.
+				@client.account.messages.create({
+					:from => '+17209033991', 
+					:to => '720-404-5623', 
+					:body => message,  
+				})
+
+				# To Maggie
+				@client.account.messages.create({
+					:from => '+17209033991', 
+					:to => '210-410-5804', 
+					:body => message,  
+				})
+
+				# To Hillary
+				@client.account.messages.create({
+					:from => '+17209033991', 
+					:to => '720-422-3354', 
+					:body => message,  
+				})
+
+				# To Dan T.
+				@client.account.messages.create({
+					:from => '+17209033991', 
+					:to => '814-288-7620', 
+					:body => message,  
+				})
+
+
 				UserMailer.delay.welcome_email(@user.id)
 				sign_in @user
 				redirect_to confirm_signup_pages_url(@user.id) and return
