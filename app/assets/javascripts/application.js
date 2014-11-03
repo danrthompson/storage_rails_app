@@ -140,8 +140,16 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
   $(dropdownID + " option").each(function() {
       $(this).remove();
   });
+
+
   
-  if (!available_delivery_times) return;
+  if (!available_delivery_times){
+    $(dropdownID)
+      .append($("<option></option>")
+      .text("There is no value"));
+    return;
+  }
+
   var times = available_delivery_times[val];
   var val = 0;
   var AMPM = 0;
@@ -149,9 +157,7 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
      .append($("<option></option>").text("Choose a time"));
 
   $.each(times, function(index, value) {
-    // console.log (dropdownID +":"+ value);
     val = value;
-    console.log("Val:" + val + ", Value: + " + value);
     AMPM = " AM"
 
     if (value == 0){
