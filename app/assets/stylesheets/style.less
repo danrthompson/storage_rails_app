@@ -233,7 +233,9 @@
 	display: block ! important;
 }
 
-
+.show-on-small{
+	display: none;
+}
 .small-text{
 	font-size: 12px;
 	letter-spacing: .5px;
@@ -1834,6 +1836,49 @@ p.alert  , p.notice {
 
 }
 
+@media all and (max-device-width : 480px){
+	.nudge-icon{
+		display: none;
+	}
+
+	.row{
+		margin-left: 0;
+		margin-right: 0;
+	}
+	#signup-progress{
+		li{
+			margin-top: -10px;
+		}
+		h4{
+			font-size: 14px;
+		}
+	
+		li.signup-completed {
+			margin-top: -10px ! important;
+			element::before { 
+				margin-bottom: 10px; }
+		}
+
+	}
+	#signup-emailaddr{
+		margin-top: 15px;
+	}
+
+	#menu-img{
+		margin-left: -20px;
+	}
+
+	#lets-doit{
+			font-size: 32px ! important;
+		}
+	
+
+	.show-on-small{
+		display: block;
+	}
+
+
+}
 
 // Main Header Updated
 @media all and (max-width: 1000px) {
