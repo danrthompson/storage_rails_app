@@ -139,7 +139,7 @@
               %h2
                 Your Pickup
                 - if @has_existing_pickup
-                  %p.pull-right.half-opacity
+                  %p.pull-right.half-opacity.hide-on-small
                     =@existing_pickup.delivery_time.strftime("%B %d at %l:%M %p")
               .double-line
             .row
@@ -166,8 +166,12 @@
                     = link_to "Logout", destroy_user_session_path, method: "delete"
                     whenever you're ready.                  
                 %br/ 
-          
+        
         .col-md-4.inventory-sidebar
+          .show-on-small
+            %br/ 
+            .double-line
+            %br/ 
           .row.text-block.light-blue-bg
             .innert
               %h5.align-center Notifications
