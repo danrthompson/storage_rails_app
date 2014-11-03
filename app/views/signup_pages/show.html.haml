@@ -139,9 +139,6 @@
 
               #submit-details.hidden
                 / %p.align-left.light-gray.small-text * you will only be charged after pickup
-
-                %br/
-                %br/
                 .row
                   .col-md-5.col-md-offset-2.no-side-padding
                     %p.align-right.pull-right.pt-10
@@ -151,7 +148,9 @@
                     / # = cc.check_box :remember_me, class: "pull-left"
                     / %input#terms-checkbox.pull-right{:type => "checkbox", required:true}/
                     = f.check_box :terms_of_service_accepted, {id: 'terms-checkbox', class: 'pull-right', required: 'true'}
+                .row
                   .col-md-4
+                    %br/ 
                     .boxed-gray
                       = f.submit 'confirm order', class:"btn btn-primary blue-bg-hover", id:"submit-button"
 
