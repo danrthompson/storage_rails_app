@@ -1660,6 +1660,10 @@ p.alert  , p.notice {
 
 // ADMIN PAGE
 #admin-page{
+	.row{
+		margin-left: 0;
+		margin-right: 0;
+	}
 	section{
 		padding-top: 100px;
 	}
@@ -1834,6 +1838,7 @@ p.alert  , p.notice {
   	display: none ! important;
   }
 
+
 }
 
 @media all and (max-device-width : 480px){
@@ -1887,6 +1892,40 @@ p.alert  , p.notice {
 
 		a{
 			font-size: 14px;
+		}
+	}
+
+	// Admin Page
+	#admin-page{
+		.container{
+			padding-right: 0;
+			padding-left: 0;
+		}
+		.storage-item{
+			padding: 5px;
+		}
+	}
+
+	// Modal: Price Estimator
+	.modal-dialog{
+		.continue-button{
+			button{
+				font-size: 12px;
+			}
+		}
+	}
+	#quote_gen_popup .modal-dialog{
+		width: 90%;
+		margin-left: 5%;
+	}
+
+	.small-entry-price{
+		display: none;
+	}
+
+	.confirm-elem{
+		li{
+			font-size: 12px;
 		}
 	}
 

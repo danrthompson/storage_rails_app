@@ -93,7 +93,7 @@
                 Items In Storage
               .double-line
               - @storage_items.each do |storage_item|
-                .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
+                .col-md-6.col-sm-6.col-xs-12.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
                   .inner
                     .crop-mask
                       .crop-mask-img-wrapper
@@ -118,7 +118,7 @@
                   =@existing_delivery.delivery_time.strftime("%B %d at %l:%M %p")
             .double-line
             - @delivery_items.each do |delivery_item|
-              .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{delivery_item.id}"}
+              .col-md-6.col-sm-6.col-xs-12.inventory-entries.delivery-entry{:id => "#{delivery_item.id}"}
                 .inner
                   .crop-mask
                     .crop-mask-img-wrapper
@@ -187,7 +187,7 @@
                     =@existing_pickup.delivery_time.strftime("%B %d at %l:%M %p")
                 - if @has_existing_delivery
                   %li 
-                    %span.order-item You have #{@delivery_items.count} items scheduled for delivery on
+                    %span.order-item You have a delivery scheduled for 
                     =@existing_delivery.delivery_time.strftime("%B %d at %l:%M %p")
                 - if !@has_existing_pickup && !@has_existing_delivery
                   %li 

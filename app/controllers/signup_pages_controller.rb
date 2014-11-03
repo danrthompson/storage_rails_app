@@ -36,36 +36,36 @@ class SignupPagesController < ApplicationController
 				# set up a client to talk to the Twilio REST API 
 				@client = Twilio::REST::Client.new account_sid, auth_token 		 
 				
-				# To Daniel H.
-				@client.account.messages.create({
-					:from => '+17209033991', 
-					:to => '720-404-5623', 
-					:body => message,  
-				})
+				# # To Daniel H.
+				# @client.account.messages.create({
+				# 	:from => '+17209033991', 
+				# 	:to => '720-404-5623', 
+				# 	:body => message,  
+				# })
 
-				# To Maggie
-				@client.account.messages.create({
-					:from => '+17209033991', 
-					:to => '210-410-5804', 
-					:body => message,  
-				})
+				# # To Maggie
+				# @client.account.messages.create({
+				# 	:from => '+17209033991', 
+				# 	:to => '210-410-5804', 
+				# 	:body => message,  
+				# })
 
-				# To Hillary
-				@client.account.messages.create({
-					:from => '+17209033991', 
-					:to => '720-422-3354', 
-					:body => message,  
-				})
+				# # To Hillary
+				# @client.account.messages.create({
+				# 	:from => '+17209033991', 
+				# 	:to => '720-422-3354', 
+				# 	:body => message,  
+				# })
 
-				# To Dan T.
-				@client.account.messages.create({
-					:from => '+17209033991', 
-					:to => '814-288-7620', 
-					:body => message,  
-				})
+				# # To Dan T.
+				# @client.account.messages.create({
+				# 	:from => '+17209033991', 
+				# 	:to => '814-288-7620', 
+				# 	:body => message,  
+				# })
 
 
-				UserMailer.delay.welcome_email(@user.id)
+				# UserMailer.delay.welcome_email(@user.id)
 				sign_in @user
 				redirect_to confirm_signup_pages_url(@user.id) and return
 			rescue Errno::ECONNREFUSED
@@ -98,7 +98,7 @@ class SignupPagesController < ApplicationController
 			render action: :show and return
 		end
 		if @user.valid?	and @user.ready?
-			UserMailer.delay.confirm_pickup_email(@pickup_request.id)
+			# UserMailer.delay.confirm_pickup_email(@pickup_request.id)
 			redirect_to @pickup_request and return
 		end
 		render action: :show

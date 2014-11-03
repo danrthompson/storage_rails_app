@@ -56,7 +56,7 @@ class DeliveryRequestsController < ApplicationController
 		if @delivery_request.valid? and @user.valid? and items_to_deliver.count > 0 then
 			@delivery_request.save!
 			items_to_deliver.update_all(delivery_request_id: @delivery_request.id)
-			UserMailer.delay.confirm_delivery_email(@delivery_request.id)
+			# UserMailer.delay.confirm_delivery_email(@delivery_request.id)
 			redirect_to @delivery_request and return
 		else
 			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
@@ -68,6 +68,7 @@ class DeliveryRequestsController < ApplicationController
 		@user = current_user
 		@delivery_request = DeliveryRequest.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != @delivery_request.user_id
+		@is_delivery = true
 	end
 
 	def destroy
