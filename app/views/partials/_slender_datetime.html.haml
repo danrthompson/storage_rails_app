@@ -3,7 +3,7 @@
 / .double-line
 .row#validator-id.no-margin
   %p.dark-gray.heavy-font.full-opacity.no-margin
-    Schedule Your Free Pickup Today!
+    Schedule Your First Free Pickup Today!
   .col-md-4.align-left   
     #datepicker.input-append.date
       =f.text_field :posted_delivery_date, class:"span2 form-control", id: "datepicker-value", placeholder: 'Choose a day'
@@ -39,7 +39,13 @@
       updateDropdownDates('#datepicker-value', dropdownID, available_delivery_times);
     });
 
-    
+    // Hides keyboard on mobile
+    $('#datepicker-value').focusin(function(){
+      console.log("selecting-datepicker");
+      $('#datepicker-value').blur();
+
+    });
+
   });
 
 

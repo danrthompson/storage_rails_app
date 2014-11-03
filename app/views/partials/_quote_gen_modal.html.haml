@@ -6,13 +6,14 @@
         %button.close{"data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
           %span.sr-only Close
-        %h4#quote_gen_popupLabel.modal-title.align-center Pickup Cost Price Estimator
+        %h4#quote_gen_popupLabel.modal-title.align-center Storage Price Estimator
       .modal-body
 
         / .col-md-12
         / %h4.pointer.pull-right#quote-close close
         = fields_for @pickup_request, html:{id:"delivery-form"} do |pickup_field|
           = render partial: "partials/storage_items", locals:{f:pickup_field}
+          
         / %p hihihi
         / %br/ 
       .modal-footer.no-opacity.huge-left-margin

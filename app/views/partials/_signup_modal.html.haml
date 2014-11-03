@@ -28,8 +28,9 @@
              
             .col-md-4.align-left
               = f.select  :posted_delivery_time, options_for_select([["Choose a time"]]),{}, {class:"form-control selectpicker", id:"test_id"}
-
+              %br/ 
             .col-md-4.align-left
+
               .continue-button
                 %button.btn.btn-primary.blue-bg.blue-bg-hover.white{type: :submit} Schedule Pickup
 
