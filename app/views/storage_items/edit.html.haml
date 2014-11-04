@@ -3,7 +3,7 @@
 
 
 / Section: ITEM SELECTION
-%section#about.home-section.text-center
+%section#edit-storage-item.home-section.text-center
   .heading-about.marginbot-20
     .container
       .row
@@ -50,7 +50,7 @@
                     = form.text_area :description, placeholder:"Shoes, books, you name it!", rows:4, class:"form-control"
 
                 .row
-                  .col-md-8.col-md-offset-4.bottom-buttons
+                  .col-md-8.col-md-offset-4.bottom-buttons.col-xs-12
                     = form.submit "Save Changes", class:"btn btn-primary pull-right loadingOnClick" 
                     = link_to "Cancel", :storage_items, class:"btn gray-bg white half-opacity"
 

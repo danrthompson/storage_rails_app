@@ -111,10 +111,10 @@
 
           .row#pending-delivery-form
             %h2
-              %span.items-count#items-pending-delivery #{@num_delivery_items}
-              Items Pending Delivery
+              %span.items-count#items-pending-delivery.hide-on-small #{@num_delivery_items} Items 
+              Pending Delivery
               - if @has_existing_delivery
-                %p.pull-right.half-opacity
+                %p.pull-right.half-opacity.hide-on-small
                   =@existing_delivery.delivery_time.strftime("%B %d at %l:%M %p")
             .double-line
             - @delivery_items.each do |delivery_item|

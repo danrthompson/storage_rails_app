@@ -65,7 +65,7 @@ class SignupPagesController < ApplicationController
 				# })
 
 
-				# UserMailer.delay.welcome_email(@user.id)
+				UserMailer.delay.welcome_email(@user.id)
 				sign_in @user
 				redirect_to confirm_signup_pages_url(@user.id) and return
 			rescue Errno::ECONNREFUSED
@@ -98,7 +98,7 @@ class SignupPagesController < ApplicationController
 			render action: :show and return
 		end
 		if @user.valid?	and @user.ready?
-			# UserMailer.delay.confirm_pickup_email(@pickup_request.id)
+			UserMailer.delay.confirm_pickup_email(@pickup_request.id)
 			redirect_to @pickup_request and return
 		end
 		render action: :show
