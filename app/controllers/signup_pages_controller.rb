@@ -11,7 +11,8 @@ class SignupPagesController < ApplicationController
 	end
 
 	def fast_signup
-		redirect_to({controller: :static_pages, action: :homepage}, notice: 'You must pick a date and time for your pickup.') and return unless params[:pickup_request] and not params[:pickup_request][:posted_delivery_date].blank? and not params[:pickup_request][:posted_delivery_time].blank?
+		default_time_menu_value = 'Choose a time'
+		redirect_to({controller: :static_pages, action: :homepage}, notice: 'You must pick a date and time for your pickup.') and return unless params[:pickup_request] and not params[:pickup_request][:posted_delivery_date].blank? and not params[:pickup_request][:posted_delivery_time].blank? and not params[:pickup_request][:posted_delivery_time] == default_time_menu_value
 		@packing_supplies_request = PackingSuppliesRequest.new
 		@pickup_request = PickupRequest.new(fast_signup_params(params))
 		@user = User.new
