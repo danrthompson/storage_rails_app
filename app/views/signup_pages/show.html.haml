@@ -1,18 +1,32 @@
 // CUSTOM HEADER
+/ .row.header-nav
+/   .nav-links-wrapper.col-md-4.col-xs-5
+/     %a.no-padding.pull-left{href: "/storage_items"}
+/       %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
+/     %a.pull-left.no-side-padding{href: "/storage_items"}
+/       %span.light-gray.black-hover#menu-title QuickBox
+/   .nav-links-wrapper.col-md-1.col-md-offset-6.left-border.col-xs-2
+/     .no-border.nav-links
+/       = link_to "FAQ", faq_path, class:"light-gray black-hover", :target => "_blank"
+/   .nav-links-wrapper.col-md-1.col-xs-3
+/     .no-border.nav-links
+/       = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover blue"
+
+  
 .row.header-nav
-  .nav-links-wrapper.col-md-4.col-xs-5
-    %a.no-padding.pull-left{href: "/storage_items"}
+  .nav-links-wrapper.col-md-4.col-xs-8#header-logo
+    %a.no-padding.pull-left{href: "/"}
       %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
-    %a.pull-left.no-side-padding{href: "/storage_items"}
-      %span.light-gray.black-hover#menu-title QuickBox
-  .nav-links-wrapper.col-md-1.col-md-offset-6.left-border.col-xs-2
-    .no-border.nav-links
+    %a.pull-left.no-side-padding{href: "/"}
+      %span#menu-title
+        QuickBox
+        %span.no-pointer#company-phone (303) 718-7179
+  .nav-links-wrapper.col-md-1.col-md-offset-5.left-border.col-xs-2
+    .no-border.nav-links.hide-on-small
       = link_to "FAQ", faq_path, class:"light-gray black-hover", :target => "_blank"
-  .nav-links-wrapper.col-md-1.col-xs-3
+  .nav-links-wrapper.col-md-1
     .no-border.nav-links
       = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover blue"
-
-        
 
 
 
@@ -25,16 +39,22 @@
     %ul.no-list
       %li.signup-completed#step-1  
         %h4
-          %span.green{:data => {'icon' => "D"}}
-          1. Create Login    
+          %span.green{:data => {'icon' => "D"}}          
+          1. 
+          %br.show-on-small
+          Create Login    
       %li#step-2.signup-active
         %h4
           %span.green.hidden{:data => {'icon' => "D"}}
-          2. Confirm Account
+          2. 
+          %br.show-on-small
+          Confirm Account
       %li#step-3
         %h4
           %span.green.hidden{:data => {'icon' => "D"}}
-          3. Done
+          3.
+          %br.show-on-small
+          Done
 / = render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
 .errors
   = render partial: "partials/error_messages_object_form", locals: {object: @user}
@@ -119,9 +139,6 @@
 
               #submit-details.hidden
                 / %p.align-left.light-gray.small-text * you will only be charged after pickup
-
-                %br/
-                %br/
                 .row
                   .col-md-5.col-md-offset-2.no-side-padding
                     %p.align-right.pull-right.pt-10
@@ -131,7 +148,9 @@
                     / # = cc.check_box :remember_me, class: "pull-left"
                     / %input#terms-checkbox.pull-right{:type => "checkbox", required:true}/
                     = f.check_box :terms_of_service_accepted, {id: 'terms-checkbox', class: 'pull-right', required: 'true'}
+                .row
                   .col-md-4
+                    %br/ 
                     .boxed-gray
                       = f.submit 'confirm order', class:"btn btn-primary blue-bg-hover", id:"submit-button"
 

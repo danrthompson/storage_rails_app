@@ -40,7 +40,6 @@
               .single-line
               %br/
               %br/ 
-         
           
 
           / Bottom Buttons Section
@@ -55,6 +54,12 @@
                 .boxed-gray.continue-button
                   %button.btn.btn-primary.blue-bg.blue-bg-hover.loadingOnClick#continue-btn{:type => "button", disabled: true}
                     = f.submit "Confirm Pickup"
+            .row.show-on-small
+              %p.half-opacity#btn-disabled
+                Buttons Disabled? Your address information may need to be validated. 
+                %br/ 
+                %span.full-opacity.blue.heavy-font Click Here
+              / .single-line
 
 = render :partial => "partials/footer"
 = render :partial => "partials/storageSizeModal"
@@ -78,6 +83,10 @@
     });
 
     $(".small-entry .btn").click(function() {
+      valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
+    });
+
+    $("#btn-disabled").click(function(){
       valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
     });
   });

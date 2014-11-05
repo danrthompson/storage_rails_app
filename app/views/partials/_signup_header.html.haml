@@ -24,7 +24,7 @@
 /     /   = link_to "Home", root_path, class:"light-gray black-hover thin-font" 
 
 .row.header-nav
-  .nav-links-wrapper.col-md-4.col-xs-8
+  .nav-links-wrapper.col-md-4.col-xs-8#header-logo
     %a.no-padding.pull-left{href: "/"}
       %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
     %a.pull-left.no-side-padding{href: "/"}
@@ -33,11 +33,11 @@
         %span.no-pointer#company-phone (303) 718-7179
   .nav-links-wrapper.col-md-1.col-md-offset-5.left-border.col-xs-2
     .no-border.nav-links
-      = link_to "Home", root_path, class:"black-hover light-gray"
+      = link_to "FAQ", faq_path, class:"light-gray black-hover", :target => "_blank"
   .nav-links-wrapper.col-md-1
     .no-border.nav-links
-      = link_to "FAQ", faq_path, class:"light-gray black-hover", :target => "_blank"
-  .nav-links-wrapper.col-md-1.col-xs-2
+      = link_to "Home", root_path, class:"black-hover light-gray"
+  .nav-links-wrapper.col-md-1.col-xs-2.hide-on-small
     .nav-links
       = link_to 'Login', new_user_session_path, class:"blue black-hover"
 

@@ -93,7 +93,7 @@
                 Items In Storage
               .double-line
               - @storage_items.each do |storage_item|
-                .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
+                .col-md-6.col-sm-6.col-xs-12.inventory-entries.delivery-entry{:id => "#{storage_item.id}"}
                   .inner
                     .crop-mask
                       .crop-mask-img-wrapper
@@ -111,14 +111,14 @@
 
           .row#pending-delivery-form
             %h2
-              %span.items-count#items-pending-delivery #{@num_delivery_items}
-              Items Pending Delivery
+              %span.items-count#items-pending-delivery.hide-on-small #{@num_delivery_items} Items 
+              Pending Delivery
               - if @has_existing_delivery
-                %p.pull-right.half-opacity
+                %p.pull-right.half-opacity.hide-on-small
                   =@existing_delivery.delivery_time.strftime("%B %d at %l:%M %p")
             .double-line
             - @delivery_items.each do |delivery_item|
-              .col-md-6.col-sm-6.col-xs-6.inventory-entries.delivery-entry{:id => "#{delivery_item.id}"}
+              .col-md-6.col-sm-6.col-xs-12.inventory-entries.delivery-entry{:id => "#{delivery_item.id}"}
                 .inner
                   .crop-mask
                     .crop-mask-img-wrapper
@@ -139,7 +139,7 @@
               %h2
                 Your Pickup
                 - if @has_existing_pickup
-                  %p.pull-right.half-opacity
+                  %p.pull-right.half-opacity.hide-on-small
                     =@existing_pickup.delivery_time.strftime("%B %d at %l:%M %p")
               .double-line
             .row
@@ -154,7 +154,7 @@
                 %p
                   Please make sure your items are packed before pickup.
                   Until then if you have any questions, feel free to
-                  %a{:href => "mailto:team@quickbox.com"} reach out.
+                  %a{:href => "mailto:team@quickbox.com"} contact us.
                   Thanks!
                 %br/ 
             - if !@has_existing_delivery and @num_storage_items < 1  
@@ -166,20 +166,28 @@
                     = link_to "Logout", destroy_user_session_path, method: "delete"
                     whenever you're ready.                  
                 %br/ 
-          
+        
         .col-md-4.inventory-sidebar
+          .show-on-small
+            %br/ 
+            .double-line
+            %br/ 
           .row.text-block.light-blue-bg
             .innert
               %h5.align-center Notifications
               .single-line
               %ul
+                - if @promo_result
+                  %li 
+                    %span.order-item Successful promocode activation: 
+                    =@promo_result
                 - if @has_existing_pickup
                   %li 
                     %span.order-item You have a pickup scheduled for
                     =@existing_pickup.delivery_time.strftime("%B %d at %l:%M %p")
                 - if @has_existing_delivery
                   %li 
-                    %span.order-item You have #{@delivery_items.count} items scheduled for delivery on
+                    %span.order-item You have a delivery scheduled for 
                     =@existing_delivery.delivery_time.strftime("%B %d at %l:%M %p")
                 - if !@has_existing_pickup && !@has_existing_delivery
                   %li 

@@ -1,5 +1,5 @@
 .row.header-nav
-  .nav-links-wrapper.col-md-4.col-sm-6
+  .nav-links-wrapper.col-md-4.col-sm-6#header-logo
     %a.no-padding.pull-left{href: "/"}
       %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
     %a.pull-left.light-gray.no-side-padding{href: "/"}
@@ -20,9 +20,9 @@
       %a.black-hover{} How? 
 
   
-  .nav-links-wrapper.col-md-2.col-sm-2.col-xs-3.pull-right
+  .nav-links-wrapper.col-md-2.col-sm-2.col-xs-3.pull-right.invisible-when-small
     .no-border.nav-links
-      %a.black-hover.blue.scroll-to-vid{} Sign Up  
+      %a.black-hover.blue{"data-target" => "#signup_modal", "data-toggle" => "modal"} Sign Up  
 
   .nav-links-wrapper.col-md-1.col-sm-1.col-xs-3.pull-right
     .no-border.nav-links

@@ -1,9 +1,32 @@
 @import "variables";
 
+@media screen and (max-width: 480px){
+	
+	.email-body{
+		width: 100% ! important;
+		// margin-left: 5% ! important;
+		display: none ! important;
+	}
+	.bottom-button{
+		width: 80% ! important;
+		margin-left: 10% ! important;
+	}
+
+	#email-title{
+	
+	h2{
+		color: @default-blue ! important;
+	}
+}
+
+}
+
+
 ////////////////////////
 /// HEADER CODE ////////
 ////////////////////////
 .email{
+	width: 100%;
 	margin-top: 60px;
 	p{
 		font-weight: 300;
@@ -19,8 +42,8 @@
 	.bottom-button{
 		background-color: @default-blue;
 		text-align: center;
-		width: 30%;
-		margin-left: 35%;
+		width: 90%;
+		margin-left: 5%;
 		margin-top: 10px;
 		border-radius: 10px;
 		padding: 15px;
@@ -185,8 +208,9 @@
 
 .email-title{
 	background-color: @default-blue;
+	width: 100%;
 	h1{
-		font-size: 38px;
+		font-size: 48px;
 		font-weight: 600;
 		color:white ! important;
 		text-transform: uppercase;
@@ -195,6 +219,19 @@
 		text-align: center;
 	}
 
+}
+
+#email-title{
+	text-align: center;
+	margin-top: 100px;
+	margin-bottom: 40px;
+	h2{
+		color: @gray-regular;
+		font-weight: 700;
+		font-family: Montserrat, sans-serif;
+		text-transform: uppercase;
+		font-size: 38px;
+	}
 }
 
 
@@ -213,8 +250,8 @@
 ///////////////////////
 
 .email-body{
-	width: 70%;
-	margin-left: 15%;
+	width: 90%;
+	margin-left: 5%;
 	p{
 		font-size: 20px;
 		width: 80%;
@@ -227,3 +264,6 @@
 		}
 	}
 }
+
+
+

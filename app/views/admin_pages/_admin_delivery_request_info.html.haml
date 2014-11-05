@@ -8,11 +8,14 @@
     .col-md-2.pull-left
       = link_to admin_assign_driver_path(id: delivery_request.id), class: "pointer white details-btn" do
         %h1.btn.btn-default.red Assign
-    .col-md-3.pull-left
+        %br.show-on-small
+    .col-md-3.pull-left.col-xs
       %a.pointer.white.details-btn{:id => "#{delivery_request.id}"}
         %h1.btn.btn-default.gray-bg View Details
+        %br.show-on-small
     .col-md-3.pull-left.no-padding
       = link_to "Record & Complete", admin_record_delivery_request_path(id: delivery_request.id), class: "btn btn-skin white"
+      
 
 
       / .col-md-3.pull-left

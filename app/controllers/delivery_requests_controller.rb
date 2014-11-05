@@ -68,6 +68,7 @@ class DeliveryRequestsController < ApplicationController
 		@user = current_user
 		@delivery_request = DeliveryRequest.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != @delivery_request.user_id
+		@is_delivery = true
 	end
 
 	def destroy

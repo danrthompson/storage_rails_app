@@ -22,8 +22,6 @@
                 %br/
                 %br/ 
                 %div.form-group.address-form
-                  / = f.label :email
-                  / %br/
                   = f.email_field :email, autofocus: true, placeholder:"Email", class:"form-control"
                 %div
                   = f.password_field :password, autocomplete: "off", placeholder:"Password", class:"form-control"
@@ -31,6 +29,8 @@
                   #remember-checkbox.col-md-6
                     = f.check_box :remember_me, class: "pull-left"
                     %p.pull-left Remember Me
+              %br/ 
+              %br/      
               .col-md-8.col-md-offset-2.bottom-buttons
                 %div= f.submit "Sign in",:class => "btn btn-skin pull-right"                  
                 %a{href: "/"}

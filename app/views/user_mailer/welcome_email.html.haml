@@ -1,7 +1,8 @@
 =stylesheet_link_tag "email"
+%meta{:content => "width=device-width, initial-scale=1.0, user-scalable=no", :name => "viewport"}/
 
 .email
-  .row.email-header-nav
+  .email-header-nav
     %ul.no-list#email-header
       %li.width-50.pull-left.align-left
         %a{href: "/storage_items"}
@@ -13,11 +14,11 @@
       /   .email-nav-links
       /     = link_to destroy_user_session_path, method: "delete", class:"black-hover" do
       /       To QuickBox
-  .email-title
-    %h1 Welcome To Quickbox
-
+  / .email-title
+  /   %h1 Welcome To Quickbox
+  #email-title
+    %h2 Welcome To QuickBox
   .email-body
-    %br/ 
     %p
       Hi #{@user.first_name},
       %br/ 
@@ -47,6 +48,7 @@
     %br/ 
     %br/ 
     .bottom-button
-      =link_to "Visit The Site", storage_items_path
+      %a{:href => "http://www.quickbox.com"} Visit The Site 
+      / =link_to "Visit The Site", storage_items_path
     %br/ 
   .blue-footer
