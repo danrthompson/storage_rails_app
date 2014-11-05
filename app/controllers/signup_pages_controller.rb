@@ -102,6 +102,7 @@ class SignupPagesController < ApplicationController
 			UserMailer.delay.confirm_pickup_email(@pickup_request.id)
 			redirect_to @pickup_request and return
 		end
+		@user.add_readiness_errors
 		render action: :show
 	end
 

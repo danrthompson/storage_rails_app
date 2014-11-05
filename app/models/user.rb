@@ -43,6 +43,26 @@ class User < ActiveRecord::Base
     Stripe::Customer.retrieve self.stripe_customer_identifier
   end
 
+  def add_readiness_errors
+    val_hash = {
+      'Credit card cannot be blank.' => self.stripe_user.cards.first,
+      'Address cannot be blank.' => self.address_line_1,
+      'City cannot be blank.' => self.city,
+      'State cannot be blank.' => self.state,
+      'ZIP code cannot be blank.' => self.zip,
+      'Phone number cannot be blank.' => self.phone_number,
+      'You must accept the Terms of Service.' => self.terms_of_service_accepted
+    }
+
+    if val_hash.values.any? {|val| val.blank?}
+      val_hash.each do |key, val|
+        if val.blank?
+          errors.add(:user, key)
+        end
+      end
+    end
+  end
+
   protected
 
   def normalize_city
