@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  include Textable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   validates :exp_month, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 12}, allow_nil: true
   validates :exp_year, numericality: {only_integer: true, greater_than_or_equal_to: 2014, less_than_or_equal_to: 2035}, allow_nil: true
 
-  after_create :create_stripe_customer
+  after_create :create_stripe_customer, :send_admin_signup_text
 
   def boxes_at_home
     PackingSuppliesRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity) - PickupRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity)
@@ -64,6 +64,12 @@ class User < ActiveRecord::Base
   end
 
   protected
+
+  def send_admin_signup_text
+    if Rails.env.production?
+      User.send_admin_text('You have a new user signup: ' + self.first_name + " " + self.last_name + ". Email: " + self.email)
+    end
+  end
 
   def normalize_city
   	self.city = self.city.strip.capitalize unless self.city.blank?

@@ -1,14 +1,6 @@
 source 'https://rubygems.org'
 
 
-# during dev
-gem 'pry'
-
-gem 'less'
-gem 'twilio-ruby' 
-
-
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use postgresql as the database for Active Record
@@ -61,6 +53,8 @@ gem 'hpricot'
 gem 'premailer-rails'
 gem 'autoscaler'
 gem 'sidekiq'
+gem 'less'
+gem 'twilio-ruby' 
 # gem 'activeadmin'
 # gem 'cancan'
 
@@ -75,6 +69,7 @@ group :development, :test do
 	# gem 'selenium-webdriver'
 	gem 'rb-fsevent'
 	gem 'foreman'
+	gem 'pry'
 end
 
 group :test do
