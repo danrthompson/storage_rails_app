@@ -3,7 +3,7 @@
   .row
     .col-md-5
       .boxed-gray.continue-button
-        %button.btn.btn-primary.blue-bg#by-category-btn{:type => "button"}
+        %button.btn.btn-primary.gray-bg.third-opacity#by-category-btn{:type => "button"}
           Choose By Category
     
       
@@ -11,10 +11,10 @@
       %h4.light-gray#storage-item-or (or)
     .col-md-5
       .boxed-gray.continue-button
-        %button.btn.btn-primary.gray-bg.third-opacity#by-item-btn{:type => "button"}
+        %button.btn.btn-primary.blue-bg#by-item-btn{:type => "button"}
           Choose By Item
 .col-md-8.col-md-offset-2.inventory
-  .row#entries-category-list
+  .row#entries-category-list.hidden
     = render partial: "partials/list_item_4col_field", locals:{title: "Small Item", price: "$5/month", id:"box", field_val: :small_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
     = render partial: "partials/list_item_4col_field", locals:{title: "Medium  Item", price: "$12/month", id:"medium", field_val: :medium_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"Wardrobe Boxes, Chairs, Lamps, Skis, Bikes, Small Furniture, Equivalent"}
     = render partial: "partials/list_item_4col_field", locals:{title: "Large  Item", price: "$25/month", id:"large", field_val: :large_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:" Mattresses, desks, couches, tables, tvs, or furniture that takes two."}
@@ -26,7 +26,7 @@
   /     Prefer a list of specific items?
   /     %span.blue Click here!
   /   %br/ 
-  .row#small-entries-list.hidden
+  .row#small-entries-list
     .row
       %h2
         Small Items
@@ -102,7 +102,6 @@
           Our drivers can help you choose the right categories when they arrive. 
           %br/ 
           %br/ 
-          You can also change your pickup with them when they arrive.
 
 
 
