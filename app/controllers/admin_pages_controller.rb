@@ -61,7 +61,7 @@ class AdminPagesController < ApplicationController
 
 	def complete_packing_supplies_request
 		packing_supplies_request = PackingSuppliesRequest.find(params[:id])
-		Stripe::Charge.create(amount: (packing_supplies_request.price * 100).to_i, currency: 'usd', customer: packing_supplies_request.user.stripe_customer_identifier, description: "Packing supplies shipped on #{Time.now.strftime('%m/%d')}", statement_description: "QUICKBOX SHPMT")
+		Stripe::Charge.create(amount: (packing_supplies_request.price * 100).to_i, currency: 'usd', customer: packing_supplies_request.user.stripe_customer_identifier, description: "Packing supplies shipped on #{Time.now.strftime('%m/%d')}", statement_description: "PACKING SUPPLIE")
 		packing_supplies_request.update(completion_time: Time.now, driver_id: current_user.id)
 		redirect_to :admin, notice: 'Packing supplies request marked shipped' and return
 	end
@@ -123,7 +123,7 @@ class AdminPagesController < ApplicationController
 		subscription = stripe_user.subscriptions.first
 		subscription.quantity -= (monthly_cost * 100).to_i
 		subscription.save
-		Stripe::Charge.create(amount: (@delivery_request.price * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "Quickbox delivery on #{Time.now.strftime('%m/%d')}", statement_description: "QUICKBOX DLVRY")
+		Stripe::Charge.create(amount: (@delivery_request.price * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "Quickbox delivery on #{Time.now.strftime('%m/%d')}", statement_description: "DELIVERY FEE")
 
 		@delivery_request.save
 		UserMailer.delay.delivery_receipt_email(@delivery_request.id)
