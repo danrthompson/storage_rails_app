@@ -35,12 +35,16 @@ class User < ActiveRecord::Base
   end
 
   def ready?
-    return true if self.stripe_user.cards.first and self.address_line_1 and self.city and self.state and self.zip and self.phone_number and self.terms_of_service_accepted
+    return true if self.stripe_user and self.stripe_user.cards and self.stripe_user.cards.first and self.address_line_1 and self.city and self.state and self.zip and self.phone_number and self.terms_of_service_accepted
     return false
   end
 
   def stripe_user
-    Stripe::Customer.retrieve self.stripe_customer_identifier
+    if self.stripe_customer_identifier
+      Stripe::Customer.retrieve self.stripe_customer_identifier
+    else
+      nil
+    end
   end
 
   def add_readiness_errors
