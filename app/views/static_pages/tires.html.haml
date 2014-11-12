@@ -1,0 +1,44 @@
+- if @user
+  = render :partial => 'partials/logged_in_header'
+- else
+  = render :partial => 'partials/signup_header'
+
+/ BLUE HEADER BAR
+.container.full-width.blue-bg.no-padding.white.dashboard-header.single-row
+  .row
+    .col-md-12.align-center
+      %h1 Let's Change Those Tires!
+
+/ Section: ITEM SELECTION
+%section#about.home-section.text-center
+  .heading-about.marginbot-20
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          .section-heading
+            = image_tag "https://s3.amazonaws.com/storage_rails_app_dev/images/tire.svg", class:"width-30"
+            %br/
+            %br/
+            %br/
+            %h2.no-margin.dark-gray Tire Storage
+            %h2.blue $50/Season
+            %p QuickBox is your storage valet - we pick up your items and deliver them to storage so you don't have to. Currently, we're offering a winter special for storing your tires, just $50 for the season.
+            %br/ 
+            %p 
+              Use promo code:
+              %span.blue.heavy-font TireSpecial 
+              at checkout to redeem the discount. You can also call us at
+              %span.blue.heavy-font 720-583-5826
+              and we'll set up your account for you. Easy as that!
+      .row
+        %br/ 
+        %br/ 
+        .bottom-button.col-md-4.col-md-offset-4
+          %a.white{:href => "http://www.quickbox.com"}
+            .boxed-gray.continue-button
+              %button.btn.blue-bg Click To Get Started
+                           
+
+= render :partial => 'partials/footer'
+= render :partial => 'partials/javascriptSource'
+

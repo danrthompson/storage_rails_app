@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   get 'faq' => 'static_pages#faq'
   get 'contact' => 'static_pages#contact'
   get 'email' => 'static_pages#email_example'
-
+  get 'tires' => 'static_pages#tires'
 
 
   get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
