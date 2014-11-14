@@ -28,7 +28,7 @@ class SignupPagesController < ApplicationController
 		if @user.valid? and @pickup_request.valid?
 			@pickup_request.save
 			begin
-				UserMailer.delay.welcome_email(@user.id)
+				# UserMailer.delay.welcome_email(@user.id)
 				sign_in @user
 				redirect_to confirm_signup_pages_url(@user.id) and return
 			rescue Errno::ECONNREFUSED

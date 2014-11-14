@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+
 //= require gnmenu
 //= require turbolinks
 //= require bootstrap
