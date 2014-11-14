@@ -556,7 +556,7 @@ input[type=submit]{
 }
 .confirm-elem{
 	background-color: @gray-background;
-	border: 5px solid white;
+	// border: 5px solid white;
 	padding: 20px;
 	border-radius: 10px;
 	// padding-bottom: 10px;
@@ -1056,14 +1056,18 @@ h3.double-underlined{
 	}
 
 	.small-entry{
+		overflow: hidden;
+
 		.fa{
-			font-size: 60px;
+			font-size: 48px;
 			padding-top: 10px;
 			padding-bottom: 10px;
 		}
 		h5{
 			margin-bottom: 5px;
+			font-size: 14px;
 			height: 30px;
+			word-wrap: break-word;
 		}
 	}
 
@@ -2072,6 +2076,12 @@ p.alert  , p.notice {
 	}
 
 	// Modal: Price Estimator
+	#estimator-page{
+		.continue-button button{
+			width: 94% ! important;
+			margin-left: 2%;
+		}
+	}
 	.modal-dialog{
 		.continue-button{
 			button{

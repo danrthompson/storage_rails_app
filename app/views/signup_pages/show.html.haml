@@ -12,7 +12,6 @@
 /     .no-border.nav-links
 /       = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover blue"
 
-  
 .row.header-nav
   .nav-links-wrapper.col-md-4.col-xs-8#header-logo
     %a.no-padding.pull-left{href: "/"}
@@ -62,8 +61,9 @@
 %br/ 
 / %br/ 
 
+
 // Confirmation Page
-%section.text-center
+%section.text-center.inventory#estimator-page
   = form_for @user, url:add_payment_signup_pages_path do |f|
     / .heading-about
     /   .container
@@ -72,6 +72,55 @@
     /         .section-heading
     /           %h2.no-margin Account Confirmation
     /           %h3.light-gray (the last step)
+    .container
+      .col-md-7.col-md-offset-1.boxed-gray
+        = render partial: "partials/small_items"
+      .col-md-3
+        .row
+          .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
+            %h5 Estimated Cost of Pickup
+            %ul
+              %li#num-box.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; Small 
+                %i.pull-right.light-gray $5/unit
+              %li#num-medium.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp;Medium 
+                %i.pull-right.light-gray $12.00/unit
+              %li#num-large.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp;Large 
+                %i.pull-right.light-gray $25/unit
+              %li#num-extra_large.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; XL 
+                %i.pull-right.light-gray $40/unit
+              %br/  
+              %li.half-opacity
+                Valet Pickup
+                %span.pull-right Free
+            .single-line
+            %ul
+              %li.heavy-font
+                Estimate
+                %span#pickup-subtotal.pull-right $00.00/m
+        .continue-button  
+          - if !@has_existing_pickup
+            = link_to new_pickup_request_path do
+              %button#pickup-button.btn.btn-primary.gray-bg{:disabled => false, :type => "button"}
+                New Pickup
+          - else
+            = link_to edit_pickup_request_path(id: @has_existing_pickup) do
+              %button#pickup-button.btn.btn-primary.gray-bg.blue-bg-hover.no-border{:type => "button"} Pickup time
+          - if !@has_existing_delivery
+            = link_to new_delivery_request_path do
+              %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}  Delivery
+          - else
+            = link_to edit_delivery_request_path(id: @has_existing_delivery) do
+              %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Edit Delivery
+
+
     .container
       .row
         .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
@@ -85,6 +134,10 @@
           
             %br/ 
             %br/ 
+
+
+
+
 
       / .row#quote-generator.hidden
       /   .col-md-12

@@ -27,70 +27,7 @@
   /     %span.blue Click here!
   /   %br/ 
   .row#small-entries-list
-    .row
-      %h2
-        Small Items
-        %span.small-entry-price $5/month
-
-      .double-line
-      / Small Items
-      = render partial: "partials/small_entry", locals: {id:"smlbox", icon_name:"icon-box", name:"box", linked_to: "small"}
-      = render partial: "partials/small_entry", locals: {id:"bag", icon_name:"icon-bag", name:"bag", linked_to: "small"}
-      = render partial: "partials/small_entry", locals: {id:"tire", icon_name:"tire", name:"tire", linked_to: "small"}
-      = render partial: "partials/small_entry", locals: {id:"parcel", icon_name:"parcel", name:"other small", linked_to: "small"}
-
-    .row
-      %br/ 
-      %h2
-        Medium Items
-        %span.small-entry-price $12/month
-      .double-line
-      / Medium Items
-      = render partial: "partials/small_entry", locals: {id:"bike", icon_name:"icon-bike", name:"bike", linked_to: "medium"}
-      = render partial: "partials/small_entry", locals: {id:"skis", icon_name:"icon-skis", name:"skis", linked_to: "medium"}
-      = render partial: "partials/small_entry", locals: {id:"coffee_table", icon_name:"icon-coffee-table", name:"coffee table", linked_to: "medium"}
-      = render partial: "partials/small_entry", locals: {id:"golfclubs", icon_name:"icon-golfclubs", name:"golf clubs", linked_to: "medium"}
-      = render partial: "partials/small_entry", locals: {id:"desk_chair", icon_name:"icon-desk-chair", name:"desk chair", linked_to: "medium"}
-      = render partial: "partials/small_entry", locals: {id:"table_chair", icon_name:"icon-tablechair", name:"table chair", linked_to: "medium"}
-      = render partial: "partials/small_entry", locals: {id:"luggage", icon_name:"icon-luggage", name:"luggage", linked_to: "medium"}
-      = render partial: "partials/small_entry", locals: {id:"lamp", icon_name:"icon-lamp", name:"lamp", linked_to: "medium"}
-      = render partial: "partials/small_entry", locals: {id:"bedside_table", icon_name:"icon-bedside-table", name:"bedside table", linked_to: "medium"}
-      = render partial: "partials/small_entry", locals: {id:"barstool", icon_name:"icon-barstool", name:"bar stool", linked_to: "medium"}
-      = render partial: "partials/small_entry", locals: {id:"barrel", icon_name:"barrel", name:"other medium", linked_to: "medium"}
-      
-
-    .row
-      %br/ 
-      / Large Items
-      %h2
-        Large Items
-        %span.small-entry-price $25/month
-      .double-line
-      = render partial: "partials/small_entry", locals: {id:"tv", icon_name:"icon-tv", name:"tv", linked_to: "large"}
-      = render partial: "partials/small_entry", locals: {id:"recliner", icon_name:"icon-recliner", name:"recliner", linked_to: "large"}
-      = render partial: "partials/small_entry", locals: {id:"desk", icon_name:"icon-desk", name:"desk", linked_to: "large"}
-      = render partial: "partials/small_entry", locals: {id:"rug", icon_name:"icon-rug", name:"rug", linked_to: "large"}
-      = render partial: "partials/small_entry", locals: {id:"armchair", icon_name:"icon-armchair", name:"armchair", linked_to: "large"}
-      = render partial: "partials/small_entry", locals: {id:"bed", icon_name:"icon-bed", name:"Bed Frame", linked_to: "large"}
-      = render partial: "partials/small_entry", locals: {id:"filing_cabinet", icon_name:"icon-filing-cabinet", name:"filing cabinet", linked_to: "large"}
-      = render partial: "partials/small_entry", locals: {id:"couch", icon_name:"icon-couch", name:"couch", linked_to: "large"}
-      
-      = render partial: "partials/small_entry", locals: {id:"mattress", icon_name:"icon-mattress", name:"mattress", linked_to: "large"}
-      = render partial: "partials/small_entry", locals: {id:"chest", icon_name:"icon-chest", name:"chest", linked_to: "large"}
-      = render partial: "partials/small_entry", locals: {id:"crate", icon_name:"crate", name:"other large", linked_to: "large"}
-
-
-    .row
-      %br/ 
-      / Large Items
-      %h2
-        Extra Large Items
-        %span.small-entry-price $40/month
-      .double-line
-
-      = render partial: "partials/small_entry", locals: {id:"dining_table", icon_name:"icon-dining-table", name:"dining table", linked_to: "xl"}
-      = render partial: "partials/small_entry", locals: {id:"sectional", icon_name:"icon-sectional", name:"sectional couch", linked_to: "xl"}
-      = render partial: "partials/small_entry", locals: {id:"elephant", icon_name:"elephant", name:"other xl", linked_to: "xl"}
+    = render partial: "partials/small_items"
     .row
       .col-md-10.col-md-offset-1.align-center
         %br

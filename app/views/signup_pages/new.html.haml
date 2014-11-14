@@ -24,12 +24,8 @@
 
 
 %br/ 
-/ %br/ 
-/ %br/ 
-
 .container
   = render partial: 'partials/error_messages_object_form', locals: {object: @user}
-  / = render partial: 'partials/error_messages_object_form', locals: {object: @packing_supplies_request}
   = render partial: 'partials/error_messages_object_form', locals: {object: @pickup_request}
 %br/ 
 %br/ 
@@ -52,6 +48,24 @@
           .boxed-grey
             .row
               %br/ 
+              / = fields_for @user do |userAcct| 
+              /   .col-md-8.col-md-offset-2.form-group.address-form
+              /     .row
+              /       .col-md-12
+              /         %div.extra-form-padding
+              /           = userAcct.text_field :first_name, autofocus: true, class:"form-control", placeholder: "First Name"
+              /     .row#signup-emailaddr
+              /       .col-md-12
+              /         %div.extra-form-padding
+              /           = userAcct.email_field :email, autofocus: true, class:"form-control", placeholder: "Email Address"
+              /     .row
+              /       .col-md-12
+              /         %div.extra-form-padding
+              /           = userAcct.password_field :first_name, autofocus: true, class:"form-control", placeholder: "Password"
+              /   .col-md-8.col-md-offset-2.bottom-buttons
+              /     = userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn", disabled: true                 
+              /     %a.pointer{href:"/"}
+              /       %h1.btn.btn-default.pull-left Back
               = fields_for @user do |userAcct| 
                 .col-md-8.col-md-offset-2.form-group.address-form
                   .row
@@ -72,13 +86,9 @@
                     .col-md-6
                       %div.extra-form-padding
                         = userAcct.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm Password"
-
-
-
                 .col-md-8.col-md-offset-2.bottom-buttons
                   = userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn", disabled: true                 
                   %a.pointer{href:"/"}
-                    / %h1.btn.btn-default.pull-left#signup-fourth-back Back
                     %h1.btn.btn-default.pull-left Back
             %br/
             %br/ 
