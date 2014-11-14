@@ -8,7 +8,6 @@
   // First Page
   %section#introSection.align-center
     #introSectionContentWrapper
-      %br/ 
       %h1.no-margin
         %span.blue QuickBox
         Storage
@@ -16,7 +15,24 @@
         You Pack.
         %span.blue We Pickup.
       %br/ 
-      .slider-wrapper
+      %br/ 
+      .main-images.full-width.row
+        .col-md-4.no-padding
+          %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/home-notext-1.png", :alt => ""}/
+          %p Flexible Pricing By The Item
+          / .blue-bar
+        .col-md-4.no-padding
+          %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/home-notext-3.png", :alt => ""}/
+          %p Door To Door Pickup & Delivery
+
+        .col-md-4.no-padding
+          %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/home-notext-2.png", :alt => ""}/
+          %p Your Items A Click Away
+          / .blue-bar
+
+      %br/ 
+    
+      .slider-wrapper.hidden
         %ul.bxslider 
           %li 
             %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-1.png", :alt => ""}/
@@ -24,13 +40,17 @@
             %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-2.png", :alt => ""}/ 
           %li 
             %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-3.png", :alt => ""}/ 
+        %img{:src => "", :alt => ""}/ 
       %br/ 
       %div 
         %h3.heavy-font.dark-gray
           Ready To Go?
           %a{:href => ""} Schedule a free pickup!
            
-          %p (or call us at 720-583-5826)
+          %p
+            (or call us at 
+            %span 720-583-5826
+            )
 
   // Divider Blue Bar
   .blue-bar
@@ -48,8 +68,8 @@
     %br/ 
     %br/
     %h3.dark-gray.no-margin
-      %span.blue Free Pickups
-      To Save You Time And Money 
+      %span.blue QuickBox
+      Pickups
     / %h2.no-margin
     /   %span.blue Quickbox
     /   Pickups
@@ -62,8 +82,8 @@
     %br/ 
     %br/ 
     %h3.dark-gray.no-margin
-      Your Items
-      %span.blue Delivered With A Click 
+      %span.blue QuickBox
+      Deliveries
       %hr.half-width.half-opacity
     .container
       %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/delivery-process.png", :alt => ""}/ 

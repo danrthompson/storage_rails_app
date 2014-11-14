@@ -5,15 +5,12 @@ $(document).ready(function(){
 		auto: true
 	});
 
-	var paddingToAdd = ($("#introSection").height() - $("#introSectionContentWrapper").height());
-	paddingToAdd = paddingToAdd/8;
-	console.log($("#introSection").height());
-	console.log($("#introSectionContentWrapper").height());
-	console.log(paddingToAdd);
-	$("#introSection").css({"top" : paddingToAdd});
-	// $("#introSection").css({"margin-bottom" : (paddingToAdd*-1)});
 
 
+});
+
+$(document).load(function(){
+	resizeDiv();
 });
 
 window.onresize = function(event) {
@@ -25,6 +22,14 @@ function resizeDiv() {
 	vpw = $(window).width();
 	vph = $(window).height();
 	$('#introSection').css({'height': vph + 'px'});
+
+	var paddingToAdd = ($("#introSection").height() - $("#introSectionContentWrapper").height());
+	paddingToAdd = paddingToAdd/8;
+	console.log($("#introSection").height());
+	console.log($("#introSectionContentWrapper").height());
+	console.log(paddingToAdd);
+	$("#introSection").css({"top" : paddingToAdd});
+	// $("#introSection").css({"margin-bottom" : (paddingToAdd*-1)});
 }
 
 // $(window).load(function() {		
