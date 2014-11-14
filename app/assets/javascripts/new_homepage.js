@@ -21,14 +21,15 @@ function resizeDiv() {
 	console.log("resizing div");
 	vpw = $(window).width();
 	vph = $(window).height();
-	$('#introSection').css({'height': vph + 'px'});
+	$('#introSection').css({'min-height': vph + 'px'});
 
 	var paddingToAdd = ($("#introSection").height() - $("#introSectionContentWrapper").height());
-	paddingToAdd = paddingToAdd/8;
+	paddingToAdd = (paddingToAdd/4);
 	console.log($("#introSection").height());
 	console.log($("#introSectionContentWrapper").height());
-	console.log(paddingToAdd);
-	$("#introSection").css({"top" : paddingToAdd});
+	console.log("padding To Add:" + paddingToAdd);
+	var paddingPX = paddingToAdd + "px";
+	$("#introSection").css({"top" : paddingPX});
 	// $("#introSection").css({"margin-bottom" : (paddingToAdd*-1)});
 }
 
