@@ -1,16 +1,3 @@
-// CUSTOM HEADER
-/ .row.header-nav
-/   .nav-links-wrapper.col-md-4.col-xs-5
-/     %a.no-padding.pull-left{href: "/storage_items"}
-/       %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
-/     %a.pull-left.no-side-padding{href: "/storage_items"}
-/       %span.light-gray.black-hover#menu-title QuickBox
-/   .nav-links-wrapper.col-md-1.col-md-offset-6.left-border.col-xs-2
-/     .no-border.nav-links
-/       = link_to "FAQ", faq_path, class:"light-gray black-hover", :target => "_blank"
-/   .nav-links-wrapper.col-md-1.col-xs-3
-/     .no-border.nav-links
-/       = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover blue"
 
 .row.header-nav
   .nav-links-wrapper.col-md-4.col-xs-8#header-logo
@@ -31,7 +18,7 @@
 
 .container.full-width.blue-bg.no-padding.white.align-center
   %br/ 
-  %h1#lets-doit ACCOUNT DETAILS
+  %h1#lets-doit Item Selection
 
 #signup-progress.row.align-center
   .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1
@@ -58,98 +45,74 @@
 .errors
   = render partial: "partials/error_messages_object_form", locals: {object: @user}
 %br/ 
+
 %br/ 
 %br/ 
+/ %br/ 
 
 // Confirmation Page
 %section.text-center.inventory#estimator-page
   
   = form_for @user, url:add_payment_signup_pages_path do |f|
     .container
-      .row
-        .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
-          #pickup-details
-            .row
-              %h3.double-underlined Pickup Details
-              .double-line
-              #delivery-form
-                = render partial: "partials/delivery_addr_date", locals: {field:f, id:"datepicker"}
-              %h5.pull-right#show-continue.light-gray.black-hover.pointer Continue
-          
-            %br/ 
-            %br/ 
+      .col-md-7.col-md-offset-1.boxed-gray
+        %p.confirm-elem.align-center Aren't sure what you need yet? Feel free to skip this step and our drivers will record your items during pickup.
+        %br/ 
+        %br/ 
+        = render partial: "partials/small_items"
+        / This is used to store values from all categories. It is antiquated from when we were allowing choice by item or by category. However, it is currently necessary because it is the intermediary that aggregates all the items by category type before updating the sum total.
+        .hidden
+          = render partial: "partials/quote_gen_modal"
+        %br/ 
+        %br/ 
+      .col-md-3#estimator-sidebar
+        .row
+          .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
+            %h5.align-center Price of Storage
+            %ul
+              %li#num-small.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; Small 
+                %i.pull-right.light-gray $5/unit
+              %li#num-medium.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp;Medium 
+                %i.pull-right.light-gray $12.00/unit
+              %li#num-large.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp;Large 
+                %i.pull-right.light-gray $25/unit
+              %li#num-extra_large.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; XL 
+                %i.pull-right.light-gray $40/unit
+              %li#num-5x10.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; 5'x10' 
+                %i.pull-right.light-gray $75/month
+              %li#num-10x10.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; 10'x10' 
+                %i.pull-right.light-gray $140/month
+              %li#num-10x20.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; 10'x20' Unit 
+                %i.pull-right.light-gray $250/month
+              %br/  
+              %li.half-opacity
+                Valet Pickup
+                %span.pull-right Free
+            .single-line
+            %ul
+              %li.heavy-font
+                Subtotal
+                %span#pickup-subtotal.pull-right $00.00/m
 
+        .continue-button.align-center
+          %p.half-opacity You can always change or cancel a pickup later.
+          %button#pickup-button.btn.btn-primary.gray-bg{:type => "button"} Back
+          %button.btn.btn-primary.blue-bg{:disabled => false, :type => "button"} Continue
 
-
-
-
-      / .row#quote-generator.hidden
-      /   .col-md-12
-      /     %h4.pointer.pull-right#quote-close close
-      /     = fields_for @temp_pickup, html:{id:"delivery-form"} do |pickup_field|
-      /       = render partial: "partials/storage_items", locals:{f:pickup_field}
-
-      .row
-        .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
-          .row#payment-details.hidden
-            %h3.double-underlined
-              Payment Info
-              / %p.pull-right.half-opacity
-              / No charges will take place until you put items in storage
-            .double-line
-            %p.heavy-font
-              %span.half-opacity No charges will occur until you put items in storage. 
-               
-              To get a price estimate for your items click
-
-              %span.blue.pointer#quote-triggerr{"data-target" => "#quote_gen_popup", "data-toggle" => "modal"}
-                here.
-            %br/ 
-            // Credit Card Info Form
-            #credit-card-form
-              .bg-gray
-                %br/
-                = render partial: "partials/cc_info", locals:{field: f}
-              %br/ 
-              %h5.pull-right#cc-continue.light-gray.black-hover.pointer Continue   
-
-              
-              %br/ 
-              %div#finish-details.hidden
-                %h3.double-underlined Finish Line
-
-                .double-line
-                .bg-gray
-                  %br/ 
-                  .row
-
-                    .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2.align-left
-                      .form-group
-                        .row
-                          .col-md-6.light-gray
-                            = f.label :promo_code, "Promo Code? (optional)", class:"no-margin"
-                            = f.text_field :promo_code, class:"form-control"
-                          .col-md-6
-                            = f.label :referrer, "How did you hear about us?"
-                            = f.select  :referrer, options_for_select([["Word of mouth"], ["An ad online"], ["A flyer"], ["Referred by a company"], ["Search"]]),{}, {class:"form-control"}
-                %br/
-
-              #submit-details.hidden
-                / %p.align-left.light-gray.small-text * you will only be charged after pickup
-                .row
-                  .col-md-5.col-md-offset-2.no-side-padding
-                    %p.align-right.pull-right.pt-10
-                      I agree to the
-                      %a.pointer.blue.yellow-hover{"data-target" => "#myModal", "data-toggle" => "modal"} terms of service 
-                  .col-md-1
-                    / # = cc.check_box :remember_me, class: "pull-left"
-                    / %input#terms-checkbox.pull-right{:type => "checkbox", required:true}/
-                    = f.check_box :terms_of_service_accepted, {id: 'terms-checkbox', class: 'pull-right', required: 'true'}
-                .row
-                  .col-md-4
-                    %br/ 
-                    .boxed-gray
-                      = f.submit 'confirm order', class:"btn btn-primary blue-bg-hover", id:"submit-button"
 
 
 %br/ 
