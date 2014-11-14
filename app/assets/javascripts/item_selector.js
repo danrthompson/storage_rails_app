@@ -10,11 +10,32 @@ $(document).ready(function() {
       refreshOrder(field.val(), orderEntrySpan);
     });
 
+    setSidebarPosition();
+
+
+    // var scrollTop = $(window).scrollTop(),
+    // elementOffset = $('#my-element').offset().top,
+    // distance      = (elementOffset - scrollTop);
 
 });
 
+window.onresize = function(event) {
+  // setSidebarPosition();
+  // console.log("resizing")
+  setSidebarPosition();
+}
 
-
+function setSidebarPosition(){
+  console.log("setting position");
+  $("#estimator-sidebar").css({"position": "static", "top":"", "left":""});
+  var offset = $("#estimator-sidebar").offset();
+  var offsetLeft = offset.left;
+  var offsetTop = offset.top;
+  $("#estimator-sidebar").css({"position": "fixed", "top":offsetTop, "left":offsetLeft});
+  if (offsetTop > $(window).height()){
+    $("#estimator-sidebar").css({"position": "static", "top":"", "left":""});
+  }
+}
   ///////////////////////////////
   $("#by-item-btn").click(function(){
     console.log("clicked!");
@@ -74,7 +95,7 @@ $(document).ready(function() {
 
     // console.log(field_name);
     switch(field_name) {
-      case "#txt-box":
+      case "#txt-small":
         var itemVal = $("#txt-parcel").val();
         // console.log("itemVal:" + itemVal);
         $("#txt-parcel").val(+itemVal + 1);
@@ -104,41 +125,17 @@ $(document).ready(function() {
   //////////
   $(".small-inc").click(function(){
     var id = $(this).attr('id');
-    var field = $("#txt-"+id);
-    var val2 = $(field).val();
-    val2 = +val2 + 1;
-    $(field).val(val2);
-    var field = $("#txt-box");
-    var resutVal = sumFieldsFor(".small-txt");
-    $(field).val(resutVal);
-    var orderEntrySpan = $('#num-'+ "box"+ " span");
-    refreshOrder(field.val(), orderEntrySpan);
+    reactToIncButton("small", id);
   });
 
   $(".medium-inc").click(function(){
     var id = $(this).attr('id');
-    var field = $("#txt-"+id);
-    var val2 = $(field).val();
-    val2 = +val2 + 1;
-    $(field).val(val2);
-    var field = $("#txt-medium");
-    var resutVal = sumFieldsFor(".medium-txt");
-    $(field).val(resutVal);
-    var orderEntrySpan = $('#num-'+ "medium"+ " span");
-    refreshOrder(field.val(), orderEntrySpan);
+    reactToIncButton("medium", id);
   });
 
   $(".large-inc").click(function(){
     var id = $(this).attr('id');
-    var field = $("#txt-"+id);
-    var val2 = $(field).val();
-    val2 = +val2 + 1;
-    $(field).val(val2);
-    var field = $("#txt-large");
-    var resutVal = sumFieldsFor(".large-txt");
-    $(field).val(resutVal);
-    var orderEntrySpan = $('#num-'+ "large"+ " span");
-    refreshOrder(field.val(), orderEntrySpan);
+    reactToIncButton("large", id);
   });
 
   $(".xl-inc").click(function(){
@@ -154,8 +151,35 @@ $(document).ready(function() {
     refreshOrder(field.val(), orderEntrySpan);
   });
 
+  $(".5x10-inc").click(function(){
+    var id = $(this).attr('id');
+    reactToIncButton("5x10", id);
+  });
+  $(".10x10-inc").click(function(){
+    var id = $(this).attr('id');
+    reactToIncButton("10x10", id);
+  });
+  $(".10x20-inc").click(function(){
+    var id = $(this).attr('id');
+    reactToIncButton("10x20", id);
+  });
+
+
+  function reactToIncButton(fieldType, id){
+    var field = $("#txt-"+id);
+    var val2 = $(field).val();
+    val2 = +val2 + 1;
+    $(field).val(val2);
+    var field = $("#txt-" + fieldType);
+    var resutVal = sumFieldsFor("."+ fieldType +"-txt");
+    $(field).val(resutVal);
+    var orderEntrySpan = $('#num-'+ fieldType + " span");
+    refreshOrder(field.val(), orderEntrySpan);
+  }
+
+
   $('.small-txt').on('input', function() {
-    var field = $("#txt-box");
+    var field = $("#txt-small");
     var resutVal = sumFieldsFor(".small-txt");
     $(field).val(resutVal);
     var orderEntrySpan = $('#num-'+ "small"+ " span");
@@ -163,19 +187,21 @@ $(document).ready(function() {
   });
 
   $('.medium-txt').on('input', function() {
-    var field = $("#txt-medium");
-    var resutVal = sumFieldsFor(".medium-txt");
-    $(field).val(resutVal);
-    var orderEntrySpan = $('#num-'+ "medium"+ " span");
-    refreshOrder(field.val(), orderEntrySpan);
+    readFieldUpdateAll("medium");
+    // var field = $("#txt-medium");
+    // var resutVal = sumFieldsFor(".medium-txt");
+    // $(field).val(resutVal);
+    // var orderEntrySpan = $('#num-'+ "medium"+ " span");
+    // refreshOrder(field.val(), orderEntrySpan);
   });
 
   $('.large-txt').on('input', function() {
-    var field = $("#txt-large");
-    var resutVal = sumFieldsFor(".large-txt");
-    $(field).val(resutVal);
-    var orderEntrySpan = $('#num-'+ "large"+ " span");
-    refreshOrder(field.val(), orderEntrySpan);
+    readFieldUpdateAll("large");
+    // var field = $("#txt-large");
+    // var resutVal = sumFieldsFor(".large-txt");
+    // $(field).val(resutVal);
+    // var orderEntrySpan = $('#num-'+ "large"+ " span");
+    // refreshOrder(field.val(), orderEntrySpan);
   });
 
 
@@ -187,30 +213,24 @@ $(document).ready(function() {
     refreshOrder(field.val(), orderEntrySpan);
   });
 
-
   fieldsSum = 0;
   function sumFieldsFor(txt_field){
     fieldsSum = 0;
-    // console.log("fieldsSum: " + fieldsSum);
     var objects = $(txt_field);
-    // console.log(objects.length);
     objects.each(function(){
       var fieldVal = parseInt($(this).val());
       if (!isNaN(fieldVal)) fieldsSum = +fieldsSum + fieldVal;
-      // console.log("Field val: " + fieldVal + "  fieldsSum" + fieldsSum);
     });
-    // console.log(" returning fieldsSum" + fieldsSum);
     return fieldsSum;
   }
-  // function incOnClassClick(mainFieldID, buttonFieldId){
-  //   var mainField = $("#txt-"+mainFieldID); //gets main item field
-  //   var mainFieldVal = $(mainFieldID).val(); // gets val for field
-  //   $(mainFieldID).val(mainFieldVal + 1); // updates val
-  //   $(buttonFieldId).val($(#"txt-" + buttonFieldId).val() + 1); // same for small entry
-  //   var orderEntrySpan = $($"num-" + mainFieldID + " span");
-  //   refreshOrder(mainFieldVal, orderEntrySpan); // updates all
-  // }
 
+  function readFieldUpdateAll(itemType){
+    var field = $("#txt-" + itemType);
+    var resutVal = sumFieldsFor("." + itemType + "-txt");
+    $(field).val(resutVal);
+    var orderEntrySpan = $('#num-'+ itemType + " span");
+    refreshOrder(field.val(), orderEntrySpan);
+  }
 
   /////////////////////////////////////////////////////////////
   // Changes quantity, updates field when text manually changed
@@ -246,7 +266,7 @@ $(document).ready(function() {
   ///// If the page refreshes (in the event of an error) this redraws the summary of items listed before.
   ////////////////////////////
   function refreshAllOrders(){
-    var resutVal = $("#txt-box").val();
+    var resutVal = $("#txt-small").val();
     if(resutVal > 0){
       var orderEntrySpan = $('#num-'+ "small"+ " span");
       refreshOrder(resutVal, orderEntrySpan);
@@ -269,6 +289,8 @@ $(document).ready(function() {
       orderEntrySpan = $('#num-'+ "extra_large"+ " span");
       refreshOrder(resutVal, orderEntrySpan);
     }else console.log("Result Val:" + resutVal);
+
+
   }
   /////////////////////////////////////////////////////////////
   // Overwrites subtotal for packing Items.
@@ -281,6 +303,7 @@ $(document).ready(function() {
     var numWarBox = $('#txt-warbox').val();
     var numBubble = $('#txt-bubble').val();
     var numTape = $('#txt-tape').val();
+    console.log(numStdBox + "numStdBox");
 
     // Pricing Per Box
     var STDBOX_PRICE =  6.50;
@@ -315,19 +338,26 @@ $(document).ready(function() {
   function updatePickupTotal(){
     console.log("updating pickup total");
     // Number of Boxes
-    var numBox = $('#txt-box').val();
+    var numBox = $('#txt-small').val();
     var numMedium = $('#txt-medium').val();
     var numLarge = $('#txt-large').val();
     var numXLarge = $('#txt-extra_large').val();
+    var num5x10 = $('#txt-5x10').val();
+    var num10x10 = $('#txt-10x10').val();
+    var num10x20 = $('#txt-10x20').val();
+    console.log("numBox "+ numBox);
 
     // Pricing Per Box
     var BOX_PRICE =  5.00;
     var MEDIUM_PRICE =  12.00;
     var LARGE_PRICE =  25.00;
     var XLARGE_PRICE =  40.00;
+    var FIVETEN_PRICE = 75.00;
+    var TENTEN_PRICE = 140.00;
+    var TENTWNTY_PRICE = 250.00;
 
 
-    var total = (numBox * BOX_PRICE) + (numMedium * MEDIUM_PRICE) + (numLarge * LARGE_PRICE) + (numXLarge * XLARGE_PRICE);
+    var total = (numBox * BOX_PRICE) + (numMedium * MEDIUM_PRICE) + (numLarge * LARGE_PRICE) + (numXLarge * XLARGE_PRICE) + (num5x10 * FIVETEN_PRICE) + (num10x10 * TENTEN_PRICE) + (num10x20 * TENTWNTY_PRICE);
     console.log("total:" + total);
     $('#pickup-subtotal').text("$" + total+"/month");
     if ((total > 1) && ($("#pickup-time").hasClass("hidden"))){

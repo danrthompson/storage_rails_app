@@ -31,7 +31,7 @@
 
 .container.full-width.blue-bg.no-padding.white.align-center
   %br/ 
-  %h1#lets-doit Account Confirmation
+  %h1#lets-doit Item Selection
 
 #signup-progress.row.align-center
   .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1
@@ -58,29 +58,32 @@
 .errors
   = render partial: "partials/error_messages_object_form", locals: {object: @user}
 %br/ 
+
+%br/ 
 %br/ 
 / %br/ 
 
-
 // Confirmation Page
 %section.text-center.inventory#estimator-page
+  
   = form_for @user, url:add_payment_signup_pages_path do |f|
-    / .heading-about
-    /   .container
-    /     .row
-    /       .col-lg-8.col-lg-offset-2
-    /         .section-heading
-    /           %h2.no-margin Account Confirmation
-    /           %h3.light-gray (the last step)
     .container
       .col-md-7.col-md-offset-1.boxed-gray
+        %p.confirm-elem.align-center Aren't sure what you need yet? Feel free to skip this step and our drivers will record your items during pickup.
+        %br/ 
+        %br/ 
         = render partial: "partials/small_items"
-      .col-md-3
+        / This is used to store values from all categories. It is antiquated from when we were allowing choice by item or by category. However, it is currently necessary because it is the intermediary that aggregates all the items by category type before updating the sum total.
+        .hidden
+          = render partial: "partials/quote_gen_modal"
+        %br/ 
+        %br/ 
+      .col-md-3#estimator-sidebar
         .row
           .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
-            %h5 Estimated Cost of Pickup
+            %h5.align-center Price of Storage
             %ul
-              %li#num-box.hidden
+              %li#num-small.hidden
                 %span.pull-left> 0
                 \&nbsp; &nbsp; Small 
                 %i.pull-right.light-gray $5/unit
@@ -96,6 +99,18 @@
                 %span.pull-left> 0
                 \&nbsp; &nbsp; XL 
                 %i.pull-right.light-gray $40/unit
+              %li#num-5x10.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; 5'x10' 
+                %i.pull-right.light-gray $75/month
+              %li#num-10x10.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; 10'x10' 
+                %i.pull-right.light-gray $140/month
+              %li#num-10x20.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; 10'x20' Unit 
+                %i.pull-right.light-gray $250/month
               %br/  
               %li.half-opacity
                 Valet Pickup
@@ -103,25 +118,17 @@
             .single-line
             %ul
               %li.heavy-font
-                Estimate
+                Subtotal
                 %span#pickup-subtotal.pull-right $00.00/m
-        .continue-button  
-          - if !@has_existing_pickup
-            = link_to new_pickup_request_path do
-              %button#pickup-button.btn.btn-primary.gray-bg{:disabled => false, :type => "button"}
-                New Pickup
-          - else
-            = link_to edit_pickup_request_path(id: @has_existing_pickup) do
-              %button#pickup-button.btn.btn-primary.gray-bg.blue-bg-hover.no-border{:type => "button"} Pickup time
-          - if !@has_existing_delivery
-            = link_to new_delivery_request_path do
-              %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"}  Delivery
-          - else
-            = link_to edit_delivery_request_path(id: @has_existing_delivery) do
-              %button#delivery-button.btn.btn-primary.blue-bg.blue-bg-hover{:type => "button"} Edit Delivery
+
+        .continue-button.align-center
+          %p.half-opacity You can always change or cancel a pickup later.
+          %button#pickup-button.btn.btn-primary.gray-bg{:type => "button"} Back
+          %button.btn.btn-primary.blue-bg{:disabled => false, :type => "button"} Continue
 
 
-    .container
+
+    .container.hidden
       .row
         .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
           #pickup-details
@@ -268,7 +275,7 @@
       $("#show-continue").addClass("hidden");
       $("#cc-continue").addClass("hidden");
 
-      console.log("removing hidden");
+      // console.log("removing hidden");
       $("#submit-details").removeClass("hidden");
       $("#finish-details").removeClass("hidden");
      } else{
@@ -284,7 +291,7 @@
 
        console.log("submit button no longer disabled");
      } else {
-        console.log("removing hidden class");
+        // console.log("removing hidden class");
         // $("#submit-button").attr("disabled", true);
      }     
   }
