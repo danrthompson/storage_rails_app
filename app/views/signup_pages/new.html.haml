@@ -26,15 +26,15 @@
 %br/ 
 .container
   = render partial: 'partials/error_messages_object_form', locals: {object: @user}
-  = render partial: 'partials/error_messages_object_form', locals: {object: @pickup_request}
+  / = render partial: 'partials/error_messages_object_form', locals: {object: @pickup_request}
 %br/ 
 %br/ 
 
 = form_for @packing_supplies_request, url: create_signup_pages_path, :html => {:id => 'signup-form'} do |f| 
 
-  =fields_for @pickup_request do |f_hidden|
-    = f_hidden.hidden_field :posted_delivery_date, class:"form-control"
-    = f_hidden.hidden_field :posted_delivery_time, class:"form-control"
+  / =fields_for @pickup_request do |f_hidden|
+  /   = f_hidden.hidden_field :posted_delivery_date, class:"form-control"
+  /   = f_hidden.hidden_field :posted_delivery_time, class:"form-control"
 
   ///////////////////////////////////////////////////
   // Signup /////////////////////////////////////////
@@ -48,48 +48,48 @@
           .boxed-grey
             .row
               %br/ 
-              / = fields_for @user do |userAcct| 
-              /   .col-md-8.col-md-offset-2.form-group.address-form
-              /     .row
-              /       .col-md-12
-              /         %div.extra-form-padding
-              /           = userAcct.text_field :first_name, autofocus: true, class:"form-control", placeholder: "First Name"
-              /     .row#signup-emailaddr
-              /       .col-md-12
-              /         %div.extra-form-padding
-              /           = userAcct.email_field :email, autofocus: true, class:"form-control", placeholder: "Email Address"
-              /     .row
-              /       .col-md-12
-              /         %div.extra-form-padding
-              /           = userAcct.password_field :first_name, autofocus: true, class:"form-control", placeholder: "Password"
-              /   .col-md-8.col-md-offset-2.bottom-buttons
-              /     = userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn", disabled: true                 
-              /     %a.pointer{href:"/"}
-              /       %h1.btn.btn-default.pull-left Back
               = fields_for @user do |userAcct| 
                 .col-md-8.col-md-offset-2.form-group.address-form
                   .row
-                    .col-md-6
+                    .col-md-12
                       %div.extra-form-padding
-                        = userAcct.text_field :first_name, autofocus: true, class:"form-control", placeholder: "First Name"
-                    .col-md-6
-                      %div.extra-form-padding
-                        = userAcct.text_field :last_name, autofocus: true, class:"form-control", placeholder: "Last Name"
+                        = userAcct.text_field :name, autofocus: true, class:"form-control", placeholder: "Name"
                   .row#signup-emailaddr
                     .col-md-12
                       %div.extra-form-padding
                         = userAcct.email_field :email, autofocus: true, class:"form-control", placeholder: "Email Address"
                   .row
-                    .col-md-6
+                    .col-md-12
                       %div.extra-form-padding
-                        = userAcct.password_field :password, autocomplete: "off", class:"form-control", placeholder: "Password"
-                    .col-md-6
-                      %div.extra-form-padding
-                        = userAcct.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm Password"
+                        = userAcct.password_field :password, autofocus: true, class:"form-control", placeholder: "Password"
                 .col-md-8.col-md-offset-2.bottom-buttons
                   = userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn", disabled: true                 
                   %a.pointer{href:"/"}
                     %h1.btn.btn-default.pull-left Back
+              / = fields_for @user do |userAcct| 
+              /   .col-md-8.col-md-offset-2.form-group.address-form
+              /     .row
+              /       .col-md-6
+              /         %div.extra-form-padding
+              /           = userAcct.text_field :first_name, autofocus: true, class:"form-control", placeholder: "First Name"
+              /       .col-md-6
+              /         %div.extra-form-padding
+              /           = userAcct.text_field :last_name, autofocus: true, class:"form-control", placeholder: "Last Name"
+              /     .row#signup-emailaddr
+              /       .col-md-12
+              /         %div.extra-form-padding
+              /           = userAcct.email_field :email, autofocus: true, class:"form-control", placeholder: "Email Address"
+              /     .row
+              /       .col-md-6
+              /         %div.extra-form-padding
+              /           = userAcct.password_field :password, autocomplete: "off", class:"form-control", placeholder: "Password"
+              /       .col-md-6
+              /         %div.extra-form-padding
+              /           = userAcct.password_field :password_confirmation, autocomplete: "off", class:"form-control", placeholder: "Confirm Password"
+              /   .col-md-8.col-md-offset-2.bottom-buttons
+              /     = userAcct.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn", disabled: true                 
+              /     %a.pointer{href:"/"}
+              /       %h1.btn.btn-default.pull-left Back
             %br/
             %br/ 
     %br/ 

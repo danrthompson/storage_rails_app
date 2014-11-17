@@ -57,6 +57,7 @@
 / = render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
 .errors
   = render partial: "partials/error_messages_object_form", locals: {object: @user}
+  = render partial: "partials/error_messages_object_form", locals: {object: @pickup_request}
 %br/ 
 %br/ 
 %br/ 
@@ -74,6 +75,8 @@
               .double-line
               #delivery-form
                 = render partial: "partials/delivery_addr_date", locals: {field:f, id:"datepicker"}
+                = fields_for @pickup_request do |pf|
+                  = render partial: "partials/delivery_date_time", locals: {f: pf,  id:"pickup_datepicker", select_id:"delivery_time"}
               %h5.pull-right#show-continue.light-gray.black-hover.pointer Continue
           
             %br/ 

@@ -46,7 +46,7 @@
       %div 
         %h3.heavy-font.dark-gray
           Ready To Go?
-          %a{:href => ""} Schedule a free pickup!
+          = link_to "Schedule a free pickup!", new_signup_pages_path
            
           %p
             (or call us at 
@@ -209,7 +209,7 @@
               %b.blue Storage That Fits
           .col-md-4.col-md-offset-4.col-sm-4.col-sm-offset-4
             .boxed-gray.continue-button.pull-left
-              %a.white{"data-target" => "#signup_modal", "data-toggle" => "modal"}
+              %a.white{"href" => "/signup"}
                 %button.btn.btn-primary.blue-bg.yellow-hover Reserve Pickup
 
   .container
