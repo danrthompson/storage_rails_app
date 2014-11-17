@@ -10,15 +10,6 @@ class SignupPagesController < ApplicationController
 		@user = User.new
 	end
 
-	# def fast_signup
-	# 	default_time_menu_value = 'Choose a time'
-	# 	redirect_to({controller: :static_pages, action: :homepage}, notice: 'You must pick a date and time for your pickup.') and return unless params[:pickup_request] and not params[:pickup_request][:posted_delivery_date].blank? and not params[:pickup_request][:posted_delivery_time].blank? and not params[:pickup_request][:posted_delivery_time] == default_time_menu_value
-	# 	@packing_supplies_request = PackingSuppliesRequest.new
-	# 	@pickup_request = PickupRequest.new(fast_signup_params(params))
-	# 	@user = User.new
-	# 	render :new
-	# end
-
 	def create
 		@user = User.create create_user_params(params)
 		# @pickup_request = PickupRequest.new(create_pickup_request_params(params))
@@ -30,10 +21,10 @@ class SignupPagesController < ApplicationController
 			begin
 				# UserMailer.delay.welcome_email(@user.id)
 				sign_in @user
-				redirect_to confirm_signup_pages_url(@user.id) and return
+				redirect_to signup_select_items_url(@user.id) and return
 			rescue Errno::ECONNREFUSED
 				sign_in @user
-				redirect_to confirm_signup_pages_url(@user.id), alert: 'Error with sending welcome email.' and return
+				redirect_to signup_select_items_url(@user.id), alert: 'Error with sending welcome email.' and return
 			end
 		else
 			@user.destroy
@@ -42,6 +33,15 @@ class SignupPagesController < ApplicationController
 			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
 			render action: :new and return
 		end
+	end
+
+	def select_items
+		@user = User.find(params[:id])
+		@pickup_request = PickupRequest.new
+	end
+
+	def post_select_items
+		render text: params and return
 	end
 
 	def show

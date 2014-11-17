@@ -53,7 +53,7 @@
 // Confirmation Page
 %section.text-center.inventory#estimator-page
   
-  = form_for @user, url:add_payment_signup_pages_path do |f|
+  = form_for @user, url:signup_select_items_path do |f|
     .container
       .col-md-7.col-md-offset-1.boxed-gray
         %p.confirm-elem.align-center Aren't sure what you need yet? Feel free to skip this step and our drivers will record your items during pickup.
@@ -111,8 +111,8 @@
         .continue-button.align-center
           %p.half-opacity You can always change or cancel a pickup later.
           %button#pickup-button.btn.btn-primary.gray-bg{:type => "button"} Back
-          %button.btn.btn-primary.blue-bg{:disabled => false, :type => "button"} Continue
-
+          = f.submit "Continue", class: "btn btn-primary blue-bg", type: "button"
+          / %button.btn.btn-primary.blue-bg{:disabled => false, :type => "button"} Continue
 
 
 %br/ 
