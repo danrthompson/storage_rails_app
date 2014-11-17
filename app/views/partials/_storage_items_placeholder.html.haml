@@ -1,0 +1,62 @@
+
+.col-md-8.col-md-offset-2
+  .row
+    .col-md-5
+      .boxed-gray.continue-button
+        %button.btn.btn-primary.gray-bg.third-opacity#by-category-btn{:type => "button"}
+          Choose By Category
+    
+      
+    .col-md-2.align-center.light-gray
+      %h4.light-gray#storage-item-or (or)
+    .col-md-5
+      .boxed-gray.continue-button
+        %button.btn.btn-primary.blue-bg#by-item-btn{:type => "button"}
+          Choose By Item
+.col-md-8.col-md-offset-2.inventory
+  .row#entries-category-list.hidden
+    = render partial: "partials/list_item_4col_field", locals:{title: "Small Item", price: "$5/month", id:"small", field_val: :small_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/cardboard2.png", description:"Any boxes 2' x 2' x 2' or smaller. Packing boxes available for order."}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Medium  Item", price: "$12/month", id:"medium", field_val: :medium_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/bike.png", description:"Wardrobe Boxes, Chairs, Lamps, Skis, Bikes, Small Furniture, Equivalent"}
+    = render partial: "partials/list_item_4col_field", locals:{title: "Large  Item", price: "$25/month", id:"large", field_val: :large_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/couch.png", description:" Mattresses, desks, couches, tables, tvs, or furniture that takes two."}
+    = render partial: "partials/list_item_4col_field", locals:{title: "XL Item", price: "$40/month", id:"extra_large", field_val: :extra_large_item_quantity, form: f, imgURL:"https://s3.amazonaws.com/storage_rails_app_dev/images/table.png", description:" Sectional couches, large dining tables, items over 200lbs or 60 cubic feet"}
+    / %button.btn.btn-primary.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal"}
+  / .row
+  /   %br/ 
+  /   %h4.align-center.pointer#not-sure-txt
+  /     Prefer a list of specific items?
+  /     %span.blue Click here!
+  /   %br/ 
+  .row#small-entries-list
+    = render partial: "partials/small_items"
+    .row
+      .col-md-10.col-md-offset-1.align-center
+        %br
+        %br/ 
+        .signle-line
+        %p.light-gray
+          %span.heavy-font Can't find a particular item?
+          %br/ 
+          Our drivers can help you choose the right categories when they arrive. 
+          %br/ 
+          %br/ 
+
+
+
+
+
+
+
+.col-md-6.col-md-offset-3.half-opacity.charges-box
+  / %br/
+  / %br/ 
+  %br/ 
+  .single-line
+  / %br/ 
+  %br/ 
+.col-md-10.col-md-offset-1
+  
+  .row
+    .col-md-12.align-center
+      %br/ 
+      %p Already have a storage locker? We'll beat your monthly rate by 15% gauranteed! Call (720) 583-5826 for details!
+
