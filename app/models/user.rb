@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   phony_normalize :phone_number, default_country_code: 'US'
   before_validation :normalize_city, :normalize_state, :make_password_nil_if_blank, :send_card_info_to_stripe
 
-  validates :first_name, :last_name, presence: true
+  validates :name, presence: true
   validates_plausible_phone :phone_number
   validates :city, format: { with: /\ABoulder\z/, message: 'must be Boulder.' }, allow_nil: true
   validates :state, format: { with: /\ACO\z/, message: 'must be CO.' }, allow_nil: true

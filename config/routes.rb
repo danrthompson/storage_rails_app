@@ -35,16 +35,16 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact'
   get 'email' => 'static_pages#email_example'
   get 'tires' => 'static_pages#tires'
-  get 'althome' => 'static_pages#althome'
+  # get 'althome' => 'static_pages#althome'
 
 
   get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
-  post 'fast_signup', to: 'signup_pages#fast_signup', as: 'fast_signup'
+  # post 'fast_signup', to: 'signup_pages#fast_signup', as: 'fast_signup'
   post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'
   get 'signup/:id', to: 'signup_pages#show', as: 'confirm_signup_pages'
   patch 'signup/:id', to: 'signup_pages#add_payment', as: 'add_payment_signup_pages'
 
-  root 'static_pages#homepage'    
+  root 'static_pages#althome'    
 
 
   # The priority is based upon order of creation: first created -> highest priority.

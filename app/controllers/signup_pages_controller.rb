@@ -10,23 +10,23 @@ class SignupPagesController < ApplicationController
 		@user = User.new
 	end
 
-	def fast_signup
-		default_time_menu_value = 'Choose a time'
-		redirect_to({controller: :static_pages, action: :homepage}, notice: 'You must pick a date and time for your pickup.') and return unless params[:pickup_request] and not params[:pickup_request][:posted_delivery_date].blank? and not params[:pickup_request][:posted_delivery_time].blank? and not params[:pickup_request][:posted_delivery_time] == default_time_menu_value
-		@packing_supplies_request = PackingSuppliesRequest.new
-		@pickup_request = PickupRequest.new(fast_signup_params(params))
-		@user = User.new
-		render :new
-	end
+	# def fast_signup
+	# 	default_time_menu_value = 'Choose a time'
+	# 	redirect_to({controller: :static_pages, action: :homepage}, notice: 'You must pick a date and time for your pickup.') and return unless params[:pickup_request] and not params[:pickup_request][:posted_delivery_date].blank? and not params[:pickup_request][:posted_delivery_time].blank? and not params[:pickup_request][:posted_delivery_time] == default_time_menu_value
+	# 	@packing_supplies_request = PackingSuppliesRequest.new
+	# 	@pickup_request = PickupRequest.new(fast_signup_params(params))
+	# 	@user = User.new
+	# 	render :new
+	# end
 
 	def create
 		@user = User.create create_user_params(params)
-		@pickup_request = PickupRequest.new(create_pickup_request_params(params))
-		@pickup_request.user = @user
+		# @pickup_request = PickupRequest.new(create_pickup_request_params(params))
+		# @pickup_request.user = @user
 		@packing_supplies_request = PackingSuppliesRequest.new
 
-		if @user.valid? and @pickup_request.valid?
-			@pickup_request.save
+		# if @user.valid? and @pickup_request.valid?
+		if @user.valid?
 			begin
 				# UserMailer.delay.welcome_email(@user.id)
 				sign_in @user
@@ -47,20 +47,25 @@ class SignupPagesController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != current_user.id
-		@pickup_request = @user.pickup_requests.first
+		@pickup_request = PickupRequest.new
 	end
 
 	def add_payment
 		@user = User.find(params[:id])
-		@pickup_request = @user.pickup_requests.first
+		@pickup_request = PickupRequest.new create_pickup_request_params(params)
+		@pickup_request.user = @user
 		redirect_to new_user_session_url and return if @user.id != current_user.id
+		unless @pickup_request.valid?
+			render action: :show and return
+		end
 		begin
 			@user.update(user_add_payment(params))
 		rescue Stripe::CardError => e
 			flash.now[:alert] = e.message
 			render action: :show and return
 		end
-		if @user.valid?	and @user.ready?
+		if @user.valid?	and @user.ready? and @pickup_request.valid?
+			@pickup_request.save
 			UserMailer.delay.confirm_pickup_email(@pickup_request.id)
 			redirect_to @pickup_request and return
 		end

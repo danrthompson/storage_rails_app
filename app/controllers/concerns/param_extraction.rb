@@ -16,7 +16,7 @@ module ParamExtraction
 	end
 
 	def create_user_params(params)
-		params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name)
+		params.require(:user).permit(:email, :password, :name)
 	end
 
 	def new_user_params(params)
