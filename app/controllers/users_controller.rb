@@ -23,9 +23,12 @@ class UsersController < ApplicationController
 		end
 		sign_in @user, bypass: true if signin_changed
 		if @user.valid?
-			redirect_to edit_user_url @user and return
+			redirect_to edit_user_url(@user), notice: 'Changes saved successfully!' and return
 		else
-			redirect_to edit_user_url(@user), alert: 'Sorry, there were some errors that you need to correct.'
+			stripe_user = @user.stripe_user
+			@user_last_4 = stripe_user.cards.first.last4
+			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'
+			render :edit and return
 		end
 	end
 

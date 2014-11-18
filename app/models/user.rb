@@ -25,8 +25,8 @@ class User < ActiveRecord::Base
   validates :city, format: { with: /\ABoulder\z/, message: 'must be Boulder.' }, allow_nil: true
   validates :state, format: { with: /\ACO\z/, message: 'must be CO.' }, allow_nil: true
   validates :zip, inclusion: {in: [80301, 80302, 80303, 80304, 80305, 80306, 80307, 80308, 80309, 80314, 80321, 80322, 80323, 80328, 80329], message: 'must be a boulder zip code' }, allow_nil: true
-  validates :exp_month, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 12}, allow_nil: true
-  validates :exp_year, numericality: {only_integer: true, greater_than_or_equal_to: 2014, less_than_or_equal_to: 2035}, allow_nil: true
+  validates :exp_month, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 12}, allow_blank: true
+  validates :exp_year, numericality: {only_integer: true, greater_than_or_equal_to: 2014, less_than_or_equal_to: 2035}, allow_blank: true
 
   after_create :create_stripe_customer, :send_admin_signup_text
 
