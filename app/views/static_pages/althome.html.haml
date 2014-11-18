@@ -1,5 +1,5 @@
 
-= render :partial => 'partials/sign_in_header'
+= render :partial => 'partials/althome_header'
 = javascript_include_tag "new_homepage"
  
 / %p= link_to 'Login', new_user_session_path
@@ -54,7 +54,7 @@
             )
 
   // Divider Blue Bar
-  .blue-bar
+  .blue-bar#signup-about
     .tab.pull-right
       %h5.white How Do Pickups Work?
     %br/ 
@@ -94,7 +94,7 @@
     %br/ 
 
   // Pricing Section
-  .blue-bar
+  .blue-bar#signup-pricing
     %br/ 
     %h2.white What About Pricing?
     %br/ 
@@ -140,56 +140,56 @@
             %p Items like couches, mattresses, desks, dressers, chests, bed frames.
     %br/ 
     %br/ 
-    %br/
-    %br/ 
+    / %br/
+    / %br/ 
 
 
-    .container.row.pricing-wrapper
+    / .container.row.pricing-wrapper
       
-      %h3.dark-gray.no-margin
-        %span.green Traditional Pricing
-        By The Space 
-      %hr.width-80.half-opacity
+    /   %h3.dark-gray.no-margin
+    /     %span.green Traditional Pricing
+    /     By The Space 
+    /   %hr.width-80.half-opacity
 
-      .col-md-4.pricing-block
-        %i.pricing-icon.icon-5x10.by-space
-        .pricing-info
-          .pricing-title.by-space
-            %h3 5' x 10'
-          .price
-            %h3.dark-gray $75.00
-            %p.price-subtext per month
-          .price-description
-            %p
-              As much as you can fit in a
-              %br/ 
-              5' x 10' area.
-      .col-md-4.pricing-block
-        %i.pricing-icon.icon-10x10.by-space
-        .pricing-info
-          .pricing-title.by-space
-            %h3 10' x 10'
-          .price
-            %h3.dark-gray $140.00
-            %p.price-subtext per month
-          .price-description
-            %p
-              As much as you can fit in a
-              %br/ 
-              10' x 10' area.
-      .col-md-4.pricing-block
-        %i.pricing-icon.icon-10x20.by-space
-        .pricing-info
-          .pricing-title.by-space
-            %h3 10' x 20'
-          .price
-            %h3.dark-gray $250.00
-            %p.price-subtext per month
-          .price-description
-            %p 
-              As much as you can fit in a 
-              %br/ 
-              10' x 20' area.
+    /   .col-md-4.pricing-block
+    /     %i.pricing-icon.icon-5x10.by-space
+    /     .pricing-info
+    /       .pricing-title.by-space
+    /         %h3 5' x 10'
+    /       .price
+    /         %h3.dark-gray $75.00
+    /         %p.price-subtext per month
+    /       .price-description
+    /         %p
+    /           As much as you can fit in a
+    /           %br/ 
+    /           5' x 10' area.
+    /   .col-md-4.pricing-block
+    /     %i.pricing-icon.icon-10x10.by-space
+    /     .pricing-info
+    /       .pricing-title.by-space
+    /         %h3 10' x 10'
+    /       .price
+    /         %h3.dark-gray $140.00
+    /         %p.price-subtext per month
+    /       .price-description
+    /         %p
+    /           As much as you can fit in a
+    /           %br/ 
+    /           10' x 10' area.
+    /   .col-md-4.pricing-block
+    /     %i.pricing-icon.icon-10x20.by-space
+    /     .pricing-info
+    /       .pricing-title.by-space
+    /         %h3 10' x 20'
+    /       .price
+    /         %h3.dark-gray $250.00
+    /         %p.price-subtext per month
+    /       .price-description
+    /         %p 
+    /           As much as you can fit in a 
+    /           %br/ 
+    /           10' x 20' area.
 
 
   

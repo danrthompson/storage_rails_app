@@ -243,6 +243,7 @@ function setSidebarPosition(){
     console.log("#num-"+idRoot+" span");
     var orderEntrySpan = $('#num-'+idRoot+ " span");
     refreshOrder(field.val(), orderEntrySpan);
+
   });
 
 
@@ -258,7 +259,7 @@ function setSidebarPosition(){
     if (val == 0) orderEntry.addClass('hidden');
     else orderEntry.removeClass('hidden');
     
-    updatePackingItemsTotal();
+    // updatePackingItemsTotal();
     updatePickupTotal();
   }
 
@@ -289,6 +290,7 @@ function setSidebarPosition(){
       orderEntrySpan = $('#num-'+ "extra_large"+ " span");
       refreshOrder(resutVal, orderEntrySpan);
     }else console.log("Result Val:" + resutVal);
+
 
 
   }
@@ -342,10 +344,14 @@ function setSidebarPosition(){
     var numMedium = $('#txt-medium').val();
     var numLarge = $('#txt-large').val();
     var numXLarge = $('#txt-extra_large').val();
-    var num5x10 = $('#txt-5x10').val();
-    var num10x10 = $('#txt-10x10').val();
-    var num10x20 = $('#txt-10x20').val();
+    // var num5x10 = $('#txt-5x10').val();
+    // var num10x10 = $('#txt-10x10').val();
+    // var num10x20 = $('#txt-10x20').val();
     console.log("numBox "+ numBox);
+    console.log("numMedium "+ numMedium);
+    console.log("numLarge "+ numLarge);
+    console.log("numXLarge "+ numXLarge);
+
 
     // Pricing Per Box
     var BOX_PRICE =  5.00;
@@ -356,8 +362,9 @@ function setSidebarPosition(){
     var TENTEN_PRICE = 140.00;
     var TENTWNTY_PRICE = 250.00;
 
+    var total = (numBox * BOX_PRICE) + (numMedium * MEDIUM_PRICE) + (numLarge * LARGE_PRICE) + (numXLarge * XLARGE_PRICE);
 
-    var total = (numBox * BOX_PRICE) + (numMedium * MEDIUM_PRICE) + (numLarge * LARGE_PRICE) + (numXLarge * XLARGE_PRICE) + (num5x10 * FIVETEN_PRICE) + (num10x10 * TENTEN_PRICE) + (num10x20 * TENTWNTY_PRICE);
+    // var total = (numBox * BOX_PRICE) + (numMedium * MEDIUM_PRICE) + (numLarge * LARGE_PRICE) + (numXLarge * XLARGE_PRICE) + (num5x10 * FIVETEN_PRICE) + (num10x10 * TENTEN_PRICE) + (num10x20 * TENTWNTY_PRICE);
     console.log("total:" + total);
     $('#pickup-subtotal').text("$" + total+"/month");
     if ((total > 1) && ($("#pickup-time").hasClass("hidden"))){
@@ -373,6 +380,7 @@ function setSidebarPosition(){
       $("#delivery-time").toggleClass("hidden");
     }
     
+
   }
 
 

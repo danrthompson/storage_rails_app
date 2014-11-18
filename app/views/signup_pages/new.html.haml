@@ -121,7 +121,7 @@
 
       // THIS SHIT NEEDS TO BE FIXED
      if (!($("#signup-fourth").hasClass("hidden")) && ($("#signup-form").data('bootstrapValidator').isValid())){
-       if ($("#user_email").val().length > 0 && $("#user_password").val().length > 0 && $("#user_password_confirmation").val().length > 0 && $("#user_last_name").val().length > 0 && $("#user_first_name").val().length > 0){
+       if ($("#user_email").val().length > 0 && $("#user_password").val().length > 0 && $("#user_name").val().length > 0){
          $("#signup-fourth-btn").removeAttr("disabled"); 
          console.log("show fourth button");
        } else{

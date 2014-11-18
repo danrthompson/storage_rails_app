@@ -57,12 +57,13 @@
     .container
       .col-md-7.col-md-offset-1.boxed-gray
         %p.confirm-elem.align-center Aren't sure what you need yet? Feel free to skip this step and our drivers will record your items during pickup.
-        %br/ 
+        / %br/
+        / %br/ 
         %br/ 
         = render partial: "partials/small_items"
         / This is used to store values from all categories. It is antiquated from when we were allowing choice by item or by category. However, it is currently necessary because it is the intermediary that aggregates all the items by category type before updating the sum total.
         .hidden
-          = render partial: "partials/quote_gen_modal"
+          = render partial: "partials/quote_gen_placeholder"
         %br/ 
         %br/ 
       .col-md-3#estimator-sidebar
@@ -77,7 +78,7 @@
               %li#num-medium.hidden
                 %span.pull-left> 0
                 \&nbsp; &nbsp;Medium 
-                %i.pull-right.light-gray $12.00/unit
+                %i.pull-right.light-gray $12/unit
               %li#num-large.hidden
                 %span.pull-left> 0
                 \&nbsp; &nbsp;Large 
@@ -86,18 +87,18 @@
                 %span.pull-left> 0
                 \&nbsp; &nbsp; XL 
                 %i.pull-right.light-gray $40/unit
-              %li#num-5x10.hidden
-                %span.pull-left> 0
-                \&nbsp; &nbsp; 5'x10' 
-                %i.pull-right.light-gray $75/month
-              %li#num-10x10.hidden
-                %span.pull-left> 0
-                \&nbsp; &nbsp; 10'x10' 
-                %i.pull-right.light-gray $140/month
-              %li#num-10x20.hidden
-                %span.pull-left> 0
-                \&nbsp; &nbsp; 10'x20' Unit 
-                %i.pull-right.light-gray $250/month
+              / %li#num-5x10.hidden
+              /   %span.pull-left> 0
+              /   \&nbsp; &nbsp; 5'x10' 
+              /   %i.pull-right.light-gray $75/month
+              / %li#num-10x10.hidden
+              /   %span.pull-left> 0
+              /   \&nbsp; &nbsp; 10'x10' 
+              /   %i.pull-right.light-gray $140/month
+              / %li#num-10x20.hidden
+              /   %span.pull-left> 0
+              /   \&nbsp; &nbsp; 10'x20' Unit 
+              /   %i.pull-right.light-gray $250/month
               %br/  
               %li.half-opacity
                 Valet Pickup
@@ -107,11 +108,16 @@
               %li.heavy-font
                 Subtotal
                 %span#pickup-subtotal.pull-right $00.00/m
-
+        
         .continue-button.align-center
-          %p.half-opacity You can always change or cancel a pickup later.
           %button#pickup-button.btn.btn-primary.gray-bg{:type => "button"} Back
-          = f.submit "Continue", class: "btn btn-primary blue-bg"
+          %button#pickup-button.btn.btn-primary.blue-bg
+            = f.submit "CONTINUE", class: "blue-bg"
+          %p.half-opacity You can always change or cancel a pickup later.
+        .row
+          %br/ 
+          .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg.no-padding
+            %p.small-text.confirm-elem.align-center.light-blue-bg Already have a locker? Call us and we'll beat your current rate by 15% guaranteed.
           / %button.btn.btn-primary.blue-bg{:disabled => false, :type => "button"} Continue
 
 
@@ -142,68 +148,20 @@
 :javascript
   hideParentWhenZero("hide-when-zero");
   hideParentWhenNotUsed("hide-unused");
-  
-
-  sumItemList(".item-amount", "#subtotal", "/month");
-
-  $(document).keypress(function(event) {
-    hideAndShowConfirmFields();
-  });
-  $("input[type=text]").blur(function(){
-    hideAndShowConfirmFields();
-  });
-
-  $("#cc-continue").click(function(){
-    $("#finish-details").removeClass("hidden");
-    $("#submit-details").removeClass("hidden");
-    $(this).addClass("hidden");
-  }); 
-  
-
-  $("#show-continue").click(function(){
-    $("#payment-details").removeClass("hidden");
-    $(this).addClass("hidden");
-  });
-  
-
-  function hideAndShowConfirmFields(){
-     $("#validator-id").data('bootstrapValidator').validate();
-     isValid = $("#validator-id").data('bootstrapValidator').isValid();
-     console.log("isValid? " + isValid);
-     if (isValid){
-      $("#payment-details").removeClass("hidden");
-      $("#show-continue").addClass("hidden");
-      $("#cc-continue").addClass("hidden");
-
-      // console.log("removing hidden");
-      $("#submit-details").removeClass("hidden");
-      $("#finish-details").removeClass("hidden");
-     } else{
-       console.log("validator id not valid");
-     }
-    
-    $("#credit-card-form").data('bootstrapValidator').validate();
-    if ($("#credit-card-form").data('bootstrapValidator').isValid() && $("#cc_cvc").val().length >= 3){
-       $("#submit-button").removeAttr("disabled");
-       $("#finish-details").removeClass("hidden");
-       $("#submit-details").removeClass("hidden");
-       $("#cc-continue").addClass("hidden");
-
-       console.log("submit button no longer disabled");
-     } else {
-        // console.log("removing hidden class");
-        // $("#submit-button").attr("disabled", true);
-     }     
-  }
 
     
-   $("#quote-trigger").click(function(){
+  $("#quote-trigger").click(function(){
     $("#quote-generator").removeClass("hidden");
-   });
+  });
 
-   $("#quote-close").click(function(){
+  $("#quote-close").click(function(){
     $("#quote-generator").addClass("hidden");
-   });
+  });
 
-
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
   
