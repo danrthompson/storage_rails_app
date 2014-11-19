@@ -5,18 +5,12 @@ class SignupPagesController < ApplicationController
 	before_action :user_but_no_cc_info!, only: [:select_items, :post_select_items, :show, :add_payment]
 
 	def new
-		@packing_supplies_request = PackingSuppliesRequest.new
-		@pickup_request = PickupRequest.new
 		@user = User.new
 	end
 
 	def create
 		@user = User.create create_user_params(params)
-		# @pickup_request = PickupRequest.new(create_pickup_request_params(params))
-		# @pickup_request.user = @user
-		@packing_supplies_request = PackingSuppliesRequest.new
 
-		# if @user.valid? and @pickup_request.valid?
 		if @user.valid?
 			begin
 				# UserMailer.delay.welcome_email(@user.id)
