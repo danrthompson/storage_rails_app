@@ -15,8 +15,7 @@ Notification.delete_all
 user1 = User.create!({
 	email: 'a@a.a',
 	password: 'password',
-	first_name: 'Dan',
-	last_name: 'Thompson',
+	name: 'Dan Thompson',
 	address_line_1: '1600 15th St',
 	address_line_2: 'Apt #323',
 	city: 'Boulder',
@@ -33,8 +32,7 @@ user1 = User.create!({
 user2 = User.create!({
 	email: 'b@b.b',
 	password: 'password',
-	first_name: 'Dan',
-	last_name: 'Thompson',
+	name: 'Dan Thompson',
 	address_line_1: '1600 15th St',
 	address_line_2: 'Apt #323',
 	city: 'Boulder',
@@ -47,8 +45,7 @@ user2 = User.create!({
 admin = User.create!({
 	email: 'admin@admin.admin',
 	password: 'password',
-	first_name: 'Dan',
-	last_name: 'Thompson',
+	name: 'Dan Thompson',
 	address_line_1: '1600 15th St',
 	address_line_2: 'Apt #323',
 	city: 'Boulder',

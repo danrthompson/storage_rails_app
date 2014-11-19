@@ -30,6 +30,12 @@ class User < ActiveRecord::Base
 
   after_create :create_stripe_customer, :send_admin_signup_text
 
+  def send_welcome_email
+    if Rails.env.production?
+      UserMailer.delay.welcome_email(self.id)
+    end
+  end
+
   def boxes_at_home
     PackingSuppliesRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity) - PickupRequest.where(user_id: self.id).where.not(completion_time: nil).sum(:box_quantity)
   end
@@ -71,7 +77,7 @@ class User < ActiveRecord::Base
 
   def send_admin_signup_text
     if Rails.env.production?
-      User.send_admin_text('You have a new user signup: ' + self.first_name + " " + self.last_name + ". Email: " + self.email)
+      User.send_admin_text('You have a new user signup: ' + self.name + ". Email: " + self.email)
     end
   end
 
@@ -98,7 +104,7 @@ class User < ActiveRecord::Base
   end
 
   def send_card_info_to_stripe
-    if not (self.exp_month.blank? or self.exp_year.blank? or self.cc_number.blank? or self.cc_name.blank? or self.cc_cvc.blank? or self.stripe_customer_identifier.blank?)
+    unless self.exp_month.blank? or self.exp_year.blank? or self.cc_number.blank? or self.cc_name.blank? or self.cc_cvc.blank? or self.stripe_customer_identifier.blank?
       customer = self.stripe_user
       customer.cards.create(card:{
         number: self.cc_number,

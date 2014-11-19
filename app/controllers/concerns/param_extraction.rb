@@ -23,10 +23,6 @@ module ParamExtraction
 		params.require(:user).permit(:email, :password, :name)
 	end
 
-	def new_user_params(params)
-		params.require(:user).permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation, :first_name, :last_name)
-	end
-
 	def user_address_params(params)
 		params.require(:user).permit(:address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number)
 	end

@@ -13,7 +13,7 @@ class SignupPagesController < ApplicationController
 
 		if @user.valid?
 			begin
-				# UserMailer.delay.welcome_email(@user.id)
+				@user.send_welcome_email
 				sign_in @user
 				redirect_to signup_select_items_url(@user.id) and return
 			rescue Errno::ECONNREFUSED
