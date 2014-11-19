@@ -61,6 +61,10 @@
               #delivery-form
                 = render partial: "partials/delivery_addr_date", locals: {field:f, id:"datepicker"}
                 = fields_for @pickup_request do |pf|
+                  = pf.hidden_field :small_item_quantity
+                  = pf.hidden_field :medium_item_quantity
+                  = pf.hidden_field :large_item_quantity
+                  = pf.hidden_field :extra_large_item_quantity
                   = render partial: "partials/delivery_date_time", locals: {f: pf,  id:"pickup_datepicker", select_id:"delivery_time"}
               %h5.pull-right#show-continue.light-gray.black-hover.pointer Continue
           

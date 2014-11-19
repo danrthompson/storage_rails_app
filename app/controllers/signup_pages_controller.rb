@@ -2,7 +2,7 @@ class SignupPagesController < ApplicationController
 	include ParamExtraction
 
 	before_action :no_user!, only: [:new, :create]
-	before_action :user_but_no_cc_info!, only: [:show, :add_payment]
+	before_action :user_but_no_cc_info!, only: [:select_items, :post_select_items, :show, :add_payment]
 
 	def new
 		@packing_supplies_request = PackingSuppliesRequest.new
@@ -37,24 +37,22 @@ class SignupPagesController < ApplicationController
 
 	def select_items
 		@user = User.find(params[:id])
+		redirect_to new_user_session_url and return if @user.id != current_user.id
 		@pickup_request = PickupRequest.new
 	end
 
 	def post_select_items
-		render text: params and return
-	end
-
-	def show
 		@user = User.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != current_user.id
-		@pickup_request = PickupRequest.new
+		@pickup_request = PickupRequest.new select_items_params(params)
+		render :show
 	end
 
 	def add_payment
 		@user = User.find(params[:id])
+		redirect_to new_user_session_url and return if @user.id != current_user.id
 		@pickup_request = PickupRequest.new create_pickup_request_params(params)
 		@pickup_request.user = @user
-		redirect_to new_user_session_url and return if @user.id != current_user.id
 		unless @pickup_request.valid?
 			render action: :show and return
 		end
@@ -64,7 +62,7 @@ class SignupPagesController < ApplicationController
 			flash.now[:alert] = e.message
 			render action: :show and return
 		end
-		if @user.valid?	and @user.ready? and @pickup_request.valid?
+		if @user.valid?	and @user.ready?
 			@pickup_request.save
 			UserMailer.delay.confirm_pickup_email(@pickup_request.id)
 			redirect_to @pickup_request and return

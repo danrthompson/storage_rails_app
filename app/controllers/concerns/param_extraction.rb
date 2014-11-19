@@ -3,6 +3,10 @@ module ParamExtraction
 
 	private
 
+	def select_items_params(params)
+		params.require(:pickup_request).permit(:small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity)
+	end
+
 	def fast_signup_params(params)
 		params.require(:pickup_request).permit(:posted_delivery_date, :posted_delivery_time)
 	end
@@ -44,7 +48,7 @@ module ParamExtraction
 	end
 
 	def create_pickup_request_params(params)
-		params.require(:pickup_request).permit(:posted_delivery_time, :posted_delivery_date)
+		params.require(:pickup_request).permit(:posted_delivery_time, :posted_delivery_date, :small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity)
 	end
 
 	def create_delivery_request_params(params)

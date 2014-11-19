@@ -43,7 +43,6 @@ Rails.application.routes.draw do
   post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'
   get 'signup/items/:id', to: 'signup_pages#select_items', as: 'signup_select_items'
   post 'signup/items/:id', to: 'signup_pages#post_select_items'
-  get 'signup/:id', to: 'signup_pages#show', as: 'confirm_signup_pages'
   patch 'signup/:id', to: 'signup_pages#add_payment', as: 'add_payment_signup_pages'
 
   root 'static_pages#althome'    
