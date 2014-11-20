@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   post 'signup/items/:id', to: 'signup_pages#post_select_items'
   patch 'signup/:id', to: 'signup_pages#add_payment', as: 'add_payment_signup_pages'
 
-  root 'static_pages#althome'    
+  root 'static_pages#homepage'    
 
 
   # The priority is based upon order of creation: first created -> highest priority.
