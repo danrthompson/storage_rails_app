@@ -6,7 +6,7 @@
       %span#menu-title
         QuickBox
         %span.no-pointer#company-phone (720) 583-5826
-  .nav-links-wrapper.col-md-1.col-sm-1.col-xs-1.col-md-offset-2.left-border#scroll-to-about
+  .nav-links-wrapper.col-md-1.col-sm-1.col-xs-1.col-md-offset-2.left-border.scroll-to-about
     .nav-links
       %a.black-hover{} About
 
@@ -34,7 +34,7 @@
     $('html, body').animate({scrollTop: $("#signup-pricing").offset().top - ($(window).height()-50)/2}, 1000);
   });
 
-  $("#scroll-to-about").click(function(){
+  $(".scroll-to-about").click(function(){
     $('html, body').animate({scrollTop: $("#signup-about").offset().top - 100}, 600);
   });
 

@@ -56,7 +56,7 @@
   // Divider Blue Bar
   .blue-bar#signup-about
     .tab.pull-right
-      %h5.white
+      %h5.white.scroll-to-about.pointer
         %i.icon-arrow-down
         Want More Details?
         %i.icon-arrow-down
@@ -333,6 +333,10 @@
 
   $("#works-link").click(function(){
     $('html, body').animate({scrollTop: $("#works").offset().top - 100}, 1000);
+  });
+
+  $(".scroll-to-about").click(function(){
+    $('html, body').animate({scrollTop: $("#signup-about").offset().top - 100}, 600);
   });
 
 
