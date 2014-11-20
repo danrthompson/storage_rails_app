@@ -43,9 +43,10 @@
         %img{:src => "", :alt => ""}/ 
       %br/ 
       %div 
-        %h3.heavy-font.dark-gray
-          Ready To Go?
-          = link_to "Schedule a free pickup!", new_signup_pages_path
+        %h3.dark-gray.thin-font
+          = link_to new_signup_pages_path do
+            What are you waiting for? &nbsp;
+            %span.heavy-font Schedule your free pickup!
            
           %p
             (or call us at 
@@ -55,9 +56,13 @@
   // Divider Blue Bar
   .blue-bar#signup-about
     .tab.pull-right
-      %h5.white How Do Pickups Work?
-    / %br/ 
-    / %h2.white What Do You Mean Free Pickups?
+      %h5.white
+        %i.icon-arrow-down
+        Want More Details?
+        %i.icon-arrow-down
+    %br/ 
+    %h2.white QUICKBOX PICKUPS & DELIVERIES
+    %br/ 
 
 
   // Pickup and Delivery Process Section
@@ -76,9 +81,12 @@
     %hr.half-width.half-opacity
     .container
       %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/pickup-process.png", :alt => ""}/
-    %br/ 
-    %br/ 
-  
+      %br/ 
+      %br/ 
+      %br/ 
+      %p.center-margin.width-60.light-gray 
+        You can request a pickup anytime through your personal dashboard. Specify the items you'd like us to pick up, or leave it to our professional drivers to catalog it for you when they arrive.
+    %br/   
     %br/ 
     %br/ 
     / %h3.dark-gray.no-margin
@@ -104,9 +112,17 @@
       .col-md-6.align-left
         %br/ 
         %br/ 
-        %h4.thin-font testtestset
+        %h4.thin-font All Your Items A Click Away
         / %h4.blue TEST TEST TEST
-        %p Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean lacinia bibendum nulla sed consectetur.
+        %p 
+          From your QuickBox dashboard you can have any item
+          %span.heavy-font.blue delivered to you in as little as a day.
+          You can also request new item pickups or packing supplies. For deliveries, the pricing is just the monthy cost of the item.
+          %span.heavy-font.blue  Pickups are always free!
+          %br/ 
+          %br/ 
+          Need same day delivery, or looking to have regular deliveries? Call about our executive delivery pricing.
+       
     %br/ 
     %br/ 
     %br/ 
@@ -117,6 +133,7 @@
   .blue-bar#signup-pricing
     %br/ 
     %h2.white What About Pricing?
+
     %br/ 
   %br/ 
   %br/ 
@@ -125,9 +142,35 @@
   %section
     .container.row.pricing-wrapper
       %h3.dark-gray.no-margin
+        Lowest Price
+        %span.blue Gaurantee!
+      %hr.width-80.half-opacity
+      %br/ 
+      .row
+        .col-md-2.col-md-offset-1
+          %img.width-60{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/shield_img.png", :alt => ""}/ 
+        .col-md-8
+          %p.align-left
+            Already use storage? We offer a  
+            %span.heavy-font.blue  minimum of 15% savings
+            above your current price gauranteed! Plus, our free pickups make switching easy.
+            %br/ 
+            Call us at 720-583-5826 to get started!
+          
+      %br/ 
+      %br/ 
+      .double-line.half-opacity.width-80.center-margin
+      %br/ 
+      %br/ 
+      %br/ 
+    .container.row.pricing-wrapper
+      %h3.dark-gray.no-margin
         %span.blue Flexible Pricing
         By The Item
-      %hr.width-80.half-opacity
+      %br/ 
+      %p.light-gray.width-80 Only have a few items to store? Pricing by the item makes sure you only pay for what you use.
+      %br/ 
+      / %hr.width-80.half-opacity
       .col-md-4.pricing-block
         %i.pricing-icon.icon-icon-box
         .pricing-info
@@ -164,11 +207,13 @@
 
 
     .container.row.pricing-wrapper
-      
       %h3.dark-gray.no-margin
         %span.green Traditional Pricing
         By The Space 
-      %hr.width-80.half-opacity
+      %br/
+      %p.light-gray.width-80 Storage by the space is great if you have a lot to store. We still itemize your belongings so you can have individual items delivered, but payment is based on area rather than item count. 
+      %br/ 
+      / %hr.width-80.half-opacity
 
       .col-md-4.pricing-block
         %i.pricing-icon.icon-5x10.by-space
@@ -212,30 +257,42 @@
 
     %br/ 
     %br/ 
+    %p.light-gray
+      %span.heavy-font 
+        Can't decide what's best?
+        %span.green Don't worry!
+      %br/ 
+      We'll always give you
+      the best price
+      based on your storage needs.
     %br/ 
     %br/ 
     %br/ 
 
   // Pricing Section
-  .blue-bar#signup-pricing
+  .blue-bar#signup-security
     %br/ 
-    %h2.white Insurance, Security, Climate Control?
+    %h2.white Your Items Are Always Safe
     %br/ 
 
   %br/ 
   .container.row.pricing-wrapper.align-center
-    .half-width.center-margin
-      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/example-interface.png", :alt => ""}/ 
+    %br/ 
+    %br/ 
+    .width-30.center-margin
+      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/shield_img.png", :alt => ""}/ 
 
     .col-md-10.col-md-offset-1
       %br/ 
-      %p.center-margin Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia.
+      %p.center-margin QuickBox uses storage facilities with 24-7 video surveylance and sophisticated theft protection to keep your items safe. Further, every item is insured up to $20.00/lb. For those that want even further coverage, we offer premium insurance and climate controlled storage by request. 
   
   %section   
     %br/ 
     %br/ 
-    %br/ 
     %hr.half-width.half-opacity
+
+    / %br/ 
+    %br/ 
 
     .row
       .col-md-12

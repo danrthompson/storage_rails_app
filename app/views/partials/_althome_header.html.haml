@@ -15,9 +15,9 @@
     .no-border.nav-links
       %a.black-hover{} Pricing
 
-  .nav-links-wrapper.col-md-1.col-sm-1.col-xs-1
+  .nav-links-wrapper.col-md-1.col-sm-1.col-xs-1#scroll-to-security
     .no-border.nav-links
-      %a.black-hover{href: "/faq"} FAQ 
+      %a.black-hover{} Storage 
 
   
   .nav-links-wrapper.col-md-2.col-sm-2.col-xs-3.pull-right.invisible-when-small
@@ -36,4 +36,8 @@
 
   $("#scroll-to-about").click(function(){
     $('html, body').animate({scrollTop: $("#signup-about").offset().top - 100}, 600);
+  });
+
+  $("#scroll-to-security").click(function(){
+    $('html, body').animate({scrollTop: $("#signup-security").offset().top - 100}, 600);
   });
