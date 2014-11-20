@@ -83,8 +83,8 @@
           .double-line
           %p.align-left
             %span.heavy-font Contact Name:
-            =@delivery_request.user.first_name
-            =@delivery_request.user.last_name
+            =@delivery_request.user.name
+            / # =@delivery_request.user.last_name
             %br/ 
             %span.heavy-font Phone Number:
             =@delivery_request.user.phone_number

@@ -36,7 +36,7 @@
           .section-heading
          
             %p
-              Hi #{@user.first_name},
+              Hi #{@user.name},
               %br/ 
               %br/ 
               This is your digital receipt to confirm the delivery of #{@delivery_request.storage_items.count} items to #{@delivery_request.user.address_line_1} on #{@pickup_request.delivery_time.strftime("%B %d at %l:%M %p")}.

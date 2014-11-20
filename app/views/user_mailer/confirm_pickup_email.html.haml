@@ -49,8 +49,8 @@
         %br/ 
         %p.align-left
           %span.heavy-font Contact Name:
-          =@pickup_request.user.first_name
-          =@pickup_request.user.last_name
+          =@pickup_request.user.name
+          / # =@pickup_request.user.last_name
           %br/ 
           %span.heavy-font Phone Number:
           =@pickup_request.user.phone_number
