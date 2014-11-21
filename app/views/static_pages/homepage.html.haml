@@ -42,16 +42,16 @@
             %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-3.png", :alt => ""}/ 
         %img{:src => "", :alt => ""}/ 
       %br/ 
-      %div 
-        %h3.dark-gray.thin-font
-          = link_to new_signup_pages_path do
-            What are you waiting for? &nbsp;
-            %span.heavy-font Schedule your free pickup!
-           
-          %p
-            (or call us at 
-            %span 720-583-5826
-            )
+    %div 
+      %h3.dark-gray.thin-font
+        = link_to new_signup_pages_path do
+          What are you waiting for? &nbsp;
+          %span.heavy-font Schedule your free pickup!
+         
+        %p
+          (or call us at 
+          %span 720-583-5826
+          )
 
   // Divider Blue Bar
   .blue-bar#signup-about
@@ -312,9 +312,12 @@
   = render partial: "partials/feedback_tab"
   = render :partial => 'partials/footer'
 
-= javascript_include_tag "item_selector"
+/ = javascript_include_tag "item_selector"
 
 :javascript
+  resizeDiv();
+
+
   $(".scroll-to-vid").click(function(){
     $('html, body').animate({scrollTop: $("#signup-action").offset().top - ($(window).height()-50)/2}, 1000);
   });
@@ -339,5 +342,8 @@
     $('html, body').animate({scrollTop: $("#signup-about").offset().top - 100}, 600);
   });
 
+  $(document).ready(function(){
+    resizeDiv();
+  });
 
 

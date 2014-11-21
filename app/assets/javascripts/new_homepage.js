@@ -20,7 +20,7 @@ resizeDiv();
 function resizeDiv() {
 	console.log("resizing div");
 	vpw = $(window).width();
-	vph = $(window).height();
+	vph = $(window).height() - 50;
 	$('#introSection').css({'min-height': vph + 'px'});
 
 	var paddingToAdd = ($("#introSection").height() - $("#introSectionContentWrapper").height());
