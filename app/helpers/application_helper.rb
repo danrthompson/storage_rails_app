@@ -19,6 +19,13 @@ module ApplicationHelper
 		:body => message,  
 	})
 
+	# To Daniel H.
+	@client.account.messages.create({
+		:from => '+17209033991', 
+		:to => '715-222-4686', 
+		:body => message,  
+	})
+
 	# To Maggie
 	@client.account.messages.create({
 		:from => '+17209033991', 

@@ -55,11 +55,9 @@
                             %li
                               XL Items:
                               %span.pull-right= @pickup_request.storage_items.where(item_type: 'extra_large').count
-                    / %p.onepxhigh test
                     %br/ 
                     %br/ 
-                    .single-line
-                      %p.no-opacity invisible
+                    
                     .row
                       .col-md-6
                         = field.label :driver_name, "Picked Up By:"
@@ -67,6 +65,15 @@
                       .col-md-6
                         = field.label :driver_notes, "Notes:"
                         = field.text_field :driver_notes,  autofocus: true, placeholder:"Notes", class:"col-md-6 form-control", id:""
+                    .row
+                      %br/ 
+                      .col-md-6
+                        = field.label :id, "One Time Payment (if applicable)", class:"half-opacity"
+                        = field.text_field :id,  autofocus: true, placeholder:"Driver Name", class:"col-md-6 form-control", id:""
+                      .col-md-6
+                        = field.label :id, "Storage By The Space  (if applicable)", class:"half-opacity"
+                        = field.text_field :id,  autofocus: true, placeholder:"Notes", class:"col-md-6 form-control", id:""
+
                 .admin-details{:id => "#{@pickup_request.id}-details"}
                   = render partial: "partials/admin_pickup_form", locals: {pickup_request: @pickup_request, form: field}
                 = link_to_add_fields "Add Item", field, :storage_items, @pickup_request

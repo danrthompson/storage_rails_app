@@ -23,7 +23,7 @@ module Textable
 		end
 
 		def send_admin_text(message)
-			self.send_text(message, ['720-404-5623', '210-410-5804', '720-422-3354', '814-288-7620'])
+			self.send_text(message, ['720-404-5623', '210-410-5804', '720-422-3354', '814-288-7620', '715-222-4686'])
 		end
 	end
 end
