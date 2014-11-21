@@ -44,14 +44,38 @@
 / = render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
 .errors
   = render partial: "partials/error_messages_object_form", locals: {object: @user}
-%br/ 
 
-%br/ 
 %br/ 
 / %br/ 
 
-// Confirmation Page
-%section.text-center.inventory#estimator-page
+// Choose to decide now
+%section#estimator-options
+  %br/
+  %br/ 
+  %br/ 
+  .row.no-side-padding
+    .col-md-3.col-md-offset-3.now-later-box#estimate-now
+      %i{class:"icon-icon-couch"}
+      %h4
+        Estimate
+        %br/ 
+        Storage Now
+    .col-md-3.now-later-box#estimate-later
+      %i{class:"icon-pickup"}
+      %h4
+        Wait Until
+        %br/ 
+        Pickup
+%br/ 
+
+
+
+
+
+
+
+// Select Items Estimator
+%section.text-center.inventory#estimator-page.hidden
   
   = form_for @pickup_request, url:signup_select_items_path(@user.id) do |f|
     .container
@@ -110,9 +134,10 @@
                 %span#pickup-subtotal.pull-right $00.00/m
         
         .continue-button.align-center
-          %button#pickup-button.btn.btn-primary.gray-bg{:type => "button"} Back
-          %button#pickup-button.btn.btn-primary.blue-bg
+          %button#next-button.btn.btn-primary.blue-bg
             = f.submit "CONTINUE", class: "blue-bg"
+          %button.btn.btn-primary.gray-bg{:type => "button"} Back
+
           %p.half-opacity You can always change or cancel a pickup later.
         .row
           %br/ 
@@ -164,4 +189,23 @@
       return false;
     }
   });
+
+  $("#estimate-now").click(function(){
+    $("#estimator-page").removeClass("hidden");
+    $("#estimator-options").addClass("hidden");
+    setSidebarPosition();
+  });
+
+  $("#estimate-later").click(function(){
+    // $("#estimator-page").removeClass("hidden");
+    // $("#next-button").submit();
+    $("form").submit();
+    $("#estimator-options").addClass("hidden");
+  });
+
+  $( "form" ).submit(function(event) {
+    event.preventDefault();
+    console.log("YO!!!!");
+  });
+
   
