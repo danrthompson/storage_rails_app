@@ -34,13 +34,13 @@
           %span.green.hidden{:data => {'icon' => "D"}}
           2. 
           %br.show-on-small
-          Confirm Account
+          Item Selection
       %li#step-3
         %h4
           %span.green.hidden{:data => {'icon' => "D"}}
           3.
           %br.show-on-small
-          Done
+          Account Details
 / = render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
 .errors
   = render partial: "partials/error_messages_object_form", locals: {object: @user}
@@ -53,19 +53,28 @@
   %br/
   %br/ 
   %br/ 
-  .row.no-side-padding
-    .col-md-3.col-md-offset-3.now-later-box#estimate-now
-      %i{class:"icon-icon-couch"}
-      %h4
-        Estimate
-        %br/ 
-        Storage Now
-    .col-md-3.now-later-box#estimate-later
-      %i{class:"icon-pickup"}
-      %h4
-        Wait Until
-        %br/ 
-        Pickup
+  .row.no-side-padding.align-center
+    %h2 Choose Your Storage Items
+    %br/ 
+
+    .col-md-3.col-md-offset-3
+      .now-later-box#estimate-now    
+        %i{class:"icon-icon-couch"}
+        %h4
+          Select
+          %br/ 
+          Storage Now
+      %br/ 
+      %p.half-opacity (Get an instant estimate for your storage)
+    .col-md-3
+      .now-later-box#estimate-later
+        %i{class:"icon-pickup"}
+        %h4
+          Wait Until
+          %br/ 
+          Pickup
+      %br/ 
+      %p.half-opacity (Our drivers can help you when they arrive)
 %br/ 
 
 
@@ -80,7 +89,7 @@
   = form_for @pickup_request, url:signup_select_items_path(@user.id) do |f|
     .container
       .col-md-7.col-md-offset-1.boxed-gray
-        %p.confirm-elem.align-center Aren't sure what you need yet? Feel free to skip this step and our drivers will record your items during pickup.
+        / %p.confirm-elem.align-center Aren't sure what you need yet? Feel free to skip this step and our drivers will record your items during pickup.
         / %br/
         / %br/ 
         %br/ 
@@ -200,11 +209,11 @@
     // $("#estimator-page").removeClass("hidden");
     // $("#next-button").submit();
     $("form").submit();
-    $("#estimator-options").addClass("hidden");
+    // $("#estimator-options").addClass("hidden");
   });
 
   $( "form" ).submit(function(event) {
-    event.preventDefault();
+    // event.preventDefault();
     console.log("YO!!!!");
   });
 
