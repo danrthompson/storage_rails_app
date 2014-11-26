@@ -12,7 +12,7 @@ module ParamExtraction
 	end
 
 	def complete_pickup_request_params(params)
-		params.require(:pickup_request).permit(:driver_name, :driver_notes, storage_items_attributes: [:title, :description, :image, :item_type, :_destroy, :id, :storage_location, :notes, :user_id, :pickup_request_id, :discount])
+		params.require(:pickup_request).permit(:driver_name, :driver_notes, :one_time_payment, storage_items_attributes: [:title, :description, :image, :item_type, :_destroy, :id, :storage_location, :notes, :user_id, :pickup_request_id, :discount])
 	end
 
 	def complete_delivery_request_params(params)
