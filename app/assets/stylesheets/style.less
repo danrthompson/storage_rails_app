@@ -1250,10 +1250,84 @@ h3.double-underlined{
 
 }
 
+// Code added for landing page
+#signup-about{
+	margin-top: 40px;
+}
+
 
 // Alt Homepage
 #introSection{
-	margin-top: 40px;
+	&.landing-page{
+		background-image: url('https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_2.png');
+	}
+	padding-top: 40px;
+	background-size: cover;
+
+	#main-fold{
+		color:white;
+		text-align: left;
+		h1{
+			padding-left: 0;
+			margin-left: 0;
+
+		}
+		.homepage-buttons{
+			margin-top: 10px;
+			font-size: 18px;
+			font-weight: 300;
+			padding: 10px 25px 12px 25px;
+			// padding: 5px 10px 7px 10px;
+			background-color: white;
+			span {color: @dark-gray; font-weight: 500;}
+			border-radius: 10px;
+			margin-right: 20px;
+
+			// position: relative;
+			// top: -3px;
+			// left: 10px;
+			color: white;
+			border: 1px solid white;
+
+
+			&:hover{
+				// background-color: @dark-gray;
+				background-color: rgba(255,255,255,.65);
+				// span{color: white;}
+			}
+			&.outline-button{
+				background-color: transparent;
+				border: 1px solid white;
+				span{color: white;}
+				&:hover{
+					background-color: rgba(255,255,255,.25) ;
+					// span{color: black;}
+				}
+			}
+		}
+		h3{
+			font-weight: 100;
+			font-size: 32px;
+			// width: 100%;
+			a{
+				color: white;
+				background-color: transparent;
+				border: 1px solid white;
+				left:0;
+				position: block;
+				width: 100%;
+				font-size: 18px;
+			}
+		}
+		p{
+			margin-left: 0;
+			padding-left: 0;
+			color: white;
+			font-size: 20px;
+			font-weight: 100;
+		}
+	}
+
 	// position: relative;
 	// z-index: -1;
 	.slider-wrapper{
@@ -2027,6 +2101,9 @@ p.alert  , p.notice {
 	.invisible-at-600{
 		display: none ! important;
 	}
+	.white-when-small{
+		color: white ! important;
+	}
 }
 
 @media all and (max-width: 1000px){
@@ -2060,10 +2137,7 @@ p.alert  , p.notice {
 		width: 300px ! important;
 	}
 
-
-	#company-phone{
-		display: none;
-	}
+	
 	#signup-progress{
 		position: static ! important;
 		height: 80px;
@@ -2097,6 +2171,11 @@ p.alert  , p.notice {
 }
 
 @media all and (max-device-width : 480px){
+	#menu-title{
+	#company-phone{
+		display: none ! important;
+		color: white;
+	}}
 	#homepage{
 		#introSection{
 			margin-bottom: 0;
@@ -2167,7 +2246,9 @@ p.alert  , p.notice {
 			font-size: 32px ! important;
 		}
 	
-
+	.full-width-small{
+		width: 100% !important;
+	}
 	.show-on-small{
 		display: block;
 	}

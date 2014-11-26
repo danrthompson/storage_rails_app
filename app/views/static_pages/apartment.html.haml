@@ -6,31 +6,57 @@
 #homepage.align-center
 
   // First Page
-  %section#introSection.align-center
+  %section#introSection.align-center.landing-page
     #introSectionContentWrapper
-      %h1.no-margin
-        %span.blue QuickBox
-        Storage
-      %h3.dark-gray
-        Storage That Comes To You
+      / %h1.no-margin
+      / %span.blue QuickBox
+      / Storage
+      / %h3.dark-gray
+      /   Storage That Comes To You
       %br/ 
       %br/ 
-      .main-images.full-width.row
-        .col-md-4.col-sm-4.no-padding
-          %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/home-notext-1.png", :alt => ""}/
-          %p Flexible Pricing By The Item
-          / .blue-bar
-        .col-md-4.col-sm-4.no-padding
-          %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/home-notext-3.png", :alt => ""}/
-          %p Door To Door Pickup & Delivery
+      %br/ 
+      %br/ 
+      %br/ 
+      .container#main-fold
+        .main-images.row
+          .col-md-10.col-md-offset-1.align-left
+            %h1.white Take Back Your Garage!
+        .main-images.row
+          .col-md-6.col-md-offset-1.col-sm-8.align-left
+            / %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/home-notext-1.png", :alt => ""}/
+            %h3.white with scalable storage on demand
 
-        .col-md-4.col-sm-4.no-padding
-          %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/home-notext-2.png", :alt => ""}/
-          %p Your Items A Click Away
-          / .blue-bar
+            %br/ 
+            %br/ 
+            %p.white
+              Quickbox's professional staff will pickup of your items right from your home, securely load them onto our  truck, then transport them to our secure warehouse for 
+              %span.heavy-font safe, reliable storage.
+              Just click "deliver" when you want something back and we'll bring it right to you! 
+            / .blue-bar
+            %br/ 
+  
+            %div#homepage-calltoaction.left
+              
+              / %h3.dark-gray.thin-font.pull-left
+              = link_to new_signup_pages_path, class:"homepage-buttons" do
+                %span.hide-on-small Get Started
+              / %h3.dark-gray.thin-font.pull-left
+              %a.scroll-to-about.homepage-buttons.outline-button.pointer{}
+                %span.hide-on-small.pointer More Info
+                   
+                   
+                  
+          
 
-      %br/ 
-      %br/ 
+          .col-md-4.col-md-offset-1.col-sm-4.no-padding
+            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/badge.png", :alt => ""}/
+            / %p Your Items A Click Away
+            / .blue-bar
+          
+
+        %br/ 
+        %br/ 
     
       .slider-wrapper.hidden
         %ul.bxslider 
@@ -42,16 +68,16 @@
             %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-3.png", :alt => ""}/ 
         %img{:src => "", :alt => ""}/ 
       %br/ 
-    %div#homepage-calltoaction
-      %h3.dark-gray.thin-font
-        = link_to new_signup_pages_path do
-          %span.hide-on-small What are you waiting for? &nbsp;
-          %span.heavy-font Schedule your free pickup!
+    / %div#homepage-calltoaction
+    /   %h3.dark-gray.thin-font
+    /     = link_to new_signup_pages_path do
+    /       %span.hide-on-small What are you waiting for? &nbsp;
+    /       %span.heavy-font Schedule your free pickup!
          
-        %p.hide-on-small
-          (or call us at 
-          %span 720-583-5826
-          )
+    /     %p.hide-on-small
+    /       (or call us at 
+    /       %span 720-583-5826
+    /       )
 
   // Divider Blue Bar
   .blue-bar#signup-about.hide-on-small
@@ -88,17 +114,15 @@
         You can request a pickup anytime through your personal dashboard. Specify the items you'd like us to pick up, or leave it to our professional drivers to catalog it for you when they arrive.
     %br/   
     %br/ 
-    %br/ 
-    / %h3.dark-gray.no-margin
-    /   And
-    /   %span.blue Convenient Deliveries
-    /   %hr.half-width.half-opacity
-    / .container
-    /   %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/delivery-process.png", :alt => ""}/ 
+    / %br
+  .blue-bar#signup-about.hide-on-small.half-opacity
     / %br/ 
+    / %h2.white Your Items, A Click Away
     %br/ 
-    %br/ 
-    / %br/ 
+  %br/ 
+  %br/ 
+  %br/ 
+  %br/ 
   %section
     .container.row.pricing-wrapper#items-back
       %h3.no-margin.dark-gray
@@ -147,41 +171,16 @@
 
     %br/ 
   %br/ 
-  %br/ 
   %br/
   %br/ 
   %section
-    .container.row.pricing-wrapper
-      %h3.dark-gray.no-margin
-        Lowest Price
-        %span.blue Guarantee!
-      %hr.width-80.half-opacity
-      %br/ 
-      .row
-        .col-md-2.col-md-offset-1
-          %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/best-price.png", :alt => ""}/ 
-        .col-md-8
-          %p.align-left
-            Already use storage? We offer a  
-            %span.heavy-font.blue  minimum of 15% savings
-            above your current price gauranteed! Plus, our free pickups make switching easy.
-            %br/ 
-            %br/ 
-            Call us at 720-583-5826 to get started!
-          
-      %br/ 
-      %br/ 
-      .double-line.half-opacity.width-80.center-margin
-      %br/ 
-      %br/ 
-      %br/ 
+    / %br/ 
     .container.row.pricing-wrapper
       %h3.dark-gray.no-margin
         %span.blue Flexible Pricing
         By The Item
       %br/ 
       %p.light-gray.width-80 Only have a few items to store? Pricing by the item makes sure you only pay for what you use.
-      %br/ 
       / %hr.width-80.half-opacity
       .col-md-4.pricing-block
         %i.pricing-icon.icon-icon-box
@@ -216,6 +215,7 @@
     %br/ 
     %br/ 
     %br/
+
 
 
     .container.row.pricing-wrapper
@@ -266,7 +266,6 @@
               As much as you can fit in a 
               %br/ 
               10' x 20' area.
-
     %br/ 
     %br/ 
     %p.light-gray.width-80.align-center
@@ -277,10 +276,31 @@
       We'll always give you
       the best price
       based on your storage needs.
+    .blue-bar.hide-on-small.half-opacity
     %br/ 
     %br/ 
+    .container.row.pricing-wrapper
+      %h3.dark-gray.no-margin
+        Lowest Price
+        %span.blue Guarantee!
+      %hr.width-80.half-opacity
+      %br/ 
+      .row
+        .col-md-2.col-md-offset-1
+          %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/best-price.png", :alt => ""}/ 
+        .col-md-8
+          %p.align-left
+            Already use storage? We offer a  
+            %span.heavy-font.blue  minimum of 15% savings
+            above your current price gauranteed! Plus, our free pickups make switching easy.
+            %br/ 
+            %br/ 
+            Call us at 720-583-5826 to get started!
+      %br/
+      %br/ 
+      .double-line.half-opacity.width-80.center-margin
     %br/ 
-
+    %br/
   // Pricing Section
   .blue-bar#signup-security
     %br/ 
@@ -316,7 +336,7 @@
           .col-md-4.col-md-offset-4.col-sm-4.col-sm-offset-4
             .boxed-gray.continue-button.pull-left
               %a.white{"href" => "/signup"}
-                %button.btn.btn-primary.blue-bg.yellow-hover Reserve Pickup
+                %button.btn.btn-primary.blue-bg.blue-bg-hover Reserve Pickup
 
   .container
     .row
