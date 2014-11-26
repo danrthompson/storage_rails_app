@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   patch 'admin/record_delivery_request/:id', to: 'admin_pages#save_changes_delivery_request'
 
   get 'admin/assign_driver/:id', to: 'admin_pages#assign_driver', as: 'admin_assign_driver'
+
+
+
+
+
   post 'admin/assign_driver/:id', to: 'admin_pages#update_assign_driver'
   get 'users/referral', to: 'users#referral', as: 'users_referral'
 
@@ -29,6 +34,7 @@ Rails.application.routes.draw do
   get '422', to: 'static_pages#server_error'
   get '500', to: 'static_pages#server_error', as: 'server_error'
 
+  get 'apartment' =>'static_pages#apartment'
   get 'about' => 'static_pages#about'
   get 'feedback' => 'static_pages#feedback'
   get 'faq' => 'static_pages#faq'
