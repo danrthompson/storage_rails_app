@@ -1,6 +1,6 @@
 class Request < ActiveRecord::Base
 	# 0 = Sunday, 1 = Monday, and so on
-	@@standard_times_by_day = [[],8..17,10..19,8..17,10..19,8..17,10..19]
+	@@standard_times_by_day = [[],[],[7..11],[16..20],[],[7..11],[10..18]]
 	@@minimum_hours_after_present_for_delivery = 8
 	@@number_of_days_ahead_delivery_available = 30
 	@@utc_offset = "-06:00"
