@@ -1,0 +1,348 @@
+
+= render :partial => 'partials/althome_header'
+= javascript_include_tag "new_homepage"
+ 
+/ %p= link_to 'Login', new_user_session_path
+#homepage.align-center
+
+  // First Page
+  %section#introSection.align-center.landing-page{ style:"background-image: url('#{main_img}');"}
+    #introSectionContentWrapper
+      %br/ 
+      %br/ 
+      %br/ 
+      %br/ 
+      %br/ 
+      .container#main-fold{class:"#{extra_classes}"}
+        .main-images.row
+          .col-md-10.col-md-offset-1.align-left
+            %h1.white= title
+        .main-images.row
+          .col-md-6.col-md-offset-1.col-sm-8.align-left
+            %h3.white= subtitle
+            %br/ 
+            %br/ 
+            %p.white
+              = description
+            %br/ 
+  
+            %div#homepage-calltoaction.left
+              = link_to new_signup_pages_path, class:"homepage-buttons" do
+                %span.hide-on-small Get Started
+              %a.scroll-to-about.homepage-buttons.outline-button.pointer{}
+                %span.hide-on-small.pointer More Info
+
+          .col-md-4.col-md-offset-1.col-sm-4.no-padding
+            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/badge.png", :alt => ""}/
+
+        %br/ 
+        %br/ 
+    
+      .slider-wrapper.hidden
+        %ul.bxslider 
+          %li 
+            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-1.png", :alt => ""}/
+          %li 
+            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-2.png", :alt => ""}/ 
+          %li 
+            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-3.png", :alt => ""}/ 
+        %img{:src => "", :alt => ""}/ 
+      %br/ 
+
+  // Divider Blue Bar
+  .blue-bar#signup-about.hide-on-small
+    .tab.pull-right
+      %h5.white.scroll-to-about.pointer
+        %i.icon-arrow-down
+        Want More Details?
+        %i.icon-arrow-down
+    %br/ 
+    %h2.white QUICKBOX PICKUPS & DELIVERIES
+    %br/ 
+
+
+  // Pickup and Delivery Process Section
+  %section.pickup-delivery-process.container
+    %br/ 
+    %br/ 
+    %br/
+    %h3.dark-gray.no-margin
+      How Do
+      %span.blue Free Pickups
+      Work?
+      
+    %hr.half-width.half-opacity
+    .container
+      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/pickups-work.png", :alt => ""}/
+      %br/ 
+      %br/ 
+      %br/ 
+      %p.center-margin.light-gray.width-60.full-width-small
+        You can request a pickup anytime through your personal dashboard. Specify the items you'd like us to pick up, or leave it to our professional drivers to catalog it for you when they arrive.
+    %br/   
+    %br/ 
+    / %br
+  .blue-bar#signup-about.hide-on-small.half-opacity
+    / %br/ 
+    / %h2.white Your Items, A Click Away
+    %br/ 
+  %br/ 
+  %br/ 
+  %br/ 
+  %br/ 
+  %section
+    .container.row.pricing-wrapper#items-back
+      %h3.no-margin.dark-gray
+        How Do I Get
+        %span.blue My Items Back?
+        
+      %hr.width-80.half-opacity
+      .col-md-6.pricing-block
+        %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/example-interface.png", :alt => ""}/ 
+        
+      .col-md-6.align-left
+        %br/ 
+        %br/ 
+        / %h4.thin-font All Your Items A Click Away
+        / %h4.blue TEST TEST TEST
+        %p
+          From your QuickBox dashboard you can have any item
+          %span.heavy-font.blue delivered to you in as little as a day.
+          You can also request new item pickups or packing supplies.
+          For deliveries, the pricing is just the monthy cost of the item. 
+          %br/ 
+          %br/ 
+          Need same day delivery, or looking to have regular deliveries? Call about our executive delivery pricing. 
+          %br/ 
+          %br/ 
+          Oh, and
+          %span.heavy-font.blue  pickups are always free!
+
+
+       
+    %br/ 
+    %br/ 
+    %a.header-link{:href => "/faq"}
+      %h3.dark-gray 
+        Still have questions?
+        %span.blue Check out our FAQ!
+    %br/ 
+    %br/ 
+  
+
+  
+  // Pricing Section
+  .blue-bar#signup-pricing
+    %br/ 
+    %h2.white What About Pricing?
+
+    %br/ 
+  %br/ 
+  %br/
+  %br/ 
+  %section
+    / %br/ 
+    .container.row.pricing-wrapper
+      %h3.dark-gray.no-margin
+        %span.blue Flexible Pricing
+        By The Item
+      %br/ 
+      %p.light-gray.width-80 Only have a few items to store? Pricing by the item makes sure you only pay for what you use.
+      / %hr.width-80.half-opacity
+      .col-md-4.pricing-block
+        %i.pricing-icon.icon-icon-box
+        .pricing-info
+          .pricing-title.by-item
+            %h3 Small Items
+          .price
+            %h3.dark-gray $5.00
+            %p.price-subtext per month
+          .price-description
+            %p Items like boxes (3 cubic feet), tires, bags, or similarly sized objects.
+      .col-md-4.pricing-block
+        %i.pricing-icon.icon-icon-bike
+        .pricing-info
+          .pricing-title.by-item
+            %h3 Medium Items
+          .price
+            %h3.dark-gray $12.00
+            %p.price-subtext per month
+          .price-description
+            %p Items like bikes, chairs, skis, luggage, coffee tables, bed-side, tables.
+      .col-md-4.pricing-block
+        %i.pricing-icon.icon-icon-couch
+        .pricing-info
+          .pricing-title.by-item
+            %h3 Large Items
+          .price
+            %h3.dark-gray $25.00
+            %p.price-subtext per month
+          .price-description
+            %p Items like couches, mattresses, desks, dressers, chests, bed frames.
+    %br/ 
+    %br/ 
+    %br/
+
+
+
+    .container.row.pricing-wrapper
+      %h3.dark-gray.no-margin
+        %span.dark-blue Traditional Pricing
+        By The Space 
+      %br/
+      %p.light-gray.width-80 Storage by the space is great if you have a lot to store. We still itemize your belongings so you can have individual items delivered, but payment is based on area rather than item count. 
+      %br/ 
+      / %hr.width-80.half-opacity
+
+      .col-md-4.pricing-block
+        %i.pricing-icon.icon-5x10.by-space
+        .pricing-info
+          .pricing-title.by-space
+            %h3 5' x 10'
+          .price
+            %h3.dark-gray $75.00
+            %p.price-subtext per month
+          .price-description
+            %p
+              As much as you can fit in a
+              %br/ 
+              5' x 10' area.
+      .col-md-4.pricing-block
+        %i.pricing-icon.icon-10x10.by-space
+        .pricing-info
+          .pricing-title.by-space
+            %h3 10' x 10'
+          .price
+            %h3.dark-gray $140.00
+            %p.price-subtext per month
+          .price-description
+            %p
+              As much as you can fit in a
+              %br/ 
+              10' x 10' area.
+      .col-md-4.pricing-block
+        %i.pricing-icon.icon-10x20.by-space
+        .pricing-info
+          .pricing-title.by-space
+            %h3 10' x 20'
+          .price
+            %h3.dark-gray $250.00
+            %p.price-subtext per month
+          .price-description
+            %p 
+              As much as you can fit in a 
+              %br/ 
+              10' x 20' area.
+    %br/ 
+    %br/ 
+    %p.light-gray.width-80.align-center
+      %span.heavy-font 
+        Can't decide what's best?
+        %span.dark-blue Don't worry!
+      %br/ 
+      We'll always give you
+      the best price
+      based on your storage needs.
+    .blue-bar.hide-on-small.half-opacity
+    %br/ 
+    %br/ 
+    .container.row.pricing-wrapper
+      %h3.dark-gray.no-margin
+        Lowest Price
+        %span.blue Guarantee!
+      %hr.width-80.half-opacity
+      %br/ 
+      .row
+        .col-md-2.col-md-offset-1
+          %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/best-price.png", :alt => ""}/ 
+        .col-md-8
+          %p.align-left
+            Already use storage? We offer a  
+            %span.heavy-font.blue  minimum of 15% savings
+            above your current price gauranteed! Plus, our free pickups make switching easy.
+            %br/ 
+            %br/ 
+            Call us at 720-583-5826 to get started!
+      %br/
+      %br/ 
+      .double-line.half-opacity.width-80.center-margin
+    %br/ 
+    %br/
+  // Pricing Section
+  .blue-bar#signup-security
+    %br/ 
+    %h2.white Your Items Are Always Safe
+    %br/ 
+
+  %br/ 
+  .container.row.pricing-wrapper.align-center
+    %br/ 
+    %br/ 
+    .width-30.center-margin
+      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/shield_img.png", :alt => ""}/ 
+
+    .col-md-10.col-md-offset-1
+      %br/ 
+      %p.center-margin QuickBox uses storage facilities with 24-7 video surveylance and sophisticated theft protection to keep your items safe. Further, every item is insured up to $20.00/lb. For those that want even further coverage, we offer premium insurance and climate controlled storage by request. 
+  
+  %section   
+    %br/ 
+    %br/ 
+    %hr.half-width.half-opacity
+
+    / %br/ 
+    %br/ 
+
+    .row
+      .col-md-12
+        .row.homepage-started-row
+          .col-md-12
+            %h3.dark-gray
+              Any Item, Free Pickup,
+              %b.blue Storage That Fits
+          .col-md-4.col-md-offset-4.col-sm-4.col-sm-offset-4
+            .boxed-gray.continue-button.pull-left
+              %a.white{"href" => "/signup"}
+                %button.btn.btn-primary.blue-bg.blue-bg-hover Reserve Pickup
+
+  .container
+    .row
+      .col-md-10.col-md-offset-1
+  = render partial: "partials/feedback_tab"
+  = render :partial => 'partials/footer'
+
+/ = javascript_include_tag "item_selector"
+
+:javascript
+  resizeDiv();
+
+
+  $(".scroll-to-vid").click(function(){
+    $('html, body').animate({scrollTop: $("#signup-action").offset().top - ($(window).height()-50)/2}, 1000);
+  });
+
+  $("#scroll-to-about").click(function(){
+    $('html, body').animate({scrollTop: $("#what-we-do").offset().top - 100}, 600);
+  });
+
+  $("#what-we-do-link").click(function(){
+    $('html, body').animate({scrollTop: $("#what-we-do").offset().top - 100}, 800);
+  });
+
+  $("#save-much-link").click(function(){
+    $('html, body').animate({scrollTop: $("#save-much").offset().top - 100}, 800);
+  });
+
+  $("#works-link").click(function(){
+    $('html, body').animate({scrollTop: $("#works").offset().top - 100}, 1000);
+  });
+
+  $(".scroll-to-about").click(function(){
+    $('html, body').animate({scrollTop: $("#signup-about").offset().top - 100}, 600);
+  });
+
+  $(document).ready(function(){
+    resizeDiv();
+  });
+
+
