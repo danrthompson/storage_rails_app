@@ -718,7 +718,7 @@ input[type=submit]{
 }
 
 #company-phone{
-	font-weight: 600 !important;
+	font-weight: 600;
 	color: @default-blue;
 	&:hover{
 		color: @default-blue
@@ -2167,7 +2167,7 @@ p.alert  , p.notice {
   	opacity: 0;
   }
   .hide-on-small{
-  	display: none;
+  	display: none ! important;
   }
 
   .nav-links-wrapper{
@@ -2181,11 +2181,20 @@ p.alert  , p.notice {
 }
 
 @media all and (max-device-width : 480px){
-	#menu-title{
+	.header-nav .nav-links > a{
+		top:26px;
+	}
+	.no-padding-small{
+		padding: 0 ! important;
+	}
+	.hide-on-small{
+		display: none ! important;
+	}
+
 	#company-phone{
 		display: none ! important;
 		color: white;
-	}}
+	}
 	#homepage{
 		#introSection{
 			margin-bottom: 0;
@@ -2197,6 +2206,38 @@ p.alert  , p.notice {
 				a{
 					left:0;
 				}
+			}
+		}
+
+		#introSection.landing-page{
+			#main-fold{
+				h1, h3, p{
+					color: white;
+					text-align: center;
+				}
+				p{
+					font-weight: 300;
+				}
+			}
+			#homepage-calltoaction{
+				text-align: center;
+				margin-bottom: 25px;
+
+				a.homepage-buttons{
+					display: block;
+					// padding: 10px;
+					float: none;
+					width: 100%;
+				}
+			}
+			#fold-subtitle{
+				display: none;
+			}
+			#fold-img{
+				text-align: center;
+			}
+			#more-info{
+			 	display: none ! important;
 			}
 		}
 		

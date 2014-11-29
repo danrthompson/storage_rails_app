@@ -35,11 +35,11 @@ Rails.application.routes.draw do
   get '500', to: 'static_pages#server_error', as: 'server_error'
 
   get 'apartment' =>'static_pages#apartment'
-  get 'garage' =>'static_pages#garage'
-
+  get 'garage' =>'static_pages#garage' #housewives
   get 'college' => 'static_pages#college'
   get 'moving' => 'static_pages#moving'
   get 'luxury' => 'static_pages#luxury'
+
   get 'about' => 'static_pages#about'
   get 'feedback' => 'static_pages#feedback'
   get 'faq' => 'static_pages#faq'
