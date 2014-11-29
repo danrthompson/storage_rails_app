@@ -39,6 +39,8 @@ class SignupPagesController < ApplicationController
 		@user = User.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != current_user.id
 		@pickup_request = PickupRequest.new select_items_params(params)
+		# render text: "hello" and return
+
 		render :show
 	end
 
