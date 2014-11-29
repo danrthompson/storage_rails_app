@@ -1,17 +1,32 @@
 .boxed-grey.col-md-12
   .row#validator-id
     .col-md-6.align-left
-      %label{:for => "posted_delivery_date"} Date <span class="required_label">  * required </span>
-      
+      %label{:for => "posted_delivery_date"}
+        Date
       #datepicker.input-append.date
         =f.text_field :posted_delivery_date, class:"span2 form-control", id: "datepicker-value", placeholder: 'Which day is best?'
         %span.add-on
           %i.icon-calendar
+      
      
     .col-md-6.align-left
       %label{:for => "date-picker"} Time Of Day
       = f.select  :posted_delivery_time, options_for_select([["Choose a time"]]),{}, {class:"form-control selectpicker", id:"#{select_id}"}
       %br/ 
+    .col-md-12.align-center
+      %p.required_label
+        Save by picking popular delivery dates. 
+        %span.heavy-font $5.00 credit
+        with blue dates (
+        %i.icon-date-box.blue
+        ) 
+        %span.heavy-font $10.00 credit
+        with green (
+        %i.icon-date-box.green
+        )
+      
+
+
 
 :javascript
   $(document).ready(function(){
@@ -20,7 +35,7 @@
     end.setDate(start.getDate()+30);
 
     $('#datepicker-value').datepicker({
-        daysOfWeekDisabled: "0",
+        daysOfWeekDisabled: "0,1,4",
         autoclose: true,
         todayHighlight: true
     });
@@ -33,8 +48,13 @@
       var dropdownID = "#" + #{select_id.to_json};
       updateDropdownDates('#datepicker-value', dropdownID, available_delivery_times);
     });
+
+    $('#datepicker-value').on('show', function(){
+      // This is where the discount info would go
+      // highlightDeliveryDiscounts(["5", "10", "21"],"fivedollaoff");
+      // highlightDeliveryDiscounts(["13", "19", "23"],"tendollaoff");
+
+    });
   });
 
-
-  
 

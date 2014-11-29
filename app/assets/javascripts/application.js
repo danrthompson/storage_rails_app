@@ -152,32 +152,74 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
   }
 
   var times = available_delivery_times[val];
-  var val = 0;
-  var AMPM = 0;
+  var startTime = 0;
+  var endTime = 0;
+  var FirstAMPM = "AM";
+  var SecondAMPM = "AM";
   $(dropdownID)
-     .append($("<option></option>").text("Choose a time"));
+     .append($("<option></option>").text("Choose a time window"));
 
   $.each(times, function(index, value) {
-    val = value;
-    AMPM = " AM"
+    startTime = value;
+    endTime = startTime + 1;
 
-    if (value == 0){
-      val = "12";
-    } else if (value > 0 && value < 12){
-      AMPM = " AM";
-    } else if (value == 12){
-      AMPM = " PM";
-    } else if (value > 12){
-      AMPM = " PM";
-      val = value - 12; 
+
+
+    if (startTime == 0){
+      startTime = "12";
+      endTime = "1";
+    } else if (startTime > 0 && startTime < 12){
+      // console.log("yo!: endTime" + endTime + " startTime:" + startTime);
+      if(endTime == 12 || startTime == 11){
+        // console.log("at least it got here");
+        SecondAMPM = " PM";
+      }    
+    } else if (startTime == 12){
+      FirstAMPM = " PM";
+      SecondAMPM = " PM"
+      endTime = endTime -12;
+    } else if (startTime > 12){
+      FirstAMPM = " PM";
+      SecondAMPM = " PM";
+      startTime = startTime - 12;
+      endTime = endTime - 12; 
+      if(endTime == 12){
+        SecondAMPM = " AM";
+      }
     }
+
 
     $(dropdownID)
        .append($("<option></option>")
        .attr("value",value)
-       .text(val + ":00" + AMPM));
+       .text(startTime + ":00" + FirstAMPM+ " - "+ + endTime + ":00 " + SecondAMPM));
   });
+  $(dropdownID)
+     .append($("<option class=\"half-opacity\"></option>")
+     .text("Need a different time? Call us!"));
 }
+
+/////////////////
+// Offers promotional discounts for overlapping deliveries
+/////////////////
+function highlightDeliveryDiscounts(arrayOfDates, classToAdd){
+  var a = $(".datepicker tbody td");
+  for (var i = 0; i < arrayOfDates.length; i++) {
+    console.log("hi" + " " + i);
+      var j = arrayOfDates[i];
+    a.each(function(){
+      var p = $(this).text();
+      if (p == j){
+        console.log("j:" + j + " P:" + p);
+        $(this).addClass(classToAdd);
+      }
+    });
+  }
+};
+
+
+
+
 
 /////////////////
 // Change To "Loading" On Button Click
