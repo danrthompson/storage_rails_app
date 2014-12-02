@@ -194,9 +194,9 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
        .attr("value",value)
        .text(startTime + ":00" + FirstAMPM+ " - "+ + endTime + ":00 " + SecondAMPM));
   });
-  $(dropdownID)
-     .append($("<option class=\"half-opacity\"></option>")
-     .text("Need a different time? Call us!"));
+  // $(dropdownID)
+  //    .append($("<option class=\"half-opacity\"></option>")
+  //    .text("Need a different time? Call us!"));
 }
 
 /////////////////
