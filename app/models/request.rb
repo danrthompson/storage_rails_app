@@ -17,6 +17,24 @@ class Request < ActiveRecord::Base
 		within_standard_times?(time) and fits_with_other_delivery_times?(time, all)
 	end
 
+	def self.taken_delivery_times(from_time=Time.now.getlocal(@@utc_offset))
+		taken_times = {}
+		self.where(completion_time: nil, delivery_time:(from_time.to_date..(from_time+@@number_of_days_ahead_delivery_available.days).to_date)).select(:delivery_time).each do |request|
+			time_format = '%m/%d/%Y'
+			delivery_time = request.delivery_time
+			date_string = delivery_time.strftime(time_format)
+			hour1 = delivery_time.hour
+			hour2 = if delivery_time.min > 0 then delivery_time.hour + 1 else nil end
+			if taken_times[date_string]
+				taken_times[date_string] << hour1
+			else
+				taken_times[date_string] = [hour1]
+			end
+			taken_times[date_string] << hour2 if hour2
+		end
+		taken_times
+	end
+
 	def self.available_delivery_times(from_time=Time.now.getlocal(@@utc_offset))
 		time_format = '%m/%d/%Y'
 		available_times = {}
