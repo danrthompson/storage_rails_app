@@ -92,10 +92,7 @@ class AdminPagesController < ApplicationController
 			subscription = stripe_user.subscriptions.first
 			subscription.quantity += (monthly_cost * 100).to_i
 			subscription.save
-			begin
-				Stripe::Invoice.create(customer: stripe_user.id)
-			rescue Stripe::InvalidRequestError
-			end
+			Stripe::Invoice.create(customer: stripe_user.id)
 		else
 			subscription = stripe_user.subscriptions.create(plan: 'plan_1', quantity: (monthly_cost * 100).to_i)
 		end
