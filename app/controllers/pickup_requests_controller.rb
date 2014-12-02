@@ -40,7 +40,7 @@ class PickupRequestsController < ApplicationController
 		
 		if @pickup_request.valid? and @user.valid?
 			@pickup_request.save!
-			UserMailer.delay.confirm_pickup_email(@pickup_request.id)
+			# UserMailer.delay.confirm_pickup_email(@pickup_request.id)
 			redirect_to @pickup_request and return
 		else
 			flash.now[:alert] = 'Sorry, there were some errors that you need to correct.'

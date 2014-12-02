@@ -13,7 +13,7 @@ class SignupPagesController < ApplicationController
 
 		if @user.valid?
 			begin
-				@user.send_welcome_email
+				# @user.send_welcome_email
 				sign_in @user
 				redirect_to signup_select_items_url(@user.id) and return
 			rescue Errno::ECONNREFUSED
@@ -60,7 +60,7 @@ class SignupPagesController < ApplicationController
 		end
 		if @user.valid?	and @user.ready?
 			@pickup_request.save
-			UserMailer.delay.confirm_pickup_email(@pickup_request.id)
+			# UserMailer.delay.confirm_pickup_email(@pickup_request.id)
 			redirect_to @pickup_request and return
 		end
 		@user.add_readiness_errors

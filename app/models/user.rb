@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   def send_welcome_email
     if Rails.env.production?
-      UserMailer.delay.welcome_email(self.id)
+      # UserMailer.delay.welcome_email(self.id)
     end
   end
 
