@@ -45,24 +45,19 @@ class SignupPagesController < ApplicationController
 	end
 
 	def add_payment
-		puts "\n\n\n\n\n1"
 		@user = User.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != current_user.id
-		puts "\n\n\n\n\n2"
 		@pickup_request = PickupRequest.new create_pickup_request_params(params)
 		@pickup_request.user = @user
-		puts "\n\n\n\n\n3"
 		unless @pickup_request.valid?
 			render action: :show and return
 		end
-		puts "\n\n\n\n\n4"
 		begin
 			@user.update(user_add_payment(params))
 		rescue Stripe::CardError => e
 			flash.now[:alert] = e.message
 			render action: :show and return
 		end
-		puts "\n\n\n\n\n5"
 		if @user.valid?	and @user.ready?
 			puts "\n\n\n\n\n6"
 			@pickup_request.save
