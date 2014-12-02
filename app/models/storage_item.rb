@@ -89,19 +89,15 @@ class StorageItem < ActiveRecord::Base
 	end
 
 	def remove_delivery_request_if_item_not_delivered
-		puts "\n\n\n\n\n30"
 		if self.item_not_delivered == true
 			self.delivery_request = nil
 		end
-		puts "\n\n\n\n\n31"
 	end
 
 	def add_user_item_number
-		puts "\n\n\n\n\n20"
 		self.user_item_number = self.user.storage_item_number
 		self.user.storage_item_number += 1
 		self.user.save
-		puts "\n\n\n\n\n21"
 	end
 
 	def case_statement_item_types(small_option, medium_option, large_option, extra_large_option)

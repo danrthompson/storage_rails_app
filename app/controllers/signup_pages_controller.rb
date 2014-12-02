@@ -59,15 +59,11 @@ class SignupPagesController < ApplicationController
 			render action: :show and return
 		end
 		if @user.valid?	and @user.ready?
-			puts "\n\n\n\n\n6"
 			@pickup_request.save
-			puts "\n\n\n\n\n7"
 			# UserMailer.delay.confirm_pickup_email(@pickup_request.id)
 			redirect_to @pickup_request and return
 		end
-		puts "\n\n\n\n\n8"
 		@user.add_readiness_errors
-		puts "\n\n\n\n\n9"
 		render action: :show
 	end
 
