@@ -127,15 +127,14 @@
               #submit-details.hidden
                 / %p.align-left.light-gray.small-text * you will only be charged after pickup
                 .row
-                  .col-md-5.col-md-offset-2.no-side-padding
-                    %p.align-right.pull-right.pt-10
+                  .col-md-6.no-side-padding
+                    %p.align-right.pull-right.pt-10.tos-content
                       I agree to the
                       %a.pointer.blue.yellow-hover{"data-target" => "#myModal", "data-toggle" => "modal"} terms of service 
-                  .col-md-1
+                  .col-md-2.tos-content.align-left
                     / # = cc.check_box :remember_me, class: "pull-left"
                     / %input#terms-checkbox.pull-right{:type => "checkbox", required:true}/
-                    = f.check_box :terms_of_service_accepted, {id: 'terms-checkbox', class: 'pull-right', required: 'true'}
-                .row
+                    = f.check_box :terms_of_service_accepted, {id: 'terms-checkbox', class: 'pull-right'}
                   .col-md-4
                     %br/ 
                     .boxed-gray
@@ -231,6 +230,10 @@
    $("#quote-close").click(function(){
     $("#quote-generator").addClass("hidden");
    });
+
+
+   grayOutButtonOnClick("#submit-button", "form");
+
 
 
   

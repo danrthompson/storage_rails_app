@@ -54,6 +54,19 @@ function hideParentWhenZero(classId){
   });
 }; 
 
+////////////////////////////////
+// Disables button after being clicked
+////////////////////////////////
+function grayOutButtonOnClick(btnID, formID){
+  $(btnID).click(function(e){
+      // e.preventDefault();
+      console.log("do this!");
+      // $(this).attr("disabled", "true");
+      $(this).css("opacity", "0.2");
+      $(this).val("loading...")
+      $(formID).submit();
+    });
+}
 
 /////////////////////////////////////////////////////////////
 // Makes sure required fields are filled out on address/delivery page
