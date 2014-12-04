@@ -1432,10 +1432,20 @@ h3.double-underlined{
 
 
 #national-form{
+	#more-info{
+		font-weight: 100;
+		opacity: .5;
+		color: white;
+		&:hover{
+			color: @default-yellow ! important;
+			// font-weight: 300;
+			opacity: 1;
+		}
+	}
 	input[type="text"]{
 		border: 1px solid white;
 		background-color: rgba(0,0,0,0);
-		color: white;
+		color: white ! important;
 	}
 	input[type="email"]{
 		border: 1px solid white;
@@ -1443,16 +1453,36 @@ h3.double-underlined{
 		color: white;
 	}
 	input[type="submit"]{
-		margin-top: 10px;
-		font-size: 18px;
-		font-weight: 300;
-		padding: 10px 25px 12px 25px;
+		// margin-top: 10px;
+		// font-size: 18px;
+		// font-weight: 300;
+		// padding: 10px 25px 12px 25px;
 		background-color: white;
-		span {color: @dark-gray; font-weight: 500;}
+		// span {color: @dark-gray; font-weight: 500;}
 		border-radius: 10px;
-		margin-right: 20px;
-		color: white;
-		border: 1px solid white;
+		color: @dark-gray; font-weight: 300;
+		// margin-right: 20px;
+		// border: 1px solid white;
+		&:hover{
+			background-color: @default-yellow;
+			color: white;
+		}
+	}
+
+	::-webkit-input-placeholder {
+	   color: white;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+	   color: white;  
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+	   color: white;  
+	}
+
+	:-ms-input-placeholder {  
+	   color: white;  
 	}
 }
 
