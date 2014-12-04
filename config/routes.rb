@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:edit, :update]
@@ -59,7 +61,11 @@ Rails.application.routes.draw do
   post 'signup/items/:id', to: 'signup_pages#post_select_items'
   patch 'signup/:id', to: 'signup_pages#add_payment', as: 'add_payment_signup_pages'
 
-  root 'static_pages#homepage'    
+  root 'static_pages#homepage'
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
