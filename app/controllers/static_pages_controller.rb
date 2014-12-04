@@ -25,6 +25,9 @@ class StaticPagesController < ApplicationController
 		render status: 500
 	end
 
+	def national
+		@user = User.last() #CHANGE THIS!!!!
+	end
 	private
 
 	def no_ready_users!
