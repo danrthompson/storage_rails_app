@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get '422', to: 'static_pages#server_error'
   get '500', to: 'static_pages#server_error', as: 'server_error'
 
+  get 'new-city' =>'static_pages#new-city'
   get 'national' =>'static_pages#national'
   get 'apartment' =>'static_pages#apartment'
   get 'garage' =>'static_pages#garage' #housewives

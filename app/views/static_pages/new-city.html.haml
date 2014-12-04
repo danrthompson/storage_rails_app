@@ -1,0 +1,38 @@
+- if @user
+  = render :partial => 'partials/logged_in_header'
+- else
+  = render :partial => 'partials/signup_header'
+
+/ BLUE HEADER BAR
+.container.full-width.blue-bg.no-padding.white.dashboard-header.single-row
+  .row
+    .col-md-12.align-center
+      %h1 We're Not In Your City Yet!
+    
+/ END SECONDARY HEADER
+
+
+/ Section: ITEM SELECTION
+%section#about.home-section.text-center
+  .heading-about.marginbot-20
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          .section-heading
+            = image_tag "https://s3.amazonaws.com/storage_rails_app_dev/images/syn-logo.png", class:"width-30"
+            %br/
+            %br/
+            %br/
+            / %h2 We're Not In Your City Yet!
+            %p.align-center
+              We're trying hard to change the way people do self storage. Right now we're not serving your city, but we hope to be soon. When we do you'll be the first to know! 
+              %br/ 
+              %br/ 
+              In the meantime, please 
+              %a{:href => "mailto: team@quickbox.com"} keep in touch!
+
+  %button.btn.btn-primary.gray-bg= link_to "Back To Home", national_path, class:"white"
+
+= render :partial => 'partials/footer'
+= render :partial => 'partials/javascriptSource'
+
