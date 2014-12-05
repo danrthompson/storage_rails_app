@@ -95,9 +95,12 @@ class StorageItem < ActiveRecord::Base
 	end
 
 	def add_user_item_number
-		self.user_item_number = self.user.storage_item_number
-		self.user.storage_item_number += 1
-		self.user.save
+		User.transaction do
+			user = User.lock.find(self.user_id)
+			self.user_item_number = user.storage_item_number
+			user.storage_item_number += 1
+			user.save
+		end		
 	end
 
 	def case_statement_item_types(small_option, medium_option, large_option, extra_large_option)
