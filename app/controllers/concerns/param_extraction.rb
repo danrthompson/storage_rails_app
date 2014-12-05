@@ -20,7 +20,7 @@ module ParamExtraction
 	end
 
 	def create_user_params(params)
-		params.require(:user).permit(:email, :password, :name)
+		params.require(:user).permit(:email, :password, :name, :phone_number)
 	end
 
 	def user_address_params(params)
