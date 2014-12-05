@@ -53,6 +53,8 @@ gem 'hpricot'
 gem 'premailer-rails'
 gem 'autoscaler'
 gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', require: nil
+gem 'slim'
 gem 'less'
 gem 'twilio-ruby' 
 # gem 'activeadmin'
