@@ -65,18 +65,18 @@ $(document).ready(function() {
               }
             }
           },
-          'user[phone_number]': {
-            message: 'The address field is not valid',
-            validators: {
-              notEmpty: {
-                message: '*phone number required'
-              },
-              stringLength: {
-                min: 10,
-                message: 'Phone number invalid'
-              },
-            }
-          },
+          // 'user[phone_number]': {
+          //   message: 'The address field is not valid',
+          //   validators: {
+          //     notEmpty: {
+          //       message: '*phone number required'
+          //     },
+          //     stringLength: {
+          //       min: 10,
+          //       message: 'Phone number invalid'
+          //     },
+          //   }
+          // },
           'user[password]': {
             message: 'The password field is not valid',
             validators: {

@@ -28,6 +28,10 @@ class StaticPagesController < ApplicationController
 	def national
 		@user = User.last() #CHANGE THIS!!!!
 	end
+
+	def luxury
+		@user = User.last()
+	end
 	private
 
 	def no_ready_users!

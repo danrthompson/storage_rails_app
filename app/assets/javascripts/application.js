@@ -36,6 +36,9 @@ $(function() {
   $(".disableOnClick").click(function(e){
     $(".disableOnClick").attr("disabled", true);
   });
+
+
+  disableSubmitOnClick();
 });
 
 function hideParentWhenNotUsed(classId){
@@ -57,16 +60,34 @@ function hideParentWhenZero(classId){
 ////////////////////////////////
 // Disables button after being clicked
 ////////////////////////////////
-function grayOutButtonOnClick(btnID, formID){
-  $(btnID).click(function(e){
-      // e.preventDefault();
-      console.log("do this!");
-      // $(this).attr("disabled", "true");
-      $(this).css("opacity", "0.2");
-      $(this).val("loading...")
-      $(formID).submit();
-    });
+function grayOutButtonOnClick(btnID){
+  // $(btnID).click(function(e){
+  //     if ($(this).hasClass("aldready_clicked")){
+  //       console.log("double click");
+  //       return false;
+  //     }
+  //     $(this).css("opacity", "0.2");
+  //     $(this).val("loading...");
+  //     $(this).addClass("aldready_clicked");
+  //   });
 }
+
+function disableSubmitOnClick(){
+  $('input:submit').click(function(e){
+    // e.preventDefault();
+    if ($(this).hasClass("aldready_clicked")){
+      console.log("double click");
+      return false;
+    }
+    if ($(".has-error").size() > 0){
+      return false;
+    }
+    $(this).css("opacity", "0.2");
+    $(this).val("loading...");
+    $(this).addClass("aldready_clicked");
+  });
+}
+
 
 /////////////////////////////////////////////////////////////
 // Makes sure required fields are filled out on address/delivery page

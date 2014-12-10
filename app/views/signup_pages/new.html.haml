@@ -46,26 +46,28 @@
               .col-md-8.col-md-offset-2.form-group.address-form
                 .row
                   .col-md-12
-                    %div.extra-form-padding
+                    %div.extra-form-padding.align-center
                       = f.text_field :name, autofocus: true, class:"form-control", placeholder: "Name"
                 .row
                   .col-md-12
                     .extra-form-padding
-                      = f.text_field :phone_number, autofocus: true, placeholder:"Phone Number - For Deliveries", class:"form-control", id:""
+                      = f.text_field :phone_number, id:"user_phone", autofocus: true, placeholder:"Phone", class:"form-control", id:""
                 .row#signup-emailaddr
                   .col-md-12
                     %div.extra-form-padding
-                      = f.email_field :email, autofocus: true, class:"form-control", placeholder: "Email Address"
+                      = f.email_field :email, autofocus: true, class:"form-control", placeholder: "Email"
                 .row
                   .col-md-12
                     %div.extra-form-padding
                       = f.password_field :password, autofocus: true, class:"form-control", placeholder: "Password"
               .col-md-8.col-md-offset-2.bottom-buttons
-                = f.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"                 
+                = f.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn", disabled: true                 
                 / %a.pointer{href:"/"}
                 /   %h1.btn.btn-default.pull-left Back
             %br/
             %br/ 
+          %span.blue.black-hover.pointer.half-opacity#quote-triggerr{"data-target" => "#signup_modal", "data-toggle" => "modal"}
+            Want updates but not ready to create an account? Click here.
     %br/ 
     %br/ 
     %br/ 
@@ -78,35 +80,34 @@
 = render :partial => "partials/footer"
 = render :partial => "partials/storageSizeModal"
 = render :partial => "partials/outsideAreaModal"
+= render :partial => 'partials/signup_modal'
 
 = javascript_include_tag "item_selector"
 
 :javascript
   
-  
-  /////////////////////////////////////////////////////////////
-  // Prevent "enter" button submission
-  /////////////////////////////////////////////////////////////
-  $(document).ready(function() {
- 
-    var all_form = $(".form-control");
-    
-    all_form.on('input', function() {
 
-      // THIS SHIT NEEDS TO BE FIXED
-     if (!($("#signup-fourth").hasClass("hidden")) && ($("#signup-form").data('bootstrapValidator').isValid())){
-       if ($("#user_email").val().length > 0 && $("#user_password").val().length > 0 && $("#user_name").val().length > 0){
-         $("#signup-fourth-btn").removeAttr("disabled"); 
-         console.log("show fourth button");
-       } else{
-          console.log("disabling button");
-          $("#signup-fourth-btn").attr("disabled", true); 
-       }
-     }
-     else{
-         console.log("disabling button");
-         $("#signup-fourth-btn").attr("disabled", true); 
+  var all_form = $(".form-control");
+  all_form.on('input', function() {
+
+    var numFilled = 0;
+    var numFields =  $(".form-control").size();
+    $(".form-control").each(function(){
+      if($(this).val().length > 0){
+        numFilled += 1;
       }
-    });
+    }); 
+    console.log('numFilled '+numFilled);
+    if (numFilled == numFields){
+      $("#signup-fourth-btn").attr('disabled', false);
+      console.log('attribute removed');
+    } else{
+      $("#signup-fourth-btn").attr('disabled', true);
+      console.log('attribute added');
+    }
   });
+      
+    
+
+
 
