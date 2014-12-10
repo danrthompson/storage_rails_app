@@ -1,4 +1,8 @@
-
+- content_for :title do
+  - if @edit_page
+    = "Edit Packing Supplies Request |"
+  - else
+    = "New Packing Supplies Request |"
 = render partial: "partials/logged_in_header"   
 
 = render partial: "partials/blue_bar", locals:{mainText:"Order Packing Supplies", dashboard:true, faq:true}

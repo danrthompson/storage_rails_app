@@ -5,11 +5,13 @@ class PackingSuppliesRequestsController < ApplicationController
 	before_action :verify_user_is_ready!
 
 	def new
+		@edit_page = false
 		@packing_supplies_request = PackingSuppliesRequest.new
 		@user = current_user
 	end
 
 	def edit
+		@edit_page = true
 		@user = current_user
 		@packing_supplies_request = request_update_verification(params, @user)
 		return if @packing_supplies_request.nil?
