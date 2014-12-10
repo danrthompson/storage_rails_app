@@ -81,8 +81,8 @@ class AdminPagesController < ApplicationController
 				render :record_pickup_request and return
 			end
 			discount = item.discount.to_f
-			if discount and discount > 0 and discount <= 1
-				monthly_cost += item.price*(1.0 - discount)
+			if discount and discount > 0
+				monthly_cost += item.price*((100.0 - discount) / 100.0)
 			else
 				monthly_cost += item.price
 			end
@@ -117,8 +117,8 @@ class AdminPagesController < ApplicationController
 		@delivery_request.storage_items.each do |item|
 			item.left_storage_at = delivery_completion_time
 			discount = item.discount.to_f
-			if discount and discount > 0 and discount <= 1
-				monthly_cost += item.price*(1.0 - discount)
+			if discount and discount > 0
+				monthly_cost += item.price*((100.0 - discount) / 100.0)
 			else
 				monthly_cost += item.price
 			end
