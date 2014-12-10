@@ -1,6 +1,10 @@
 class StaticPagesController < ApplicationController
 	before_action :no_ready_users!, only: [:homepage]
 
+	def homepage
+		@subscriber = Subscriber.new
+	end
+
 	def about
 		@user = current_user
 	end

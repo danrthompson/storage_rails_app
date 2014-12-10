@@ -4,7 +4,15 @@
  
 / %p= link_to 'Login', new_user_session_path
 #homepage.align-center
-
+  .container
+    = render partial: 'partials/error_messages_object_form', locals: {object: @subscriber}
+  .subscription
+    = form_for @subscriber do |f|
+      = f.label :email
+      = f.email_field :email
+      = f.label :zip
+      = f.text_field :zip
+      = f.submit
   // First Page
   %section#introSection.align-center.landing-page{ style:"background-image: url('#{main_img}');"}
     #introSectionContentWrapper

@@ -3,6 +3,10 @@ module ParamExtraction
 
 	private
 
+	def create_subscriber_params(params)
+		params.require(:subscriber).permit(:email, :zip)
+	end
+
 	def select_items_params(params)
 		params.require(:pickup_request).permit(:small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity)
 	end
