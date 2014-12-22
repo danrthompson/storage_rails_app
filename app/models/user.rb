@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   phony_normalize :phone_number, default_country_code: 'US'
   before_validation :normalize_city, :normalize_state, :make_password_nil_if_blank, :send_card_info_to_stripe
 
-  validates :name, presence: true
+  validates :name, :phone_number, presence: true
   validates_plausible_phone :phone_number
   validates :state, format: { with: /\ACO\z/, message: 'must be CO.' }, allow_nil: true
   validates :zip, inclusion: {in: [80002, 80003, 80004, 80005, 80007, 80020, 80021, 80022, 80026, 80027, 80030, 80031, 80033, 80045, 80202, 80203, 80204, 80205, 80206, 80207, 80209, 80210, 80211, 80212, 80214, 80215, 80216, 80218, 80219, 80220, 80221, 80222, 80223, 80224, 80226, 80227, 80228, 80229, 80230, 80231, 80232, 80233, 80234, 80235, 80236, 80237, 80238, 80239, 80241, 80246, 80247, 80249, 80260, 80264, 80290, 80293, 80294, 80301, 80302, 80303, 80304, 80305, 80310, 80401, 80403, 80419, 80501, 80503, 80504, 80516], message: 'is not currently in our service area.' }, allow_nil: true

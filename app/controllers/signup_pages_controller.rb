@@ -6,10 +6,12 @@ class SignupPagesController < ApplicationController
 
 	def new
 		@user = User.new
+		@subscriber = Subscriber.new
 	end
 
 	def create
 		@user = User.create create_user_params(params)
+		@subscriber = Subscriber.new
 
 		if @user.valid?
 			begin

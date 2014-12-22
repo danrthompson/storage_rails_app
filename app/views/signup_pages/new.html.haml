@@ -63,7 +63,7 @@
                     %div.extra-form-padding
                       = f.password_field :password, autofocus: true, class:"form-control", placeholder: "Password"
               .col-md-8.col-md-offset-2.bottom-buttons
-                = f.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn", disabled: true                 
+                = f.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"
                 / %a.pointer{href:"/"}
                 /   %h1.btn.btn-default.pull-left Back
             %br/
@@ -86,28 +86,28 @@
 
 = javascript_include_tag "item_selector"
 
-:javascript
+/ :javascript
   
 
-  var all_form = $(".form-control");
-  all_form.on('input', function() {
+/   var all_form = $(".form-control");
+/   all_form.on('input', function() {
 
-    var numFilled = 0;
-    var numFields =  $(".form-control").size();
-    $(".form-control").each(function(){
-      if($(this).val().length > 0){
-        numFilled += 1;
-      }
-    }); 
-    console.log('numFilled '+numFilled);
-    if (numFilled == numFields){
-      $("#signup-fourth-btn").attr('disabled', false);
-      console.log('attribute removed');
-    } else{
-      $("#signup-fourth-btn").attr('disabled', true);
-      console.log('attribute added');
-    }
-  });
+/     var numFilled = 0;
+/     var numFields =  $(".form-control").size();
+/     $(".form-control").each(function(){
+/       if($(this).val().length > 0){
+/         numFilled += 1;
+/       }
+/     }); 
+/     console.log('numFilled '+numFilled);
+/     if (numFilled == numFields){
+/       $("#signup-fourth-btn").attr('disabled', false);
+/       console.log('attribute removed');
+/     } else{
+/       $("#signup-fourth-btn").attr('disabled', true);
+/       console.log('attribute added');
+/     }
+/   });
       
     
 

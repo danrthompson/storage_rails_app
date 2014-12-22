@@ -1,12 +1,12 @@
 #bottom-bar
   %a.pointer#close_bottom X 
-  %form.row{:action => ""}
+  = form_for @subscriber do |f|
     .col-md-4.col-md-offset-2.no-side-padding
       %p.pull-right.align-right Get $20 off by entering your email
     .col-md-2
-      %input.form-control{:type => "text", placeholder: "email"}/  
+      = f.email_field :email, class: 'form-control', placeholder: 'email'
     .col-md-1.no-side-padding
-      %input.btn.blue-bg{:type => "submit"}
+      = f.submit 'Submit', class: 'btn blue-bg'
 
 :javascript
   $('#close_bottom').click(function(){

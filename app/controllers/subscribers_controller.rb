@@ -2,11 +2,22 @@ class SubscribersController < ApplicationController
 	include ParamExtraction
 
 	def create
+		@user = User.new
 		@subscriber = Subscriber.create create_subscriber_params(params)
 		if @subscriber.valid?
-			redirect_to({controller: :static_pages, action: :homepage}, notice: 'You have been subscribed to our newsletter!')
+			success_message = 'You have been subscribed to our newsletter!'
+			begin
+				redirect_to(:back, notice: success_message)
+			rescue ActionController::RedirectBackError
+				redirect_to({controller: :static_pages, action: :homepage}, notice: success_message)
+			end
 		else
-			render 'static_pages/homepage'
+			failure_message = @subscriber.errors.full_messages.first
+			begin
+				redirect_to(:back, alert: failure_message)
+			rescue ActionController::RedirectBackError
+				redirect_to({controller: :static_pages, action: :homepage}, alert: failure_message)
+			end
 		end
 	end
 end
