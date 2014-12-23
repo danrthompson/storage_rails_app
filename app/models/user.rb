@@ -28,7 +28,8 @@ class User < ActiveRecord::Base
   validates :exp_year, numericality: {only_integer: true, greater_than_or_equal_to: 2014, less_than_or_equal_to: 2035}, allow_blank: true
 
   before_create :create_stripe_customer
-  after_save :send_admin_signup_text, :send_card_info_to_stripe
+  after_create :send_admin_signup_text
+  after_save :send_card_info_to_stripe
 
   def send_welcome_email
     if Rails.env.production?
