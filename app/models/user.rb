@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   has_many :completed_pickup_requests, class_name: 'PickupRequest', foreign_key: 'driver_id'
 
   phony_normalize :phone_number, default_country_code: 'US'
-  before_validation :normalize_city, :normalize_state, :make_password_nil_if_blank, :send_card_info_to_stripe
+  before_validation :normalize_city, :normalize_state, :make_password_nil_if_blank
 
   validates :name, :phone_number, presence: true
   validates_plausible_phone :phone_number
@@ -27,7 +27,8 @@ class User < ActiveRecord::Base
   validates :exp_month, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 12}, allow_blank: true
   validates :exp_year, numericality: {only_integer: true, greater_than_or_equal_to: 2014, less_than_or_equal_to: 2035}, allow_blank: true
 
-  after_create :create_stripe_customer, :send_admin_signup_text
+  before_create :create_stripe_customer
+  after_save :send_admin_signup_text, :send_card_info_to_stripe
 
   def send_welcome_email
     if Rails.env.production?
@@ -99,22 +100,21 @@ class User < ActiveRecord::Base
       metadata: {id: self.id}
     )
     self.stripe_customer_identifier = customer.id
-    self.save
   end
 
   def send_card_info_to_stripe
+    customer = self.stripe_user
     begin
       unless self.promo_code.blank?
-        self.promo_code = self.promo_code.upcase
+        self.update_column('promo_code', self.promo_code.upcase)
         customer.coupon = self.promo_code
         customer.save
       end
     rescue Stripe::InvalidRequestError
       errors.add(:promo_code, 'is invalid.')
-      self.promo_code = nil
+      self.update_column('promo_code', nil)
     end
     unless self.exp_month.blank? or self.exp_year.blank? or self.cc_number.blank? or self.cc_name.blank? or self.cc_cvc.blank? or self.stripe_customer_identifier.blank?
-      customer = self.stripe_user
       customer.cards.create(card:{
         number: self.cc_number,
         exp_month: self.exp_month.to_i,
