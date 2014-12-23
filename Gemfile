@@ -56,7 +56,8 @@ gem 'sidekiq'
 gem 'sinatra', '>= 1.3.0', require: nil
 gem 'slim'
 gem 'less'
-gem 'twilio-ruby' 
+gem 'twilio-ruby'
+gem 'rails_admin'
 # gem 'activeadmin'
 # gem 'cancan'
 

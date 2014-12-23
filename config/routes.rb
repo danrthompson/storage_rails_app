@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin_portal', as: 'rails_admin'
   devise_for :users
   resources :users, only: [:edit, :update]
 

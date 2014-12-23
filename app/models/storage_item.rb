@@ -7,6 +7,7 @@ class StorageItem < ActiveRecord::Base
 
 	has_attached_file :image
 	belongs_to :user
+	belongs_to :driver, class_name: 'User'
 	belongs_to :delivery_request
 	belongs_to :pickup_request
 
