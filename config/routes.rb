@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   patch 'admin/complete_packing_supplies_request/:id', to: 'admin_pages#complete_packing_supplies_request', as: 'complete_packing_supplies_request'
   patch 'admin/complete_pickup_request/:id', to: 'admin_pages#complete_pickup_request', as: 'complete_pickup_request'
   patch 'admin/complete_delivery_request/:id', to: 'admin_pages#complete_delivery_request', as: 'complete_delivery_request'
+  get 'admin/sign_in_as_user', to: 'admin_pages#sign_in_as_user', as: 'admin_sign_in_as_user'
+  post 'admin/sign_in_as_user' => 'admin_pages#post_sign_in_as_user'
 
   get '404', to: 'static_pages#not_found', as: 'not_found'
   get '422', to: 'static_pages#server_error'

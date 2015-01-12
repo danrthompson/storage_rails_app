@@ -1,0 +1,54 @@
+=stylesheet_link_tag "email"
+%meta{:content => "width=device-width, initial-scale=1.0, user-scalable=no", :name => "viewport"}/
+
+.email
+  .email-header-nav
+    %ul.no-list#email-header
+      %li.width-50.pull-left.align-left
+        %a{href: "/storage_items"}
+          %img#email-menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
+        %span#email-menu-title
+          QuickBox
+          %span.no-pointer#company-phone (720) 583-5826
+      / %li.width-50.pull-right.align-right            
+      /   .email-nav-links
+      /     = link_to destroy_user_session_path, method: "delete", class:"black-hover" do
+      /       To QuickBox
+  / .email-title
+  /   %h1 Welcome To Quickbox
+  #email-title
+    %h2 Welcome To QuickBox
+  .email-body
+    %p
+      Hi #{@user.name},
+      %br/ 
+      %br/ 
+      Welcome to QuickBox - your personal storage valet.
+      %br/ 
+      %br/ 
+      This email is to let you know that you're all set up to start using your QuickBox account. You can view your items in storage, request a pickup, or have your items returned to you all from
+      = link_to storage_items_path, class:"blue heavy-font black-hover" do
+        your dashboard.
+      If you want to edit your account details, click on the "account" button in the top left when you log in. 
+      %br/ 
+      %br/ 
+      Please
+      %a.blue.heavy-font.black-hover{:href => "mailto:team@quickbox.com"} let us know
+      if you have any thoughts, feedback, or questions. We're here to help.
+
+      %br/ 
+      %br/ 
+
+      With regards,
+      %br/ 
+      The QuickBox Team
+
+    %br/ 
+    .divider-line
+    %br/ 
+    %br/ 
+    .bottom-button
+      %a{:href => "http://www.quickbox.com"} Visit The Site 
+      / =link_to "Visit The Site", storage_items_path
+    %br/ 
+  .blue-footer

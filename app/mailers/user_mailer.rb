@@ -2,9 +2,20 @@ class UserMailer < ActionMailer::Base
   default from: "team@quickbox.com"
 
 	def welcome_email(user_id)
-	  	@user = User.find(user_id)
-	  	@url = "www.quickbox.com/"
-	  	mail(to:@user.email, subject: "Welcome To QuickBox")
+		@user = User.find(user_id)
+		@url = "www.quickbox.com/"
+		mail(to:@user.email, subject: "Welcome To QuickBox")
+	end
+
+	def reset_password_welcome_email(user_id)
+		@user = User.find(user_id)
+		@url = "www.quickbox.com/"
+		mail(to:@user.email, subject: "Welcome To QuickBox")
+	end
+
+	def new_newsletter_subscriber_email(subscriber_id)
+		@subscriber = Subscriber.find(subscriber_id)
+		mail(to:@subscriber.email, subject: "Your Quickbox Discount Code!")
 	end
 
 	# def new_customer(email)

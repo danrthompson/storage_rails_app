@@ -25,9 +25,6 @@ function resizeDiv() {
 
 	var paddingToAdd = ($("#introSection").height() - $("#introSectionContentWrapper").height());
 	paddingToAdd = (paddingToAdd/8);
-	console.log($("#introSection").height());
-	console.log($("#introSectionContentWrapper").height());
-	console.log("padding To Add:" + paddingToAdd);
 	var paddingPX = paddingToAdd + "px";
 	$("#introSection").css({"top" : paddingPX});
 	// $("#introSection").css({"margin-bottom" : (paddingToAdd*-1)});

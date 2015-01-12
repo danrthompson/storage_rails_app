@@ -6,7 +6,7 @@ class DeliveryRequest < Request
 
 	validates :delivery_time, presence: true
 	validates :box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, absence: true
-	validate :delivery_time_is_available, unless: :skip_delivery_validation
+	validate :delivery_time_is_available, unless: :skip_delivery_validation?
 	validate :no_other_deliveries?
 
 	def price
@@ -15,6 +15,21 @@ class DeliveryRequest < Request
 			sum += item.price
 		end
 		if sum >= 10 then return sum else return 10 end
+	end
+
+	def skip_delivery_validation?
+		if self.skip_delivery_validation == true or self.skip_delivery_validation == '1'
+			true
+		else
+			false
+		end
+	end
+
+	rails_admin do
+		edit do
+			include_all_fields
+			field :skip_delivery_validation, :boolean
+		end
 	end
 
 	private

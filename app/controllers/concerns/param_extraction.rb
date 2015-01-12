@@ -3,6 +3,10 @@ module ParamExtraction
 
 	private
 
+	def sign_in_as_user_params(params)
+		params.require(:user).permit(:email)
+	end
+
 	def create_subscriber_params(params)
 		params.require(:subscriber).permit(:email, :zip)
 	end

@@ -3,6 +3,17 @@ class AdminPagesController < ApplicationController
 
 	before_action :authenticate_admin!
 
+	def post_sign_in_as_user
+		@user = User.where(sign_in_as_user_params(params)).first
+		redirect_to admin_sign_in_as_user_url, alert: 'User does not exist.' and return unless @user
+		sign_in @user
+		redirect_to storage_items_url(@user.id) and return
+	end
+
+	def sign_in_as_user
+		@user = User.new
+	end
+
 	def admin
 		@user = current_user
 		@pending_pickup_requests = PickupRequest.where(completion_time: nil).order(:delivery_time)

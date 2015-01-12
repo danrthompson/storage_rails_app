@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessor :exp_month, :exp_year, :cc_name, :cc_number, :cc_cvc
+  attr_accessor :exp_month, :exp_year, :cc_name, :cc_number, :cc_cvc, :send_reset_password_welcome_email
 
   has_many :storage_items, dependent: :destroy
   has_many :packing_supplies_requests, dependent: :destroy
@@ -28,13 +28,18 @@ class User < ActiveRecord::Base
   validates :exp_year, numericality: {only_integer: true, greater_than_or_equal_to: 2014, less_than_or_equal_to: 2035}, allow_blank: true
 
   before_create :create_stripe_customer
-  after_create :send_admin_signup_text
+  after_create :send_admin_signup_text, :send_welcome_email
   after_save :send_card_info_to_stripe
 
   def send_welcome_email
     if Rails.env.production?
-      UserMailer.delay.welcome_email(self.id)
+      if self.send_reset_password_welcome_email == true or self.send_reset_password_welcome_email == '1'
+        UserMailer.delay.reset_password_welcome_email(self.id)
+      else
+        UserMailer.delay.welcome_email(self.id)
+      end
     end
+    true
   end
 
   def boxes_at_home
@@ -71,6 +76,13 @@ class User < ActiveRecord::Base
           errors.add(:user, key)
         end
       end
+    end
+  end
+
+  rails_admin do
+    create do
+      include_all_fields
+      field :send_reset_password_welcome_email, :boolean
     end
   end
 

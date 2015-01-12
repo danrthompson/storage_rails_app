@@ -1,0 +1,6 @@
+= render partial: "partials/admin_header", locals:{mainText:"Item Pickup"}
+
+= form_for @user, url: admin_sign_in_as_user_path, method: :post do |f|
+	= f.label :email, 'Email of user to sign in as: '
+	= f.email_field :email
+	= f.submit 'Sign in as user'

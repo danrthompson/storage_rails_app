@@ -10,7 +10,7 @@ class PickupRequest < Request
 
 	validates :delivery_time, presence: true
 	validates :box_quantity, :bubble_quantity, :tape_quantity, :wardrobe_box_quantity, absence: true
-	validate :delivery_time_is_available, unless: :skip_delivery_validation
+	validate :delivery_time_is_available, unless: :skip_delivery_validation?
 	validate :no_other_pickups?
 
 	def small_item_quantity=(small_item_quantity)
@@ -29,6 +29,14 @@ class PickupRequest < Request
 		@extra_large_item_quantity = extra_large_item_quantity.to_i
 	end
 
+	def skip_delivery_validation?
+		if self.skip_delivery_validation == true or self.skip_delivery_validation == '1'
+			true
+		else
+			false
+		end
+	end
+
 	def is_real?
 		unless self.storage_items.count > 0 or self.small_item_quantity > 0 or self.medium_item_quantity > 0 or self.large_item_quantity > 0 or self.extra_large_item_quantity > 0
 			errors.add(:small_item_quantity, 'and all other quantities are 0.')
@@ -40,6 +48,13 @@ class PickupRequest < Request
 
 	def make_quantities_zero_not_nil
 		['small', 'medium', 'large', 'extra_large'].each { |item| self.send("#{item}_item_quantity=", 0) if self.send("#{item}_item_quantity").nil? }
+	end
+
+	rails_admin do
+		edit do
+			include_all_fields
+			field :skip_delivery_validation, :boolean
+		end
 	end
 
 	private
