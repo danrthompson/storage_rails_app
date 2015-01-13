@@ -83,6 +83,11 @@ class User < ActiveRecord::Base
     create do
       include_all_fields
       field :send_reset_password_welcome_email, :boolean
+      field :exp_month, :integer
+      field :exp_year, :integer
+      field :cc_name, :string
+      field :cc_number, :string
+      field :cc_cvc, :string
     end
   end
 
