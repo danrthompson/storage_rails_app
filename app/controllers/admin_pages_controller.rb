@@ -102,19 +102,19 @@ class AdminPagesController < ApplicationController
 		if stripe_user.subscriptions.first
 			subscription = stripe_user.subscriptions.first
 			subscription.quantity += (monthly_cost * 100).to_i
-			subscription.save
+			# subscription.save
 			begin
 				Stripe::Invoice.create(customer: stripe_user.id)
 			rescue Stripe::InvalidRequestError
 			end
 		else
-			subscription = stripe_user.subscriptions.create(plan: 'plan_1', quantity: (monthly_cost * 100).to_i)
+			# subscription = stripe_user.subscriptions.create(plan: 'plan_1', quantity: (monthly_cost * 100).to_i)
 		end
 		unless @pickup_request.one_time_payment.blank? or @pickup_request.one_time_payment == 0
 			Stripe::Charge.create(amount: (@pickup_request.one_time_payment * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "One time payment for items picked up on #{Time.now.strftime('%m/%d')}", statement_description: "PICKUP PAYMENT")
 		end	
 		@pickup_request.save
-		# UserMailer.delay.pickup_receipt_email(@pickup_request.id)
+		# UserMailer.dselay.pickup_receipt_email(@pickup_request.id)
 		redirect_to :admin, notice: 'Pickup request marked complete.' and return
 	end
 
