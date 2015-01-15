@@ -30,11 +30,11 @@ class StaticPagesController < ApplicationController
 	end
 
 	def national
-		@user = User.last() #CHANGE THIS!!!!
+		@user = current_user
 	end
 
 	def luxury
-		@user = User.last()
+		@user = current_user
 	end
 	private
 

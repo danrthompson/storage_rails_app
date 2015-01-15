@@ -1,6 +1,12 @@
 - content_for :title do
   = "Select Items | Signup |"
 
+- if @track_conversion
+  :javascript
+    analytics.track('Signed Up', {
+      value: 15
+    });
+
 .row.header-nav
   .nav-links-wrapper.col-md-4.col-xs-8#header-logo
     %a.no-padding.pull-left{href: "/"}
