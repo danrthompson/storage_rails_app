@@ -10,6 +10,7 @@ class Request < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :driver, class_name: 'User'
 	has_many :notifications
+	has_paper_trail
 
 	validates :user_id, presence: true
 

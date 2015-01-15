@@ -2,6 +2,7 @@ class UnavailableTime < ActiveRecord::Base
   attr_accessor :unavailable_date, :start_hour, :end_hour
 
   belongs_to :user
+  has_paper_trail
 
   before_save :normalize_time
 

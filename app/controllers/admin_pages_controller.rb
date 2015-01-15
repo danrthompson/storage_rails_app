@@ -114,7 +114,7 @@ class AdminPagesController < ApplicationController
 			Stripe::Charge.create(amount: (@pickup_request.one_time_payment * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "One time payment for items picked up on #{Time.now.strftime('%m/%d')}", statement_description: "PICKUP PAYMENT")
 		end	
 		@pickup_request.save
-		UserMailer.delay.pickup_receipt_email(@pickup_request.id)
+		# UserMailer.delay.pickup_receipt_email(@pickup_request.id)
 		redirect_to :admin, notice: 'Pickup request marked complete.' and return
 	end
 

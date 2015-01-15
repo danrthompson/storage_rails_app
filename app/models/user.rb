@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :completed_packing_supplies_requests, class_name: 'PackingSuppliesRequest', foreign_key: 'driver_id'
   has_many :completed_delivery_requests, class_name: 'DeliveryRequest', foreign_key: 'driver_id'
   has_many :completed_pickup_requests, class_name: 'PickupRequest', foreign_key: 'driver_id'
+  has_paper_trail
 
   phony_normalize :phone_number, default_country_code: 'US'
   before_validation :normalize_city, :normalize_state, :make_password_nil_if_blank

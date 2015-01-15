@@ -6,6 +6,7 @@ class StorageItem < ActiveRecord::Base
 	end
 
 	has_attached_file :image
+	has_paper_trail
 	belongs_to :user
 	belongs_to :driver, class_name: 'User'
 	belongs_to :delivery_request

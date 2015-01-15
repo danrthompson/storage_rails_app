@@ -1,4 +1,6 @@
 class PackingSuppliesRequest < Request
+	has_paper_trail
+
 	after_initialize :make_quantities_zero_not_nil
 
 	validates :box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
