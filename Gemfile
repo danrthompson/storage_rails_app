@@ -61,6 +61,7 @@ gem 'rails_admin'
 gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 gem 'paper_trail', '~> 3.0.6'
 gem 'rollbar', '~> 1.3.1'
+gem 'customerio', :git => 'https://github.com/customerio/customerio-ruby'
 # gem 'activeadmin'
 # gem 'cancan'
 

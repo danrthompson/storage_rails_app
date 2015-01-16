@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/customerio/customerio-ruby
+  revision: b0cc5e29f6c83b039466f3c1a9bb480567311a8a
+  specs:
+    customerio (0.5.1)
+      httparty (>= 0.5, < 1.0)
+
+GIT
   remote: https://github.com/stripe/stripe-ruby
   revision: 2c6f4caa99916c33d3f9af57f66422ff5ea913cf
   specs:
@@ -363,6 +370,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   capybara
   coffee-rails (~> 4.0.0)
+  customerio!
   database_cleaner
   devise
   factory_girl_rails
