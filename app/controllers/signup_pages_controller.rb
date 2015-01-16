@@ -5,7 +5,7 @@ class SignupPagesController < ApplicationController
 	before_action :user_but_no_cc_info!, only: [:select_items, :post_select_items, :show, :add_payment]
 
 	def new
-		@user = User.find(58973475)
+		@user = User.new
 		@subscriber = Subscriber.new
 	end
 
