@@ -81,6 +81,14 @@ class User < ActiveRecord::Base
   end
 
   rails_admin do
+    list do
+      field :name
+      field :email
+      field :phone_number
+      field :id
+      field :stripe_customer_identifier
+      field :created_at
+    end
     create do
       include_all_fields
       field :send_reset_password_welcome_email, :boolean
