@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   before_create :create_stripe_customer
   after_create :send_admin_signup_text, :send_welcome_email
   after_save :send_card_info_to_stripe
+  after_commit :identify_customerio
 
   def send_welcome_email
     if Rails.env.production?
@@ -78,6 +79,28 @@ class User < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def identify_customerio
+    $customerio.identify(
+      id: self.id,
+      email: self.email,
+      created_at: self.created_at.to_i,
+      address_line_1: self.address_line_1,
+      address_line_2: self.address_line_2,
+      city: self.city,
+      state: self.state,
+      zip: self.zip,
+      phone_number: self.phone_number,
+      admin: self.admin,
+      stripe_customer_identifier: self.stripe_customer_identifier,
+      promo_code: self.promo_code,
+      referrer: self.referrer,
+      terms_of_service_accepted: self.terms_of_service_accepted,
+      name: self.name,
+      finished_signup_flow: self.ready?,
+      tire_customer: self.tire_customer,
+    )
   end
 
   rails_admin do
