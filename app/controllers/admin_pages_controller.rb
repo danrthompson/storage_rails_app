@@ -78,71 +78,22 @@ class AdminPagesController < ApplicationController
 	end
 
 	def complete_pickup_request
-		pickup_completion_time = Time.now
 		@pickup_request = PickupRequest.find(params[:id])
-		@pickup_request.skip_delivery_validation = true
-		@pickup_request.completion_time = pickup_completion_time
-		@pickup_request.driver = current_user
-		monthly_cost = 0.0
-		@pickup_request.storage_items.each do |item|
-			item.entered_storage_at = pickup_completion_time
-			item.save
-			if not item.valid?
-				flash.now[:alert] = item.errors.full_messages.first
-				render :record_pickup_request and return
-			end
-			discount = item.discount.to_f
-			if discount and discount > 0
-				monthly_cost += item.price*((100.0 - discount) / 100.0)
-			else
-				monthly_cost += item.price
-			end
+		error = @pickup_request.complete(current_user)
+		if error
+			flash.now[:alert] = error
+			render :record_pickup_request and return
 		end
-		stripe_user = @pickup_request.user.stripe_user
-		if stripe_user.subscriptions.first
-			subscription = stripe_user.subscriptions.first
-			subscription.quantity += (monthly_cost * 100).to_i
-			subscription.save
-			begin
-				Stripe::Invoice.create(customer: stripe_user.id)
-			rescue Stripe::InvalidRequestError
-			end
-		else
-			subscription = stripe_user.subscriptions.create(plan: 'plan_1', quantity: (monthly_cost * 100).to_i)
-		end
-		unless @pickup_request.one_time_payment.blank? or @pickup_request.one_time_payment == 0
-			Stripe::Charge.create(amount: (@pickup_request.one_time_payment * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "One time payment for items picked up on #{Time.now.strftime('%m/%d')}", statement_description: "PICKUP PAYMENT")
-		end	
-		@pickup_request.save
-		# UserMailer.delay.pickup_receipt_email(@pickup_request.id)
 		redirect_to :admin, notice: 'Pickup request marked complete.' and return
 	end
 
 	def complete_delivery_request
-		delivery_completion_time = Time.now
 		@delivery_request = DeliveryRequest.find(params[:id])
-		@delivery_request.skip_delivery_validation = true
-		@delivery_request.completion_time = delivery_completion_time
-		@delivery_request.driver = current_user
-		monthly_cost = 0.0
-		@delivery_request.storage_items.each do |item|
-			item.left_storage_at = delivery_completion_time
-			discount = item.discount.to_f
-			if discount and discount > 0
-				monthly_cost += item.price*((100.0 - discount) / 100.0)
-			else
-				monthly_cost += item.price
-			end
-			item.save!
+		error = @delivery_request.complete(current_user)
+		if error
+			flash.now[:alert] = error
+			render :record_delivery_request and return
 		end
-		stripe_user = @delivery_request.user.stripe_user
-		subscription = stripe_user.subscriptions.first
-		subscription.quantity -= (monthly_cost * 100).to_i
-		subscription.save
-		Stripe::Charge.create(amount: (@delivery_request.price * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "Quickbox delivery on #{Time.now.strftime('%m/%d')}", statement_description: "DELIVERY FEE")
-
-		@delivery_request.save
-		# UserMailer.delay.delivery_receipt_email(@delivery_request.id)
 		redirect_to :admin, notice: 'Delivery request marked complete' and return
 	end
 

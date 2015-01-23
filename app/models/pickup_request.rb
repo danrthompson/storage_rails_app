@@ -51,6 +51,48 @@ class PickupRequest < Request
 		['small', 'medium', 'large', 'extra_large'].each { |item| self.send("#{item}_item_quantity=", 0) if self.send("#{item}_item_quantity").nil? }
 	end
 
+	# implement better transaction support
+	def complete(current_user)
+		pickup_completion_time = Time.now
+		
+		self.skip_delivery_validation = true
+		self.completion_time = pickup_completion_time
+		self.driver = current_user
+		monthly_cost = 0.0
+		self.storage_items.each do |item|
+			item.entered_storage_at = pickup_completion_time
+			item.save
+			unless item.valid?
+				return item.errors.full_messages.first
+			end
+			
+			discount = item.discount.to_f
+			if discount and discount > 0
+				monthly_cost += item.price*((100.0 - discount) / 100.0)
+			else
+				monthly_cost += item.price
+			end
+		end
+		stripe_user = self.user.stripe_user
+		if stripe_user.subscriptions.first
+			subscription = stripe_user.subscriptions.first
+			subscription.quantity += (monthly_cost * 100).to_i
+			subscription.save
+			begin
+				Stripe::Invoice.create(customer: stripe_user.id)
+			rescue Stripe::InvalidRequestError
+			end
+		else
+			subscription = stripe_user.subscriptions.create(plan: 'plan_1', quantity: (monthly_cost * 100).to_i)
+		end
+		unless self.one_time_payment.blank? or self.one_time_payment == 0
+			Stripe::Charge.create(amount: (self.one_time_payment * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "One time payment for items picked up on #{Time.now.strftime('%m/%d')}", statement_description: "PICKUP PAYMENT")
+		end	
+		self.save
+		# UserMailer.delay.pickup_receipt_email(self.id)
+		return nil
+	end
+
 	rails_admin do
 		edit do
 			include_all_fields
