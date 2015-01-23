@@ -111,6 +111,10 @@ class PickupRequest < Request
 			include_all_fields
 			field :skip_delivery_validation, :boolean
 			field :skip_confirm_request_email, :boolean
+			field :small_item_quantity, :integer
+			field :medium_item_quantity, :integer
+			field :large_item_quantity, :integer
+			field :extra_large_item_quantity, :integer
 		end
 	end
 
