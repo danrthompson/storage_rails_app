@@ -5,7 +5,7 @@ class Request < ActiveRecord::Base
 	@@number_of_days_ahead_delivery_available = 30
 	@@utc_offset = "-07:00"
 
-	attr_accessor :posted_delivery_date, :posted_delivery_time, :skip_delivery_validation
+	attr_accessor :posted_delivery_date, :posted_delivery_time, :skip_delivery_validation, :skip_confirm_request_email
 
 	belongs_to :user
 	belongs_to :driver, class_name: 'User'

@@ -4,11 +4,25 @@ class DeliveryRequest < Request
 	accepts_nested_attributes_for :storage_items, allow_destroy: true
 
 	before_validation :normalize_delivery_time
+	after_create :send_confirmation_email
 
 	validates :delivery_time, presence: true
 	validates :box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, absence: true
 	validate :delivery_time_is_available, unless: :skip_delivery_validation?
 	validate :no_other_deliveries?
+
+	def send_confirmation_email
+		if Rails.env.production?
+			unless self.skip_confirm_request_email == true or self.skip_confirm_request_email == '1'
+				$customerio.track(
+					self.user_id,
+					"delivery_created",
+					delivery_time_string: self.delivery_time.strftime("%B %d at %l:%M %p"),
+					delivery_time: self.delivery_time.to_i
+				)
+			end
+		end
+	end
 
 	def price
 		sum = 0
@@ -62,6 +76,7 @@ class DeliveryRequest < Request
 		edit do
 			include_all_fields
 			field :skip_delivery_validation, :boolean
+			field :skip_confirm_request_email, :boolean
 		end
 	end
 

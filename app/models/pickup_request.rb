@@ -7,12 +7,25 @@ class PickupRequest < Request
 
 	after_initialize :make_quantities_zero_not_nil
 	before_validation :normalize_delivery_time
-	after_create :create_associated_storage_items
+	after_create :create_associated_storage_items, :send_confirmation_email
 
 	validates :delivery_time, presence: true
 	validates :box_quantity, :bubble_quantity, :tape_quantity, :wardrobe_box_quantity, absence: true
 	validate :delivery_time_is_available, unless: :skip_delivery_validation?
 	validate :no_other_pickups?
+
+	def send_confirmation_email
+		if Rails.env.production?
+			unless self.skip_confirm_request_email == true or self.skip_confirm_request_email == '1'
+				$customerio.track(
+					self.user_id,
+					"pickup_created",
+					delivery_time_string: self.delivery_time.strftime("%B %d at %l:%M %p"),
+					delivery_time: self.delivery_time.to_i
+				)
+			end
+		end
+	end
 
 	def small_item_quantity=(small_item_quantity)
 		@small_item_quantity = small_item_quantity.to_i
@@ -97,6 +110,7 @@ class PickupRequest < Request
 		edit do
 			include_all_fields
 			field :skip_delivery_validation, :boolean
+			field :skip_confirm_request_email, :boolean
 		end
 	end
 
