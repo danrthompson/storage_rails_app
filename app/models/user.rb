@@ -29,19 +29,24 @@ class User < ActiveRecord::Base
   validates :exp_year, numericality: {only_integer: true, greater_than_or_equal_to: 2014, less_than_or_equal_to: 2035}, allow_blank: true
 
   before_create :create_stripe_customer
-  after_create :send_admin_signup_text, :send_welcome_email
+  after_create :send_admin_signup_text, :send_welcome_email, :mark_subscriber_as_converted
   after_save :send_card_info_to_stripe
   after_commit :identify_customerio
 
   def send_welcome_email
     if Rails.env.production?
       if self.send_reset_password_welcome_email == true or self.send_reset_password_welcome_email == '1'
-        UserMailer.delay.reset_password_welcome_email(self.id)
+        # UserMailer.delay.reset_password_welcome_email(self.id)
       else
-        UserMailer.delay.welcome_email(self.id)
+        # UserMailer.delay.welcome_email(self.id)
       end
     end
     true
+  end
+
+  def mark_subscriber_as_converted
+    subscriber = Subscriber.find_by_email(self.email)
+    subscriber.identify_customerio if subscriber
   end
 
   def boxes_at_home
@@ -100,6 +105,7 @@ class User < ActiveRecord::Base
       name: self.name,
       finished_signup_flow: self.ready?,
       tire_customer: self.tire_customer,
+      newsletter_subscriber: false,
     )
   end
 
