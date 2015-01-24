@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121222236) do
+ActiveRecord::Schema.define(version: 20150123235128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20150121222236) do
     t.text     "driver_notes"
     t.string   "stripe_subscription_identifier"
     t.float    "one_time_payment"
+    t.boolean  "tire_request"
   end
 
   add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
