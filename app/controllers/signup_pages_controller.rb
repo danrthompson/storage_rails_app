@@ -60,22 +60,22 @@ class SignupPagesController < ApplicationController
 		redirect_to new_user_session_url and return if @user.id != current_user.id
 		@pickup_request = PickupRequest.new create_pickup_request_params(params)
 		@pickup_request.user = @user
-		unless @pickup_request.valid?
-			render action: :show and return
-		end
+		pickup_valid = @pickup_request.valid?
+		@user.update(user_add_payment_no_cc(params))
 		begin
-			@user.update(user_add_payment(params))
+			@user.update(user_just_cc_params(params))
 		rescue Stripe::CardError => e
+			@user.valid?
+			@user.add_readiness_errors
 			flash.now[:alert] = e.message
 			render action: :show and return
 		end
-		if @user.valid?	and @user.ready?
+		if @user.valid?	and @user.ready? and pickup_valid
 			@pickup_request.save
-			# UserMailer.delay.confirm_pickup_email(@pickup_request.id)
 			redirect_to @pickup_request and return
 		end
 		@user.add_readiness_errors
-		render action: :show
+		render action: :show and return
 	end
 
 	private
