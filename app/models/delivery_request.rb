@@ -41,7 +41,7 @@ class DeliveryRequest < Request
 	end
 
 	def complete(current_user)
-		delivery_completion_time = Time.now
+		delivery_completion_time = Time.zone.now
 		
 		self.skip_delivery_validation = true
 		self.completion_time = delivery_completion_time
@@ -65,7 +65,7 @@ class DeliveryRequest < Request
 		subscription = stripe_user.subscriptions.first
 		subscription.quantity -= (monthly_cost * 100).to_i
 		subscription.save
-		Stripe::Charge.create(amount: (self.price * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "Quickbox delivery on #{Time.now.strftime('%m/%d')}", statement_description: "DELIVERY FEE")
+		Stripe::Charge.create(amount: (self.price * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "Quickbox delivery on #{Time.zone.now.strftime('%m/%d')}", statement_description: "DELIVERY FEE")
 
 		self.save
 		# UserMailer.delay.delivery_receipt_email(self.id)

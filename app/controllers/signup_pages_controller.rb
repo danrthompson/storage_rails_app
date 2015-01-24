@@ -20,7 +20,7 @@ class SignupPagesController < ApplicationController
 		    traits: {
 		      name: @user.name,
 		      email: @user.email,
-		      created_at: DateTime.now
+		      created_at: Time.zone.now
 		    })
 			Analytics.track(
 			  user_id: @user.id.to_s,

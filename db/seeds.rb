@@ -56,7 +56,7 @@ admin = User.create!({
 	admin: true
 })
 
-valid_delivery_time = Time.now
+valid_delivery_time = Time.zone.now
 valid_delivery_time.change hour: 18, minute: 0
 
 PackingSuppliesRequest.create!({

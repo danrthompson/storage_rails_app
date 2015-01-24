@@ -3,7 +3,6 @@ class Request < ActiveRecord::Base
 	@@standard_times_by_day = [[],[],7..11,16..20,4..20,7..11,10..18]
 	@@minimum_hours_after_present_for_delivery = 36
 	@@number_of_days_ahead_delivery_available = 30
-	@@utc_offset = "-07:00"
 
 	attr_accessor :posted_delivery_date, :posted_delivery_time, :skip_delivery_validation, :skip_confirm_request_email
 
@@ -18,7 +17,7 @@ class Request < ActiveRecord::Base
 		within_standard_times?(time) and fits_with_other_delivery_times?(time, all)
 	end
 
-	def self.taken_delivery_times(from_time=Time.now.getlocal(@@utc_offset))
+	def self.taken_delivery_times(from_time=Time.zone.now)
 		taken_times = {}
 		self.where(completion_time: nil, delivery_time:(from_time.to_date..(from_time+@@number_of_days_ahead_delivery_available.days).to_date)).select(:delivery_time).each do |request|
 			time_format = '%m/%d/%Y'
@@ -36,7 +35,7 @@ class Request < ActiveRecord::Base
 		taken_times
 	end
 
-	def self.available_delivery_times(from_time=Time.now.getlocal(@@utc_offset))
+	def self.available_delivery_times(from_time=Time.zone.now)
 		time_format = '%m/%d/%Y'
 		available_times = {}
 		available_times[from_time.strftime(time_format)] = @@standard_times_by_day[from_time.wday].to_a.select {|time| time >= from_time.hour + @@minimum_hours_after_present_for_delivery}
@@ -67,7 +66,7 @@ class Request < ActiveRecord::Base
 	end
 
 	def time_to_edit
-		current_time = Time.now.getlocal(@@utc_offset)
+		current_time = Time.zone.now
 		return true if self.delivery_time - current_time >= 1.day
 		return false
 	end
@@ -89,7 +88,7 @@ class Request < ActiveRecord::Base
 	end
 
 	def self.within_standard_times?(time)
-		now = Time.now.getlocal(@@utc_offset).round(0)
+		now = Time.zone.now.round(0)
 		return false if time < (now - now.min.minutes - now.sec.seconds) + @@minimum_hours_after_present_for_delivery.hours
 		# return true
 		return time.hour.in? @@standard_times_by_day[time.wday]

@@ -74,7 +74,7 @@ class PickupRequest < Request
 
 	# implement better transaction support
 	def complete(current_user)
-		pickup_completion_time = Time.now
+		pickup_completion_time = Time.zone.now
 		
 		self.skip_delivery_validation = true
 		self.completion_time = pickup_completion_time
@@ -107,7 +107,7 @@ class PickupRequest < Request
 			subscription = stripe_user.subscriptions.create(plan: 'plan_1', quantity: (monthly_cost * 100).to_i)
 		end
 		unless self.one_time_payment.blank? or self.one_time_payment == 0
-			Stripe::Charge.create(amount: (self.one_time_payment * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "One time payment for items picked up on #{Time.now.strftime('%m/%d')}", statement_description: "PICKUP PAYMENT")
+			Stripe::Charge.create(amount: (self.one_time_payment * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "One time payment for items picked up on #{Time.zone.now.strftime('%m/%d')}", statement_description: "PICKUP PAYMENT")
 		end	
 		self.save
 		# UserMailer.delay.pickup_receipt_email(self.id)
