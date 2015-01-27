@@ -1,0 +1,87 @@
+Matt Hefter
+dennis.hefter@comcast.net
+111
+t
+-------
+Michael Moniz
+mike@climb7.com
+120
+t
+-------
+Zane Mckinney
+pzmckinney@gmail.com
+107
+t
+-------
+Heather Porter
+hlporter@gmail.com
+78
+t
+-------
+Carla Fredericks
+cfredericks@gmail.com
+101
+t
+-------
+Kevin Alexander
+kevalex76@yahoo.com
+166
+t
+-------
+Kimiko Snyder
+kimiko.snyder@comcast.net
+163
+t
+-------
+Elizabeth Starr
+elizabeth.h.starr@gmail.com
+158
+t
+-------
+Samantha Clark
+samantha.e.clark@gmail.com
+152
+t
+-------
+Marsha Huber
+huber.marsha@gmail.com
+151
+t
+-------
+Joanna Geltman
+joanna_geltman@yahoo.com
+160
+t
+-------
+Erin Love
+erinmarielove@hotmail.com
+138
+t
+-------
+Peter Olivo
+polivo@circadence.com
+133
+t
+-------
+Alex Legato
+reserv@legatozone.com
+159
+t
+-------
+Michael Villegas
+pupcaviar@gmail.com
+136
+t
+-------
+Lauren Sorge
+laso6079@colorado.edu
+131
+t
+-------
+Chris Mattair
+chris_mattair@yahoo.com
+110
+t
+-------
+
+111,120,107,78,101,166,163,158,152,151,160,138,133,159,136,131,110

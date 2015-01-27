@@ -14,7 +14,6 @@
 //= require jquery_ujs
 
 //= require gnmenu
-//= require turbolinks
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require bootstrapValidator
