@@ -93,6 +93,7 @@ class User < ActiveRecord::Base
       referrer: self.referrer,
       terms_of_service_accepted: self.terms_of_service_accepted,
       name: self.name,
+      first_name: self.name.strip[/^[^\s]*/].capitalize,
       finished_signup_flow: self.ready?,
       tire_customer: self.tire_customer,
       newsletter_subscriber: false,
