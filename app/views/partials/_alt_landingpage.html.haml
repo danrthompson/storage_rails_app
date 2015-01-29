@@ -38,13 +38,10 @@
             /   = description
             %br/ 
             %br/ 
-            %br/ 
   
             %div#homepage-calltoaction.left
               = link_to new_signup_pages_path, class:"homepage-buttons" do
-                %span Get Started
-              %a.scroll-to-about.homepage-buttons.outline-button.pointer#more-info{}
-                %span.pointer More Info
+                %span#get-storage-homepage-button Get Storage
 
           / .col-md-4.col-sm-4#fold-img.no-padding
           /   %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/badge.png", :alt => ""}/
@@ -71,7 +68,7 @@
         Want More Details?
         %i.icon-arrow-down
     %br/ 
-    %h2.white QUICKBOX PICKUPS & DELIVERIES
+    %h2.white How Does QuickBox Work?
     %br/ 
 
 
@@ -80,75 +77,38 @@
     %br/ 
     %br/ 
     %br/
-    %h3.dark-gray.no-margin
-      How Do
-      %span.blue Free Pickups
-      Work?
       
-    %hr.half-width.half-opacity
     .container
-      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/pickups-work.png", :alt => ""}/
+      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/new-pickups-work.png", :alt => ""}/
       %br/ 
       %br/ 
       %br/ 
-      %p.center-margin.light-gray.width-60.full-width-small
-        You can request a pickup anytime through your personal dashboard. Specify the items you'd like us to pick up, or leave it to our professional drivers to catalog it for you when they arrive.
-    %br/   
-    %br/ 
-    / %br
-  .blue-bar#signup-about.hide-on-small.half-opacity
-    / %br/ 
-    / %h2.white Your Items, A Click Away
-    %br/ 
-  %br/ 
-  %br/ 
-  %br/ 
-  %br/ 
-  %section
-    .container.row.pricing-wrapper#items-back
-      %h3.no-margin.dark-gray
-        How Do I Get
-        %span.blue My Items Back?
-        
-      %hr.width-80.half-opacity
-      .col-md-6.pricing-block
-        %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/example-interface.png", :alt => ""}/ 
-        
-      .col-md-6.align-left
-        %br/ 
-        %br/ 
-        / %h4.thin-font All Your Items A Click Away
-        / %h4.blue TEST TEST TEST
-        %p
-          From your QuickBox dashboard you can have any item
-          %span.heavy-font delivered to you in as little as a day.
-          You can also request new item pickups or packing supplies.
-          For deliveries, the pricing is just the monthy cost of the item. 
-          %br/ 
-          %br/ 
-          Need same day delivery, or looking to have regular deliveries? Call about our executive delivery pricing. 
-          %br/ 
-          %br/ 
-          Oh, and
-          %span.heavy-font  pickups are always free!
+      %p.center-margin.width-60.full-width-small.section-description
+        Request a pickup through your personal dashboard. Pick a time convenient for you!
+      %p.center-margin.width-60.full-width-small.section-description
+        Answer a few questions about the size of your items so we can send the right movers.
+      %p.center-margin.width-60.full-width-small.section-description
+        We'll arrive ready to move & securely store your items.
+      %p.center-margin.width-60.full-width-small.section-description
+        Anytime you want your stuff, we'll deliver it back to you.
+      %br/
+      .header-link
+        %h3.dark-gray
+          Still have Questions? View our
+          %a{:href => "/faq"} FAQ
+          or
+          %a{:href => "/contact"} Contact Us Directly.
 
 
-       
-    %br/ 
-    %br/ 
-    %a.header-link{:href => "/faq"}
-      %h3.dark-gray 
-        Still have questions?
-        %span.blue Check out our FAQ!
-    %br/ 
-    %br/ 
-  
+
+  %br/ 
+  %br/ 
 
   
   // Pricing Section
   .blue-bar#signup-pricing
     %br/ 
-    %h2.white What About Pricing?
+    %h2.white Pricing
 
     %br/ 
   %br/ 
@@ -161,40 +121,41 @@
         %span.blue Flexible Pricing
         By The Item
       %br/ 
-      %p.dark-gray.width-80 Only have a few items to store? Pricing by the item makes sure you only pay for what you use.
+      %p.dark-gray.width-80 With exact space pricing Quickbox only charges you for the space you use.
       %p.dark-gray.width-80 Storing a lot of items? Give us a call at (720)583-5826 and we will work out a bulk discount for you! We will always beat the best price in town!
       / %hr.width-80.half-opacity
       .col-md-4.pricing-block
         %i.pricing-icon.icon-icon-box
-        .pricing-info
+        .pricing-info#small-pricing-info
           .pricing-title.by-item
             %h3 Small Items
           .price
-            %h3.dark-gray $5.00
+            %h3.dark-gray $5
             %p.price-subtext per month
           .price-description
-            %p Items like boxes (3 cubic feet), tires, bags, or similarly sized objects.
+            %p Boxes, tires, bags, or similarly sized objects
       .col-md-4.pricing-block
         %i.pricing-icon.icon-icon-bike
-        .pricing-info
+        .pricing-info#medium-pricing-info
           .pricing-title.by-item
             %h3 Medium Items
           .price
-            %h3.dark-gray $12.00
+            %h3.dark-gray $12
             %p.price-subtext per month
           .price-description
-            %p Items like bikes, chairs, skis, luggage, coffee tables, bed-side, tables.
+            %p Bikes, chairs, skis, luggage, coffee tables, bed-side, tables
       .col-md-4.pricing-block
         %i.pricing-icon.icon-icon-couch
-        .pricing-info
+        .pricing-info#large-pricing-info
           .pricing-title.by-item
-            %h3 Large Items
+            %h3 Large/XL Items
           .price
-            %h3.dark-gray $25.00
+            %h3.dark-gray $25 - $40
             %p.price-subtext per month
           .price-description
-            %p Items like couches, mattresses, desks, dressers, chests, bed frames.
+            %p Couches, mattresses, desks, dressers, chests, bed frames
     %br/ 
+
     %br/ 
     %br/
 
@@ -272,12 +233,15 @@
           %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/best-price.png", :alt => ""}/ 
         .col-md-8
           %p.align-left
-            Already use storage? We guarantee a discount of 
-            %span.heavy-font.blueof at least 15% savings
-            compared to your current price.
+            Already using storage? We'll beat any competitor's monthly price
+            %span.heavy-font.blueof by at least 15%
+            Send us a copy of your bill and the items you'll be storing and we'll get back to you with an updated quote. 
+
             %br/ 
             %br/ 
-            Call us at 720-583-5826 to get started!
+            Contact us at
+            %a{:href => "mailto:team@quickbox.com?subject=Lowest%20Price%20Guarantee"} team@quickbox.com
+            or give us a call at 720-583-5826 to get started!
       %br/
       %br/ 
       .double-line.half-opacity.width-80.center-margin

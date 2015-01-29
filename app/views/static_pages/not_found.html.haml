@@ -1,26 +1,9 @@
 - content_for :title do
   = "404 |"
-.row.header-nav
-  .nav-links-wrapper.col-md-4
-    %a.no-padding.pull-left{href: "/"}
-      %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
-    %a.pull-left.no-side-padding{href: "/"}
-      %span.light-gray.black-hover#menu-title QuickBox
-  .nav-links-wrapper.col-md-1.col-md-offset-4.left-border
-    .nav-links
-      = link_to "Contact", contact_path, class:"black-hover", target:"_blank"
-  .nav-links-wrapper.col-md-1.left-border
-    .nav-links
-      = link_to "FAQ", faq_path, class:"black-hover", target:"_blank"
-      / = link_to "Account", [:edit, @user], class:"light-gray black-hover"
-  .nav-links-wrapper.col-md-2
-    .no-border.nav-links
-      = link_to "Log Out", destroy_user_session_path, method: "delete", class:"black-hover blue"
-
-        
-
-
-
+- if current_user
+  = render :partial => 'partials/logged_in_header'
+- else
+  = render :partial => 'partials/signup_header'
 
 
 / SECONDARY HEADER BAR
