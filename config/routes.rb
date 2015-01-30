@@ -42,11 +42,12 @@ Rails.application.routes.draw do
 
   get 'new-city' =>'static_pages#new-city'
   get 'national' =>'static_pages#national'
-  get 'apartment' =>'static_pages#apartment'
-  get 'garage' =>'static_pages#garage' #housewives
-  get 'college' => 'static_pages#college'
-  get 'moving' => 'static_pages#moving'
-  get 'luxury' => 'static_pages#luxury'
+  get 'premium-on-demand-luxury-moving-storage' => 'static_pages#luxury'
+  get 'moving-and-storage-on-demand' => 'static_pages#moving_and_storage'
+  get 'storage-garage-organization' => 'static_pages#garage_organization'
+  get 'cu-student-storage' => 'static_pages#cu_student_storage'
+  get 'cheap-storage' => 'static_pages#cheap_storage'
+
 
   get 'about' => 'static_pages#about'
   get 'feedback' => 'static_pages#feedback'

@@ -30,12 +30,29 @@ class StaticPagesController < ApplicationController
 	end
 
 	def national
-		@user = current_user
+		@subscriber = Subscriber.new
 	end
 
 	def luxury
-		@user = current_user
+		@subscriber = Subscriber.new
 	end
+
+	def moving_and_storage
+		@subscriber = Subscriber.new
+	end
+
+	def garage_organization
+		@subscriber = Subscriber.new
+	end
+
+	def cu_student_storage
+		@subscriber = Subscriber.new
+	end
+
+	def cheap_storage
+		@subscriber = Subscriber.new
+	end
+
 	private
 
 	def no_ready_users!
