@@ -55,6 +55,9 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact'
   get 'email' => 'static_pages#email_example'
   get 'tires' => 'static_pages#tires'
+  get 'terms-of-service', to: 'static_pages#terms_of_service', as: 'terms_of_service'
+  get 'storage-service-tos', to: 'static_pages#storage_service_tos', as: 'storage_service_tos'
+  get 'privacy-policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
   # get 'althome' => 'static_pages#althome'
   # get 'signup_option' => 'static_pages#'
 

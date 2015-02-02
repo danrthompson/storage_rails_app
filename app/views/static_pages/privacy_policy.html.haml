@@ -1,0 +1,70 @@
+- content_for :title do
+  = "Privacy Policy |"
+- if current_user
+  = render :partial => 'partials/logged_in_header'
+- else
+  = render :partial => 'partials/signup_header'
+
+/ BLUE HEADER BAR
+.container.full-width.blue-bg.no-padding.white.dashboard-header.single-row
+  .row
+    .col-md-6.align-center
+      %h1 Privacy Policy
+    .col-md-1.col-md-offset-4.col-sm-4.col-xs-4.align-center
+      .service-box.no-label
+        .service-icon
+          %i.fa.fa-question-circle.fa-3x
+/ END SECONDARY HEADER
+
+
+/ Section: ITEM SELECTION
+%section#about.home-section
+  .heading-about.marginbot-20
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          .section-heading
+            %br/
+            %h4 
+              QuickBox Website Privacy Policy
+              %br/
+              (Effective as of February 4, 2014)
+          %p QuickBox LLC ("QuickBox"), knows that you care about how your personal information is used and shared, and we take your privacy seriously. Please read the following to learn more about our Privacy Statement. By using the www.quickbox.com website and any related services and/or features (collectively, the "Service") you acknowledge that you accept the practices and policies outlined in this Privacy Statement.
+          %br/
+          %h5 What Does This Privacy Statement Cover?
+          %p This Privacy Statement covers QuickBox's treatment of personally identifiable information ("Personal Information") that QuickBox gathers when you access/use the Service.
+          %br/
+          %h5 What Personal Information Does QuickBox Collect? 
+          %p QuickBox collects information you voluntarily submit to the Service, such as, the information we collect when you register for an account: your name, address, email address, phone number, payment related information (credit card number, physical address, etc.), etc.
+          %p In addition, we may automatically receive and store certain, anonymous types of information whenever you interact with the Service. Such information may include the user's IP address, domain server, and type of Internet browser. This information helps us, among other things, analyze trends and administer the Service. This information is anonymous and contains no personally identifiable data.
+          %br/
+          %h5 HOW DOES QuickBox USE THE INFORMATION IT COLLECTS?
+          %p Provide the Service: Your information will be used primarily to provide you with the Service (please review the Service Providers and Agents section below).
+          %p Improve the Service: Your information may be used by us internally to improve the Service and develop new products, services and features.
+          %p Other Uses: Your information may also be used by us as set forth in the next section.
+          %br/
+          %h5 Will QuickBox Share Any of the Personal Information it Receives?
+          %p To the limited extent we collect Personal Information – we neither rent nor sell your Personal Information to anyone. We share your Personal Information only as described below.
+          %p Service Providers and Agents: We employ other companies and people to perform tasks on our behalf. For example, as noted above, your information may be shared with courier/delivery services to enable them to pick up your boxes for storage. Also, we may decide to use a third party payment processing company to process payments you make through the Service. In addition, parts of the Service may be hosted by a third party on our behalf. Your information may be accessed by such providers/agents, in the event that we need to share your information with them to provide our services or customer support to you. Unless we tell you differently, QuickBox's agents do not have any right to use Personal Information we share with them beyond what is necessary to assist us.
+          %p Business Transfers: In some cases, we may choose to buy or sell assets. In these types of transactions, customer information is typically one of the business assets that are transferred. Moreover, if QuickBox, or substantially all of its assets were acquired, or in the unlikely event that QuickBox goes out of business or enters bankruptcy, customer information would be one of the assets that is transferred or acquired by a third party. You acknowledge that such transfers may occur, and that any acquirer of QuickBox may continue to use your Personal Information as set forth in this policy.
+          %p Protection of QuickBox and Others: We may release Personal Information when we believe in good faith that release is necessary to comply with the law; enforce or apply our conditions of use and other agreements; or protect the rights, property, or safety of QuickBox, our employees, our users, or others.
+          %p With Your Consent: Except as set forth above, you will be notified when your Personal Information may be shared with third parties, and will be able to prevent the sharing of this information.
+          %br/
+          %h5 CONDITIONS OF USE
+          %p
+            If you decide to access or use the Service, such access and use and any possible dispute over privacy is subject to this Privacy Statement and our
+            %a{href: terms_of_service_path, target: '_blank'}Terms of Service
+            (located on our website), including limitations on damages, disclaimer of warranties, and the application of Colorado state law.
+          %br/
+          %h5 THIRD PARTY WEBSITES/SERVICES
+          %p The Site may permit you to link to other websites on the Internet, and other websites may contain links to the Site. These other websites are not under QuickBox control, and such links do not constitute an endorsement by QuickBox of those other websites or the services offered through them. The privacy and security practices of websites linked to or from the Service are not covered by this Privacy Statement, and QuickBox is not responsible for the privacy or security practices or the content of such websites.
+          %br/
+          %h5 Changes to this Privacy Statement
+          %p QuickBox may amend this Privacy Statement from time to time. Use of information we collect now is subject to the Privacy Statement in effect at the time such information is used. If we make changes in the way we use Personal Information, we will notify you by posting an announcement on our website, or via the Service, or sending you an email. Users are bound by any changes to the Privacy Statement when he or she uses the Service after such changes have been first posted.
+          %br/
+          %h5 Questions or Concerns
+          %p If you have any questions or concerns regarding privacy, please send us a detailed message at team@quickbox.com. We will make every effort to resolve your concerns.
+
+= render :partial => 'partials/footer'
+= render :partial => 'partials/javascriptSource'
+
