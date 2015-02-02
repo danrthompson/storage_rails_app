@@ -69,11 +69,11 @@
         analytics.load("VTdXrhLwS6VEdOcqoQmismhzR7DNKVDH");
         analytics.page()
         }}();
-      - if @user and @user.id
+      - if current_user and current_user.id
         :javascript
-          analytics.identify('#{@user.id}', {
-            name: '#{@user.name}',
-            email: '#{@user.email}'
+          analytics.identify('#{current_user.id}', {
+            name: '#{current_user.name}',
+            email: '#{current_user.email}'
           });
     - elsif Rails.env.development?
       :javascript

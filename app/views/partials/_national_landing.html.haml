@@ -25,7 +25,7 @@
             %p.white#fold-description
               = description
             %br/ 
-            = form_for @user, url: create_signup_pages_path, :html => {:id => 'signup-form'} do |f| 
+            = form_for current_user, url: create_signup_pages_path, :html => {:id => 'signup-form'} do |f| 
 
               ///////////////////////////////////////////////////
               // Signup /////////////////////////////////////////
