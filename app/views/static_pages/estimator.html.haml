@@ -1,0 +1,57 @@
+- content_for :title do
+  = "Price Estimator |"
+
+- if current_user
+  = render :partial => 'partials/logged_in_header'
+- else
+  = render :partial => 'partials/signup_header'
+
+= javascript_include_tag :estimator
+
+%br/
+%section.text-center.inventory
+  .container
+    .col-md-7.col-md-offset-1
+      %h4 Estimator
+      = form_for :estimator do |f|
+        %h5 What You're Storing
+        = f.label :small_items
+        = f.text_field :small_items, value: 0
+        %br/
+        = f.label :medium_items
+        = f.text_field :medium_items, value: 0
+        %br/
+        = f.label :large_items
+        = f.text_field :large_items, value: 0
+        %br/
+        = f.label :extra_large_items
+        = f.text_field :extra_large_items, value: 0
+        %br/
+        %br/
+        %h5 Duration
+        = f.label :how_long
+        = f.select(:how_long, options_for_select([['1 - 2 months', 1], ['3 - 5 months', 3], ['6 - 9 months', 6], ['10 - 12 months', 10], ['13 - 18 months', 13], ['19 - 24 months', 19], ['25 or more months', 25]]))
+    .col-md-4
+      %h4 Sidebar
+      %p
+        Base monthly price: 
+        %span#estimator_base_price $0.00
+      %p
+        Volume discount:
+        %span#estimator_volume_discount 0%
+      %p
+        Duration discount:
+        %span#estimator_duration_discount 0%
+      %p
+        Total price:
+        %span#estimator_gross_price $0.00
+      %p
+        If you sign up now, we'll give you another 15% off each month!
+        %br/
+      %p
+        Final monthly price: 
+        %span#estimator_final_price $0.00
+      %p
+        Total savings:
+        %span#estimator_total_savings $0.00
+
