@@ -1,0 +1,12 @@
+.col-md-3
+  .pricing-block
+    %i{class: "pricing-icon icon-icon-#{icon_class}"}
+    %div{class: 'pricing-info', id: "#{item_size}-pricing-info"}
+      .pricing-title.by-item
+        %h3= item_name
+      .price
+        %h3.dark-gray= item_price
+        %p.price-subtext per month
+      .price-description
+        %p= item_description
+  = yield

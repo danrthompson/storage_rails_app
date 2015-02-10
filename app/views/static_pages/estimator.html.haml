@@ -11,30 +11,43 @@
 %br/
 %section.text-center.inventory
   .container
-    .col-md-7.col-md-offset-1
+    .col-md-9
       %h4 Estimator
       = form_for :estimator do |f|
         %h5 What You're Storing
-        = f.label :small_items
-        = f.text_field :small_items, value: 0
-        %br/
-        = f.label :medium_items
-        = f.text_field :medium_items, value: 0
-        %br/
-        = f.label :large_items
-        = f.text_field :large_items, value: 0
-        %br/
-        = f.label :extra_large_items
-        = f.text_field :extra_large_items, value: 0
-        %br/
-        %br/
-        %h5 Duration
-        %p
-          %button.btn#estimator_duration_minus -
-          %span#estimator_duration_value 1 - 2 Months
-          %button.btn#estimator_duration_plus +
-        = f.hidden_field :duration, value: 1
-    .col-md-4
+        = render layout: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: '$7', item_description: 'Boxes, tires, bags, or similarly sized objects'} do
+          %br/
+          = f.label :small_items, "Quantity:"
+          %br/
+          = f.text_field :small_items, placeholder: 0, class: 'form-control quantity-field'
+        = render layout: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: '$15', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'} do
+          %br/
+          = f.label :medium_items, "Quantity:"
+          %br/
+          = f.text_field :medium_items, placeholder: 0, class: 'form-control quantity-field'
+        = render layout: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: '$30', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'} do
+          %br/
+          = f.label :large_items, "Quantity:"
+          %br/
+          = f.text_field :large_items, placeholder: 0, class: 'form-control quantity-field'
+        = render layout: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: '$50', item_description: 'Dining tables, large bedframes, sectional couches'} do
+          %br/
+          = f.label :extra_large_items, "Quantity:"
+          %br/
+          = f.text_field :extra_large_items, placeholder: 0, class: 'form-control quantity-field'
+        
+        
+        
+        
+        .col-md-12
+          %br/
+          %h5 Duration
+          %p
+            %button.btn#estimator_duration_minus -
+            %span#estimator_duration_value 1 - 2 Months
+            %button.btn#estimator_duration_plus +
+          = f.hidden_field :duration, value: 1
+    .col-md-3
       %h4 Sidebar
       %p
         Base monthly price: 
@@ -58,3 +71,4 @@
         Total savings:
         %span#estimator_total_savings $0.00
 
+= render :partial => 'partials/footer'
