@@ -2,7 +2,25 @@ SMALL_ITEM_BASE_PRICE = 7.0
 MEDIUM_ITEM_BASE_PRICE = 15.0
 LARGE_ITEM_BASE_PRICE = 30.0
 EXTRA_LARGE_ITEM_BASE_PRICE = 50.0
-ALWAYS_DISCOUNT = 0.25
+ALWAYS_DISCOUNT = 0.15
+
+DiscountSlider = (update_slider) ->
+  current_value = 0
+  possible_values = [['1 - 2 months', 1], ['3 - 5 months', 3], ['6 - 9 months', 6], ['10 - 12 months', 10], ['13 - 18 months', 13], ['19 - 24 months', 19], ['25 or more months', 25]]
+  min_value = 0
+  max_value = possible_values.length - 1
+  inc: ->
+    if current_value < max_value
+      current_value += 1
+      update_slider(this)
+  dec: ->
+    if current_value > min_value
+      current_value -= 1
+      update_slider(this)
+  duration: ->
+    possible_values[current_value][1]
+  duration_string: ->
+    possible_values[current_value][0]
 
 est_extract_base_price_and_volume_discount = ->
 	small_item_quantity = parseInt($('#estimator_small_items').val(), 10) || 0
@@ -49,7 +67,7 @@ est_calculate_duration_discount = (duration) ->
 
 	duration_discount
 
-est_update_all_fields = (base_price, volume_discount, duration_discount, gross_price, final_price, total_savings) ->
+est_update_sidebar_fields = (base_price, volume_discount, duration_discount, gross_price, final_price, total_savings) ->
 	$('#estimator_base_price').text('$' + base_price.toFixed(2))
 	$('#estimator_volume_discount').text((volume_discount * 100.0) + '%')
 	$('#estimator_duration_discount').text((duration_discount * 100.0) + '%')
@@ -57,7 +75,11 @@ est_update_all_fields = (base_price, volume_discount, duration_discount, gross_p
 	$('#estimator_final_price').text('$' + final_price.toFixed(2))
 	$('#estimator_total_savings').text('$' + total_savings.toFixed(2))
 
-est_initialize_estimator = ->
+est_update_slider = (slider) ->
+	$('#estimator_duration_value').text(slider.duration_string())
+	$('#estimator_duration').val(slider.duration())
+
+est_initialize_estimator = (slider) ->
 	$('form').bind('keyup change', ->
 		base_price_and_volume_discount = est_extract_base_price_and_volume_discount()
 		
@@ -69,9 +91,15 @@ est_initialize_estimator = ->
 		final_price = gross_price * (1.0 - ALWAYS_DISCOUNT)
 		total_savings = base_price - final_price
 
-		est_update_all_fields(base_price, volume_discount, duration_discount, gross_price, final_price, total_savings)
+		est_update_sidebar_fields(base_price, volume_discount, duration_discount, gross_price, final_price, total_savings)
 	)
-
+	$('#estimator_duration_minus').click ->
+		slider.dec()
+		false
+	$('#estimator_duration_plus').click ->
+		slider.inc()
+		false
 
 $ ->
-	est_initialize_estimator()
+	slider = DiscountSlider(est_update_slider)
+	est_initialize_estimator(slider)
