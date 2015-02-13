@@ -6,69 +6,89 @@
 - else
   = render :partial => 'partials/signup_header'
 
+= render partial: 'partials/signup_progress_header', locals: {header: 'Estimate Price', include_header: false, step_1_classes: 'signup-completed', step_2_classes: 'signup-active', step_3_classes: '', step_1_span_class: '', step_2_span_class: ' hidden', step_3_span_class: ' hidden'}
+
 = javascript_include_tag :estimator
+
+/ .container.full-width.blue-bg.no-padding.white.align-center
+
 
 %br/
 %section.text-center.inventory
   .container
-    .col-md-9
-      %h4 Estimator
-      = form_for :estimator do |f|
-        %h5 What You're Storing
-        = render layout: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: '$7', item_description: 'Boxes, tires, bags, or similarly sized objects'} do
-          %br/
-          = f.label :small_items, "Quantity:"
-          %br/
-          = f.text_field :small_items, placeholder: 0, class: 'form-control quantity-field'
-        = render layout: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: '$15', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'} do
-          %br/
-          = f.label :medium_items, "Quantity:"
-          %br/
-          = f.text_field :medium_items, placeholder: 0, class: 'form-control quantity-field'
-        = render layout: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: '$30', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'} do
-          %br/
-          = f.label :large_items, "Quantity:"
-          %br/
-          = f.text_field :large_items, placeholder: 0, class: 'form-control quantity-field'
-        = render layout: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: '$50', item_description: 'Dining tables, large bedframes, sectional couches'} do
-          %br/
-          = f.label :extra_large_items, "Quantity:"
-          %br/
-          = f.text_field :extra_large_items, placeholder: 0, class: 'form-control quantity-field'
-        
-        
-        
-        
-        .col-md-12
-          %br/
-          %h5 Duration
-          %p
-            %button.btn#estimator_duration_minus -
-            %span#estimator_duration_value 1 - 2 Months
-            %button.btn#estimator_duration_plus +
-          = f.hidden_field :duration, value: 1
-    .col-md-3
-      %h4 Sidebar
-      %p
-        Base monthly price: 
-        %span#estimator_base_price $0.00
-      %p
-        Volume discount:
-        %span#estimator_volume_discount 0%
-      %p
-        Duration discount:
-        %span#estimator_duration_discount 0%
-      %p
-        Total price:
-        %span#estimator_gross_price $0.00
-      %p
-        If you sign up now, we'll give you another 15% off each month!
-        %br/
-      %p
-        Final monthly price: 
-        %span#estimator_final_price $0.00
-      %p
-        Total savings:
-        %span#estimator_total_savings $0.00
+    = form_for :estimator do |f|
+      .row
+        .col-md-8
+          .panel.panel-info
+            .panel-heading
+              .panel-title
+                %h1.align-center.no-margin Estimate Your Monthly Cost
+            .panel-body
+              %p.align-center Your monthly storage costs are based on how much you put in storage as well as how long you keep them in storage.
+              = render layout: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: '$7', item_description: 'Boxes, tires, bags, or similarly sized objects'} do
+                %br/
+                = f.label :small_items, "Quantity:"
+                %br/
+                = f.text_field :small_items, placeholder: 0, class: 'form-control quantity-field'
+              = render layout: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: '$15', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'} do
+                %br/
+                = f.label :medium_items, "Quantity:"
+                %br/
+                = f.text_field :medium_items, placeholder: 0, class: 'form-control quantity-field'
+              = render layout: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: '$30', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'} do
+                %br/
+                = f.label :large_items, "Quantity:"
+                %br/
+                = f.text_field :large_items, placeholder: 0, class: 'form-control quantity-field'
+              = render layout: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: '$50', item_description: 'Dining tables, large bedframes, sectional couches'} do
+                %br/
+                = f.label :extra_large_items, "Quantity:"
+                %br/
+                = f.text_field :extra_large_items, placeholder: 0, class: 'form-control quantity-field'
+
+              .panel-body
+                %br/
+                %p.align-center Take your best guess, and we'll guarantee your quote.
+
+              .panel-heading.light-blue-bg
+                .panel-title
+                  %h2.align-center.no-margin Length of Stay
+              .panel-body
+                %p.align-center
+                  %button.btn#estimator_duration_minus -
+                  %span#estimator_duration_value 1 - 2 Months
+                  %button.btn#estimator_duration_plus +
+                = f.hidden_field :duration, value: 1
+                %p.align-center The longer you stay, the more you save
+        .col-md-4
+          .panel.panel-info
+            .panel-heading
+              .panel-title
+                %h2.align-center.no-margin Order Summary
+            .panel-body
+              %p
+                %strong Base monthly price: 
+                %span#estimator_base_price $0.00
+              %p
+                %strong Discounts:
+              %p.est-subpoint
+                Volume discount:
+                %span#estimator_volume_discount 0%
+              %p.est-subpoint
+                Duration discount:
+                %span#estimator_duration_discount 0%
+              %p.est-first-total
+                Monthly Total:
+                %span#estimator_gross_price $0.00
+              %p.est-special-offer
+                %strong Special Offer!
+                Book now and get an extra
+                %strong 15% off!
+              %p
+                %strong Final monthly price: 
+                %span#estimator_final_price $0.00
+              %p
+                %strong Total savings:
+                %span#estimator_total_savings $0.00
 
 = render :partial => 'partials/footer'
