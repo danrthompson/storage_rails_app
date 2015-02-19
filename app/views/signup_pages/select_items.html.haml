@@ -166,19 +166,6 @@
 = render :partial => "partials/footer"
 
 
-/ Modal
-#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-          %span.sr-only Close
-        %h4#myModalLabel.modal-title Terms of Service
-      .modal-body
-        = render partial: "partials/terms_of_service_txt"
-      .modal-footer
-        %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
 
 = render partial: "partials/quote_gen_modal"
 
