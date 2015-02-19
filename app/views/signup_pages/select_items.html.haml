@@ -1,6 +1,13 @@
 - content_for :title do
   = "Price Estimator |"
 
+:javascript
+  window.small_item_base_price = '#{StorageItem.item_types["small"]}';
+  window.medium_item_base_price = '#{StorageItem.item_types["medium"]}';
+  window.large_item_base_price = '#{StorageItem.item_types["large"]}';
+  window.extra_large_item_base_price = '#{StorageItem.item_types["extra_large"]}';
+  window.always_discount = '#{StorageItem.always_discount}';
+
 = javascript_include_tag :estimator
 
 - if @track_conversion
@@ -55,7 +62,7 @@
 %br/
 %section.text-center.inventory#estimator-page.hidden
   .container
-    = form_for @pickup_request, url:signup_select_items_path(@user.id) do |f|
+    = form_for PickupRequest.new, url:signup_select_items_path(@user.id) do |f|
       .row
         .col-md-8
           .panel.panel-info
@@ -94,9 +101,9 @@
                   %h2.align-center.no-margin Length of Stay
               .panel-body
                 %p.align-center
-                  %button.btn#estimator_duration_minus -
-                  %span#estimator_duration_value 1 - 2 Months
-                  %button.btn#estimator_duration_plus +
+                  %button.btn#pickup_request_duration_minus -
+                  %span#pickup_request_duration_value 1 - 2 Months
+                  %button.btn#pickup_request_duration_plus +
                 = f.hidden_field :duration, value: 1
                 %p.align-center The longer you stay, the more you save
         .col-md-4
