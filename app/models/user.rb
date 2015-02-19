@@ -44,7 +44,16 @@ class User < ActiveRecord::Base
         total += item.price
       end
     end
-    total
+
+    volume_discount = 0.0
+    StorageItem.volume_discounts.each do |discount_option|
+      if total < discount_option[0]
+        volume_discount = discount_option[1]
+        break
+      end
+    end
+
+    total * (1.0 - volume_discount)
   end
 
   def update_subscription_price(price)

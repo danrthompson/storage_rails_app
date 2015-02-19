@@ -7,6 +7,8 @@
   window.large_item_base_price = '#{StorageItem.item_types["large"]}';
   window.extra_large_item_base_price = '#{StorageItem.item_types["extra_large"]}';
   window.always_discount = '#{StorageItem.always_discount}';
+  window.volume_discounts = JSON.parse('#{StorageItem.volume_discounts.to_json}');
+  window.duration_discounts = JSON.parse('#{StorageItem.duration_discounts.to_json}');
 
 = javascript_include_tag :estimator
 

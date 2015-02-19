@@ -24,41 +24,22 @@ est_extract_base_price_and_volume_discount = ->
 
 	base_price = small_item_quantity * small_item_base_price + medium_item_quantity * medium_item_base_price + large_item_quantity * large_item_base_price + extra_large_item_quantity * extra_large_item_base_price
 
-	
-	volume_discount = null
-	if base_price < 10
-		volume_discount = 0.0
-	else if base_price < 20
-		volume_discount = 0.05
-	else if base_price < 40
-		volume_discount = 0.1
-	else if base_price < 80
-		volume_discount = 0.15
-	else if base_price < 120
-		volume_discount = 0.2
-	else if base_price < 160
-		volume_discount = 0.25
-	else
-		volume_discount = 0.3
+	volume_discount = 0.0
+
+	for discount_option in volume_discounts
+		if base_price < discount_option[0]
+			volume_discount = discount_option[1]
+			break
 
 	[base_price, volume_discount]
 
 est_calculate_duration_discount = (duration) ->
-	duration_discount = null
-	if duration < 3
-		duration_discount = 0.0
-	else if duration < 6
-		duration_discount = 0.05
-	else if duration < 10
-		duration_discount = 0.1
-	else if duration < 13
-		duration_discount = 0.15
-	else if duration < 19
-		duration_discount = 0.2
-	else if duration < 25
-		duration_discount = 0.25
-	else
-		duration_discount = 0.3
+	duration_discount = 0.0
+
+	for discount_option in duration_discounts
+		if duration < discount_option[0]
+			duration_discount = discount_option[1]
+			break
 
 	duration_discount
 

@@ -17,7 +17,7 @@ class StorageItem < ActiveRecord::Base
 			[80, 0.15],
 			[120, 0.2],
 			[160, 0.25],
-			[Float::INFINITY , 0.3]
+			[1000000 , 0.3]
 		]
 	end
 
@@ -29,7 +29,7 @@ class StorageItem < ActiveRecord::Base
 			[13, 0.15],
 			[19, 0.2],
 			[25, 0.25],
-			[Float::INFINITY, 0.3]
+			[1000000, 0.3]
 		]
 	end
 
