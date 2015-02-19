@@ -103,3 +103,17 @@ est_initialize_estimator = (slider) ->
 $ ->
 	slider = DiscountSlider(est_update_slider)
 	est_initialize_estimator(slider)
+
+	$("#estimate-now").click ->
+	  $("#estimator-page").removeClass("hidden")
+	  $("#estimator-options").addClass("hidden")
+	  setSidebarPosition()
+
+	$("#estimate-later").click ->
+	  # $("#estimator-page").removeClass("hidden")
+	  # $("#next-button").submit()
+	  # $("#estimator-options").addClass("hidden")
+	  $("form").submit()
+
+
+

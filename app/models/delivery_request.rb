@@ -46,30 +46,20 @@ class DeliveryRequest < Request
 		self.skip_delivery_validation = true
 		self.completion_time = delivery_completion_time
 		self.driver = current_user
-		monthly_cost = 0.0
 		self.storage_items.each do |item|
 			item.left_storage_at = delivery_completion_time
 			item.save
 			unless item.valid?
 				return item.errors.full_messages.first
 			end
-
-			discount = item.discount.to_f
-			if discount and discount > 0
-				monthly_cost += item.price*((100.0 - discount) / 100.0)
-			else
-				monthly_cost += item.price
-			end
 		end
-		stripe_user = self.user.stripe_user
-		subscription = stripe_user.subscriptions.first
-		subscription.quantity -= (monthly_cost * 100).to_i
-		subscription.save
+
+		self.user.update_subscription_price(self.user.subscription_price)
+
 		Stripe::Charge.create(amount: (self.price * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "Quickbox delivery on #{Time.zone.now.strftime('%m/%d')}", statement_description: "DELIVERY FEE")
 
 		self.save
-		# UserMailer.delay.delivery_receipt_email(self.id)
-		return nil
+		nil
 	end
 
 	rails_admin do

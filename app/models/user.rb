@@ -33,6 +33,35 @@ class User < ActiveRecord::Base
   after_save :send_card_info_to_stripe
   after_commit :identify_customerio
 
+  def subscription_price
+    total = 0.0
+
+    self.storage_items.where(left_storage_at: nil).where.not(entered_storage_at: nil).each do |item|
+      discount = item.discount.to_f
+      if discount and discount > 0
+        total += item.price*((100.0 - discount) / 100.0)
+      else
+        total += item.price
+      end
+    end
+    total
+  end
+
+  def update_subscription_price(price)
+    stripe_user = self.stripe_user
+    if stripe_user.subscriptions.first
+      subscription = stripe_user.subscriptions.first
+      subscription.quantity = (price * 100).to_i
+      subscription.save
+      begin
+        Stripe::Invoice.create(customer: stripe_user.id)
+      rescue Stripe::InvalidRequestError
+      end
+    else
+      stripe_user.subscriptions.create(plan: 'plan_1', quantity: (price * 100).to_i)
+    end
+  end
+
   def mark_subscriber_as_converted
     subscriber = Subscriber.find_by_email(self.email)
     subscriber.identify_customerio if subscriber
