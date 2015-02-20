@@ -33,6 +33,18 @@ class StorageItem < ActiveRecord::Base
 		]
 	end
 
+	def self.calculate_duration_discount(duration)
+		self.duration_discounts.each do |discount_group|
+			return discount_group[1] if duration < discount_group[0]
+		end
+	end
+
+	def self.calculate_volume_discount(base_price)
+		self.volume_discounts.each do |discount_group|
+		  return discount_group[1] if base_price < discount_group[0]
+		end
+	end
+
 	has_attached_file :image
 	has_paper_trail
 	belongs_to :user
@@ -60,6 +72,35 @@ class StorageItem < ActiveRecord::Base
 
 	def price
 		StorageItem.item_types[self.item_type]
+	end
+
+	def discounted_price
+		discount = self.discount.to_f
+		if discount and discount > 0
+			self.price*((100.0 - discount) / 100.0)
+		else
+			self.price
+		end
+	end
+
+	def calculate_duration_discount
+		return nil if (not self.entered_storage_at) or self.left_storage_at
+
+		planned_duration_discount = StorageItem.calculate_duration_discount(self.planned_duration)
+
+		now = Time.zone.now
+		entered = self.entered_storage_at
+		months_since_entered_storage = (now.year - entered.year) * 12 + now.month - entered.month - (now.day >= entered.day ? 0 : 1)
+		current_duration_discount = StorageItem.calculate_duration_discount(months_since_entered_storage)
+
+		if current_duration_discount <= planned_duration_discount
+			planned_duration_discount
+		else
+			# correct past overcharging(current_duration_discount, planned_duration_discount, months_since_entered_storage)
+			self.planned_duration = months_since_entered_storage
+			self.save
+			current_duration_discount
+		end
 	end
 
 	def delivery_price

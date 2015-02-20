@@ -79,6 +79,12 @@ est_initialize_estimator = (slider) ->
 		slider.inc()
 		false
 
+est_fix_pricing_boxes_height = ->
+	highest_height = Math.max.apply(null, $('.pricing-info').map(->
+		return $(this).height()
+	).get())
+	$('.pricing-info').height(highest_height)
+
 $ ->
 	slider = DiscountSlider(est_update_slider)
 	est_initialize_estimator(slider)
@@ -86,7 +92,7 @@ $ ->
 	$("#estimate-now").click ->
 	  $("#estimator-page").removeClass("hidden")
 	  $("#estimator-options").addClass("hidden")
-	  setSidebarPosition()
+	  est_fix_pricing_boxes_height()
 
 	$("#estimate-later").click ->
 	  $("form").submit()

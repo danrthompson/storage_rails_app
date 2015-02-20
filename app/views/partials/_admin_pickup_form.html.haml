@@ -13,6 +13,9 @@
           = field.label :discount, "Discount:"
           = field.text_field :discount, autofocus: true, placeholder:"15 for 15%", class:"col-md-6 form-control", id:""
         .new-item-attribute
+          = field.label :planned_duration, "Planned duration:"
+          = field.text_field :planned_duration, autofocus: true, class:"col-md-6 form-control", id:""
+        .new-item-attribute
           = field.label :image, "Item Image"
           = field.file_field :image, class:"align-center image_uploader"
       .col-md-6

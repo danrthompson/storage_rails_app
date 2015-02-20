@@ -54,7 +54,7 @@ class DeliveryRequest < Request
 			end
 		end
 
-		self.user.update_subscription_price(self.user.subscription_price)
+		self.user.update_subscription_price
 
 		Stripe::Charge.create(amount: (self.price * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "Quickbox delivery on #{Time.zone.now.strftime('%m/%d')}", statement_description: "DELIVERY FEE")
 

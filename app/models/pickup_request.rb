@@ -1,4 +1,5 @@
 class PickupRequest < Request
+	attr_accessor :duration
 	attr_reader :small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity
 
 	has_many :storage_items
@@ -87,7 +88,7 @@ class PickupRequest < Request
 			end
 		end
 
-		self.user.update_subscription_price(self.user.subscription_price)
+		self.user.update_subscription_price(true)
 
 		unless self.one_time_payment.blank? or self.one_time_payment == 0
 			Stripe::Charge.create(amount: (self.one_time_payment * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "One time payment for items picked up on #{Time.zone.now.strftime('%m/%d')}", statement_description: "PICKUP PAYMENT")
@@ -120,7 +121,7 @@ class PickupRequest < Request
 	end
 
 	def create_associated_storage_items
-		basic_storage_item_values = {'user_id' => self.user.id, 'pickup_request_id' => self.id}
+		basic_storage_item_values = {'user_id' => self.user.id, 'pickup_request_id' => self.id, 'planned_duration' => self.duration}
 
 		small_storage_item_values = basic_storage_item_values.clone
 		small_storage_item_values['item_type'] = 'small'

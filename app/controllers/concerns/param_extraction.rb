@@ -12,7 +12,7 @@ module ParamExtraction
 	end
 
 	def select_items_params(params)
-		params.require(:pickup_request).permit(:small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity)
+		params.require(:pickup_request).permit(:small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity, :duration)
 	end
 
 	def fast_signup_params(params)
@@ -20,7 +20,7 @@ module ParamExtraction
 	end
 
 	def complete_pickup_request_params(params)
-		params.require(:pickup_request).permit(:driver_name, :driver_notes, :one_time_payment, storage_items_attributes: [:title, :description, :image, :item_type, :_destroy, :id, :storage_location, :notes, :user_id, :pickup_request_id, :discount])
+		params.require(:pickup_request).permit(:driver_name, :driver_notes, :one_time_payment, storage_items_attributes: [:title, :description, :planned_duration, :image, :item_type, :_destroy, :id, :storage_location, :notes, :user_id, :pickup_request_id, :discount])
 	end
 
 	def complete_delivery_request_params(params)
@@ -56,7 +56,7 @@ module ParamExtraction
 	end
 
 	def create_pickup_request_params(params)
-		params.require(:pickup_request).permit(:posted_delivery_time, :posted_delivery_date, :small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity)
+		params.require(:pickup_request).permit(:posted_delivery_time, :posted_delivery_date, :small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity, :duration)
 	end
 
 	def create_delivery_request_params(params)

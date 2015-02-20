@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123235128) do
+ActiveRecord::Schema.define(version: 20150220045636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150123235128) do
     t.text     "storage_location"
     t.float    "discount"
     t.integer  "driver_id"
+    t.integer  "planned_duration",    default: 1
   end
 
   add_index "storage_items", ["delivery_request_id"], name: "index_storage_items_on_delivery_request_id", using: :btree

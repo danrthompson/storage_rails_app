@@ -71,8 +71,6 @@
                         = field.label :one_time_payment, "One Time Payment (if applicable)", class:"half-opacity"
                         = field.text_field :one_time_payment,  autofocus: true, class:"col-md-6 form-control", id:""
                       .col-md-6
-                        = field.label :id, "Storage By The Space  (if applicable)", class:"half-opacity"
-                        = field.text_field :id,  autofocus: true, placeholder:"Notes", class:"col-md-6 form-control", id:""
 
                 .admin-details{:id => "#{@pickup_request.id}-details"}
                   = render partial: "partials/admin_pickup_form", locals: {pickup_request: @pickup_request, form: field}

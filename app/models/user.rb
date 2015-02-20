@@ -34,37 +34,31 @@ class User < ActiveRecord::Base
   after_commit :identify_customerio
 
   def subscription_price
-    total = 0.0
+    base_price = 0.0
+    duration_discounted_price = 0.0
 
     self.storage_items.where(left_storage_at: nil).where.not(entered_storage_at: nil).each do |item|
-      discount = item.discount.to_f
-      if discount and discount > 0
-        total += item.price*((100.0 - discount) / 100.0)
-      else
-        total += item.price
-      end
+      item_price = item.discounted_price
+      base_price += item_price
+      duration_discounted_price += item_price * (1.0 - item.calculate_duration_discount)
     end
 
-    volume_discount = 0.0
-    StorageItem.volume_discounts.each do |discount_option|
-      if total < discount_option[0]
-        volume_discount = discount_option[1]
-        break
-      end
-    end
+    volume_discount = StorageItem.calculate_volume_discount(base_price)
 
-    total * (1.0 - volume_discount)
+    duration_discounted_price * (1.0 - volume_discount)
   end
 
-  def update_subscription_price(price)
+  def update_subscription_price(create_invoice=false, price=self.subscription_price)
     stripe_user = self.stripe_user
     if stripe_user.subscriptions.first
       subscription = stripe_user.subscriptions.first
       subscription.quantity = (price * 100).to_i
       subscription.save
-      begin
-        Stripe::Invoice.create(customer: stripe_user.id)
-      rescue Stripe::InvalidRequestError
+      if create_invoice
+        begin
+          Stripe::Invoice.create(customer: self.stripe_user.id)
+        rescue Stripe::InvalidRequestError
+        end
       end
     else
       stripe_user.subscriptions.create(plan: 'plan_1', quantity: (price * 100).to_i)

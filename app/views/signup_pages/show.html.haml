@@ -67,6 +67,7 @@
                   = pf.hidden_field :medium_item_quantity
                   = pf.hidden_field :large_item_quantity
                   = pf.hidden_field :extra_large_item_quantity
+                  = pf.hidden_field :duration
                   = render partial: "partials/delivery_date_time", locals: {f: pf,  id:"pickup_datepicker", select_id:"delivery_time"}
               %h5.pull-right#show-continue.light-gray.black-hover.pointer Continue
           
