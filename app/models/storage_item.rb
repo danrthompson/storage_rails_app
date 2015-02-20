@@ -83,6 +83,18 @@ class StorageItem < ActiveRecord::Base
 		end
 	end
 
+	def correct_low_duration_discount(new_discount, old_discount, months)
+		discount_diff = new_discount - old_discount
+		amount_to_credit = self.discounted_price * months * discount_diff * 100.0 * -1.0
+
+		Stripe::InvoiceItem.create(
+			customer: self.user.stripe_user.id,
+			amount: amount_to_credit.to_i,
+			currency: "usd",
+			description: "One-time setup fee"
+		)
+	end
+
 	def calculate_duration_discount
 		return nil if (not self.entered_storage_at) or self.left_storage_at
 
@@ -96,7 +108,7 @@ class StorageItem < ActiveRecord::Base
 		if current_duration_discount <= planned_duration_discount
 			planned_duration_discount
 		else
-			# correct past overcharging(current_duration_discount, planned_duration_discount, months_since_entered_storage)
+			correct_low_duration_discount(current_duration_discount, planned_duration_discount, months_since_entered_storage)
 			self.planned_duration = months_since_entered_storage
 			self.save
 			current_duration_discount
