@@ -106,6 +106,8 @@ ActiveRecord::Schema.define(version: 20150123235128) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "address_line_1"
     t.string   "address_line_2"
     t.string   "city"

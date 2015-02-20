@@ -59,6 +59,8 @@ Rails.application.routes.draw do
   get 'storage-service-tos', to: 'static_pages#storage_service_tos', as: 'storage_service_tos'
   get 'privacy-policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
   get 'static_pages/estimator'
+  get 'landing_page_1' => 'static_pages#landing_page_1'
+
   # get 'althome' => 'static_pages#althome'
   # get 'signup_option' => 'static_pages#'
 

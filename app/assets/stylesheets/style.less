@@ -1496,22 +1496,24 @@ p.section-description {
 		}
 	}
 
-	::-webkit-input-placeholder {
-	   color: white;
-	}
+	// Placeholder text color
+	// ::-webkit-input-placeholder {
+	//    color: @light-gray;
+	// }
 
-	:-moz-placeholder { /* Firefox 18- */
-	   color: white;  
-	}
+	// :-moz-placeholder { /* Firefox 18- */
+	//    color: @light-gray;  
+	// }
 
-	::-moz-placeholder {  /* Firefox 19+ */
-	   color: white;  
-	}
+	// ::-moz-placeholder {  /* Firefox 19+ */
+	//    color: @light-gray;  
+	// }
 
-	:-ms-input-placeholder {  
-	   color: white;  
-	}
+	// :-ms-input-placeholder {  
+	//    color: @light-gray;  
+	// }
 }
+
 
 
 .header-link{
@@ -2451,9 +2453,13 @@ p.alert  , p.notice {
 			#fold-subtitle{
 				display: none;
 			}
-			#fold-img{
-				text-align: center;
-			}
+			// #fold-img{
+			// 	text-align: center;
+			// }
+			// .landing-fold-img{
+			// 	max-height: 300px;
+			// 	overflow: hidden;
+			// }
 			#more-info{
 			 	display: none ! important;
 			}
@@ -2639,4 +2645,81 @@ ul.tos-list ul {
 
 .est-special-offer {
 	color: green;
+}
+
+// Landing Page Content
+#fold-img{
+	text-align: center;
+}
+.landing-fold-img{
+	max-height: 400px;
+	overflow: hidden;
+	// background-color: black;
+	padding-left: 10px;
+	border-radius: 10px;
+	// padding-right: 10px;
+}
+
+.landing-page-1{
+
+	#introSection{
+		padding-top: 20px;
+
+		#fold-img{
+			padding: 0;
+		}
+		img{
+			width: 100%;
+			border-radius: 10px;
+			// background-color: none;
+		}
+		h3{
+			font-size: 32px;
+			font-weight: 100;
+		}
+		#main-fold{
+			.signup-white{
+				padding: 10px;
+				margin: 0;
+				background-color: rgba(255,255,255,0.8);
+				border-radius: 20px;
+				color: black; 
+				text-align: center;
+				h3{
+					color: black;
+					font-weight: 300;
+					font-size: 24px;
+					font-style: italic;
+				}
+				.form-control{
+					border-color: @dark-gray;
+				}
+				input[type="text"]{
+					color: @dark-gray ! important;
+					width: 90%;
+				}
+				label{
+					font-size: 20px;
+					font-weight: 300;
+					// margin-right: 0
+					// margin-top: 10px;
+				}
+				.continue-button{
+					margin-bottom: 10px;
+					width: 80%;
+					margin-left: 10%;
+				}
+			}
+		}
+		
+	}
+	#introSectionContentWrapper{
+		margin-top: 50px;
+	}
+	.top-bar-title{
+		padding: 20px 0 20px 0;
+		background-color: @dark-gray;
+	}
+
+
 }
