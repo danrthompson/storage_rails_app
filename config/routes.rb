@@ -69,6 +69,7 @@ Rails.application.routes.draw do
   # post 'fast_signup', to: 'signup_pages#fast_signup', as: 'fast_signup'
   post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'
   get 'signup/items/:id', to: 'signup_pages#select_items', as: 'signup_select_items'
+  get 'old_signup/items/:id', to: 'signup_pages#old_select_items', as: 'signup_old_select_items'
   post 'signup/items/:id', to: 'signup_pages#post_select_items'
   patch 'signup/:id', to: 'signup_pages#add_payment', as: 'add_payment_signup_pages'
 

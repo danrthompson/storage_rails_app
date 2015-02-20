@@ -1,0 +1,215 @@
+- content_for :title do
+  = "Select Items | Signup |"
+
+- if @track_conversion
+  :javascript
+    analytics.track('Signed Up', {
+      value: 15
+    });
+
+#fixed-header.row.header-nav
+  .nav-links-wrapper.col-md-4.col-xs-8#header-logo
+    %a.no-padding.pull-left{href: "/"}
+      %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
+    %a.pull-left.no-side-padding{href: "/"}
+      %span#menu-title
+        QuickBox
+        %span.no-pointer#company-phone (720) 583-5826
+  .nav-links-wrapper.col-md-1.col-md-offset-5.left-border.col-xs-2
+    .no-border.nav-links.hide-on-small
+      = link_to "FAQ", faq_path, class:"light-gray black-hover", :target => "_blank"
+  .nav-links-wrapper.col-md-1
+    .no-border.nav-links
+      = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover blue"
+#top-header
+  .container.full-width.blue-bg.no-padding.white.align-center
+    %br/ 
+    %h1#lets-doit Item Selection
+  #signup-progress.row.align-center
+    .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1
+      %ul.no-list
+        %li.signup-completed#step-1  
+          %h4
+            %span.green{:data => {'icon' => "D"}}          
+            1. 
+            %br.show-on-small
+            Create Login    
+        %li#step-2.signup-active
+          %h4
+            %span.green.hidden{:data => {'icon' => "D"}}
+            2. 
+            %br.show-on-small
+            Item Selection
+        %li#step-3
+          %h4
+            %span.green.hidden{:data => {'icon' => "D"}}
+            3.
+            %br.show-on-small
+            Account Details
+/ = render partial: "partials/just_blue_bar", locals:{mainText:" ", dashboard:true, faq:true}
+.errors
+  = render partial: "partials/error_messages_object_form", locals: {object: @user}
+
+%br/ 
+/ %br/ 
+
+// Choose to decide now
+%section#estimator-options
+  %br/
+  %br/ 
+  %br/ 
+  .row.no-side-padding.align-center
+    %h2 Choose Your Storage Items
+    %br/ 
+
+    .col-md-3.col-md-offset-3
+      .now-later-box#estimate-now    
+        %i{class:"icon-icon-couch"}
+        %h4
+          Select
+          %br/ 
+          Storage Now
+      %br/ 
+      %p.half-opacity (Get an instant estimate for your storage)
+    .col-md-3
+      .now-later-box#estimate-later
+        %i{class:"icon-pickup"}
+        %h4
+          Wait Until
+          %br/ 
+          Pickup
+      %br/ 
+      %p.half-opacity (Our drivers can help you when they arrive)
+%br/ 
+
+
+
+
+
+
+
+// Select Items Estimator
+%section.text-center.inventory#estimator-page.hidden
+  
+  = form_for @pickup_request, url:signup_select_items_path(@user.id) do |f|
+    .container
+      .col-md-7.col-md-offset-1.boxed-gray
+        %p.confirm-elem.align-center Aren't sure what you need yet? Feel free to skip this step and our drivers will record your items during pickup.
+        / %br/
+        / %br/ 
+        %br/ 
+        = render partial: "partials/small_items"
+        / This is used to store values from all categories. It is antiquated from when we were allowing choice by item or by category. However, it is currently necessary because it is the intermediary that aggregates all the items by category type before updating the sum total.
+        .hidden
+          = render partial: "partials/quote_gen_placeholder"
+        %br/ 
+        %br/ 
+      .col-md-3#estimator-sidebar
+        .row
+          .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
+            %h5.align-center Price of Storage
+            %ul
+              %li#num-small.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; Small 
+                %i.pull-right.light-gray $5/unit
+              %li#num-medium.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp;Medium 
+                %i.pull-right.light-gray $12/unit
+              %li#num-large.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp;Large 
+                %i.pull-right.light-gray $25/unit
+              %li#num-extra_large.hidden
+                %span.pull-left> 0
+                \&nbsp; &nbsp; XL 
+                %i.pull-right.light-gray $40/unit
+              / %li#num-5x10.hidden
+              /   %span.pull-left> 0
+              /   \&nbsp; &nbsp; 5'x10' 
+              /   %i.pull-right.light-gray $75/month
+              / %li#num-10x10.hidden
+              /   %span.pull-left> 0
+              /   \&nbsp; &nbsp; 10'x10' 
+              /   %i.pull-right.light-gray $140/month
+              / %li#num-10x20.hidden
+              /   %span.pull-left> 0
+              /   \&nbsp; &nbsp; 10'x20' Unit 
+              /   %i.pull-right.light-gray $250/month
+              %br/  
+              %li
+                Valet Pickup
+                %span.pull-right Free
+            .single-line
+            %ul
+              %li.heavy-font
+                Subtotal
+                %span#pickup-subtotal.pull-right $00.00/m
+        
+        .continue-button.align-center
+          %button#next-button.btn.btn-primary.blue-bg
+            = f.submit "CONTINUE", class: "blue-bg"
+          %button.btn.btn-primary.gray-bg{:type => "button"} Back
+
+          %p.half-opacity You can always change or cancel a pickup later.
+        .row
+          %br/ 
+          .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg.no-padding
+            %p.small-text.confirm-elem.align-center.light-blue-bg Already have a locker? Call us and we'll beat your current rate by 15% guaranteed.
+          / %button.btn.btn-primary.blue-bg{:disabled => false, :type => "button"} Continue
+
+
+%br/ 
+%br/ 
+%br/ 
+= render :partial => "partials/footer"
+
+
+
+= render partial: "partials/quote_gen_modal"
+
+= javascript_include_tag "item_selector"
+
+:javascript
+  hideParentWhenZero("hide-when-zero");
+  hideParentWhenNotUsed("hide-unused");
+
+    
+  $("#quote-trigger").click(function(){
+    $("#quote-generator").removeClass("hidden");
+  });
+
+  $("#quote-close").click(function(){
+    $("#quote-generator").addClass("hidden");
+  });
+
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+
+  $("#estimate-now").click(function(){
+    $("#estimator-page").removeClass("hidden");
+    $("#estimator-options").addClass("hidden");
+    setSidebarPosition();
+  });
+
+  $("#estimate-later").click(function(){
+    // $("#estimator-page").removeClass("hidden");
+    // $("#next-button").submit();
+    $("form").submit();
+    // $("#estimator-options").addClass("hidden");
+  });
+
+  $( "form" ).submit(function(event) {
+    // event.preventDefault();
+    console.log("YO!!!!");
+  });
+
+
+
+
+  

@@ -47,6 +47,17 @@ class SignupPagesController < ApplicationController
 		@pickup_request = PickupRequest.new
 	end
 
+	def old_select_items
+		@user = User.find(params[:id])
+		redirect_to new_user_session_url and return if @user.id != current_user.id
+		@track_conversion = false
+		if @user.conversion_tracked.blank?
+			@track_conversion = true
+			@user.update_column(:conversion_tracked, true)
+		end
+		@pickup_request = PickupRequest.new
+	end
+
 	def post_select_items
 		@user = User.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != current_user.id

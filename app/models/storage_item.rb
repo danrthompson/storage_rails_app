@@ -1,8 +1,36 @@
 class StorageItem < ActiveRecord::Base
 	@item_not_delivered = false
 
+	def self.always_discount
+		0.15
+	end
+
 	def self.item_types
-		{'small' => 5.0, 'medium' => 12.0, 'large' => 25.0, 'extra_large' => 40.0}
+		{'small' => 6.0, 'medium' => 12.0, 'large' => 25.0, 'extra_large' => 40.0}
+	end
+
+	def self.volume_discounts
+		[
+			[10, 0.0],
+			[20, 0.05],
+			[40, 0.1],
+			[80, 0.15],
+			[120, 0.2],
+			[160, 0.25],
+			[1000000 , 0.3]
+		]
+	end
+
+	def self.duration_discounts
+		[
+			[3, 0.0],
+			[6, 0.05],
+			[10, 0.1],
+			[13, 0.15],
+			[19, 0.2],
+			[25, 0.25],
+			[1000000, 0.3]
+		]
 	end
 
 	has_attached_file :image
