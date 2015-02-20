@@ -1,0 +1,54 @@
+.row.header-nav
+  .nav-links-wrapper.col-md-3.col-sm-4#header-logo
+    %a.no-padding.pull-left
+      %img#menu-img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/qb-logo.png", :alt => ""}/
+    %a.pull-left.light-gray.no-side-padding{href:"/"}
+      %span#menu-title QuickBox
+      %p.no-pointer.hide-on-small#special-company-phone
+        (720) 583-5826
+
+
+
+  / .nav-links-wrapper.col-md-1.col-sm-2.col-xs-2.col-md-offset-2.left-border#scroll-to-pricing
+  /   .no-border.nav-links
+  /     %a.black-hover{} Pricing
+
+  / .nav-links-wrapper.col-md-2.col-sm-2.col-xs-1#scroll-to-security
+  /   .no-border.nav-links
+  /     %a.black-hover{} Security 
+
+  / .nav-links-wrapper.col-md-1.col-sm-1.col-xs-1
+  /   .nav-links
+  /     %a.black-hover{href: '/faq', target: '_blank'} FAQ
+
+  - if current_user
+    .nav-links-wrapper.col-md-2.col-sm-2.col-xs-3.pull-right.no-padding-small
+      .no-border.nav-links
+        = link_to 'Logout', destroy_user_session_path, method: 'delete', class: "black-hover blue"
+
+    .nav-links-wrapper.col-md-1.col-sm-1.col-xs-3.pull-right
+      .no-border.nav-links
+        %a.black-hover{href: storage_items_path} Dashboard  
+
+  - else
+    .nav-links-wrapper.col-md-2.col-sm-2.col-xs-3.pull-right.no-padding-small
+      .no-border.nav-links
+        %a.black-hover.blue{"href" => "signup"} Sign Up  
+
+    .nav-links-wrapper.col-md-1.col-sm-1.col-xs-3.pull-right
+      .no-border.nav-links
+        = link_to 'Login', new_user_session_path, class:"black-hover "
+
+
+:javascript
+  $("#scroll-to-pricing").click(function(){
+    $('html, body').animate({scrollTop: $("#signup-pricing").offset().top - 100}, 1000);
+  });
+
+  $(".scroll-to-about").click(function(){
+    $('html, body').animate({scrollTop: $("#signup-about").offset().top - 100}, 600);
+  });
+
+  $("#scroll-to-security").click(function(){
+    $('html, body').animate({scrollTop: $("#signup-security").offset().top - 100}, 600);
+  });
