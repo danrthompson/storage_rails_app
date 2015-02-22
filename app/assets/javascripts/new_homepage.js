@@ -4,9 +4,6 @@ $(document).ready(function(){
 		speed: 500,
 		auto: true
 	});
-
-
-
 });
 
 $(document).load(function(){
