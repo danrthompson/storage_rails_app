@@ -45,6 +45,7 @@
           Pickup
       %br/ 
       %p.half-opacity (Our drivers can help you when they arrive)
+  = link_to 'Skip pickup', signup_select_items_path(@user.id, skip_pickup_request: true), method: :post
 %br/ 
 
 = render partial: 'partials/estimator', locals: {sign_up_flow: true}

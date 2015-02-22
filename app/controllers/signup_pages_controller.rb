@@ -47,31 +47,28 @@ class SignupPagesController < ApplicationController
 		@pickup_request = PickupRequest.new
 	end
 
-	def old_select_items
-		@user = User.find(params[:id])
-		redirect_to new_user_session_url and return if @user.id != current_user.id
-		@track_conversion = false
-		if @user.conversion_tracked.blank?
-			@track_conversion = true
-			@user.update_column(:conversion_tracked, true)
-		end
-		@pickup_request = PickupRequest.new
-	end
-
 	def post_select_items
 		@user = User.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != current_user.id
 
-		@pickup_request = PickupRequest.new select_items_params(params)
+		if params[:skip_pickup_request]
+			@skip_pickup_request = true
+			@pickup_request = PickupRequest.new
+		else
+			@skip_pickup_request = false
+			@pickup_request = PickupRequest.new select_items_params(params)
+		end
 		render :show
 	end
 
 	def add_payment
 		@user = User.find(params[:id])
 		redirect_to new_user_session_url and return if @user.id != current_user.id
-		@pickup_request = PickupRequest.new create_pickup_request_params(params)
-		@pickup_request.user = @user
-		pickup_valid = @pickup_request.valid?
+		unless params[:skip_pickup_request]
+			@pickup_request = PickupRequest.new create_pickup_request_params(params)
+			@pickup_request.user = @user
+			pickup_valid = @pickup_request.valid?
+		end
 		@user.update(user_add_payment_no_cc(params))
 		begin
 			@user.update(user_just_cc_params(params))
@@ -81,9 +78,13 @@ class SignupPagesController < ApplicationController
 			flash.now[:alert] = e.message
 			render action: :show and return
 		end
-		if @user.valid?	and @user.ready? and pickup_valid
-			@pickup_request.save
-			redirect_to @pickup_request and return
+		if @user.valid?	and @user.ready?
+			if not params[:skip_pickup_request] and pickup_valid
+				@pickup_request.save
+				redirect_to @pickup_request and return
+			else
+				redirect_to storage_items_url and return
+			end
 		end
 		@user.add_readiness_errors
 		render action: :show and return

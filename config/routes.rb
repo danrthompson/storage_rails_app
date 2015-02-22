@@ -1,12 +1,15 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin_portal', as: 'rails_admin'
   devise_for :users
   resources :users, only: [:edit, :update]
-
   devise_scope :user do
     get 'users/sign_out(.:format)', to: 'devise/sessions#destroy'
+  end
+
+  mount RailsAdmin::Engine => '/admin_portal', as: 'rails_admin'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   resources :storage_items, only: [:index, :edit, :update]
@@ -20,16 +23,8 @@ Rails.application.routes.draw do
   get 'admin/record_delivery_request/:id', to: 'admin_pages#record_delivery_request', as: 'admin_record_delivery_request'
   patch 'admin/record_pickup_request/:id', to: 'admin_pages#save_changes_pickup_request'
   patch 'admin/record_delivery_request/:id', to: 'admin_pages#save_changes_delivery_request'
-
   get 'admin/assign_driver/:id', to: 'admin_pages#assign_driver', as: 'admin_assign_driver'
-
-
-
-
-
   post 'admin/assign_driver/:id', to: 'admin_pages#update_assign_driver'
-  get 'users/referral', to: 'users#referral', as: 'users_referral'
-
   patch 'admin/complete_packing_supplies_request/:id', to: 'admin_pages#complete_packing_supplies_request', as: 'complete_packing_supplies_request'
   patch 'admin/complete_pickup_request/:id', to: 'admin_pages#complete_pickup_request', as: 'complete_pickup_request'
   patch 'admin/complete_delivery_request/:id', to: 'admin_pages#complete_delivery_request', as: 'complete_delivery_request'
@@ -48,37 +43,23 @@ Rails.application.routes.draw do
   get 'cu-student-storage' => 'static_pages#cu_student_storage'
   get 'cheap-storage' => 'static_pages#cheap_storage'
 
-
   get 'about' => 'static_pages#about'
   get 'feedback' => 'static_pages#feedback'
   get 'faq' => 'static_pages#faq'
   get 'contact' => 'static_pages#contact'
   get 'email' => 'static_pages#email_example'
-  get 'tires' => 'static_pages#tires'
   get 'terms-of-service', to: 'static_pages#terms_of_service', as: 'terms_of_service'
   get 'storage-service-tos', to: 'static_pages#storage_service_tos', as: 'storage_service_tos'
   get 'privacy-policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
-  get 'static_pages/estimator'
-  get 'landing_page_1' => 'static_pages#landing_page_1'
-
-  # get 'althome' => 'static_pages#althome'
-  # get 'signup_option' => 'static_pages#'
-
+  get 'users/referral', to: 'users#referral', as: 'users_referral'
 
   get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
-  # post 'fast_signup', to: 'signup_pages#fast_signup', as: 'fast_signup'
   post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'
   get 'signup/items/:id', to: 'signup_pages#select_items', as: 'signup_select_items'
-  get 'old_signup/items/:id', to: 'signup_pages#old_select_items', as: 'signup_old_select_items'
   post 'signup/items/:id', to: 'signup_pages#post_select_items'
   patch 'signup/:id', to: 'signup_pages#add_payment', as: 'add_payment_signup_pages'
 
   root 'static_pages#homepage'
-
-  authenticate :user, lambda { |u| u.admin? } do
-    mount Sidekiq::Web => '/sidekiq'
-  end
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -54,6 +54,9 @@
   
   = form_for @user, url:add_payment_signup_pages_path do |f|
     .container
+
+      - if @skip_pickup_request
+        = hidden_field_tag 'skip_pickup_request', true
       .row
         .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
           #pickup-details
@@ -68,7 +71,8 @@
                   = pf.hidden_field :large_item_quantity
                   = pf.hidden_field :extra_large_item_quantity
                   = pf.hidden_field :duration
-                  = render partial: "partials/delivery_date_time", locals: {f: pf,  id:"pickup_datepicker", select_id:"delivery_time"}
+                  - unless @skip_pickup_request
+                    = render partial: "partials/delivery_date_time", locals: {f: pf,  id:"pickup_datepicker", select_id:"delivery_time"}
               %h5.pull-right#show-continue.light-gray.black-hover.pointer Continue
           
             %br/ 
@@ -83,10 +87,9 @@
       /     %h4.pointer.pull-right#quote-close close
       /     = fields_for @temp_pickup, html:{id:"delivery-form"} do |pickup_field|
       /       = render partial: "partials/storage_items", locals:{f:pickup_field}
-
       .row
         .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
-          .row#payment-details.hidden
+          %div#payment-details.row.hidden
             %h3.double-underlined
               Payment Info
             .double-line
