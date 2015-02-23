@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get 'storage-service-tos', to: 'static_pages#storage_service_tos', as: 'storage_service_tos'
   get 'privacy-policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
   get 'users/referral', to: 'users#referral', as: 'users_referral'
+  get 'landing_page_1' => 'static_pages#landing_page_1'
 
   get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
   post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'

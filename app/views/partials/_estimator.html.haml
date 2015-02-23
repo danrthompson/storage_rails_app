@@ -9,8 +9,13 @@
 
 = javascript_include_tag :estimator
 
+- if sign_up_flow
+  - estimator_classes = ''
+- else
+  - estimator_classes = ' hidden'
+
 %br/
-%section.text-center.inventory.hidden#estimator-page
+%section#estimator-page{class: "text-center inventory#{estimator_classes}"}
   .container
     - if sign_up_flow
       - form_url = signup_select_items_path(@user.id)
@@ -25,6 +30,11 @@
                 %h1.align-center.no-margin Estimate Your Monthly Cost
             .panel-body
               %p.align-center Your monthly storage costs are based on how much you put in storage as well as how long you keep them in storage.
+              - if sign_up_flow
+                %p.align-center
+                  If you don't want to schedule a pickup right now, you can 
+                  = link_to 'schedule your pickup later', signup_select_items_path(@user.id, skip_pickup_request: true), method: :post
+                  = '.'
               = render layout: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: '$7', item_description: 'Boxes, tires, bags, or similarly sized objects'} do
                 %br/
                 = f.label :small_item_quantity, "Quantity:"
@@ -94,4 +104,8 @@
             .continue-button.align-center
               %button#next-button.btn.btn-primary.blue-bg
                 = f.submit "CONTINUE", class: "blue-bg"
+          - else
+            .continue-button.align-center
+              %button#next-button.btn.btn-primary.blue-bg
+                = link_to "Sign Up Now", '/signup', {class: 'white'}
 

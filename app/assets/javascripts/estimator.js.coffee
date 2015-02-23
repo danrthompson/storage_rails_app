@@ -88,14 +88,8 @@ est_fix_pricing_boxes_height = ->
 $ ->
 	slider = DiscountSlider(est_update_slider)
 	est_initialize_estimator(slider)
-
-	$("#estimate-now").click ->
-	  $("#estimator-page").removeClass("hidden")
-	  $("#estimator-options").addClass("hidden")
-	  est_fix_pricing_boxes_height()
-
-	$("#estimate-later").click ->
-	  $("form").submit()
-
-
-
+	estimator_page = $('#estimator-page')
+	est_fix_pricing_boxes_height() unless estimator_page.hasClass('hidden')
+	$('#estimate-now').click ->
+		estimator_page.removeClass('hidden')
+		est_fix_pricing_boxes_height()
