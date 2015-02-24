@@ -42,11 +42,11 @@ Rails.application.routes.draw do
   get 'storage-garage-organization' => 'static_pages#garage_organization'
   get 'cu-student-storage' => 'static_pages#cu_student_storage'
   get 'cheap-storage' => 'static_pages#cheap_storage'
-  get 'landing_page_1' => 'static_pages#landing_page_1'
-  get 'landing_page_2' => 'static_pages#landing_page_2'
-  get 'landing_page_3' => 'static_pages#landing_page_3'
-  get 'landing_page_4' => 'static_pages#landing_page_4'
-  get 'landing_page_5' => 'static_pages#landing_page_5'
+  get 'landing-page-1' => 'static_pages#landing_page_1'
+  get 'landing-page-2' => 'static_pages#landing_page_2'
+  get 'landing-page-3' => 'static_pages#landing_page_3'
+  get 'landing-page-4' => 'static_pages#landing_page_4'
+  get 'landing-page-5' => 'static_pages#landing_page_5'
 
 
   get 'about' => 'static_pages#about'
@@ -58,6 +58,8 @@ Rails.application.routes.draw do
   get 'storage-service-tos', to: 'static_pages#storage_service_tos', as: 'storage_service_tos'
   get 'privacy-policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
   get 'users/referral', to: 'users#referral', as: 'users_referral'
+  get 'how-quickbox-works' => 'static_pages#how_quickbox_works'
+  get 'pricing' => 'static_pages#pricing'
 
   get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
   post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'

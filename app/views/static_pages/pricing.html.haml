@@ -1,0 +1,31 @@
+- content_for :title do
+  = "Pricing |"
+- if current_user
+  = render :partial => 'partials/logged_in_header'
+- else
+  = render :partial => 'partials/signup_header'
+
+%section
+  .container
+    .col-md-12.align-center
+      .section-heading
+        %br/
+        %br/
+        %br/
+        %h1 Quickbox Pricing
+        %p.align-center
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+  .container.row.pricing-wrapper
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: '$7', item_description: 'Boxes, tires, bags, or similarly sized objects'}
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: '$15', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'}
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: '$30', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'}
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: '$50', item_description: 'Dining tables, large bedframes, sectional couches'}
+  .container
+    %br/
+    %br/
+    %br/
+    .col-md-6
+      %h3.dark-gray.align-center SALE: Save 15% when you sign up! Limited time only!
