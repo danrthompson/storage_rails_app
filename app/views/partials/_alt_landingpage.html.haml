@@ -274,27 +274,7 @@
 
   %br/ 
   .container.row.pricing-wrapper.align-center
-
-    %br/ 
-    %br/ 
-    .col-md-3.security-section-icon-container
-      %img{class: "security-section-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/security-section-lock.svg", alt: "Secure facility"}/
-      %p Secure, alarmed facility
-    .col-md-3.security-section-icon-container
-      %img{class: "security-section-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/security-section-camera.svg", alt: "Camera surveillance"}/
-      %p 24/7 surveillance
-    .col-md-3.security-section-icon-container
-      %img{class: "security-section-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/security-section-thermometer.svg", alt: "Climate controlled"}/
-      %p Climate controlled
-    .col-md-3.security-section-icon-container
-      %img{class: "security-section-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/security-section-shield.svg", alt: "All items insured"}/
-      %p All items insured
-
-    
-
-    .col-md-10.col-md-offset-1
-      %br/ 
-      %p.center-margin We know how you feel when your things are in the protection of others, that's why we've made security a number one priority at QuickBox. 
+    = render partial: 'partials/security_section'
   
   %section   
     %br/ 

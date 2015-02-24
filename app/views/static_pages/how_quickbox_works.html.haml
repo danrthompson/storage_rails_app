@@ -78,7 +78,32 @@
   %br/ 
   %br/
 
+%section.new-section-margin
+  .container
+    .col-md-12.align-center
+      %h2.black Security and Insurance
+      %p.big-text.align-center
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede.
+    %br/
+    %br/
+    .container.row.align-center.big-text
+      = render partial: 'partials/security_section'
 
+%br/
+
+%section   
+  %br/ 
+  .row
+    .col-md-12
+      .row.homepage-started-row
+        .col-md-12
+          %h3.dark-gray
+            On Demand Storage: 
+            %b.blue Made for Your Busy Life
+        .col-md-4.col-md-offset-4.col-sm-4.col-sm-offset-4
+          .boxed-gray.continue-button.pull-left
+            %a.white{"href" => "/signup"}
+              %button.btn.btn-primary.blue-bg.blue-bg-hover Reserve Pickup
 
 = render :partial => 'partials/footer'
 
