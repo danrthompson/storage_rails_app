@@ -42,6 +42,12 @@ Rails.application.routes.draw do
   get 'storage-garage-organization' => 'static_pages#garage_organization'
   get 'cu-student-storage' => 'static_pages#cu_student_storage'
   get 'cheap-storage' => 'static_pages#cheap_storage'
+  get 'landing_page_1' => 'static_pages#landing_page_1'
+  get 'landing_page_2' => 'static_pages#landing_page_2'
+  get 'landing_page_3' => 'static_pages#landing_page_3'
+  get 'landing_page_4' => 'static_pages#landing_page_4'
+  get 'landing_page_5' => 'static_pages#landing_page_5'
+
 
   get 'about' => 'static_pages#about'
   get 'feedback' => 'static_pages#feedback'
@@ -52,7 +58,6 @@ Rails.application.routes.draw do
   get 'storage-service-tos', to: 'static_pages#storage_service_tos', as: 'storage_service_tos'
   get 'privacy-policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
   get 'users/referral', to: 'users#referral', as: 'users_referral'
-  get 'landing_page_1' => 'static_pages#landing_page_1'
 
   get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
   post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'

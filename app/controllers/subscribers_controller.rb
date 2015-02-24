@@ -5,7 +5,7 @@ class SubscribersController < ApplicationController
 		@user = User.new
 		@subscriber = Subscriber.create create_subscriber_params(params)
 		if @subscriber.valid?
-			success_message = 'You have been subscribed to our newsletter!'
+			success_message = 'You should receive a promo code in your email inbox soon!'
 			begin
 				redirect_to(:back, notice: success_message)
 			rescue ActionController::RedirectBackError

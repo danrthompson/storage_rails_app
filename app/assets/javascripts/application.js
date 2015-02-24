@@ -72,18 +72,19 @@ function grayOutButtonOnClick(btnID){
 }
 
 function disableSubmitOnClick(){
-  $('input:submit').click(function(e){
+  $('form').bind('submit', function(e){
     // e.preventDefault();
-    if ($(this).hasClass("aldready_clicked")){
+    var button = $(this).find('input[type=submit]');
+    if (button.hasClass("already_clicked")){
       console.log("double click");
       return false;
     }
     if ($(".has-error").size() > 0){
       return false;
     }
-    $(this).css("opacity", "0.2");
-    $(this).val("loading...");
-    $(this).addClass("aldready_clicked");
+    button.css("opacity", "0.2");
+    button.val("Loading...");
+    button.addClass("already_clicked");
   });
 }
 
