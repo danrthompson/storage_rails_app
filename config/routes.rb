@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   get 'storage-garage-organization' => 'static_pages#garage_organization'
   get 'cu-student-storage' => 'static_pages#cu_student_storage'
   get 'cheap-storage' => 'static_pages#cheap_storage'
-  get 'landing-page-1' => 'static_pages#landing_page_1'
+  get 'Storage-Savings-Colorado' => 'static_pages#landing_page_1'
   get 'landing-page-2' => 'static_pages#landing_page_2'
   get 'landing-page-3' => 'static_pages#landing_page_3'
   get 'landing-page-4' => 'static_pages#landing_page_4'
