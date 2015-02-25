@@ -35,22 +35,22 @@
                   If you don't want to schedule a pickup right now, you can 
                   = link_to 'schedule your pickup later', signup_select_items_path(@user.id, skip_pickup_request: true), method: :post
                   = '.'
-              = render layout: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: '$7', item_description: 'Boxes, tires, bags, or similarly sized objects'} do
+              = render layout: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: 'small', item_description: 'Boxes, tires, bags, or similarly sized objects'} do
                 %br/
                 = f.label :small_item_quantity, "Quantity:"
                 %br/
                 = f.text_field :small_item_quantity, placeholder: 0, class: 'form-control quantity-field'
-              = render layout: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: '$15', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'} do
+              = render layout: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: 'medium', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'} do
                 %br/
                 = f.label :medium_item_quantity, "Quantity:"
                 %br/
                 = f.text_field :medium_item_quantity, placeholder: 0, class: 'form-control quantity-field'
-              = render layout: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: '$30', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'} do
+              = render layout: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: 'large', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'} do
                 %br/
                 = f.label :large_item_quantity, "Quantity:"
                 %br/
                 = f.text_field :large_item_quantity, placeholder: 0, class: 'form-control quantity-field'
-              = render layout: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: '$50', item_description: 'Dining tables, large bedframes, sectional couches'} do
+              = render layout: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: 'extra_large', item_description: 'Dining tables, large bedframes, sectional couches'} do
                 %br/
                 = f.label :extra_large_item_quantity, "Quantity:"
                 %br/

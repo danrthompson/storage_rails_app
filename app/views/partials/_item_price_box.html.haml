@@ -6,7 +6,7 @@
         .pricing-title.by-item
           %h3= item_name
         .price
-          %h3.dark-gray= item_price
+          %h3.dark-gray= "$#{StorageItem.item_types[item_price].to_i}"
           %p.price-subtext per month
         .price-description
           %p= item_description

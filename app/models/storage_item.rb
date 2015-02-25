@@ -6,7 +6,7 @@ class StorageItem < ActiveRecord::Base
 	end
 
 	def self.item_types
-		{'small' => 6.0, 'medium' => 12.0, 'large' => 25.0, 'extra_large' => 40.0}
+		{'small' => 7.0, 'medium' => 15.0, 'large' => 30.0, 'extra_large' => 50.0}
 	end
 
 	def self.volume_discounts
