@@ -60,6 +60,8 @@ Rails.application.routes.draw do
   get 'users/referral', to: 'users#referral', as: 'users_referral'
   get 'how-quickbox-works' => 'static_pages#how_quickbox_works'
   get 'pricing' => 'static_pages#pricing'
+  get 'boulder' => 'static_pages#boulder'
+  get 'denver' => 'static_pages#denver'
 
   get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
   post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'
