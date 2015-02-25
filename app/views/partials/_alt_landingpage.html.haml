@@ -123,46 +123,10 @@
       %p.dark-gray.width-80 With by the item pricing, QuickBox only charges you for the space you use.
       %p.dark-gray.width-80 Storing a lot of items? Give us a call at (720)583-5826 and we will work out a bulk discount for you! We will always beat the best price in town!
       / %hr.width-80.half-opacity
-      .col-md-3.pricing-block
-        %i.pricing-icon.icon-icon-box
-        .pricing-info#small-pricing-info
-          .pricing-title.by-item
-            %h3 Small Items
-          .price
-            %h3.dark-gray $5
-            %p.price-subtext per month
-          .price-description
-            %p Boxes, tires, bags, or similarly sized objects
-      .col-md-3.pricing-block
-        %i.pricing-icon.icon-icon-bike
-        .pricing-info#medium-pricing-info
-          .pricing-title.by-item
-            %h3 Medium Items
-          .price
-            %h3.dark-gray $12
-            %p.price-subtext per month
-          .price-description
-            %p Bikes, chairs, skis, luggage, or coffee tables
-      .col-md-3.pricing-block
-        %i.pricing-icon.icon-icon-couch
-        .pricing-info#large-pricing-info
-          .pricing-title.by-item
-            %h3 Large Items
-          .price
-            %h3.dark-gray $25
-            %p.price-subtext per month
-          .price-description
-            %p Desks, drawers, TV's, armchairs, or small couches
-      .col-md-3.pricing-block
-        %i.pricing-icon.icon-icon-bed
-        .pricing-info#large-pricing-info
-          .pricing-title.by-item
-            %h3 XL Items
-          .price
-            %h3.dark-gray $40
-            %p.price-subtext per month
-          .price-description
-            %p Dining tables, large bedframes, sectional couches
+      = render partial: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: 'small', item_description: 'Boxes, tires, bags, or similarly sized objects'}
+      = render partial: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: 'medium', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'}
+      = render partial: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: 'large', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'}
+      = render partial: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: 'extra_large', item_description: 'Dining tables, large bedframes, sectional couches'}
     %br/ 
     %br/
 

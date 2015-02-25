@@ -16,10 +16,10 @@
         %p.align-center
           QuickBox offers you the lowest price for storage because you only pay for the space you actually need when storing. We’ve broken pricing down into four categories to help you save. 
   .container.row.pricing-wrapper
-    = render partial: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: '$7', item_description: 'Boxes, tires, bags, or similarly sized objects'}
-    = render partial: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: '$15', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'}
-    = render partial: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: '$30', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'}
-    = render partial: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: '$50', item_description: 'Dining tables, large bedframes, sectional couches'}
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: 'small', item_description: 'Boxes, tires, bags, or similarly sized objects'}
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: 'medium', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'}
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: 'large', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'}
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: 'extra_large', item_description: 'Dining tables, large bedframes, sectional couches'}
   .container
     %br/
     %br/
