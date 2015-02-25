@@ -1,0 +1,107 @@
+- content_for :title do
+  = "Denver |"
+- if current_user
+  = render :partial => 'partials/logged_in_header'
+- else
+  = render :partial => 'partials/signup_header'
+
+/ # = render :partial => 'partials/signup_bottom_bar'
+= javascript_include_tag "new_homepage"
+ 
+/ %p= link_to 'Login', new_user_session_path
+#homepage.align-center.landing-page-1
+  %h1.no-margin.white.top-bar-title
+    Storage Made For Your Budget
+
+  .container
+
+    / = render partial: 'partials/error_messages_object_form', locals: {object: @subscriber}
+  // First Page
+  %section#introSection.align-center.landing-page.half{ style:"background-image: url('https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png');"}
+    .col-md-10.col-md-offset-1.align-center
+      %h3.white.no-margin Get 50% Off Your First Month When You Signup Below
+
+
+    #introSectionContentWrapper
+      / %br.hide-on-small 
+      .container#main-fold
+          
+        %br/ 
+        %br/ 
+        %br/ 
+        .main-images.row
+          .col-md-7.col-sm-4#fold-img.landing-fold-img
+            / %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/TV_Movers_Storate_QuickBox.jpg", :alt => ""}/
+            %h1.white Quickbox Location Title
+
+          .col-md-4.col-md-offset-1.col-sm-8.align-left.no-padding
+            %p.align-left QuickBox On Demand Storage comes directly to you, preforms all the hard work of moving and storing. At a price that can't be beat!
+            %br/ 
+
+            // This is the signup box
+            .signup-white
+              %h3.white#fold-subtitle Signup For Your Storage Disconut
+              / %hr.white/ 
+              %br/ 
+              = form_for Subscriber.new do |f|
+                #test123
+                  .row
+                    .col-md-3.align-right.no-padding
+                      / %p.dark-gray Email:
+                      %label.dark-gray.hide-on-small{:for => "name"} Name:
+                    .col-md-9
+                      = f.text_field :name, placeholder: 'Name', class: 'form-control gray-placeholder', required: 'true'
+                  %br/ 
+                  .row
+                    .col-md-3.align-right.no-padding
+                      / %p.dark-gray Email:
+                      %label.dark-gray.hide-on-small{:for => "email"} Email:
+
+                    .col-md-9
+                      = f.email_field :email, placeholder: 'email', class: 'form-control gray-placeholder', required: 'true'
+                      %br/ 
+                  .boxed-gray.continue-button
+                    / %a.white{"href" => "/signup"}
+                    %button.btn.btn-primary.blue-bg.blue-bg-hover.no-margin{style: 'font-size: 18px;'}
+                      = f.submit "Email My 50% Off Promo"
+            / .signup-button
+            /   .boxed-gray.continue-button
+            /     %button.btn.btn-primary.blue-bg.blue-bg-hover.no-margin{style: 'font-size: 18px;'} Or Sign Up Now!
+
+        %br/ 
+        %br/ 
+  .blue-bar
+    %br/
+    %br/
+    %br/
+    %br/
+  %section.container
+    .col-md-5.align-left
+      %h3.black.little-heavy Section One
+      %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+      %h3.black.little-heavy Section Two
+      %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+      %h3.black.little-heavy Section Three
+      %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+      %h3.black.little-heavy Section Four
+      %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+    .col-md-5.col-md-offset-2.align-left
+      %h3.black.little-heavy
+        %img{class: "location-page-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/security-section-lock.svg", alt: "Secure facility"}/
+        On Demand
+      %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+      %h3.black.little-heavy
+        %img{class: "location-page-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/security-section-lock.svg", alt: "Secure facility"}/
+        Honor Code
+      %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+      %h3.black.little-heavy
+        %img{class: "location-page-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/security-section-lock.svg", alt: "Secure facility"}/
+        Communication
+      %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+      %h3.black.little-heavy
+        %img{class: "location-page-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/security-section-lock.svg", alt: "Secure facility"}/
+        Trust
+      %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+
+
+= render :partial => 'partials/footer'
