@@ -30,31 +30,23 @@
                 %h1.align-center.no-margin Estimate Your Monthly Cost
             .panel-body
               %p.align-center Your monthly storage costs are based on how much you put in storage as well as how long you keep them in storage.
-              - if sign_up_flow
-                %p.align-center
-                  If you don't want to schedule a pickup right now, you can 
-                  = link_to 'schedule your pickup later', signup_select_items_path(@user.id, skip_pickup_request: true), method: :post
-                  = '.'
-              = render layout: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: 'small', item_description: 'Boxes, tires, bags, or similarly sized objects'} do
+              = render partial: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: 'small', item_description: 'Boxes, tires, bags, or similarly sized objects'}
+              = render partial: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: 'medium', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'}
+              = render partial: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: 'large', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'}
+              = render partial: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: 'extra_large', item_description: 'Dining tables, large bedframes, sectional couches'}
+
+              .col-md-3
                 %br/
-                = f.label :small_item_quantity, "Quantity:"
+                = f.text_field :small_item_quantity, placeholder: 'Quantity', value: nil, class: 'form-control quantity-field'
+              .col-md-3
                 %br/
-                = f.text_field :small_item_quantity, placeholder: 0, class: 'form-control quantity-field'
-              = render layout: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: 'medium', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'} do
+                = f.text_field :medium_item_quantity, placeholder: 'Quantity', value: nil, class: 'form-control quantity-field'
+              .col-md-3
                 %br/
-                = f.label :medium_item_quantity, "Quantity:"
+                = f.text_field :large_item_quantity, placeholder: 'Quantity', value: nil, class: 'form-control quantity-field'
+              .col-md-3
                 %br/
-                = f.text_field :medium_item_quantity, placeholder: 0, class: 'form-control quantity-field'
-              = render layout: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: 'large', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'} do
-                %br/
-                = f.label :large_item_quantity, "Quantity:"
-                %br/
-                = f.text_field :large_item_quantity, placeholder: 0, class: 'form-control quantity-field'
-              = render layout: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: 'extra_large', item_description: 'Dining tables, large bedframes, sectional couches'} do
-                %br/
-                = f.label :extra_large_item_quantity, "Quantity:"
-                %br/
-                = f.text_field :extra_large_item_quantity, placeholder: 0, class: 'form-control quantity-field'
+                = f.text_field :extra_large_item_quantity, placeholder: 'Quantity', value: nil, class: 'form-control quantity-field'
 
               .panel-body
                 %br/
@@ -76,36 +68,61 @@
               .panel-title
                 %h2.align-center.no-margin Order Summary
             .panel-body
-              %p
-                %strong Base monthly price: 
-                %span#estimator_base_price $0.00
-              %p
-                %strong Discounts:
-              %p.est-subpoint
-                Volume discount:
-                %span#estimator_volume_discount 0%
-              %p.est-subpoint
-                Duration discount:
-                %span#estimator_duration_discount 0%
-              %p
-                %strong Monthly Total:
-                %span#estimator_gross_price $0.00
-              %p.est-first-total
-                %strong Special Offer!
-                Book now and get an extra
-                %strong 15% off!
-              %p.est-special-offer
-                %strong Final monthly price: 
-                %span#estimator_final_price $0.00
-              %p
-                %strong Total savings:
-                %span#estimator_total_savings $0.00
+              .row
+                .col-md-8.no-spacing
+                  %p
+                    %strong Base monthly price: 
+                .col-md-4.no-spacing
+                  %p.align-right#estimator_base_price $0.00
+              .row
+                %p
+                  %strong Discounts:
+              .row
+                .col-md-8.est-subpoint
+                  %p Volume discount:
+                .col-md-4.no-spacing
+                  %p.align-right#estimator_volume_discount 0%
+              .row
+                .col-md-8.est-subpoint
+                  %p Duration discount:
+                .col-md-4.no-spacing
+                  %p.align-right#estimator_duration_discount 0%
+              .row
+                .col-md-8.no-spacing
+                  %p
+                    %strong Monthly Total:
+                .col-md-4.no-spacing
+                  %p.align-right#estimator_gross_price $0.00
+              .row
+                %p.est-first-total
+                  %strong Special Offer!
+                  Book now and get an extra
+                  %strong 15% off!
+              .row
+                .col-md-8.no-spacing
+                  %p.est-special-offer
+                    %strong Final monthly price: 
+                .col-md-4.no-spacing
+                  %p.est-special-offer.align-right#estimator_final_price $0.00
+              .row
+                .col-md-8.no-spacing
+                  %p
+                    %strong Total savings:
+                .col-md-4.no-spacing
+                  %p.align-right#estimator_total_savings $0.00
           - if sign_up_flow
-            .continue-button.align-center
+            .continue-button.align-center{style: 'margin-bottom: 10px;'}
               %button#next-button.btn.btn-primary.blue-bg
                 = f.submit "CONTINUE", class: "blue-bg"
+            %p.align-center.black
+              If you don't want to schedule a pickup right now, you can 
+              = link_to 'schedule your pickup later', signup_select_items_path(@user.id, skip_pickup_request: true), method: :post
+              = '.'
           - else
-            .continue-button.align-center
+            .continue-button.align-center{style: 'margin-bottom: 10px;'}
               %button#next-button.btn.btn-primary.blue-bg
                 = link_to "Sign Up Now", '/signup', {class: 'white'}
+          .row
+            .col-md-6.col-md-offset-3
+              %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/secure-stripe.png", :alt => ""}/
 
