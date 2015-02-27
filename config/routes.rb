@@ -43,10 +43,10 @@ Rails.application.routes.draw do
   get 'cu-student-storage' => 'static_pages#cu_student_storage'
   get 'cheap-storage' => 'static_pages#cheap_storage'
   get 'storage-savings-colorado' => 'static_pages#landing_page_1'
-  get 'landing-page-2' => 'static_pages#landing_page_2'
-  get 'landing-page-3' => 'static_pages#landing_page_3'
-  get 'landing-page-4' => 'static_pages#landing_page_4'
-  get 'landing-page-5' => 'static_pages#landing_page_5'
+  get 'cu-student-storage-2' => 'static_pages#landing_page_2'
+  get 'moving-and-storage-on-demand-denver-boulder' => 'static_pages#landing_page_3'
+  get 'premium-on-demand-luxury-moving-storage-2' => 'static_pages#landing_page_4'
+  get 'storage-garage-organization-2' => 'static_pages#landing_page_5'
 
 
   get 'about' => 'static_pages#about'

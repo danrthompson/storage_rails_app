@@ -1,4 +1,4 @@
-
+/Boulder Denver Storage
 
 / = render :partial => 'partials/althome_header'
 = render :partial => 'partials/basic_header'
@@ -9,7 +9,7 @@
 / %p= link_to 'Login', new_user_session_path
 #homepage.align-center.landing-page-1
   %h1.no-margin.white.top-bar-title
-    Storage Made For Your Budget
+    Denver & Boulder Storage On Demand 
 
   .container
 
@@ -17,7 +17,8 @@
   // First Page
   %section#introSection.align-center.landing-page{ style:"background-image: url('https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png');"}
     .col-md-10.col-md-offset-1.align-center
-      %h3.white.no-margin Get 50% Off Your First Month When You Signup Below
+      %h3.white.no-margin We Move & Securely Store Furniture, Boxes & More
+
 
 
     #introSectionContentWrapper
@@ -29,11 +30,10 @@
         %br/ 
         .main-images.row
           .col-md-7.col-sm-4#fold-img.landing-fold-img
-            %img{:src => "http://fairbanksstorage.com/wp-content/uploads/2010/10/moving.jpg", :alt => ""}/
-          
+            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/TV_Movers_Storate_QuickBox.jpg", :alt => ""}/
 
           .col-md-4.col-md-offset-1.col-sm-8.align-left.no-padding
-            %p.align-center QuickBox On Demand Storage comes directly to you, preforms all the hard work of moving and storing. At a price that can't be beat!
+            %p.align-left Locally Ownered QuickBox On Demand Storage comes directly to you, preforms all the hard work of moving and storing. At a price that can't be beat!
             %br/ 
 
             // This is the signup box
@@ -84,11 +84,12 @@
   .black-bar#signup-about
     %br/
     .col-md-4
-      %p.white.big-text Testing quote 1. Testing quote 1. Testing quote 1. Testing quote 1. Testing quote 1. 
+      %p.white.big-text "QuickBox had super fast service, and pretty much took care of all the work of storing my belongings. I didn’t even have to rent a moving truck!" ~ John G. Boulder, Colorado
     .col-md-4
       %h2.white Benefits
     .col-md-4
-      %p.white.big-text Testing quote 3
+      %p.white.big-text "Their staff took great care when moving my stuff. Everything came back in the great condition." ~ Carol S. Denver, Colorado
+
     %br/
     %br/
     %br/
@@ -102,17 +103,17 @@
     %br/ 
     %br/
     .col-md-4
-      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png", :alt => ""}/
-      %h3.black Benefit 1
-      %p Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, 
+      %img{class: "benefits-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/Clock43.png", alt: "Secure facility"}/
+      %h3.black Save Time
+      %p Moving & Storage is a time consuming activity. When QuickBox takes care of the logistics you save time for the more important things in life. 
     .col-md-4
-      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_2.png", :alt => ""}/
-      %h3.black Benefit 2
-      %p Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, 
+      %img{class: "benefits-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/sport21.png", alt: "Secure facility"}/
+      %h3.black Less Effort
+      %p Our team does all of the heavy lifting so you won’t have to. We make sure your items are ready for transport, and make the move happen. 
     .col-md-4
-      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png", :alt => ""}/
-      %h3.black Benefit 3
-      %p Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, 
+      %img{class: "benefits-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/money132.png", alt: "Secure facility"}/
+      %h3.black Save Money
+      %p Time is money, but with QuickBox you save more than just that. Our service is priced below or at traditional self storage prices while delivering way more service.  
 
   %br/ 
   %br/ 
@@ -131,17 +132,17 @@
     %br/ 
     %br/
     .col-md-4
-      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png", :alt => ""}/
-      %h3.black Benefit 1
-      %p Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, 
+      %img{class: "benefits-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/padlock27.png", alt: "Secure facility"}/
+      %h3.black Secure
+      %p Our facility is secured with state of the art technology, backed by quality insurance, background checked employees and tailored logistics training. We’ll make sure you’re stuff is safe. 
     .col-md-4
-      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_2.png", :alt => ""}/
-      %h3.black Benefit 2
-      %p Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, 
+      %img{class: "benefits-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/calendar68.png", alt: "Secure facility"}/
+      %h3.black On Demand
+      %p We’re here for you when you need us because time is of the essence. We show up when you need us on your schedule. 
     .col-md-4
-      %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png", :alt => ""}/
-      %h3.black Benefit 3
-      %p Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, Benefit 1 blah blah, 
+      %img{class: "benefits-icon", src: "https://s3.amazonaws.com/storage_rails_app_dev/images/license3.png", alt: "Secure facility"}/
+      %h3.black Professional Staf
+      %p We’re licensed, bonded and insured so you can rest easy knowing QuickBox will take care of it. Never worry about your stuff again.  
   %br/
 
 
