@@ -17,7 +17,7 @@ resizeDiv();
 function resizeDiv() {
 	console.log("resizing div");
 	vpw = $(window).width();
-	vph = $(window).height() - 50;
+	vph = $(window).height();
 	if ($('#introSection').hasClass('half')) vph = vph/2;
 	$('#introSection').css({'min-height': vph + 'px'});
 

@@ -1,9 +1,6 @@
 - content_for :title do
   = "Boulder |"
-- if current_user
-  = render :partial => 'partials/logged_in_header'
-- else
-  = render :partial => 'partials/signup_header'
+= render partial: 'partials/standard_header'
 
 / # = render :partial => 'partials/signup_bottom_bar'
 = javascript_include_tag "new_homepage"

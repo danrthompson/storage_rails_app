@@ -1,6 +1,7 @@
 
-= render :partial => 'partials/althome_header'
-= render :partial => 'partials/signup_bottom_bar'
+=# render :partial => 'partials/althome_header'
+= render partial: 'partials/standard_header', locals: {homepage: true}
+= render partial: 'partials/signup_bottom_bar'
 = javascript_include_tag "new_homepage"
  
 / %p= link_to 'Login', new_user_session_path

@@ -1,9 +1,6 @@
 - content_for :title do
   = "Privacy Policy |"
-- if current_user
-  = render :partial => 'partials/logged_in_header'
-- else
-  = render :partial => 'partials/signup_header'
+= render partial: 'partials/standard_header'
 
 / BLUE HEADER BAR
 .container.full-width.blue-bg.no-padding.white.dashboard-header.single-row
