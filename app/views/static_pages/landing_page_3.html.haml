@@ -1,7 +1,7 @@
 /Boulder Denver Storage
 
 / = render :partial => 'partials/althome_header'
-= render :partial => 'partials/basic_header'
+= render partial: 'partials/standard_header', locals: {homepage: true}
 
 / # = render :partial => 'partials/signup_bottom_bar'
 = javascript_include_tag "new_homepage"

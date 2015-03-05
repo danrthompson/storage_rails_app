@@ -49,17 +49,17 @@ Rails.application.routes.draw do
   get 'storage-garage-organization-2' => 'static_pages#landing_page_5'
 
 
-  get 'about' => 'static_pages#about'
-  get 'feedback' => 'static_pages#feedback'
-  get 'faq' => 'static_pages#faq'
+  get 'about', to: 'static_pages#about', as: 'about'
+  get 'feedback', to: 'static_pages#feedback', as: 'feedback'
+  get 'faq', to: 'static_pages#faq', as: 'faq'
   get 'contact' => 'static_pages#contact'
   get 'email' => 'static_pages#email_example'
   get 'terms-of-service', to: 'static_pages#terms_of_service', as: 'terms_of_service'
   get 'storage-service-tos', to: 'static_pages#storage_service_tos', as: 'storage_service_tos'
   get 'privacy-policy', to: 'static_pages#privacy_policy', as: 'privacy_policy'
   get 'users/referral', to: 'users#referral', as: 'users_referral'
-  get 'how-quickbox-works' => 'static_pages#how_quickbox_works'
-  get 'pricing' => 'static_pages#pricing'
+  get 'how-quickbox-works', to: 'static_pages#how_quickbox_works', as: 'how_quickbox_works'
+  get 'pricing', to: 'static_pages#pricing', as: 'pricing'
   get 'locations/boulder-colorado' => 'static_pages#boulder'
   get 'locations/denver-colorado' => 'static_pages#denver'
 
