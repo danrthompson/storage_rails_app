@@ -4,32 +4,32 @@
 
 %section
   .container
-    .col-md-12.align-center
-      .section-heading
+    .row
+      .col-md-12.align-center
         %br/
         %br/
-        %br/
-        %h1 Quickbox Overview
-        %p.align-center
-          By breaking free of traditional self storage or PODs (TM) we're able to find tons of ways to save you money, time and hassle while delivering quality service. We've simply found a way to go above and beyond for our customers. No more driving that big moving truck, or hauling all your stuff to the sketchy part of town to your storage locker. You won't ever have to carry your sofa sleeper down the stairs, rent a truck or be stuck traveling to get the one thing you want back. 
-        %p.align-center
+        %h1 Simple Storage in Three Easy Steps
+        .col-md-4.align-center
+          %h3.black.lowercase We Pick It Up
+          %img.width-80-no-mgn{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png", :alt => ""}/
+          %p.width-80-no-mgn We pick up your stuff when it's convenient for you.
+        .col-md-4.align-center
+          %h3.black.lowercase We Store It
+          %img.width-80-no-mgn{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png", :alt => ""}/
+          %p.width-80-no-mgn We transport your things to our secure storage facility where they're safe and insured.
+        .col-md-4.align-center
+          %h3.black.lowercase We Deliver
+          %img.width-80-no-mgn{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png", :alt => ""}/
+          %p.width-80-no-mgn Schedule a time that works for you, and we'll deliver some or all of your items when you need them.
+    .row.section-heading
+      %br/
+      %br/
+      %p Our team will store just about anything you own. Boxes, bikes, furniture, electronics, or even your entire apartment. We price by the individual item so you never need to worry about renting a storage locker. That means no more paying for empty space or moving all your stuff to a bigger unit when you store more.
+      %p Since we pick up and deliver, there's no more driving that big moving truck or hauling all your stuff to your storage locker on the outskirts of town. You won't ever have to carry your sofa sleeper down the stairs, rent a truck, or be stuck digging through your unit.
            
-        %br/
-        %br/
-    .col-md-12.align-center
-      %h2.black Simple Storage in Three Easy Steps
-      .col-md-4.align-center
-        %h3.black.lowercase We Pick It Up
-        %img.width-80-no-mgn{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png", :alt => ""}/
-        %p.width-80-no-mgn Our team does all the heavy lifting and moving. Simply kickback and relax, we got it. 
-      .col-md-4.align-center
-        %h3.black.lowercase We Store It
-        %img.width-80-no-mgn{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png", :alt => ""}/
-        %p.width-80-no-mgn We transport all of your stuff to our secure storage facility, where its safe and insured.
-      .col-md-4.align-center
-        %h3.black.lowercase We Deliver
-        %img.width-80-no-mgn{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage_bg_1.png", :alt => ""}/
-        %p.width-80-no-mgn Schedule a time that works for you, and we’ll deliver some or all of your items back. 
+    %br/
+    %br/
+
 %br/
 %br/
 
@@ -58,10 +58,9 @@
         %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/Online-Item-Access.png", :alt => ""}/
       .col-md-6.col-md-offset-1
         %ul.bullet-list
-          %li You'll always know what you have in storage.
-          %li Before pickup you’re able to snap photos using your mobile phone & add an inventory of your boxes. 
-          %li Making it easy to order what you need back, without digging through storage. 
-          %li Inventory and Photos are optional but recommended for easy retrieval of exactly what you need returned. 
+          %li Each of your items is listed on your dashboard along with a photo so you'll always know what you have in storage. (You can upload photos of your choice, or you can leave that to our drivers).
+          %li It's easy to order exactly what you need back, without digging through storage.
+          %li You can order pickups and deliveries with the click of a button. Of course, if you ever want to do things over the phone, you can always call.
     %br/
     %br/
 
@@ -73,11 +72,6 @@
   .container
     .col-md-12.align-center
       %h2.black Security and Insurance
-      %p.big-text.align-center
-        QuickBox delivers the most trusted and secure moving & storage combination in the country. With our state of the art facility and professional moving labor force you’ll be able to rest easy that your stuff is safe and secure with QuickBox. 
-
-    %br/
-    %br/
     .container.row.align-center.big-text
       = render partial: 'partials/security_section'
 
