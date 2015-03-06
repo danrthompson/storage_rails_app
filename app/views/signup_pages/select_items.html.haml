@@ -7,10 +7,7 @@
       value: 15
     });
 
-- if current_user
-  = render partial: 'partials/logged_in_header'
-- else
-  = render partial: 'partials/signup_header'
+= render partial: 'partials/standard_header'
 
 = render partial: 'partials/signup_progress_header', locals: {header: 'Estimate Price', include_header: false, step_1_classes: 'signup-completed', step_2_classes: 'signup-active', step_3_classes: '', step_1_span_class: '', step_2_span_class: ' hidden', step_3_span_class: ' hidden'}
 
