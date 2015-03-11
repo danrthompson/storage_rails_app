@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get 'moving-and-storage-on-demand-denver-boulder' => 'static_pages#landing_page_3'
   get 'premium-on-demand-luxury-moving-storage-2' => 'static_pages#landing_page_4'
   get 'storage-garage-organization-2' => 'static_pages#landing_page_5'
+  get 'apartment' => 'static_pages#moving_and_storage'
 
 
   get 'about', to: 'static_pages#about', as: 'about'
