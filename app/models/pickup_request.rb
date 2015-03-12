@@ -91,7 +91,7 @@ class PickupRequest < Request
 		self.user.update_subscription_price(true)
 
 		unless self.one_time_payment.blank? or self.one_time_payment == 0
-			Stripe::Charge.create(amount: (self.one_time_payment * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "One time payment for items picked up on #{Time.zone.now.strftime('%m/%d')}", statement_description: "PICKUP PAYMENT")
+			Stripe::Charge.create(amount: (self.one_time_payment * 100).to_i, currency: 'usd', customer: self.user.stripe_user.id, description: "One time payment for items picked up on #{Time.zone.now.strftime('%m/%d')}", statement_description: "PICKUP PAYMENT")
 		end	
 		self.save
 		nil
