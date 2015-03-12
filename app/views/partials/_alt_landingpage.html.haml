@@ -3,7 +3,7 @@
 = render partial: 'partials/standard_header', locals: {homepage: true}
 = render partial: 'partials/signup_bottom_bar'
 = javascript_include_tag "new_homepage"
- 
+
 / %p= link_to 'Login', new_user_session_path
 #homepage.align-center
   .container
@@ -53,11 +53,6 @@
         %ul.bxslider 
           %li 
             %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-1.png", :alt => ""}/
-          %li 
-            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-2.png", :alt => ""}/ 
-          %li 
-            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-3.png", :alt => ""}/ 
-        %img{:src => "", :alt => ""}/ 
       %br/ 
 
   // Divider Blue Bar

@@ -15,7 +15,6 @@
 
 //= require gnmenu
 //= require bootstrap
-//= require bootstrap-datepicker
 //= require bootstrapValidator
 //= require custom
 // require syn-dashboard
@@ -85,6 +84,7 @@ function disableSubmitOnClick(){
     button.css("opacity", "0.2");
     button.val("Loading...");
     button.addClass("already_clicked");
+    return true;
   });
 }
 
