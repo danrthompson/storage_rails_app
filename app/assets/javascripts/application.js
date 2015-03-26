@@ -17,10 +17,12 @@
 //= require bootstrap
 //= require bootstrapValidator
 //= require custom
+//= require global
 // require syn-dashboard
 // require classie
 // require nivo-lightbox
 // require stellar
+
 
 
 
