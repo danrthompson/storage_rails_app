@@ -2447,11 +2447,20 @@ p.alert  , p.notice {
   #menu-spacer{
   	display: none ! important;
   }
-
-
 }
 
 @media all and (max-device-width : 480px){
+	h1{
+		font-size: 42px !important;
+	}
+	h2{
+		width: 90%;
+		margin-left: 5%;
+		font-size: 28px !important;
+	}
+	#introSection #main-fold ul#fold-description li{
+		font-weight: 300;
+	}
 	.header-nav .nav-links > a{
 		top:26px;
 	}
@@ -2460,6 +2469,19 @@ p.alert  , p.notice {
 	}
 	.hide-on-small{
 		display: none ! important;
+	}
+	.navbar-header{
+		// margin-left: 
+
+		.phone-number{
+			position: relative;
+			bottom: -11px;
+			font-size: 15px;		}
+	}
+	.navbar-brand{
+		// display: none;
+		margin-left: -5px;
+		padding-left: 0;
 	}
 
 	#company-phone{
@@ -2539,8 +2561,23 @@ p.alert  , p.notice {
 		width: 90%;
 		margin-left: 5% ! important;
 	}
+	.pricing-block .pricing-title h3{
+		font-weight: 300;
+	}
+
+	.price-subtext{
+		display: none;
+	}
 
 	.nudge-icon{
+		display: none;
+	}
+
+	#best-price-img{
+		width: 80%;
+	}
+
+	#bottom-bar{
 		display: none;
 	}
 
@@ -2595,6 +2632,14 @@ p.alert  , p.notice {
 		}
 	}
 
+	.security-section-icon-container{
+		p{
+			text-align: center !important;
+			font-size: 18px;
+			padding-bottom: 18px;
+		}
+	}
+	
 	// Admin Page
 	#admin-page{
 		.container{
