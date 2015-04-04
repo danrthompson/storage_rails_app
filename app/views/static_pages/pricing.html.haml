@@ -10,7 +10,7 @@
         %br/
         %h1.black Quickbox Pricing
         %p.align-center
-          QuickBox offers you the lowest price for storage because you only pay for the space you actually use. We've broken pricing down into four categories to help you save. 
+          With QuickBox's Per Item Pricing you'll recieve the lowest price for storage because you only pay for the space you actually use. Whether you're storing just your closet or your entire home we've broken pricing down into four categories to help you save. 
   .container.row.pricing-wrapper
     = render partial: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: 'small', item_description: 'Boxes, tires, bags, or similarly sized objects'}
     = render partial: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: 'medium', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'}
@@ -27,8 +27,15 @@
       .col-md-4.col-md-offset-4
         .boxed-gray.continue-button.pull-left
           %a.white{"href" => "/signup"}
-            %button.btn.btn-primary.blue-bg.blue-bg-hover Get Your Instant Quote
-
+            %button.btn.btn-primary.blue-bg.blue-bg-hover Start Your Instant Quote
+%section
+  .container
+    .col-md-12.align-center
+      .section-heading    
+        %br/
+        %p.align-center
+          Free pick up on orders over $50 per month. Delivery is equal to one month charge with $50 minimum. 
+          %a{:href => "/faq#faq_pr_3"} (Details in the FAQ)         
 .blue-bar
   %br/ 
   %br/
