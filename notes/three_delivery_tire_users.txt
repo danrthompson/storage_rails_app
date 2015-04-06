@@ -1,0 +1,163 @@
+User
+attributes:
+  id: 131
+  email: laso6079@colorado.edu
+  encrypted_password: $2a$10$aAjusfFg2cqpavtBbDOXmuO3P1fzkHypwZZt09rIA6YU3aMzvc5sG
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
+  sign_in_count: 2
+  current_sign_in_at: 2014-12-08 18:49:40.974811000 Z
+  last_sign_in_at: 2014-12-05 23:11:07.875758000 Z
+  current_sign_in_ip: 73.181.103.143
+  last_sign_in_ip: 173.164.50.49
+  created_at: 2014-12-05 23:11:05.122817000 Z
+  updated_at: 2015-02-09 21:42:16.380798000 Z
+  address_line_1: 3215 28th St, Boulder
+  address_line_2: ''
+  city: Boulder
+  state: CO
+  zip: 80301
+  special_instructions: ''
+  phone_number: '18589223549'
+  admin:
+  storage_item_number: 4
+  stripe_customer_identifier: cus_5H3K8nnpR1QmxA
+  promo_code:
+  referrer: Referred by a company
+  terms_of_service_accepted: true
+  name: Lauren Sorge
+  conversion_tracked:
+  tire_customer: true
+
+
+Storage Item
+attributes:
+  id: 273
+  user_id: 131
+  item_type: small
+  created_at: 2014-12-07 21:27:03.100847000 Z
+  updated_at: 2014-12-23 04:23:57.033411000 Z
+  image_file_name: IMG_2648.JPG
+  image_content_type: image/jpeg
+  image_file_size: 1521565
+  image_updated_at: 2014-12-07 21:27:28.063121000 Z
+  title: Auto Tires
+  description: ''
+  entered_storage_at: 2014-12-07 21:28:24.283242000 Z
+  left_storage_at:
+  delivery_request_id:
+  pickup_request_id: 114
+  user_item_number: 1
+  notes: Discount Tire Pick Up
+  storage_location: '620'
+  discount: 100.0
+  driver_id:
+  planned_duration: 1
+
+Pickup Request
+attributes:
+  id: 114
+  user_id: 131
+  delivery_time: 2014-12-09 14:00:00.000000000 Z
+  completion_time: 2014-12-07 21:28:24.283242000 Z
+  box_quantity:
+  driver_id: 100
+  type: PickupRequest
+  created_at: 2014-12-05 23:14:56.328133000 Z
+  updated_at: 2014-12-07 21:28:27.108678000 Z
+  wardrobe_box_quantity:
+  bubble_quantity:
+  tape_quantity:
+  driver_name: Daniel Haarburger
+  driver_notes: ''
+  stripe_subscription_identifier:
+  one_time_payment: 50.0
+  tire_request:
+
+Delivery Request
+attributes:
+  id: 137
+  user_id: 131
+  delivery_time: 2015-03-17 19:30:00.000000000 Z
+  completion_time:
+  box_quantity:
+  driver_id:
+  type: DeliveryRequest
+  created_at: 2015-03-17 18:26:38.990897000 Z
+  updated_at: 2015-03-17 21:26:27.044328000 Z
+  wardrobe_box_quantity:
+  bubble_quantity:
+  tape_quantity:
+  driver_name: Steven Pesavento
+  driver_notes: Discount Tire Delivery
+  stripe_subscription_identifier: ''
+  one_time_payment:
+  tire_request: true
+
+___
+
+attributes:
+  id: 101
+  email: cfredericks@gmail.com
+  encrypted_password: $2a$10$zCSPcKAYgR3mWCr1QnwC/uneyI11DTav0MPbSgZHn9iTEwkcvm1be
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
+  sign_in_count: 4
+  current_sign_in_at: 2015-03-16 15:49:14.737725000 Z
+  last_sign_in_at: 2014-12-02 01:35:29.736993000 Z
+  current_sign_in_ip: 73.3.175.210
+  last_sign_in_ip: 173.164.50.49
+  created_at: 2014-12-01 23:32:15.727988000 Z
+  updated_at: 2015-03-16 15:49:14.739811000 Z
+  address_line_1: 3000 Valmont Rd
+  address_line_2: ''
+  city: Boulder
+  state: CO
+  zip: 80301
+  special_instructions: ''
+  phone_number: '13034495393'
+  admin:
+  storage_item_number: 4
+  stripe_customer_identifier: cus_5FYlmapLbxaxb2
+  promo_code:
+  referrer: Word of mouth
+  terms_of_service_accepted: true
+  name: Carla Fredericks
+  conversion_tracked:
+  tire_customer: true
+
+
+___
+
+attributes:
+  id: 168
+  email: ricarnett13@aol.com
+  encrypted_password: $2a$10$/Wl8AdgHg3RUeoox/l4HbuppmznEfKb8FaQqfn8URdCt8cV813M6y
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
+  sign_in_count: 0
+  current_sign_in_at:
+  last_sign_in_at:
+  current_sign_in_ip: ''
+  last_sign_in_ip: ''
+  created_at: 2015-01-21 16:15:01.343369000 Z
+  updated_at: 2015-02-09 21:42:21.480180000 Z
+  address_line_1: 908 Forbes Park Road
+  address_line_2: ''
+  city: Fort garland
+  state: CO
+  zip: 80302
+  special_instructions: ''
+  phone_number: '17193793922'
+  admin: false
+  storage_item_number: 4
+  stripe_customer_identifier: cus_5YYEsSVg89QJVx
+  promo_code: ''
+  referrer: Discount Tire
+  terms_of_service_accepted: true
+  name: Richard Arntt
+  conversion_tracked: false
+  tire_customer: true

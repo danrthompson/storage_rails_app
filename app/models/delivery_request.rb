@@ -42,7 +42,7 @@ class DeliveryRequest < Request
 
 	def complete(current_user)
 		delivery_completion_time = Time.zone.now
-		
+
 		self.skip_delivery_validation = true
 		self.completion_time = delivery_completion_time
 		self.driver = current_user

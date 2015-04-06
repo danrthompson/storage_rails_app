@@ -1,0 +1,5 @@
+%li{id: "faq_#{question_id}"}
+	%h4.question_toggle
+		%a{href: 'javascript:'}= question_header
+	.question
+		= yield
