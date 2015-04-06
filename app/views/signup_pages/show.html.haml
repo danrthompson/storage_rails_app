@@ -32,13 +32,13 @@
           Create Login
       %li#step-2.signup-active
         %h4
-          %span.green{:data => {'icon' => "D"}}
+          %span.green.hidden{:data => {'icon' => "D"}}
           2.
           %br.show-on-small
           Item Selection
       %li#step-3
         %h4
-          %span.green{:data => {'icon' => "D"}}
+          %span.green.hidden{:data => {'icon' => "D"}}
           3.
           %br.show-on-small
           Account Details
@@ -89,7 +89,7 @@
       /       = render partial: "partials/storage_items", locals:{f:pickup_field}
       .row
         .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
-          %div#payment-details.row
+          %div#payment-details.row.hidden
             %h3.double-underlined
               Payment Info
             .double-line
@@ -111,7 +111,7 @@
 
 
               %br/
-              %div#finish-details
+              %div#finish-details.hidden
                 %h3.double-underlined Finish Line
 
                 .double-line
@@ -130,7 +130,7 @@
                             = f.select  :referrer, options_for_select([["Word of mouth"], ["An ad online"], ["A flyer"], ["Referred by a company"], ["Search"]]),{}, {class:"form-control"}
                 %br/
 
-              #submit-details
+              #submit-details.hidden
                 / %p.align-left.light-gray.small-text * you will only be charged after pickup
                 .row
                   .col-md-6.no-side-padding
@@ -156,67 +156,67 @@
 = render partial: "partials/quote_gen_modal"
 
 :javascript
-  // hideParentWhenZero("hide-when-zero");
-  // hideParentWhenNotUsed("hide-unused");
-  //
-  //
-  // sumItemList(".item-amount", "#subtotal", "/month");
-  //
-  // $(document).keypress(function(event) {
-  //   hideAndShowConfirmFields();
-  // });
-  // $("input[type=text]").blur(function(){
-  //   hideAndShowConfirmFields();
-  // });
-  //
-  // $("#cc-continue").click(function(){
-  //   $("#finish-details").removeClass("hidden");
-  //   $("#submit-details").removeClass("hidden");
-  //   $(this).addClass("hidden");
-  // });
-  //
-  //
-  // $("#show-continue").click(function(){
-  //   $("#payment-details").removeClass("hidden");
-  //   $(this).addClass("hidden");
-  // });
-  //
-  //
-  // function hideAndShowConfirmFields(){
-  //    $("#validator-id").data('bootstrapValidator').validate();
-  //    isValid = $("#validator-id").data('bootstrapValidator').isValid();
-  //    console.log("isValid? " + isValid);
-  //    if (isValid){
-  //     $("#payment-details").removeClass("hidden");
-  //     $("#show-continue").addClass("hidden");
-  //     $("#cc-continue").addClass("hidden");
-  //
-  //     // console.log("removing hidden");
-  //     $("#submit-details").removeClass("hidden");
-  //     $("#finish-details").removeClass("hidden");
-  //    } else{
-  //      console.log("validator id not valid");
-  //    }
-  //
-  //   $("#credit-card-form").data('bootstrapValidator').validate();
-  //   if ($("#credit-card-form").data('bootstrapValidator').isValid() && $("#cc_cvc").val().length >= 3){
-  //     //  $("#submit-button").removeAttr("disabled");
-  //      $("#finish-details").removeClass("hidden");
-  //      $("#submit-details").removeClass("hidden");
-  //      $("#cc-continue").addClass("hidden");
-  //
-  //      console.log("submit button no longer disabled");
-  //    } else {
-  //       // console.log("removing hidden class");
-  //       // $("#submit-button").attr("disabled", true);
-  //    }
-  // }
-  //
-  //
-  //  $("#quote-trigger").click(function(){
-  //   $("#quote-generator").removeClass("hidden");
-  //  });
-  //
-  //  $("#quote-close").click(function(){
-  //   $("#quote-generator").addClass("hidden");
-  //  });
+  hideParentWhenZero("hide-when-zero");
+  hideParentWhenNotUsed("hide-unused");
+
+
+  sumItemList(".item-amount", "#subtotal", "/month");
+
+  $(document).keypress(function(event) {
+    hideAndShowConfirmFields();
+  });
+  $("input[type=text]").blur(function(){
+    hideAndShowConfirmFields();
+  });
+
+  $("#cc-continue").click(function(){
+    $("#finish-details").removeClass("hidden");
+    $("#submit-details").removeClass("hidden");
+    $(this).addClass("hidden");
+  });
+
+
+  $("#show-continue").click(function(){
+    $("#payment-details").removeClass("hidden");
+    $(this).addClass("hidden");
+  });
+
+
+  function hideAndShowConfirmFields(){
+     $("#validator-id").data('bootstrapValidator').validate();
+     isValid = $("#validator-id").data('bootstrapValidator').isValid();
+     console.log("isValid? " + isValid);
+     if (isValid){
+      $("#payment-details").removeClass("hidden");
+      $("#show-continue").addClass("hidden");
+      $("#cc-continue").addClass("hidden");
+
+      // console.log("removing hidden");
+      $("#submit-details").removeClass("hidden");
+      $("#finish-details").removeClass("hidden");
+     } else{
+       console.log("validator id not valid");
+     }
+
+    $("#credit-card-form").data('bootstrapValidator').validate();
+    if ($("#credit-card-form").data('bootstrapValidator').isValid() && $("#cc_cvc").val().length >= 3){
+      //  $("#submit-button").removeAttr("disabled");
+       $("#finish-details").removeClass("hidden");
+       $("#submit-details").removeClass("hidden");
+       $("#cc-continue").addClass("hidden");
+
+       console.log("submit button no longer disabled");
+     } else {
+        // console.log("removing hidden class");
+        // $("#submit-button").attr("disabled", true);
+     }
+  }
+
+
+   $("#quote-trigger").click(function(){
+    $("#quote-generator").removeClass("hidden");
+   });
+
+   $("#quote-close").click(function(){
+    $("#quote-generator").addClass("hidden");
+   });
