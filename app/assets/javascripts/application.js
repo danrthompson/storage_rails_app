@@ -26,16 +26,9 @@
 
 // On document load
 $(function() {
-  $(".loadingOnClick").click(function(){
-    $(this + " ").attr("disabled", true);
-    // $(this).html("Loading...");
-  });
-
   $(".disableOnClick").click(function(e){
     $(".disableOnClick").attr("disabled", true);
   });
-
-
   disableSubmitOnClick();
 });
 
@@ -65,12 +58,6 @@ function disableSubmitOnClick(){
     if ($(".has-error").size() > 0){
       e.preventDefault();
       return false;
-    }
-    else {
-      // button.css("opacity", "0.2");
-      // button.val("Loading...");
-      // button.addClass("already_clicked");
-      button.attr("disabled", "disabled");
     }
   });
 }
