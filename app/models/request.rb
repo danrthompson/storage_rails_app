@@ -4,7 +4,7 @@ class Request < ActiveRecord::Base
 	# 0 = Sunday, 1 = Monday, and so on
 	@@standard_times_by_day = [0..23, 0..23, 0..23, 0..23, 0..23, 0..23, 0..23]
 	@@minimum_hours_after_present_for_delivery = 24
-	@@number_of_days_ahead_delivery_available = 30
+	@@number_of_days_ahead_delivery_available = 150
 
 	attr_accessor :skip_delivery_validation, :skip_confirm_request_email
 
