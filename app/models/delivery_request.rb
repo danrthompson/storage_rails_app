@@ -29,7 +29,7 @@ class DeliveryRequest < Request
 		self.storage_items.each do |item|
 			sum += item.price
 		end
-		if sum >= 10 then return sum else return 10 end
+		if sum >= 25 then return sum else return 25 end
 	end
 
 	def skip_delivery_validation?
@@ -56,7 +56,7 @@ class DeliveryRequest < Request
 
 		self.user.update_subscription_price
 
-		Stripe::Charge.create(amount: (self.price * 100).to_i, currency: 'usd', customer: stripe_user.id, description: "Quickbox delivery on #{Time.zone.now.strftime('%m/%d')}", statement_description: "DELIVERY FEE")
+		Stripe::Charge.create(amount: (self.price * 100).to_i, currency: 'usd', customer: self.user.stripe_user.id, description: "Quickbox delivery on #{Time.zone.now.strftime('%m/%d')}", statement_description: "DELIVERY FEE")
 
 		self.save
 		nil

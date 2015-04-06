@@ -36,16 +36,19 @@ class User < ActiveRecord::Base
   def subscription_price
     base_price = 0.0
     duration_discounted_price = 0.0
+    total_price = 0.0
 
     self.storage_items.where(left_storage_at: nil).where.not(entered_storage_at: nil).each do |item|
       item_price = item.discounted_price
       base_price += item_price
-      duration_discounted_price += item_price * (1.0 - item.calculate_duration_discount)
+      # duration_discounted_price += item_price * (1.0 - item.calculate_duration_discount)
+      total_price += item_price
     end
 
     volume_discount = StorageItem.calculate_volume_discount(base_price)
 
-    duration_discounted_price * (1.0 - volume_discount)
+    # duration_discounted_price * (1.0 - volume_discount)
+    total_price * (1.0 - volume_discount)
   end
 
   def update_subscription_price(create_invoice=false, price=self.subscription_price)
@@ -203,7 +206,3 @@ class User < ActiveRecord::Base
     end
   end
 end
-
-
-
-
