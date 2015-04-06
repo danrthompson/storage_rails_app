@@ -3,13 +3,12 @@ class DeliveryRequest < Request
 	has_paper_trail
 	accepts_nested_attributes_for :storage_items, allow_destroy: true
 
-	before_validation :normalize_delivery_time
-	after_create :send_confirmation_email
+	after_create :send_confirmation_email, :send_text_to_confirm_delivery_time
 
-	validates :delivery_time, presence: true
+	validates :proposed_date, :proposed_times, presence: true
 	validates :box_quantity, :wardrobe_box_quantity, :bubble_quantity, :tape_quantity, absence: true
-	validate :delivery_time_is_available, unless: :skip_delivery_validation?
 	validate :no_other_deliveries?
+
 
 	def send_confirmation_email
 		if Rails.env.production?

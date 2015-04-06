@@ -1,6 +1,6 @@
 - content_for :title do
   = "New Pickup Request |"
-= render partial: "partials/logged_in_header"   
+= render partial: "partials/logged_in_header"
 = render partial: "partials/blue_bar", locals:{mainText:"Schedule A Pickup", dashboard:true, faq:true}
 = render :partial => 'partials/nudge_icon'
 = render partial: 'partials/error_messages_object_form', locals: {object: @pickup_request}
@@ -18,7 +18,7 @@
   .container
     .row
       .div
-        = form_for (@pickup_request) do |f| 
+        = form_for (@pickup_request) do |f|
           .row
             / Address Info Section
             .col-md-8.col-md-offset-2
@@ -27,12 +27,12 @@
                   = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
                   = render partial: "partials/delivery_date_time", locals: {field:field, f:f, id:"pickup_datepicker", select_id:"delivery_time"}
           .row
-            %br/     
+            %br/
             .col-md-10.col-md-offset-1
               %h5
-                %span.half-opacity No charges will occur until you put items in storage. 
-                %br/ 
-                %br/ 
+                %span.half-opacity No charges will occur until you put items in storage.
+                %br/
+                %br/
                 To get a price estimate for your items
                 %span.blue.black-hover.pointer#quote-triggerr{"data-target" => "#quote_gen_popup", "data-toggle" => "modal"}
                   click here.
@@ -40,8 +40,8 @@
             .col-md-6.col-md-offset-3.half-opacity
               .single-line
               %br/
-              %br/ 
-          
+              %br/
+
 
           / Bottom Buttons Section
           .col-md-8.col-md-offset-2
@@ -57,8 +57,8 @@
                     = f.submit "Confirm Pickup"
             .row.show-on-small
               %p.half-opacity#btn-disabled
-                Buttons Disabled? Your address information may need to be validated. 
-                %br/ 
+                Buttons Disabled? Your address information may need to be validated.
+                %br/
                 %span.full-opacity.blue.heavy-font Click Here
               / .single-line
 
@@ -70,12 +70,10 @@
 
 
 
-= javascript_include_tag "item_selector"
-
 :javascript
-  
 
-  $(document).ready(function() { 
+
+  $(document).ready(function() {
     valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
 
     $(".form-control").on('input', function() {
@@ -94,5 +92,3 @@
       valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
     });
   });
-
- 

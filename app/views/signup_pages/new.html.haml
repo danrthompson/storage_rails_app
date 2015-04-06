@@ -6,15 +6,15 @@
 = render :partial => 'partials/nudge_icon'
 
 .container.full-width.blue-bg.no-padding.white.align-center
-  %br/ 
+  %br/
   %h1#lets-doit Create Your Account
 #signup-progress.row.align-center
   .col-md-8.col-md-offset-2
     %ul.no-list
-      %li.signup-active#step-1  
+      %li.signup-active#step-1
         %h4
           %span.green.hidden{:data => {'icon' => "D"}}
-          1. Create Login    
+          1. Create Login
       %li#step-2
         %h4
           %span.green.hidden{:data => {'icon' => "D"}}
@@ -25,13 +25,13 @@
           3. Account Details
 
 
-%br/ 
+%br/
 .container
   = render partial: 'partials/error_messages_object_form', locals: {object: @user}
-%br/ 
-%br/ 
+%br/
+%br/
 
-= form_for @user, url: create_signup_pages_path, :html => {:id => 'signup-form'} do |f| 
+= form_for @user, url: create_signup_pages_path, :html => {:id => 'signup-form'} do |f|
 
   ///////////////////////////////////////////////////
   // Signup /////////////////////////////////////////
@@ -44,7 +44,7 @@
           .double-line
           .boxed-grey
             .row
-              %br/ 
+              %br/
               .col-md-8.col-md-offset-2.form-group.address-form
                 .row
                   .col-md-12
@@ -67,15 +67,15 @@
                 / %a.pointer{href:"/"}
                 /   %h1.btn.btn-default.pull-left Back
             %br/
-            %br/ 
+            %br/
           %span.blue.black-hover.pointer.half-opacity#quote-triggerr{"data-target" => "#signup_modal", "data-toggle" => "modal"}
             Want updates but not ready to create an account? Click here.
-    %br/ 
-    %br/ 
-    %br/ 
-    %br/ 
-    %br/ 
-    %br/ 
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
+    %br/
 
 
 
@@ -84,10 +84,8 @@
 = render :partial => "partials/outsideAreaModal"
 = render :partial => 'partials/signup_modal'
 
-= javascript_include_tag "item_selector"
-
 / :javascript
-  
+
 
 /   var all_form = $(".form-control");
 /   all_form.on('input', function() {
@@ -98,7 +96,7 @@
 /       if($(this).val().length > 0){
 /         numFilled += 1;
 /       }
-/     }); 
+/     });
 /     console.log('numFilled '+numFilled);
 /     if (numFilled == numFields){
 /       $("#signup-fourth-btn").attr('disabled', false);
@@ -108,8 +106,3 @@
 /       console.log('attribute added');
 /     }
 /   });
-      
-    
-
-
-

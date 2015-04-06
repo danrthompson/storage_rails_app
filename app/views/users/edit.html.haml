@@ -1,6 +1,6 @@
 - content_for :title do
   = "Edit Account |"
-= render partial: "partials/logged_in_header"   
+= render partial: "partials/logged_in_header"
 = render partial: "partials/blue_bar", locals:{mainText:"Edit Profile", dashboard:true, faq:true}
 
 .errors
@@ -8,44 +8,44 @@
 
 / Section: ITEM SELECTION
 %section#about.home-section.text-center
-  
+
 
   .container
     .row
       .div.col-md-8.col-md-offset-2
-        =form_for @user, :url => { :action => "update" } do |f|   
-          = fields_for @user do |field|      
+        =form_for @user, :url => { :action => "update" } do |f|
+          = fields_for @user do |field|
 
             .row
               %h2 Address Information
               = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
-            %br/ 
-            %br/ 
+            %br/
+            %br/
             .row
               %h2 Email & Password
               = render partial: "partials/password_email_form", locals: {field: field}
-            %br/ 
-            %br/ 
+            %br/
+            %br/
             .row
               %h2 Change Payment Information
               .boxed-grey
                 = render partial: "partials/cc_info", locals: {field:field}
-                %br/ 
+                %br/
             / %h1.no-opacity spacer
-          
+
             .row
               .col-md-4.bottom-buttons
                 .boxed-gray.continue-button
                   %button.btn.btn-primary.blue-bg.gray-bg{:type => "button"}/
                   = link_to "Cancel", storage_items_path, class:"white"
                   / %a{:href => "user-newbox.html", :style => "color: white;"} Back
-                  
+
               .col-md-4.col-md-offset-4.bottom-buttons.charges-box
                 .boxed-gray.continue-button
                   %button.btn.btn-primary.blue-bg.blue-bg-hover.loadingOnClick{:type => "button"}/
                   = f.submit "Save Changes"
-          
-        
+
+
 
 = render :partial => "partials/footer"
 
@@ -77,5 +77,3 @@
       .modal-footer
         %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
         / %button.btn.btn-primary{:type => "button"} Save changes
-
-= javascript_include_tag "item_selector"

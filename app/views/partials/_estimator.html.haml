@@ -29,6 +29,8 @@
               .panel-title
                 %h1.align-center.no-margin Estimate Your Monthly Cost
             .panel-body
+              - if sign_up_flow
+                %p.align-center.little-heavy If you're not sure what you want to store, you can change any of this later!
               %p.align-center Your monthly storage costs are based on how much you put in storage as well as how long you keep them in storage.
               = render partial: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: 'small', item_description: 'Boxes, tires, bags, or similarly sized objects'}
               = render partial: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: 'medium', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'}
@@ -71,7 +73,7 @@
               .row
                 .col-md-8.no-spacing
                   %p
-                    %strong Base monthly price: 
+                    %strong Base monthly price:
                 .col-md-4.no-spacing
                   %p.align-right#estimator_base_price $0.00
               .row
@@ -102,7 +104,7 @@
               .row
                 .col-md-8.no-spacing
                   %p.est-special-offer
-                    %strong Final monthly price: 
+                    %strong Final monthly price:
                 .col-md-4.no-spacing
                   %p.est-special-offer.align-right#estimator_final_price $0.00
               .row
@@ -116,7 +118,7 @@
               %button#next-button.btn.btn-primary.blue-bg
                 = f.submit "CONTINUE", class: "blue-bg"
             %p.align-center.black
-              If you don't want to schedule a pickup right now, you can 
+              If you don't want to schedule a pickup right now, you can
               = link_to 'schedule your pickup later', signup_select_items_path(@user.id, skip_pickup_request: true), method: :post
               = '.'
           - else
@@ -126,4 +128,3 @@
           .row
             .col-md-6.col-md-offset-3
               %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/secure-stripe.png", :alt => ""}/
-

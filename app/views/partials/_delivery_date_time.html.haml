@@ -6,33 +6,28 @@
       %label{:for => "posted_delivery_date"}
         Date
       #datepicker.input-append.date
-        =f.text_field :posted_delivery_date, class:"span2 form-control", id: "datepicker-value", placeholder: 'Which day is best?'
+        = f.text_field :proposed_date, class:"span2 form-control", id: "datepicker-value", placeholder: 'Which day is best?'
         %span.add-on
           %i.icon-calendar
-      
-     
+
+
     .col-md-6.align-left
-      %label{:for => "date-picker"} Time Of Day
-      = f.select  :posted_delivery_time, options_for_select([["Choose a time"]]),{}, {class:"form-control selectpicker", id:"#{select_id}"}
-      %br/
-  .row
-    .col-md-1
-    .col-md-10
-      %label If none of these dates and times work for you, feel free to call us at (720) 583-5826 and we'll work out a time with you!
+      %label{:for => "date-picker"} Time Of Day (let us know what times work for you)
+      = f.text_area  :proposed_times
       %br/
       %br/
     / .col-md-12.align-center
     /   %p.required_label.full-opacity
-    /     Save by picking popular delivery dates. 
+    /     Save by picking popular delivery dates.
     /     %span.heavy-font $5.00 credit
     /     with blue dates (
     /     %i.icon-date-box.blue
-    /     ) 
+    /     )
     /     %span.heavy-font $10.00 credit
     /     with green (
     /     %i.icon-date-box.green
     /     )
-      
+
 
 
 
@@ -40,29 +35,13 @@
   $(document).ready(function(){
     var start = new Date();
     var end = new Date();
+    start.setDate(start.getDate()+1);
     end.setDate(start.getDate()+31);
 
     $('#datepicker-value').datepicker({
-        daysOfWeekDisabled: "0,1",
         autoclose: true,
         todayHighlight: true
     });
     $('#datepicker-value').datepicker('setStartDate', start);
     $('#datepicker-value').datepicker('setEndDate', end);
-
-
-    $('#datepicker-value').on('changeDate', function(){
-      var available_delivery_times = #{Request.available_delivery_times.to_json};
-      var dropdownID = "#" + #{select_id.to_json};
-      updateDropdownDates('#datepicker-value', dropdownID, available_delivery_times);
-    });
-
-    $('#datepicker-value').on('show', function(){
-      // This is where the discount info would go
-      // highlightDeliveryDiscounts(["5", "10", "21"],"fivedollaoff");
-      // highlightDeliveryDiscounts(["13", "19", "23"],"tendollaoff");
-
-    });
   });
-
-

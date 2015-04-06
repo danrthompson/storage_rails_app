@@ -25,7 +25,7 @@
 
 
 // On document load
-$(function() { 
+$(function() {
   $(".loadingOnClick").click(function(){
     $(this + " ").attr("disabled", true);
     // $(this).html("Loading...");
@@ -43,48 +43,35 @@ function hideParentWhenNotUsed(classId){
   var objectToHide = $("." + classId);
   objectToHide.each(function(){
       if ($(this).html()) $(this).parent().show();
-      else $(this).parent().hide();     
+      else $(this).parent().hide();
   });
-}; 
+};
 
 function hideParentWhenZero(classId){
   var objectToHide = $("." + classId);
   objectToHide.each(function(){
       if ($(this).html() != "0") $(this).parent().show();
-      else $(this).parent().hide();     
+      else $(this).parent().hide();
   });
-}; 
+};
 
 ////////////////////////////////
 // Disables button after being clicked
 ////////////////////////////////
-function grayOutButtonOnClick(btnID){
-  // $(btnID).click(function(e){
-  //     if ($(this).hasClass("aldready_clicked")){
-  //       console.log("double click");
-  //       return false;
-  //     }
-  //     $(this).css("opacity", "0.2");
-  //     $(this).val("loading...");
-  //     $(this).addClass("aldready_clicked");
-  //   });
-}
 
 function disableSubmitOnClick(){
   $('form').bind('submit', function(e){
-    // e.preventDefault();
     var button = $(this).find('input[type=submit]');
-    if (button.hasClass("already_clicked")){
-      console.log("double click");
-      return false;
-    }
     if ($(".has-error").size() > 0){
+      e.preventDefault();
       return false;
     }
-    button.css("opacity", "0.2");
-    button.val("Loading...");
-    button.addClass("already_clicked");
-    return true;
+    else {
+      // button.css("opacity", "0.2");
+      // button.val("Loading...");
+      // button.addClass("already_clicked");
+      button.attr("disabled", "disabled");
+    }
   });
 }
 
@@ -93,14 +80,14 @@ function disableSubmitOnClick(){
 // Makes sure required fields are filled out on address/delivery page
 /////////////////////////////////////////////////////////////
 function valQuantityAndAddress(formID, buttonID, fieldClass){
-  var formValid = checkFormValidation(formID, buttonID); 
+  var formValid = checkFormValidation(formID, buttonID);
   if (formValid) return makeSureQuantityEntered(fieldClass, buttonID);
 }
 
 function valQuantityAddrDelivery(formID, buttonID, fieldClass, datepickerID, timeFieldId){
   if (valQuantityAndAddress(formID, buttonID, fieldClass)) {
     validatePickup(datepickerID, timeFieldId, buttonID);
-  } 
+  }
 }
 
 function valAddrDelivery(formID, buttonID, datepickerID, timeFieldId){
@@ -112,10 +99,10 @@ function checkFormValidation(formID, buttonID){
   // console.log("checking form");
   $(formID).data('bootstrapValidator').validate();
   if ($(formID).data('bootstrapValidator').isValid()){
-      $(buttonID).removeAttr("disabled");    
+      $(buttonID).removeAttr("disabled");
       return true;
   } else{
-    $(buttonID).attr("disabled", "disabled"); 
+    $(buttonID).attr("disabled", "disabled");
     return false;
   }
 }
@@ -127,14 +114,14 @@ function makeSureQuantityEntered(fieldClass, buttonID){
   $(fieldClass).each(function(){
     var fieldVal = $(this).val();
     if ((fieldVal)){
-      total = total + parseInt(fieldVal);   
+      total = total + parseInt(fieldVal);
     }
   });
   if (total > 0){
     $(buttonID).removeAttr("disabled");
     return true;
   } else{
-    $(buttonID).attr("disabled", "disabled"); 
+    $(buttonID).attr("disabled", "disabled");
     return false;
   }
 
@@ -144,11 +131,11 @@ function makeSureQuantityEntered(fieldClass, buttonID){
 function validatePickup(datepickerID, timeFieldId, buttonID){
   // console.log("checking pickup");
   if(($(datepickerID).val().length > 0) && ($(timeFieldId).val().length > 0)) {
-    $(buttonID).removeAttr("disabled"); 
+    $(buttonID).removeAttr("disabled");
     return true;
   }
   else {
-    $(buttonID).attr("disabled", true); 
+    $(buttonID).attr("disabled", true);
     return false;
   }
 }
@@ -177,7 +164,7 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
   });
 
 
-  
+
   if (!available_delivery_times){
     $(dropdownID)
       .append($("<option></option>")
@@ -207,7 +194,7 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
       if(endTime == 12 || startTime == 11){
         // console.log("at least it got here");
         SecondAMPM = " PM";
-      }    
+      }
     } else if (startTime == 12){
       FirstAMPM = " PM";
       SecondAMPM = " PM"
@@ -216,7 +203,7 @@ function updateDropdownDates(datePickerField, dropdownID, available_delivery_tim
       FirstAMPM = " PM";
       SecondAMPM = " PM";
       startTime = startTime - 12;
-      endTime = endTime - 12; 
+      endTime = endTime - 12;
       if(endTime == 12){
         SecondAMPM = " AM";
       }
@@ -264,5 +251,3 @@ function loadingOnClick(className){
   $(className).html("Loading...");
   $(className).attr("disabled", true);
 }
-
-

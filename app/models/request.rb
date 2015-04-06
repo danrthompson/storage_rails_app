@@ -1,10 +1,12 @@
 class Request < ActiveRecord::Base
+	include Textable
+
 	# 0 = Sunday, 1 = Monday, and so on
-	@@standard_times_by_day = [[],[],7..11,16..20,4..20,7..11,10..18]
-	@@minimum_hours_after_present_for_delivery = 36
+	@@standard_times_by_day = [0..23, 0..23, 0..23, 0..23, 0..23, 0..23, 0..23]
+	@@minimum_hours_after_present_for_delivery = 24
 	@@number_of_days_ahead_delivery_available = 30
 
-	attr_accessor :posted_delivery_date, :posted_delivery_time, :skip_delivery_validation, :skip_confirm_request_email
+	attr_accessor :skip_delivery_validation, :skip_confirm_request_email
 
 	belongs_to :user
 	belongs_to :driver, class_name: 'User'
@@ -70,15 +72,13 @@ class Request < ActiveRecord::Base
 		return true if self.delivery_time - current_time >= 1.day
 		return false
 	end
-	
+
 	private
 
-	def normalize_delivery_time
-		if not (self.posted_delivery_time.blank? or self.posted_delivery_date.blank?) then
-			self.delivery_time = Date.strptime(self.posted_delivery_date, '%m/%d/%Y') + self.posted_delivery_time.to_i.hours
-			self.posted_delivery_time = nil
-			self.posted_delivery_date = nil
-		end
+	def send_text_to_confirm_delivery_time
+		# if Rails.env.production?
+			Request.send_delivery_time_text(self.type, self.id, self.user.email, self.user.phone_number)
+		# end
 	end
 
 	def delivery_time_is_available

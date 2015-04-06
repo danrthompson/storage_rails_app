@@ -2,7 +2,7 @@
   = "Homepage |"
 = render :partial => 'partials/althome_header'
 = javascript_include_tag "new_homepage"
- 
+
 / %p= link_to 'Login', new_user_session_path
 #homepage.align-center
 
@@ -15,8 +15,8 @@
       %h3.dark-gray
         You Pack.
         %span.blue We Pickup.
-      %br/ 
-      %br/ 
+      %br/
+      %br/
       .main-images.full-width.row
         .col-md-4.col-sm-4.no-padding
           %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/home-notext-1.png", :alt => ""}/
@@ -31,26 +31,26 @@
           %p Your Items A Click Away
           / .blue-bar
 
-      %br/ 
-      %br/ 
-    
+      %br/
+      %br/
+
       .slider-wrapper.hidden
-        %ul.bxslider 
-          %li 
+        %ul.bxslider
+          %li
             %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-1.png", :alt => ""}/
-          %li 
-            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-2.png", :alt => ""}/ 
-          %li 
-            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-3.png", :alt => ""}/ 
-        %img{:src => "", :alt => ""}/ 
-      %br/ 
-      %div 
+          %li
+            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-2.png", :alt => ""}/
+          %li
+            %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/homepage-3.png", :alt => ""}/
+        %img{:src => "", :alt => ""}/
+      %br/
+      %div
         %h3.heavy-font.dark-gray
           Ready To Go?
           = link_to "Schedule a free pickup!", new_signup_pages_path
-           
+
           %p
-            (or call us at 
+            (or call us at
             %span 720-583-5826
             )
 
@@ -58,19 +58,19 @@
   .blue-bar#signup-about
     .tab.pull-right
       %h5.white How Do Pickups Work?
-    %br/ 
+    %br/
     %h2.white Door To Door Storage?
 
 
   // Pickup and Delivery Process Section
   %section.pickup-delivery-process.container
-    %br/ 
-    %br/ 
-    %br/ 
-    %br/ 
+    %br/
+    %br/
+    %br/
+    %br/
     %br/
     %h3.dark-gray.no-margin
-      We Offer 
+      We Offer
       %span.blue Free Pickups
     / %h2.no-margin
     /   %span.blue Quickbox
@@ -78,31 +78,31 @@
     %hr.half-width.half-opacity
     .container
       %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/pickup-process.png", :alt => ""}/
-    %br/ 
-    %br/ 
+    %br/
+    %br/
 
-    %br/ 
-    %br/ 
+    %br/
+    %br/
     / %h3.dark-gray.no-margin
     /   And
     /   %span.blue Convenient Deliveries
     /   %hr.half-width.half-opacity
     / .container
-    /   %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/delivery-process.png", :alt => ""}/ 
-    / %br/ 
-    / %br/ 
-    / %br/ 
-    / %br/ 
+    /   %img{:src => "https://s3.amazonaws.com/storage_rails_app_dev/images/delivery-process.png", :alt => ""}/
+    / %br/
+    / %br/
+    / %br/
+    / %br/
 
   // Pricing Section
   .blue-bar#signup-pricing
-    %br/ 
+    %br/
     %h2.white What About Pricing?
-    %br/ 
-  %br/ 
-  %br/ 
+    %br/
   %br/
-  %br/ 
+  %br/
+  %br/
+  %br/
   %section
     .container.row.pricing-wrapper
       %h3.dark-gray.no-margin
@@ -139,17 +139,17 @@
             %p.price-subtext per month
           .price-description
             %p Items like couches, mattresses, desks, dressers, chests, bed frames.
-    %br/ 
-    %br/ 
+    %br/
+    %br/
     / %br/
-    / %br/ 
+    / %br/
 
 
     / .container.row.pricing-wrapper
-      
+
     /   %h3.dark-gray.no-margin
     /     %span.green Traditional Pricing
-    /     By The Space 
+    /     By The Space
     /   %hr.width-80.half-opacity
 
     /   .col-md-4.pricing-block
@@ -163,7 +163,7 @@
     /       .price-description
     /         %p
     /           As much as you can fit in a
-    /           %br/ 
+    /           %br/
     /           5' x 10' area.
     /   .col-md-4.pricing-block
     /     %i.pricing-icon.icon-10x10.by-space
@@ -176,7 +176,7 @@
     /       .price-description
     /         %p
     /           As much as you can fit in a
-    /           %br/ 
+    /           %br/
     /           10' x 10' area.
     /   .col-md-4.pricing-block
     /     %i.pricing-icon.icon-10x20.by-space
@@ -187,19 +187,19 @@
     /         %h3.dark-gray $250.00
     /         %p.price-subtext per month
     /       .price-description
-    /         %p 
-    /           As much as you can fit in a 
-    /           %br/ 
+    /         %p
+    /           As much as you can fit in a
+    /           %br/
     /           10' x 20' area.
 
 
-  
 
 
-  %section   
-    %br/ 
-    %br/ 
-    %br/ 
+
+  %section
+    %br/
+    %br/
+    %br/
 
     .row
       .col-md-12
@@ -218,8 +218,6 @@
       .col-md-10.col-md-offset-1
   = render partial: "partials/feedback_tab"
   = render :partial => 'partials/footer'
-
-= javascript_include_tag "item_selector"
 
 :javascript
   $(".scroll-to-vid").click(function(){
@@ -241,6 +239,3 @@
   $("#works-link").click(function(){
     $('html, body').animate({scrollTop: $("#works").offset().top - 100}, 1000);
   });
-
-
-

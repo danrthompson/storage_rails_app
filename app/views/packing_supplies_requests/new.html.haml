@@ -3,7 +3,7 @@
     = "Edit Packing Supplies Request |"
   - else
     = "New Packing Supplies Request |"
-= render partial: "partials/logged_in_header"   
+= render partial: "partials/logged_in_header"
 
 = render partial: "partials/blue_bar", locals:{mainText:"Order Packing Supplies", dashboard:true, faq:true}
 / Section: ITEM SELECTION
@@ -16,7 +16,7 @@
   /           %h2 Order Packing Supplies
 
   / BODY CONTENT: SELECT ITEMS
-  = form_for (@packing_supplies_request), id:"test" do |f| 
+  = form_for (@packing_supplies_request), id:"test" do |f|
     .container
       .row
         .div
@@ -26,7 +26,7 @@
                 = render partial: "partials/delivery_addr_date", locals: {field:field, f:f}
           .col-md-6.col-md-offset-3.half-opacity.charges-box
             %br/
-            %br/ 
+            %br/
             .single-line
           = render partial: "partials/packing_items", locals: {f:f}
 
@@ -43,11 +43,9 @@
 
 = render :partial => "partials/footer"
 
-= javascript_include_tag "item_selector"
-
 
 :javascript
-  $(document).ready(function() { 
+  $(document).ready(function() {
     valQuantityAndAddress("#validator-id", "#continue-btn", ".quantity-field");
 
     $(".form-control").on('input', function() {
@@ -59,8 +57,3 @@
     });
 
   });
-
- 
-
-
-

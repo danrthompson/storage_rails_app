@@ -18,40 +18,40 @@
 
 
 .container.full-width.blue-bg.no-padding.white.align-center
-  %br/ 
+  %br/
   %h1#lets-doit ACCOUNT DETAILS
 
 #signup-progress.row.align-center
   .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1
     %ul.no-list
-      %li.signup-completed#step-1  
+      %li.signup-completed#step-1
         %h4
-          %span.green{:data => {'icon' => "D"}}          
-          1. 
+          %span.green{:data => {'icon' => "D"}}
+          1.
           %br.show-on-small
-          Create Login    
+          Create Login
       %li#step-2.signup-active
         %h4
-          %span.green.hidden{:data => {'icon' => "D"}}
-          2. 
+          %span.green{:data => {'icon' => "D"}}
+          2.
           %br.show-on-small
           Item Selection
       %li#step-3
         %h4
-          %span.green.hidden{:data => {'icon' => "D"}}
+          %span.green{:data => {'icon' => "D"}}
           3.
           %br.show-on-small
           Account Details
 .errors
   = render partial: "partials/error_messages_object_form", locals: {object: @user}
   = render partial: "partials/error_messages_object_form", locals: {object: @pickup_request}
-%br/ 
-%br/ 
-%br/ 
+%br/
+%br/
+%br/
 
 // Confirmation Page
 %section.text-center.inventory#estimator-page
-  
+
   = form_for @user, url:add_payment_signup_pages_path do |f|
     .container
 
@@ -74,9 +74,9 @@
                   - unless @skip_pickup_request
                     = render partial: "partials/delivery_date_time", locals: {f: pf,  id:"pickup_datepicker", select_id:"delivery_time"}
               %h5.pull-right#show-continue.light-gray.black-hover.pointer Continue
-          
-            %br/ 
-            %br/ 
+
+            %br/
+            %br/
 
 
 
@@ -89,34 +89,34 @@
       /       = render partial: "partials/storage_items", locals:{f:pickup_field}
       .row
         .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2
-          %div#payment-details.row.hidden
+          %div#payment-details.row
             %h3.double-underlined
               Payment Info
             .double-line
             %p.heavy-font
-              %span.half-opacity No charges will occur until you put items in storage. 
-               
+              %span.half-opacity No charges will occur until you put items in storage.
+
               To get a price estimate for your items click
 
               %span.blue.pointer#quote-triggerr{"data-target" => "#quote_gen_popup", "data-toggle" => "modal"}
                 here.
-            %br/ 
+            %br/
             // Credit Card Info Form
             #credit-card-form
               .bg-gray
                 %br/
                 = render partial: "partials/cc_info", locals:{field: f}
-              %br/ 
-              %h5.pull-right#cc-continue.light-gray.black-hover.pointer Continue   
+              %br/
+              %h5.pull-right#cc-continue.light-gray.black-hover.pointer Continue
 
-              
-              %br/ 
-              %div#finish-details.hidden
+
+              %br/
+              %div#finish-details
                 %h3.double-underlined Finish Line
 
                 .double-line
                 .bg-gray
-                  %br/ 
+                  %br/
                   .row
 
                     .col-md-8.col-md-offset-2.col-sm-8.col-sm-offset-2.align-left
@@ -130,102 +130,93 @@
                             = f.select  :referrer, options_for_select([["Word of mouth"], ["An ad online"], ["A flyer"], ["Referred by a company"], ["Search"]]),{}, {class:"form-control"}
                 %br/
 
-              #submit-details.hidden
+              #submit-details
                 / %p.align-left.light-gray.small-text * you will only be charged after pickup
                 .row
                   .col-md-6.no-side-padding
                     %p.align-right.pull-right.pt-10.tos-content
                       I agree to the
-                      %a.pointer.blue.yellow-hover{href: terms_of_service_path, target: '_blank'} terms of service 
+                      %a.pointer.blue.yellow-hover{href: terms_of_service_path, target: '_blank'} terms of service
                   .col-md-2.tos-content.align-left
                     / # = cc.check_box :remember_me, class: "pull-left"
                     / %input#terms-checkbox.pull-right{:type => "checkbox", required:true}/
                     = f.check_box :terms_of_service_accepted, {id: 'terms-checkbox', class: 'pull-right'}
                   .col-md-4
-                    %br/ 
+                    %br/
                     .boxed-gray
                       = f.submit 'confirm order', class:"btn btn-primary blue-bg-hover", id:"submit-button"
 
 
-%br/ 
-%br/ 
-%br/ 
+%br/
+%br/
+%br/
 = render :partial => "partials/footer"
 
 
 = render partial: "partials/quote_gen_modal"
 
-= javascript_include_tag "item_selector"
-
 :javascript
-  hideParentWhenZero("hide-when-zero");
-  hideParentWhenNotUsed("hide-unused");
-  
-
-  sumItemList(".item-amount", "#subtotal", "/month");
-
-  $(document).keypress(function(event) {
-    hideAndShowConfirmFields();
-  });
-  $("input[type=text]").blur(function(){
-    hideAndShowConfirmFields();
-  });
-
-  $("#cc-continue").click(function(){
-    $("#finish-details").removeClass("hidden");
-    $("#submit-details").removeClass("hidden");
-    $(this).addClass("hidden");
-  }); 
-  
-
-  $("#show-continue").click(function(){
-    $("#payment-details").removeClass("hidden");
-    $(this).addClass("hidden");
-  });
-  
-
-  function hideAndShowConfirmFields(){
-     $("#validator-id").data('bootstrapValidator').validate();
-     isValid = $("#validator-id").data('bootstrapValidator').isValid();
-     console.log("isValid? " + isValid);
-     if (isValid){
-      $("#payment-details").removeClass("hidden");
-      $("#show-continue").addClass("hidden");
-      $("#cc-continue").addClass("hidden");
-
-      // console.log("removing hidden");
-      $("#submit-details").removeClass("hidden");
-      $("#finish-details").removeClass("hidden");
-     } else{
-       console.log("validator id not valid");
-     }
-    
-    $("#credit-card-form").data('bootstrapValidator').validate();
-    if ($("#credit-card-form").data('bootstrapValidator').isValid() && $("#cc_cvc").val().length >= 3){
-       $("#submit-button").removeAttr("disabled");
-       $("#finish-details").removeClass("hidden");
-       $("#submit-details").removeClass("hidden");
-       $("#cc-continue").addClass("hidden");
-
-       console.log("submit button no longer disabled");
-     } else {
-        // console.log("removing hidden class");
-        // $("#submit-button").attr("disabled", true);
-     }     
-  }
-
-    
-   $("#quote-trigger").click(function(){
-    $("#quote-generator").removeClass("hidden");
-   });
-
-   $("#quote-close").click(function(){
-    $("#quote-generator").addClass("hidden");
-   });
-
-
-   grayOutButtonOnClick("#submit-button");
-
-
-
-  
+  // hideParentWhenZero("hide-when-zero");
+  // hideParentWhenNotUsed("hide-unused");
+  //
+  //
+  // sumItemList(".item-amount", "#subtotal", "/month");
+  //
+  // $(document).keypress(function(event) {
+  //   hideAndShowConfirmFields();
+  // });
+  // $("input[type=text]").blur(function(){
+  //   hideAndShowConfirmFields();
+  // });
+  //
+  // $("#cc-continue").click(function(){
+  //   $("#finish-details").removeClass("hidden");
+  //   $("#submit-details").removeClass("hidden");
+  //   $(this).addClass("hidden");
+  // });
+  //
+  //
+  // $("#show-continue").click(function(){
+  //   $("#payment-details").removeClass("hidden");
+  //   $(this).addClass("hidden");
+  // });
+  //
+  //
+  // function hideAndShowConfirmFields(){
+  //    $("#validator-id").data('bootstrapValidator').validate();
+  //    isValid = $("#validator-id").data('bootstrapValidator').isValid();
+  //    console.log("isValid? " + isValid);
+  //    if (isValid){
+  //     $("#payment-details").removeClass("hidden");
+  //     $("#show-continue").addClass("hidden");
+  //     $("#cc-continue").addClass("hidden");
+  //
+  //     // console.log("removing hidden");
+  //     $("#submit-details").removeClass("hidden");
+  //     $("#finish-details").removeClass("hidden");
+  //    } else{
+  //      console.log("validator id not valid");
+  //    }
+  //
+  //   $("#credit-card-form").data('bootstrapValidator').validate();
+  //   if ($("#credit-card-form").data('bootstrapValidator').isValid() && $("#cc_cvc").val().length >= 3){
+  //     //  $("#submit-button").removeAttr("disabled");
+  //      $("#finish-details").removeClass("hidden");
+  //      $("#submit-details").removeClass("hidden");
+  //      $("#cc-continue").addClass("hidden");
+  //
+  //      console.log("submit button no longer disabled");
+  //    } else {
+  //       // console.log("removing hidden class");
+  //       // $("#submit-button").attr("disabled", true);
+  //    }
+  // }
+  //
+  //
+  //  $("#quote-trigger").click(function(){
+  //   $("#quote-generator").removeClass("hidden");
+  //  });
+  //
+  //  $("#quote-close").click(function(){
+  //   $("#quote-generator").addClass("hidden");
+  //  });

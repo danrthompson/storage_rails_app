@@ -7,12 +7,10 @@ class PickupRequest < Request
 	accepts_nested_attributes_for :storage_items, allow_destroy: true
 
 	after_initialize :make_quantities_zero_not_nil
-	before_validation :normalize_delivery_time
-	after_create :create_associated_storage_items, :send_confirmation_email
+	after_create :create_associated_storage_items, :send_confirmation_email, :send_text_to_confirm_delivery_time
 
-	validates :delivery_time, presence: true
+	validates :proposed_date, :proposed_times, presence: true
 	validates :box_quantity, :bubble_quantity, :tape_quantity, :wardrobe_box_quantity, absence: true
-	validate :delivery_time_is_available, unless: :skip_delivery_validation?
 	validate :no_other_pickups?
 
 	def send_confirmation_email
@@ -76,7 +74,7 @@ class PickupRequest < Request
 	# implement better transaction support
 	def complete(current_user)
 		pickup_completion_time = Time.zone.now
-		
+
 		self.skip_delivery_validation = true
 		self.completion_time = pickup_completion_time
 		self.driver = current_user
@@ -92,7 +90,7 @@ class PickupRequest < Request
 
 		unless self.one_time_payment.blank? or self.one_time_payment == 0
 			Stripe::Charge.create(amount: (self.one_time_payment * 100).to_i, currency: 'usd', customer: self.user.stripe_user.id, description: "One time payment for items picked up on #{Time.zone.now.strftime('%m/%d')}", statement_description: "PICKUP PAYMENT")
-		end	
+		end
 		self.save
 		nil
 	end
