@@ -28,7 +28,7 @@ module Textable
 
 		def send_delivery_time_text(request_type, request_id, email, phone_number)
 			message = "User with email #{email} and phone number #{phone_number} just created a #{request_type} with id: #{request_id}"
-			self.send_text(message, ['814-288-7620'])
+			self.send_text(message, ['814-288-7620', '715-222-4686'])
 		end
 	end
 end
