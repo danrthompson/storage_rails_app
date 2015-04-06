@@ -4,15 +4,15 @@
 .row#validator-id.no-margin
   %p.dark-gray.heavy-font.full-opacity.no-margin
     Schedule Your First Free Pickup Today!
-  .col-md-4.align-left   
+  .col-md-4.align-left
     #datepicker.input-append.date
-      =f.text_field :posted_delivery_date, class:"span2 form-control", id: "datepicker-value", placeholder: 'Choose a day'
+      =f.text_field :proposed_date, class:"span2 form-control", id: "datepicker-value", placeholder: 'Choose a day'
 
       %span.add-on
         %i.icon-calendar
-   
+
   .col-md-4.align-left
-    = f.select  :posted_delivery_time, options_for_select([["Choose a time"]]),{}, {class:"form-control selectpicker", id:"#{select_id}"}
+    = f.text_area  :proposed_times
 
   .col-md-4.align-left
     .continue-button
@@ -21,33 +21,15 @@
 :javascript
   $(document).ready(function(){
     var start = new Date();
+    start.setDate(start.getDate()+1);
     var end = new Date();
     end.setDate(start.getDate()+30);
 
     $('#datepicker-value').datepicker({
-        daysOfWeekDisabled: "0",
         autoclose: true,
         todayHighlight: true
     });
     $('#datepicker-value').datepicker('setStartDate', start);
     $('#datepicker-value').datepicker('setEndDate', end);
 
-
-    $('#datepicker-value').on('changeDate', function(){
-      var available_delivery_times = #{Request.available_delivery_times.to_json};
-      var dropdownID = "#" + #{select_id.to_json};
-      updateDropdownDates('#datepicker-value', dropdownID, available_delivery_times);
-    });
-
-    // Hides keyboard on mobile
-    $('#datepicker-value').focusin(function(){
-      console.log("selecting-datepicker");
-      $('#datepicker-value').blur();
-    });
-
   });
-
-
-
-  
-

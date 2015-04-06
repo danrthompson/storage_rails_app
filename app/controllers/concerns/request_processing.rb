@@ -14,12 +14,13 @@ module RequestProcessing
 	end
 
 	def redirect_if_too_late!(request)
-		if request.time_to_edit
-			return false
-		else
-			redirect_to storage_items_url, alert: 'It is too close to the delivery time to edit this request.'
-			return true
-		end
+		# if request.time_to_edit
+		# 	return false
+		# else
+		# 	redirect_to storage_items_url, alert: 'It is too close to the delivery time to edit this request.'
+		# 	return true
+		# end
+		return false
 	end
 
 	def redirect_if_complete!(request)

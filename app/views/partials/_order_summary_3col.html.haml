@@ -20,13 +20,13 @@
                 %li
                   %span.order-item Packing Tape
                   %span.pull-right.hide-when-zero= @packing_supplies_request.tape_quantity
-              
+
               - if @pickup_request
                 // Storage Items
                 %li
                   %span.order-item Boxes
                   %span.pull-right.hide-when-zero= (@pickup_request.storage_items.where(item_type: 'small').count)
-                  %span.item-amount.hidden= (@pickup_request.storage_items.where(item_type: 'small').count) * 5.0 
+                  %span.item-amount.hidden= (@pickup_request.storage_items.where(item_type: 'small').count) * 5.0
                 %li
                   %span.order-item Medium Items
                   %span.pull-right.hide-when-zero= @pickup_request.storage_items.where(item_type: 'medium').count
@@ -48,16 +48,16 @@
                 %span.order-item Price of Storage:
                 %span.pull-right#subtotal $0.00/month
 
-           
+
           // Delivery Recap
           .col-md-4.confirm-elem
             %h5 Pickup Time
             - if @pickup_request.nil?
               %p no pickup requested... yet
-            - else 
-              %p= @pickup_request.delivery_time.strftime("%B %d at %l:%M %p")
+            - else
+              %p= @pickup_request.proposed_date.strftime("%B %d")
               .delivery-confirm-instructions
-                %br/ 
+                %br/
                 %h6.no-margin Special Instructions
                 %p.half-opactiy.hide-unused= @user.special_instructions
 
@@ -66,7 +66,7 @@
           .col-md-4.confirm-elem
             %h5 Your Address
             %p= @user.address_line_1
-            %div 
+            %div
               %p.hide-unused= @user.address_line_2
             %p #{@user.city}, #{@user.state} #{@user.zip}
         %br/

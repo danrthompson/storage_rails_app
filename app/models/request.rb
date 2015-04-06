@@ -73,6 +73,13 @@ class Request < ActiveRecord::Base
 		return false
 	end
 
+	def proposed_date=(proposed_date_val)
+		unless proposed_date_val.blank? then
+			date = Date.strptime(proposed_date_val, '%m/%d/%Y')
+			write_attribute(:proposed_date, date)
+		end
+	end
+
 	private
 
 	def send_text_to_confirm_delivery_time

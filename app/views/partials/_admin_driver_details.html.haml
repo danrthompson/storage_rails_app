@@ -5,49 +5,51 @@
     %span
       ID:
       = request.id
-    %br/ 
+    %br/
     %span
       Name:
-      %span.blue 
+      %span.blue
         = request.user.name
         / # = request.user.last_name
-    %br/ 
-    %br/ 
+    %br/
+    %br/
     %span Phone:
     = request.user.phone_number
-    %br/ 
+    %br/
     / %span Delivery Time:
-    / %br/ 
+    / %br/
     / = request.delivery_time.strftime("%B %d at %l:%M %p")
-    / %br/      
+    / %br/
     %span Email:
     %a{:href => ""}
       = request.user.email
-    %br/ 
-.col-md-4      
-  %p 
+    %br/
+.col-md-4
+  %p
     %span Delivery Time:
-    %br/ 
-    = request.delivery_time.strftime("%B %d at %l:%M %p")
+    %br/
+    - if request.delivery_time then
+      = request.delivery_time.strftime("%B %d at %l:%M %p")
+    - else
+      Delivery time not yet scheduled
     %br/
     %span Request Created:
-    %br/ 
+    %br/
     = request.created_at.strftime("%B %d at %l:%M %p")
     %br/
     %span Address:
-    %br/ 
+    %br/
     = request.user.address_line_1
     = request.user.address_line_2
-    %br/ 
+    %br/
     #{request.user.city}, #{request.user.state}, #{request.user.zip}
-    %br/ 
-    %div 
+    %br/
+    %div
       Notes:
       %p.hide-unused= request.user.special_instructions
     / %span Phone:
     / = request.user.phone_number
-    / %br/ 
+    / %br/
 
 :javascript
     hideParentWhenNotUsed("hide-unused");
-

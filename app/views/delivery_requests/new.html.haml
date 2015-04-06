@@ -3,7 +3,7 @@
     = "Edit Delivery Request |"
   - else
     = "New Delivery Request |"
-= render partial: "partials/logged_in_header"   
+= render partial: "partials/logged_in_header"
 = render partial: "partials/blue_bar", locals:{mainText:"Item Delivery", dashboard:true, faq:true}
 = render :partial => 'partials/nudge_icon'
 
@@ -15,8 +15,8 @@
         - if @edit_page
           %p.align-center.light-gray
             You delivery is currently scheduled for
-            =@delivery_request.delivery_time.strftime("%B %d at %l:%M %p")
-        = form_for(@delivery_request) do |f| 
+            =@delivery_request.proposed_date.strftime("%B %d")
+        = form_for(@delivery_request) do |f|
           / Address Info Section
           .row
             .col-md-8.col-md-offset-2
@@ -28,26 +28,26 @@
                 .row.align-left
                   = link_to "Cancel Delivery", delivery_request_path(@delivery_request), method: :delete, data: { confirm: "Are you sure you want to cancel this delivery?" }, class: 'align-left heavy-font blue'
 
-        
-          %br/ 
-          %br/ 
-          %br/ 
+
+          %br/
+          %br/
+          %br/
           - if @storage_items.count == 0
             .section-heading
               %h2.align-center.blue.no-margin You have nothing in storage
-            .row.inventory  
+            .row.inventory
               .col-md-8.col-md-offset-2
-                %h2.align-center  
+                %h2.align-center
                   (we can only deliver what you have in storage)
-            %br/ 
-            %br/ 
-          - else 
+            %br/
+            %br/
+          - else
             .section-heading
               %h2.no-margin What Shall We Deliver?
 
-            .row.inventory  
+            .row.inventory
               .col-md-8.col-md-offset-2
-                %h2.align-center  
+                %h2.align-center
                   (these are your items in storage)
                 /   / %p.pull-right.half-opacity Click items to select them for delivery
                 / .double-line
@@ -55,7 +55,7 @@
                   / .hidden
                   /   - @orginally_selected_item_ids.each do |item|
                   /     %p.existing-delivery-entry= item
-                    
+
                 - @storage_items.each do |storage_item|
                   .col-md-6.col-sm-6.col-xs-12.inventory-entries.delivery-entry
                     .inner
@@ -69,21 +69,21 @@
                       %input.pull-left.form-control.delivery-checkbox{:type => "checkbox", id:"#{storage_item.id}"}/
                       %h4.storage-item-title.pull-left{:id => "#{storage_item.id}_title"}= storage_item.get_title
               %br/
-            %br/ 
-            %br/  
-            %br/ 
-          .row  
+            %br/
+            %br/
+            %br/
+          .row
             .col-md-10.col-md-offset-1
               .row.charges-box
                 .col-md-10.col-md-offset-1.confirm-elem.light-blue-bg
                   %h5 Delivery Summary
                   %ul#delivery-summary-list
-                    %br/ 
+                    %br/
                     %li.half-opacity.delivery-line-item
                       Baseline Delivery Fee
                       %span.pull-right
                         $
-                        %span.delivery-item-price 
+                        %span.delivery-item-price
                           10
                   .single-line
                   %ul
@@ -91,7 +91,7 @@
                       Subtotal
                       %span#order-subtotal.pull-right $00.00
                       %p#not-month.hidden 0
-              %br/ 
+              %br/
           = fields_for :storage_item_entries do |f_hidden|
             = f_hidden.hidden_field :storage_item_ids, class:"form-control", id:"delivery-list"
           / .hidden-form.hidden
@@ -116,14 +116,14 @@
 
 
 :javascript
-  $(document).ready(function() { 
+  $(document).ready(function() {
     sumItemList(".delivery-item-price", "#order-subtotal","");
     checkExistingBoxes();
     valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time");
 
     $(".form-control").on('input', function() {
       deliveryCheckBtn();
-    });  
+    });
 
 
   });
@@ -145,7 +145,7 @@
       var checkboxID = $(this).attr("id");
       var newDivId = checkboxID + "_new_entry";
 
-      // Checks if item has been included      
+      // Checks if item has been included
       if($(this).prop('checked')){
 
         //console.log("Div Id: #" + newDivId);
@@ -181,10 +181,8 @@
 
   function deliveryCheckBtn(){
     if ($("#delivery-list").val() != "" && valAddrDelivery("#validator-id", "#continue-btn", "#datepicker-value", "#delivery_time")){
-      $("#continue-btn").removeAttr("disabled"); 
+      $("#continue-btn").removeAttr("disabled");
     } else{
-      $("#continue-btn").attr("disabled", true); 
+      $("#continue-btn").attr("disabled", true);
     }
   }
-
-

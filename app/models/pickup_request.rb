@@ -19,16 +19,16 @@ class PickupRequest < Request
 				$customerio.track(
 					self.user_id,
 					"pickup_created",
-					delivery_time_string: self.delivery_time.strftime("%B %d at %l:%M %p"),
-					delivery_time: self.delivery_time.to_i,
+					delivery_time_string: self.proposed_date.strftime("%B %d"),
+					delivery_time: self.proposed_date.to_i,
 				)
 			end
 			if self.user.tire_customer and self.tire_request != true and self.tire_request != '1'
 				$customerio.track(
 					self.user_id,
 					"real_pickup_created",
-					delivery_time_string: self.delivery_time.strftime("%B %d at %l:%M %p"),
-					delivery_time: self.delivery_time.to_i,
+					delivery_time_string: self.proposed_date.strftime("%B %d"),
+					delivery_time: self.proposed_date.to_i,
 				)
 			end
 		end

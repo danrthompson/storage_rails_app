@@ -1,8 +1,8 @@
 - content_for :title do
 	= "Delivery Request |"
-= render partial: "partials/logged_in_header"   
+= render partial: "partials/logged_in_header"
 
-= render partial: "partials/driver_confirmation", locals:{deliveryTime:"#{@delivery_request.delivery_time.strftime("%B %d at %l:%M %p")}", title: "Your Items Are On Their Way!", description:"Your items are scheduled to be delivered on "}
+= render partial: "partials/driver_confirmation", locals:{deliveryTime:"#{@delivery_request.proposed_date.strftime("%B %d")}", title: "Your Items Are On Their Way!", description:"Your items are scheduled to be delivered on "}
 
 
-= render partial: "partials/footer"   
+= render partial: "partials/footer"

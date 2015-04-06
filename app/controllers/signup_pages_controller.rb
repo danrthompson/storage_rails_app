@@ -94,6 +94,6 @@ class SignupPagesController < ApplicationController
 
 	def user_but_no_cc_info!
 		redirect_to new_user_session_url and return unless current_user
-		redirect_to storage_items_url(current_user.id) and return if current_user and current_user.ready? 
+		redirect_to storage_items_url(current_user.id) and return if current_user and current_user.ready?
 	end
 end

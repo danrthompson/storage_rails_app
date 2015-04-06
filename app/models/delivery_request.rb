@@ -16,8 +16,8 @@ class DeliveryRequest < Request
 				$customerio.track(
 					self.user_id,
 					"delivery_created",
-					delivery_time_string: self.delivery_time.strftime("%B %d at %l:%M %p"),
-					delivery_time: self.delivery_time.to_i
+					delivery_time_string: self.proposed_date.strftime("%B %d"),
+					delivery_time: self.proposed_date.to_i
 				)
 			end
 		end
