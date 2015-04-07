@@ -142,33 +142,37 @@
                   %p.faq-bold Small:
                   %p.faq-indent  Include - Boxes, tires, bags, or similarly sized objects
                   %p.faq-indent  Size - Totaling 3 cubic feet. For example a box with Dimensions 18”x18”x18” or anything smaller.
-                  %p Medium:
-                  %p  Include - Bikes, chairs, skis, snowboards, luggage, or coffee tables
-                  %p  Total volume of 6.5 cubic feet. Dimensions 22"x22"x22" or anything smaller.
-                  %p Large:
-                  %p  Include - Desks, drawers, TV's, armchairs, or small couches
-                  %p  Totaling 13 cubic feet. For example an item Dimensions 28"x28"x28" or anything smaller.
-                  %p Extra Large:
-                  %p  Include - Dining tables, large bed frames, sectional couches
-                  %p  Totaling 21 cubic feet. Dimensions 33"x33"x33" or anything smaller.
+                  %p.faq-bold Medium:
+                  %p.faq-indent  Include - Bikes, chairs, skis, snowboards, luggage, or coffee tables
+                  %p.faq-indent  Total volume of 6.5 cubic feet. Dimensions 22"x22"x22" or anything smaller.
+                  %p.faq-bold Large:
+                  %p.faq-indent  Include - Desks, drawers, TV's, armchairs, or small couches
+                  %p.faq-indent  Totaling 13 cubic feet. For example an item Dimensions 28"x28"x28" or anything smaller.
+                  %p.faq-bold Extra Large:
+                  %p.faq-indent  Include - Dining tables, large bed frames, sectional couches
+                  %p.faq-indent  Totaling 21 cubic feet. Dimensions 33"x33"x33" or anything smaller.
+                  %br
+                  %p.faq-bold Not sure what size your items are? No problem, give us a call and we'll help clarify everything
                 = render layout: 'partials/faq_question', locals: {question_id: 'pr_3', question_header: 'How much are pick ups?'} do
-                  %p Free Pick Ups on Orders over $50 with QuickBox or a $50 pick up fee. Our friendly pick up staff will take care of all the heavy lifting, wrap furniture and making moving & storing simple. This minimum allows QuickBox to keep it price low for mid to long term storage and covers the cost of our professional movers handling your belongings.
-                = render layout: 'partials/faq_question', locals: {question_id: 'pr_4', question_header: 'How much does it cost to have my belongings delivered? Does QuickBox offer discounts on delivery?'} do
-                  %p QuickBox will deliver your items back to you when you need them in the same city. We charge a $50 minimum delivery charge or the monthly cost of your items being returned.
-                  %p  For example, if you have 3 standard boxes at $21 per month delivery would total $50.
-                  %p    3 Standard boxes $7 / Month = $21
-                  %p    Total Monthly Charge = $21
-                  %p      $50 monthly minimum is NOT met so delivery is $50 flat fee.
-                  %p    Minimum Delivery Charge = $50
-                  %p OR
-                  %p    2 Large Items & 1 Medium Item
-                  %p    One Bike (Medium) = $7
-                  %p    2 Couches = $60
-                  %p    Total Monthly Charge = $67
-                  %p      $50 monthly minimum is met so delivery is 1 months rent.
-                  %p    Total Delivery Charge= $67
+                  %p Free Pick Ups on Orders over $50 with QuickBox or a $50 pick up fee will be applied to smaller orders. Our friendly pick up staff will take care of all the heavy lifting, wrap furniture and making moving & storing simple. This minimum allows QuickBox to keep it price low for mid to long term storage and covers the cost of our professional movers handling your belongings.
+                = render layout: 'partials/faq_question', locals: {question_id: 'pr_4', question_header: 'How much does it cost to have my belongings delivered?'} do
+                  %p QuickBox will deliver your items back to you when you need them in the same city. We charge a $50 minimum delivery charge or the standard monthly cost of each item being returned.
+                  %p  For example, if you have 3 standard boxes at $21 per month total delivery is $50. While if you have 2 Large & 1 Small item your total delivery fee is $67. 
+                  %p.faq-bold Example One: Small Order || Less Than Minimum Delivery
+                  %p.faq-indent    3 Standard boxes $7 / Month = $21
+                  %p.faq-indent    Total Monthly Charge = $21
+                  %p.faq-indent      $50 monthly minimum is NOT met so delivery is $50 flat fee.
+                  %p.faq-indent    Minimum Delivery Charge = $50
+                  %br
+                  %p.faq-bold Example Two: Larger Order || Meets Minimum Delivery 
+                  %p.faq-indent    2 Large Items & 1 Small Item
+                  %p.faq-indent    One Box (Small) = $7
+                  %p.faq-indent    2 Couches (Large) = $60
+                  %p.faq-indent   Total Monthly Charge = $67
+                  %p.faq-indent      $50 monthly minimum is met so delivery is 1 months rent.
+                  %p.faq-indent    Total Delivery Charge= $67
                   %p
-                  %p For large items it requires two QuickBox movers to deliver your items safely so we have to account for there labor.
+                  %p For large items it requires two QuickBox movers to deliver your items safely so we have to account for their labor.
                 = render layout: 'partials/faq_question', locals: {question_id: 'pr_5', question_header: 'Does QuickBox deliver items outside of my home storage city or across the country?'} do
                   %p In the future we’ll offer nationwide transport option, please inquire about this service at 720-583-5826 or support@QuickBox.com.
           .row
@@ -180,9 +184,10 @@
               %ul.no-list
                 %li#faq_ad_1
                 = render layout: 'partials/faq_question', locals: {question_id: 'ad_1', question_header: 'How do I update my billing or contact information?'} do
-                  %p To update your billing or contact information start by logging into your account. Once logged in you will see a button labeled "Account" in the top right corner. Here you can edit all of your account details.
+                  %p To update your billing or contact information start by logging into your account. Once logged in you will see a button labeled "Account" in the top right corner. Once in this view you can edit all of your account details here. 
                 = render layout: 'partials/faq_question', locals: {question_id: 'ad_2', question_header: 'When will I be charged?'} do
-                  %p We only bill you once your items have been picked up for storage and our team has begun the upload process. Usually, this occurs 24 hours after your bins are picked up. Your future charges will be billed on the monthly anniversary. If you are billed on the 1st of August, your future bills will be on the first of the month.
+                  %p When scheduling during our busiest times of the year we request a small deposit to hold your delivery window that will be applied to your order following pickup. 
+                  %p We only bill-in-full once your items have been picked up for storage and our team has begun the upload process. Usually, this occurs 24 hours after your bins are picked up. Your future charges will be billed on the monthly anniversary. If you are billed on the 1st of August, your future bills will be on the first of the month.
                 = render layout: 'partials/faq_question', locals: {question_id: 'ad_3', question_header: 'How does QuickBox bill for service?'} do
                   %p Billing is handled online via our secure Credit Card transaction system. Charges occur on your monthly billing anniversary and is charged on the same day each month (e.g. The 1st of August, 1st of September, etc.).
                 = render layout: 'partials/faq_question', locals: {question_id: 'ad_4', question_header: 'I am not able to label my boxes or upload a photo'} do
