@@ -83,9 +83,9 @@ class Request < ActiveRecord::Base
 	private
 
 	def send_text_to_confirm_delivery_time
-		# if Rails.env.production?
+		if Rails.env.production?
 			Request.send_delivery_time_text(self.type, self.id, self.user.email, self.user.phone_number)
-		# end
+		end
 	end
 
 	def delivery_time_is_available

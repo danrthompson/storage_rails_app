@@ -6,7 +6,7 @@
       %label{:for => "posted_delivery_date"}
         Date
       #datepicker.input-append.date
-        = f.text_field :proposed_date, class:"span2 form-control", id: "datepicker-value", placeholder: 'Which day is best?'
+        = f.text_field :proposed_date, class:"span2 form-control", id: "datepicker-value", placeholder: 'Which day is best?', value: (f.object.proposed_date.strftime('%m/%d/%Y') unless f.object.proposed_date.blank?)
         %span.add-on
           %i.icon-calendar
 
