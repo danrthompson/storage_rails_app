@@ -127,7 +127,7 @@
                             = f.text_field :promo_code, class:"form-control"
                           .col-md-6
                             = f.label :referrer, "How did you hear about us?"
-                            = f.select  :referrer, options_for_select([["Word of mouth"], ["An ad online"], ["A flyer"], ["Referred by a company"], ["Search"]]),{}, {class:"form-control"}
+                            = f.select  :referrer, options_for_select([["Pick One"],["Word of mouth"], ["An ad online"], ["A flyer"], ["Referred by a company"], ["Search Engine"]]),{}, {class:"form-control"}
                 %br/
 
               #submit-details.hidden
