@@ -24,7 +24,7 @@ class StorageItem < ActiveRecord::Base
 	def self.duration_discounts
 		[
 			[3, 0.0],
-			[6, 0.05],
+			[6, 0.00],
 			[10, 0.10],
 			[13, 0.15],
 			[19, 0.2],
