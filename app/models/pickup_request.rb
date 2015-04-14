@@ -13,13 +13,6 @@ class PickupRequest < Request
 	validates :box_quantity, :bubble_quantity, :tape_quantity, :wardrobe_box_quantity, absence: true
 	validate :no_other_pickups?
 
-	def user_address
-		if self.user.nil?
-			return nil
-		end
-		self.user.full_address
-	end
-
 	def send_confirmation_email
 		if Rails.env.production?
 			unless self.skip_confirm_request_email == true or self.skip_confirm_request_email == '1'

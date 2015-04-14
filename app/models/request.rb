@@ -67,6 +67,13 @@ class Request < ActiveRecord::Base
 		available_times
 	end
 
+	def user_address
+		if self.user.nil?
+			return nil
+		end
+		self.user.full_address
+	end
+
 	def time_to_edit
 		current_time = Time.zone.now
 		return true if self.delivery_time - current_time >= 1.day
