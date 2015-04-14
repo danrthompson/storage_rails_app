@@ -117,7 +117,7 @@
                 Items Pending Delivery
               - if @has_existing_delivery
                 %p.pull-right.half-opacity.hide-on-small
-                  =@existing_delivery.proposed_date.strftime("%B %d")
+                  =@existing_delivery.best_delivery_time.strftime("%B %d")
             .double-line
             - @delivery_items.each do |delivery_item|
               .col-md-6.col-sm-6.col-xs-12.inventory-entries.delivery-entry{:id => "#{delivery_item.id}"}
@@ -142,7 +142,7 @@
                 Your Pickup
                 - if @has_existing_pickup
                   %p.pull-right.half-opacity.hide-on-small
-                    =@existing_pickup.proposed_date.strftime("%B %d")
+                    =@existing_pickup.best_delivery_time.strftime("%B %d")
               .double-line
             .row
               .col-md-12.text-block
@@ -151,7 +151,7 @@
                   Our driver is scheduled to arrive on
                   - if @has_existing_pickup
                     on
-                    =@existing_pickup.proposed_date.strftime("%B %d")
+                    =@existing_pickup.best_delivery_time.strftime("%B %d")
 
                 %p
                   Please make sure your items are packed before pickup.
@@ -186,11 +186,11 @@
                 - if @has_existing_pickup
                   %li
                     %span.order-item You have a pickup scheduled for
-                    =@existing_pickup.proposed_date.strftime("%B %d")
+                    =@existing_pickup.best_delivery_time.strftime("%B %d")
                 - if @has_existing_delivery
                   %li
                     %span.order-item You have a delivery scheduled for
-                    =@existing_delivery.proposed_date.strftime("%B %d")
+                    =@existing_delivery.best_delivery_time.strftime("%B %d")
                 - if !@has_existing_pickup && !@has_existing_delivery
                   %li
                     %span.order-item You have no new notifications!

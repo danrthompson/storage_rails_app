@@ -73,8 +73,16 @@ class Request < ActiveRecord::Base
 		return false
 	end
 
+	def best_delivery_time
+		unless self.delivery_time.blank?
+			self.delivery_time
+		else
+			self.proposed_date
+		end
+	end
+
 	def proposed_date=(proposed_date_val)
-		unless proposed_date_val.blank? then
+		unless proposed_date_val.blank?
 			date = Date.strptime(proposed_date_val, '%m/%d/%Y')
 			write_attribute(:proposed_date, date)
 		end

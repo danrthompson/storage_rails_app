@@ -55,7 +55,7 @@
             - if @pickup_request.nil?
               %p no pickup requested... yet
             - else
-              %p= @pickup_request.proposed_date.strftime("%B %d")
+              %p= @pickup_request.best_delivery_time.strftime("%B %d")
               .delivery-confirm-instructions
                 %br/
                 %h6.no-margin Special Instructions

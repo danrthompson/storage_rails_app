@@ -9,7 +9,7 @@ class PickupRequest < Request
 	after_initialize :make_quantities_zero_not_nil
 	after_create :create_associated_storage_items, :send_confirmation_email, :send_text_to_confirm_delivery_time
 
-	validates :proposed_date, :proposed_times, presence: true
+	validates :proposed_date, :proposed_times, presence: true, unless: :delivery_time?
 	validates :box_quantity, :bubble_quantity, :tape_quantity, :wardrobe_box_quantity, absence: true
 	validate :no_other_pickups?
 
@@ -19,16 +19,16 @@ class PickupRequest < Request
 				$customerio.track(
 					self.user_id,
 					"pickup_created",
-					delivery_time_string: self.proposed_date.strftime("%B %d"),
-					delivery_time: self.proposed_date.to_i,
+					delivery_time_string: self.best_delivery_time.strftime("%B %d"),
+					delivery_time: self.best_delivery_time.to_i
 				)
 			end
 			if self.user.tire_customer and self.tire_request != true and self.tire_request != '1'
 				$customerio.track(
 					self.user_id,
 					"real_pickup_created",
-					delivery_time_string: self.proposed_date.strftime("%B %d"),
-					delivery_time: self.proposed_date.to_i,
+					delivery_time_string: self.best_delivery_time.strftime("%B %d"),
+					delivery_time: self.best_delivery_time.to_i
 				)
 			end
 		end

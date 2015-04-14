@@ -15,7 +15,7 @@
         - if @edit_page
           %p.align-center.light-gray
             You delivery is currently scheduled for
-            =@delivery_request.proposed_date.strftime("%B %d")
+            =@delivery_request.best_delivery_time.strftime("%B %d")
         = form_for(@delivery_request) do |f|
           / Address Info Section
           .row

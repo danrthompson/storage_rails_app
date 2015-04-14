@@ -25,8 +25,8 @@ class StorageItemsController < ApplicationController
 
 		@has_existing_pickup = if user_pickup_requests.count == 0 then nil else user_pickup_requests.first.id end
 		@has_existing_delivery = if user_delivery_requests.count == 0 then nil else user_delivery_requests.first.id end
-		@existing_delivery = user_delivery_requests.first;
-		@existing_pickup = user_pickup_requests.first;
+		@existing_delivery = user_delivery_requests.first
+		@existing_pickup = user_pickup_requests.first
 
 
 		# Items At Home
@@ -38,7 +38,7 @@ class StorageItemsController < ApplicationController
 
 		# Items in Storage
 		@storage_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil, delivery_request_id: nil).where.not(entered_storage_at: nil).order(:item_type, :entered_storage_at)
-		
+
 
 		@delivery_items = StorageItem.where(user_id: current_user.id, left_storage_at: nil).where.not(entered_storage_at: nil, delivery_request_id: nil).order(:item_type, :entered_storage_at)
 		@num_delivery_items = @delivery_items.count
@@ -48,7 +48,7 @@ class StorageItemsController < ApplicationController
 		@num_medium_items_in_storage = StorageItem.where(user_id: current_user.id, item_type: 'medium').where.not(entered_storage_at: nil).count
 		@num_large_items_in_storage = StorageItem.where(user_id: current_user.id, item_type: 'large').where.not(entered_storage_at: nil).count
 		@num_extra_large_items_in_storage = StorageItem.where(user_id: current_user.id, item_type: 'extra_large').where.not(entered_storage_at: nil).count
-		
+
 		@storage_items_pending_delivery = StorageItem.where(user_id: current_user.id, left_storage_at: nil).where.not(delivery_request_id: nil, entered_storage_at: nil).order(:item_type, :entered_storage_at)
 
 		@promo_result = if current_user.promo_code.blank?
@@ -56,7 +56,7 @@ class StorageItemsController < ApplicationController
 		else
 			coupon = Stripe::Coupon.retrieve(current_user.promo_code)
 			coupon.amount_off / 100
-		end 
+		end
 	end
 
 
