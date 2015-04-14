@@ -135,6 +135,7 @@ class User < ActiveRecord::Base
     )
   end
 
+
   rails_admin do
     list do
       field :name
@@ -145,12 +146,48 @@ class User < ActiveRecord::Base
       field :created_at
     end
     edit do
-      include_all_fields
-      field :exp_month, :integer
-      field :exp_year, :integer
-      field :cc_name, :string
-      field :cc_number, :string
-      field :cc_cvc, :string
+      field :name
+      field :email
+      field :password
+      field :password_confirmation
+      field :phone_number
+      field :address_line_1
+      field :address_line_2
+      field :city
+      field :state
+      field :zip
+      field :exp_month
+      field :exp_year
+      field :cc_name
+      field :cc_number
+      field :cc_cvc
+      field :referrer
+      field :special_instructions
+      field :admin
+
+      field :reset_password_sent_at
+      field :remember_created_at
+      field :sign_in_count
+      field :current_sign_in_at
+      field :last_sign_in_at
+      field :current_sign_in_ip
+      field :last_sign_in_ip
+      field :storage_item_number
+      field :stripe_customer_identifier
+      field :promo_code
+      field :terms_of_service_accepted
+      field :conversion_tracked
+      field :tire_customer
+      field :storage_items
+      field :packing_supplies_requests
+      field :delivery_requests
+      field :pickup_requests
+      field :notifications
+      field :unavailable_times
+      field :completed_storage_items
+      field :completed_packing_supplies_requests
+      field :completed_delivery_requests
+      field :completed_pickup_requests
     end
   end
 
