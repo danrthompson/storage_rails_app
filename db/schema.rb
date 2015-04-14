@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406175813) do
+ActiveRecord::Schema.define(version: 20150414075311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150406175813) do
     t.boolean  "tire_request"
     t.text     "proposed_times"
     t.datetime "proposed_date"
+    t.float    "delivery_fee"
   end
 
   add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree

@@ -24,6 +24,9 @@ class DeliveryRequest < Request
 	end
 
 	def price
+		unless self.delivery_fee.blank? or self.delivery_fee < 0
+			return self.delivery_fee
+		end
 		sum = 0
 		self.storage_items.each do |item|
 			sum += item.price
@@ -55,7 +58,9 @@ class DeliveryRequest < Request
 
 		self.user.update_subscription_price
 
-		Stripe::Charge.create(amount: (self.price * 100).to_i, currency: 'usd', customer: self.user.stripe_user.id, description: "Quickbox delivery on #{Time.zone.now.strftime('%m/%d')}", statement_description: "DELIVERY FEE")
+		unless (not self.delivery_fee.blank? and self.delivery_fee == 0)
+			Stripe::Charge.create(amount: (self.price * 100).to_i, currency: 'usd', customer: self.user.stripe_user.id, description: "Quickbox delivery on #{Time.zone.now.strftime('%m/%d')}", statement_description: "DELIVERY FEE")
+		end
 
 		self.save
 		nil
