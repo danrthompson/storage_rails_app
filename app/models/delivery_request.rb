@@ -17,7 +17,7 @@ class DeliveryRequest < Request
 					self.user_id,
 					"delivery_created",
 					delivery_time_string: self.best_delivery_time.strftime("%B %d"),
-					delivery_time: self.best_delivery_time.to_i
+					delivery_time: self.best_delivery_time.at_beginning_of_day.to_i
 				)
 			end
 		end

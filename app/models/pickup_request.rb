@@ -20,7 +20,7 @@ class PickupRequest < Request
 					self.user_id,
 					"pickup_created",
 					delivery_time_string: self.best_delivery_time.strftime("%B %d"),
-					delivery_time: self.best_delivery_time.to_i
+					delivery_time: self.best_delivery_time.at_beginning_of_day.to_i
 				)
 			end
 			if self.user.tire_customer and self.tire_request != true and self.tire_request != '1'
@@ -28,7 +28,7 @@ class PickupRequest < Request
 					self.user_id,
 					"real_pickup_created",
 					delivery_time_string: self.best_delivery_time.strftime("%B %d"),
-					delivery_time: self.best_delivery_time.to_i
+					delivery_time: self.best_delivery_time.at_beginning_of_day.to_i
 				)
 			end
 		end
