@@ -57,7 +57,7 @@ est_update_slider = (slider) ->
 
 est_recalculate = ->
 	base_price_and_volume_discount = est_extract_base_price_and_volume_discount()
-	
+
 	base_price = base_price_and_volume_discount[0]
 	volume_discount = base_price_and_volume_discount[1]
 	duration = parseInt($('#pickup_request_duration').val(), 10) || 0
@@ -79,24 +79,13 @@ est_initialize_estimator = (slider) ->
 		slider.inc()
 		false
 
-set_height_to_highest_height = (parent, selector) ->
-	elements = $(parent).find(selector)
-	max_height = Math.max.apply(null, elements.map(->
-		return $(this).height()
-	).get())
-	elements.height(max_height)
-
-est_fix_pricing_boxes_height = ->
-	set_height_to_highest_height('#estimator-page', '.pricing-title')
-	set_height_to_highest_height('#estimator-page', '.pricing-info')
-
 $ ->
 	slider = DiscountSlider(est_update_slider)
 	est_initialize_estimator(slider)
 	estimator_page = $('#estimator-page')
-	est_fix_pricing_boxes_height() unless estimator_page.hasClass('hidden')
+	fix_pricing_boxes_height('#estimator-page') unless estimator_page.hasClass('hidden')
 	$('#estimate-now').click ->
 		estimator_page.removeClass('hidden')
-		est_fix_pricing_boxes_height()
+		fix_pricing_boxes_height('#estimator-page')
 	$( window ).resize ->
-		est_fix_pricing_boxes_height() unless estimator_page.hasClass('hidden')
+		fix_pricing_boxes_height('#estimator-page') unless estimator_page.hasClass('hidden')

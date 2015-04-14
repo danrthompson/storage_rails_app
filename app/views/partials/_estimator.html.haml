@@ -7,6 +7,7 @@
   window.volume_discounts = JSON.parse('#{StorageItem.volume_discounts.to_json}');
   window.duration_discounts = JSON.parse('#{StorageItem.duration_discounts.to_json}');
 
+= javascript_include_tag :pricing_boxes
 = javascript_include_tag :estimator
 
 - if sign_up_flow
