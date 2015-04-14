@@ -98,7 +98,9 @@ class DeliveryRequest < Request
 			field :completion_time
 			field :driver
 			field :type
-			field :storage_items
+			field :storage_items do
+				nested_form false
+			end
 		end
 	end
 

@@ -162,7 +162,14 @@ class StorageItem < ActiveRecord::Base
 		end
 	end
 
+	def rails_admin_label
+		"ID: #{self.id} | USER: #{self.user.name} | TITLE: #{self.title}"
+	end
+
 	rails_admin do
+		object_label_method do
+			:rails_admin_label
+		end
 		list do
 			field :id
 			field :user
