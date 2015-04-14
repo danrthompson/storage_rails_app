@@ -145,6 +145,48 @@ class User < ActiveRecord::Base
       field :stripe_customer_identifier
       field :created_at
     end
+    show do
+      field :name
+      field :email
+      field :password
+      field :phone_number
+      field :address_line_1
+      field :address_line_2
+      field :city
+      field :state
+      field :zip
+      field :exp_month
+      field :exp_year
+      field :cc_name
+      field :cc_number
+      field :cc_cvc
+      field :referrer
+      field :promo_code
+      field :special_instructions
+      field :admin
+      field :stripe_customer_identifier
+      field :terms_of_service_accepted
+      field :tire_customer
+
+      field :delivery_requests
+      field :pickup_requests
+      field :storage_items
+
+      field :reset_password_sent_at
+      field :remember_created_at
+      field :sign_in_count
+      field :current_sign_in_at
+      field :last_sign_in_at
+      field :current_sign_in_ip
+      field :last_sign_in_ip
+      field :storage_item_number
+      field :conversion_tracked
+      field :unavailable_times
+      field :completed_storage_items
+      field :completed_packing_supplies_requests
+      field :completed_delivery_requests
+      field :completed_pickup_requests
+    end
     edit do
       field :name
       field :email
@@ -162,33 +204,26 @@ class User < ActiveRecord::Base
       field :cc_number
       field :cc_cvc
       field :referrer
+      field :promo_code
       field :special_instructions
       field :admin
-
-      field :reset_password_sent_at
-      field :remember_created_at
-      field :sign_in_count
-      field :current_sign_in_at
-      field :last_sign_in_at
-      field :current_sign_in_ip
-      field :last_sign_in_ip
-      field :storage_item_number
       field :stripe_customer_identifier
-      field :promo_code
       field :terms_of_service_accepted
-      field :conversion_tracked
       field :tire_customer
-      field :storage_items
-      field :packing_supplies_requests
+
       field :delivery_requests
       field :pickup_requests
-      field :notifications
-      field :unavailable_times
-      field :completed_storage_items
-      field :completed_packing_supplies_requests
-      field :completed_delivery_requests
-      field :completed_pickup_requests
+      field :storage_items
+
+      field :storage_item_number
     end
+  end
+
+  def full_address
+    address_string = "#{self.address_line_1}\n"
+    address_string += "#{self.address_line_2}\n" unless self.address_line_2.blank?
+    address_string += "#{self.city}, #{self.state}, #{self.zip}"
+    address_string
   end
 
   protected

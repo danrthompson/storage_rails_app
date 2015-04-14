@@ -13,6 +13,13 @@ class PickupRequest < Request
 	validates :box_quantity, :bubble_quantity, :tape_quantity, :wardrobe_box_quantity, absence: true
 	validate :no_other_pickups?
 
+	def user_address
+		if self.user.nil?
+			return nil
+		end
+		self.user.full_address
+	end
+
 	def send_confirmation_email
 		if Rails.env.production?
 			unless self.skip_confirm_request_email == true or self.skip_confirm_request_email == '1'
@@ -100,14 +107,42 @@ class PickupRequest < Request
 	end
 
 	rails_admin do
+		show do
+			field :user
+			field :proposed_times
+			field :proposed_date
+			field :delivery_time
+			field :driver_name
+			field :driver_notes
+			field :user_address
+			field :delivery_fee
+			field :tire_request
+			field :one_time_payment
+			field :completion_time
+			field :driver
+			field :type
+			field :storage_items
+		end
 		edit do
-			include_all_fields
-			field :skip_delivery_validation, :boolean
-			field :skip_confirm_request_email, :boolean
-			field :small_item_quantity, :integer
-			field :medium_item_quantity, :integer
-			field :large_item_quantity, :integer
-			field :extra_large_item_quantity, :integer
+			field :user
+			field :proposed_times
+			field :proposed_date
+			field :delivery_time
+			field :driver_name
+			field :driver_notes
+			field :small_item_quantity
+			field :medium_item_quantity
+			field :large_item_quantity
+			field :extra_large_item_quantity
+			field :skip_delivery_validation
+			field :skip_confirm_request_email
+			field :delivery_fee
+			field :tire_request
+			field :one_time_payment
+			field :completion_time
+			field :driver
+			field :type
+			field :storage_items
 		end
 	end
 

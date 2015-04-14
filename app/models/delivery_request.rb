@@ -67,10 +67,38 @@ class DeliveryRequest < Request
 	end
 
 	rails_admin do
+		show do
+			field :user
+			field :proposed_times
+			field :proposed_date
+			field :delivery_time
+			field :driver_name
+			field :driver_notes
+			field :user_address
+			field :delivery_fee
+			field :tire_request
+			field :one_time_payment
+			field :completion_time
+			field :driver
+			field :type
+			field :storage_items
+		end
 		edit do
-			include_all_fields
-			field :skip_delivery_validation, :boolean
-			field :skip_confirm_request_email, :boolean
+			field :user
+			field :proposed_times
+			field :proposed_date
+			field :delivery_time
+			field :driver_name
+			field :driver_notes
+			field :skip_delivery_validation
+			field :skip_confirm_request_email
+			field :delivery_fee
+			field :tire_request
+			field :one_time_payment
+			field :completion_time
+			field :driver
+			field :type
+			field :storage_items
 		end
 	end
 
