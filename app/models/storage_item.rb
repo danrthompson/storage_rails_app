@@ -162,6 +162,43 @@ class StorageItem < ActiveRecord::Base
 		end
 	end
 
+	rails_admin do
+		list do
+			field :id
+			field :user
+			field :item_type
+			field :created_at
+			field :updated_at
+			field :image, :string do
+				formatted_value do
+					bindings[:view].tag(:img, {src: bindings[:object].image_url, style: 'max-height: 100px;'})
+				end
+			end
+		end
+		show do
+			field :id
+			field :user
+			field :item_type
+			field :image, :string do
+				formatted_value do
+					bindings[:view].tag(:img, {src: bindings[:object].image_url, style: 'max-height: 500px;'})
+				end
+			end
+			field :title
+			field :description
+			field :entered_storage_at
+			field :left_storage_at
+			field :delivery_request
+			field :pickup_request
+			field :user_item_number
+			field :notes
+			field :storage_location
+			field :discount
+			field :driver
+			field :planned_duration
+		end
+	end
+
 	private
 
 	def if_entered_storage_then_must_have_title_and_image
@@ -183,7 +220,7 @@ class StorageItem < ActiveRecord::Base
 			self.user_item_number = user.storage_item_number
 			user.storage_item_number += 1
 			user.save
-		end		
+		end
 	end
 
 	def case_statement_item_types(small_option, medium_option, large_option, extra_large_option)

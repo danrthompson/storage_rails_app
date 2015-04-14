@@ -144,7 +144,7 @@ class User < ActiveRecord::Base
       field :stripe_customer_identifier
       field :created_at
     end
-    create do
+    edit do
       include_all_fields
       field :exp_month, :integer
       field :exp_year, :integer
