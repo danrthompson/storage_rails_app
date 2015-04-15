@@ -119,10 +119,10 @@
       %p.dark-gray.width-80 With by the item pricing, QuickBox only charges you for the space you use.
       %p.dark-gray.width-80 Storing a lot of items? Give us a call at (720)583-5826 and we will work out a bulk discount for you! We will always beat the best price in town!
       / %hr.width-80.half-opacity
-      = render partial: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: 'small', item_description: 'Boxes, tires, bags, or similarly sized objects'}
-      = render partial: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: 'medium', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'}
-      = render partial: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: 'large', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'}
-      = render partial: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: 'extra_large', item_description: 'Dining tables, large bedframes, sectional couches'}
+      = render partial: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: 'small', item_description: 'Boxes, tires, bags, or similarly sized objects', old_price: '$7', new_price: '$5.95'}
+      = render partial: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: 'medium', item_description: 'Bikes, chairs, skis, luggage, or coffee tables', old_price: '$15', new_price: '$12.75'}
+      = render partial: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: 'large', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches', old_price: '$30', new_price: '$25.50'}
+      = render partial: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: 'extra_large', item_description: 'Dining tables, large bedframes, sectional couches', old_price: '$50', new_price: '$42.50'}
     %br/
     %br/
 

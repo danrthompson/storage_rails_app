@@ -13,10 +13,10 @@
         %p.align-center
           With QuickBox's Per Item Pricing you'll recieve the lowest price for storage because you only pay for the space you actually use. Whether you're storing just your closet or your entire home we've broken pricing down into four categories to help you save.
   .container.row.pricing-wrapper
-    = render partial: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: 'small', item_description: 'Boxes, tires, bags, or similarly sized objects'}
-    = render partial: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: 'medium', item_description: 'Bikes, chairs, skis, luggage, or coffee tables'}
-    = render partial: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: 'large', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches'}
-    = render partial: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: 'extra_large', item_description: 'Dining tables, large bed frames, sectional couches'}
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'box', item_size: 'small', item_name: 'Small Items', item_price: 'small', item_description: 'Boxes, tires, bags, or similarly sized objects', old_price: '$7', new_price: '$5.95'}
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'bike', item_size: 'medium', item_name: 'Medium Items', item_price: 'medium', item_description: 'Bikes, chairs, skis, luggage, or coffee tables', old_price: '$15', new_price: '$12.75'}
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'couch', item_size: 'large', item_name: 'Large Items', item_price: 'large', item_description: 'Desks, drawers, TV\'s, armchairs, or small couches', old_price: '$30', new_price: '$25.50'}
+    = render partial: 'partials/item_price_box', locals: {icon_class: 'bed', item_size: 'large', item_name: 'XL Items', item_price: 'extra_large', item_description: 'Dining tables, large bed frames, sectional couches', old_price: '$50', new_price: '$42.50'}
   .container
     %br/
     %br/
