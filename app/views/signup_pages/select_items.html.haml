@@ -1,21 +1,12 @@
 - content_for :title do
   = "Price Estimator |"
 
-- if @track_conversion
-  :javascript
-    analytics.track('Signed Up', {
-      value: 15
-    });
-
 = render partial: 'partials/standard_header'
 
 = render partial: 'partials/signup_progress_header', locals: {header: 'Estimate Price', include_header: false, step_1_classes: 'signup-completed', step_2_classes: 'signup-active', step_3_classes: '', step_1_span_class: '', step_2_span_class: ' hidden', step_3_span_class: ' hidden'}
 
-.errors
-  = render partial: "partials/error_messages_object_form", locals: {object: @user}
 
-
-%br/ 
+%br/
 
 = render partial: 'partials/estimator', locals: {sign_up_flow: true}
 

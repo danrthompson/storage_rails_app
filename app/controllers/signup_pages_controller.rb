@@ -1,12 +1,19 @@
 class SignupPagesController < ApplicationController
 	include ParamExtraction
 
-	before_action :no_user!, only: [:new, :create]
-	before_action :user_but_no_cc_info!, only: [:select_items, :post_select_items, :show, :add_payment]
+	before_action :no_user!, only: [:select_items, :post_select_items, :create]
+	before_action :user_but_no_cc_info!, only: [:show, :add_payment]
 
-	def new
-		@user = User.new
+
+	def post_select_items
+		if params[:skip_pickup_request]
+			@user = User.new(estimator_skip_pickup_request: true)
+		else
+			@user = User.new select_items_params(params)
+			@user.estimator_skip_pickup_request = false
+		end
 		@subscriber = Subscriber.new
+		render :new
 	end
 
 	def create
@@ -26,7 +33,7 @@ class SignupPagesController < ApplicationController
 			  user_id: @user.id.to_s,
 			  event: 'Signed Up'
 			)
-			redirect_to signup_select_items_url(@user.id) and return
+			redirect_to signup_add_payment_url and return
 		else
 			@user.destroy
 			@user = User.new create_user_params(params)
@@ -36,37 +43,22 @@ class SignupPagesController < ApplicationController
 		end
 	end
 
-	def select_items
-		@user = User.find(params[:id])
-		redirect_to new_user_session_url and return if @user.id != current_user.id
-		@track_conversion = false
-		if @user.conversion_tracked.blank?
-			@track_conversion = true
-			@user.update_column(:conversion_tracked, true)
-		end
+	def show
+		@user = current_user
 		@pickup_request = PickupRequest.new
 	end
 
-	def post_select_items
-		@user = User.find(params[:id])
-		redirect_to new_user_session_url and return if @user.id != current_user.id
-
-		if params[:skip_pickup_request]
-			@skip_pickup_request = true
-			@pickup_request = PickupRequest.new
-		else
-			@skip_pickup_request = false
-			@pickup_request = PickupRequest.new select_items_params(params)
-		end
-		render :show
-	end
-
 	def add_payment
-		@user = User.find(params[:id])
-		redirect_to new_user_session_url and return if @user.id != current_user.id
-		unless params[:skip_pickup_request]
+		@user = current_user
+		@pickup_request = PickupRequest.new
+		unless @user.estimator_skip_pickup_request
 			@pickup_request = PickupRequest.new create_pickup_request_params(params)
 			@pickup_request.user = @user
+			@pickup_request.small_item_quantity = @user.estimator_small_item_quantity
+			@pickup_request.medium_item_quantity = @user.estimator_medium_item_quantity
+			@pickup_request.large_item_quantity = @user.estimator_large_item_quantity
+			@pickup_request.extra_large_item_quantity = @user.estimator_extra_large_item_quantity
+			@pickup_request.duration = @user.estimator_duration
 			pickup_valid = @pickup_request.valid?
 		end
 		@user.update(user_add_payment_no_cc(params))
@@ -79,7 +71,7 @@ class SignupPagesController < ApplicationController
 			render action: :show and return
 		end
 		if @user.valid?	and @user.ready?
-			if not params[:skip_pickup_request] and pickup_valid
+			if not @user.estimator_skip_pickup_request and pickup_valid
 				@pickup_request.save
 				redirect_to @pickup_request and return
 			else

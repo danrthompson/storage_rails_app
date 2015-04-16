@@ -31,7 +31,13 @@
 %br/
 %br/
 
-= form_for @user, url: create_signup_pages_path, :html => {:id => 'signup-form'} do |f|
+= form_for @user, url: signup_create_login_path, :html => {:id => 'signup-form'} do |f|
+  = f.hidden_field :estimator_small_item_quantity
+  = f.hidden_field :estimator_medium_item_quantity
+  = f.hidden_field :estimator_large_item_quantity
+  = f.hidden_field :estimator_extra_large_item_quantity
+  = f.hidden_field :estimator_duration
+
 
   ///////////////////////////////////////////////////
   // Signup /////////////////////////////////////////
