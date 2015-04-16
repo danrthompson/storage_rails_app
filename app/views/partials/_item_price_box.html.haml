@@ -6,8 +6,10 @@
         .pricing-title.by-item
           %h3= item_name
         .price
+          %h3{style: 'color:red;font-size: 28px;'}
+            %s
+              %span.old-price{style: ''}= old_price
           %h3.dark-gray
-            %span.old-price= old_price
             %span.new-price= new_price
           %p.price-subtext per month
         .price-description
