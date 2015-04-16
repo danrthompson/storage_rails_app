@@ -12,7 +12,7 @@ module ParamExtraction
 	end
 
 	def select_items_params(params)
-		params.require(:pickup_request).permit(:small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity, :duration)
+		params.require(:user).permit(:estimator_small_item_quantity, :estimator_medium_item_quantity, :estimator_large_item_quantity, :estimator_extra_large_item_quantity, :estimator_duration)
 	end
 
 	def fast_signup_params(params)
@@ -28,7 +28,7 @@ module ParamExtraction
 	end
 
 	def create_user_params(params)
-		params.require(:user).permit(:email, :password, :name, :phone_number)
+		params.require(:user).permit(:email, :password, :name, :phone_number, :estimator_small_item_quantity, :estimator_medium_item_quantity, :estimator_large_item_quantity, :estimator_extra_large_item_quantity, :estimator_duration)
 	end
 
 	def user_address_params(params)
@@ -56,7 +56,7 @@ module ParamExtraction
 	end
 
 	def create_pickup_request_params(params)
-		params.require(:pickup_request).permit(:proposed_date, :proposed_times, :small_item_quantity, :medium_item_quantity, :large_item_quantity, :extra_large_item_quantity, :duration)
+		params.require(:pickup_request).permit(:proposed_date, :proposed_times)
 	end
 
 	def create_delivery_request_params(params)

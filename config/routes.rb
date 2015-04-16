@@ -65,11 +65,11 @@ Rails.application.routes.draw do
   get 'locations/boulder-colorado' => 'static_pages#boulder'
   get 'locations/denver-colorado' => 'static_pages#denver'
 
-  get 'signup', to: 'signup_pages#new', as: 'new_signup_pages'
-  post 'signup', to: 'signup_pages#create', as: 'create_signup_pages'
-  get 'signup/items/:id', to: 'signup_pages#select_items', as: 'signup_select_items'
-  post 'signup/items/:id', to: 'signup_pages#post_select_items'
-  patch 'signup/:id', to: 'signup_pages#add_payment', as: 'add_payment_signup_pages'
+  get 'signup', to: 'signup_pages#select_items', as: 'new_signup_pages'
+  post 'signup', to: 'signup_pages#post_select_items'
+  post 'signup/create_login', to: 'signup_pages#create', as: 'signup_create_login'
+  get 'signup/add_payment', to: 'signup_pages#show', as: 'signup_add_payment'
+  patch 'signup/add_payment', to: 'signup_pages#add_payment'
 
   root 'static_pages#homepage'
 

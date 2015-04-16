@@ -7,7 +7,7 @@ class AdminPagesController < ApplicationController
 		@user = User.where(sign_in_as_user_params(params)).first
 		redirect_to admin_sign_in_as_user_url, alert: 'User does not exist.' and return unless @user
 		sign_in @user
-		redirect_to storage_items_url(@user.id) and return
+		redirect_to storage_items_url and return
 	end
 
 	def sign_in_as_user
