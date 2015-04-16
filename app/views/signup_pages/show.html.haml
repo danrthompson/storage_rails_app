@@ -16,32 +16,8 @@
       = link_to "Logout", destroy_user_session_path, method: "delete", class:"black-hover blue"
 
 
+= render partial: 'partials/signup_progress_header', locals: {header: 'Book Pickup', include_header: true, step_1_classes: 'signup-completed', step_2_classes: 'signup-completed', step_3_classes: 'signup-active', step_1_span_class: '', step_2_span_class: '', step_3_span_class: ' hidden'}
 
-.container.full-width.blue-bg.no-padding.white.align-center
-  %br/
-  %h1#lets-doit ACCOUNT DETAILS
-
-#signup-progress.row.align-center
-  .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1
-    %ul.no-list
-      %li.signup-completed#step-1
-        %h4
-          %span.green{:data => {'icon' => "D"}}
-          1.
-          %br.show-on-small
-          Create Login
-      %li#step-2.signup-active
-        %h4
-          %span.green.hidden{:data => {'icon' => "D"}}
-          2.
-          %br.show-on-small
-          Item Selection
-      %li#step-3
-        %h4
-          %span.green.hidden{:data => {'icon' => "D"}}
-          3.
-          %br.show-on-small
-          Account Details
 .errors
   = render partial: "partials/error_messages_object_form", locals: {object: @user}
   = render partial: "partials/error_messages_object_form", locals: {object: @pickup_request}
