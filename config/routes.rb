@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :storage_items, only: [:index, :edit, :update]
-  resources :delivery_requests, :packing_supplies_requests, :pickup_requests, only: [:show, :create, :new, :edit, :update, :destroy]
+  resources :delivery_requests, :pickup_requests, only: [:show, :create, :new, :edit, :update, :destroy]
   resources :subscribers, only: [:create]
 
   get 'admin/block_time', to: 'admin_pages#block_time', as: 'block_time'

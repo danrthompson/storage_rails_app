@@ -7,14 +7,6 @@
       .single-line.no-opacity
       %h1 HERE ARE YOUR THINGS
     .col-md-1.col-md-offset-2.col-sm-4.col-xs-4.align-center
-      = link_to new_packing_supplies_request_path do
-        .service-box.yellow-hover
-          .service-icon
-            %i.fa.fa-dropbox
-          .service-desc
-            %h6
-              Packing Supplies
-    .col-md-1.col-sm-4.col-xs-4.align-center
       - if !@has_existing_pickup
         = link_to new_pickup_request_path do
           .service-box.yellow-hover
