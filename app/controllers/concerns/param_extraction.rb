@@ -16,7 +16,7 @@ module ParamExtraction
 	end
 
 	def fast_signup_params(params)
-		params.require(:pickup_request).permit(:posted_delivery_date, :posted_delivery_time)
+		params.require(:pickup_request).permit(:proposed_date, :proposed_times)
 	end
 
 	def complete_pickup_request_params(params)
@@ -60,7 +60,7 @@ module ParamExtraction
 	end
 
 	def create_delivery_request_params(params)
-		params.require(:delivery_request).permit(:posted_delivery_time, :posted_delivery_date)
+		params.require(:delivery_request).permit(:proposed_date, :proposed_times)
 	end
 
 	def update_storage_item_params(params)
@@ -68,6 +68,6 @@ module ParamExtraction
 	end
 
 	def edit_pickup_request_params(params)
-		params.require(:pickup_request).permit(:posted_delivery_time, :posted_delivery_date)
+		params.require(:pickup_request).permit(:proposed_date, :proposed_times)
 	end
 end
