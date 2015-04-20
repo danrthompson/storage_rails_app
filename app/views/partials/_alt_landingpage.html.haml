@@ -129,12 +129,11 @@
     %br/
     %br/
 
-    .col-md-4.col-md-offset-4.col-sm-4.col-sm-offset-4
-      .boxed-gray.continue-button
-        %a.white{"href" => "javascript:;"}
-          %button.btn.btn-primary.blue-bg.blue-bg-hover.small-btn#estimate-now
-            Get an Instant Quote
-            %span.hide-on-small with our Estimator Tool
+    .col-md-6.col-md-offset-3
+      %a.large-font#estimate-now{"href" => "javascript:;"}
+        Get an Instant Quote
+        %span.hide-on-small with our Estimator Tool
+    %br
     = render partial: 'partials/estimator', locals: {sign_up_flow: false}
 
     %br.hide-on-small/

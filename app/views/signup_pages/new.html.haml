@@ -50,6 +50,7 @@
                   .col-md-12
                     %div.extra-form-padding
                       = f.password_field :password, autofocus: true, class:"form-control", placeholder: "Password"
+                    %p Password must have at least 8 characters
               .col-md-8.col-md-offset-2.bottom-buttons
                 = f.submit "Create Account",:class => "btn btn-skin pull-right", id:"signup-fourth-btn"
                 / %a.pointer{href:"/"}
