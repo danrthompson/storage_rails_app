@@ -32,11 +32,11 @@ module ParamExtraction
 	end
 
 	def user_address_params(params)
-		params.require(:user).permit(:address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number)
+		params.require(:user).permit(:address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :prefers_calls, :prefers_texts, :prefers_emails)
 	end
 
 	def user_add_payment_no_cc(params)
-		params.require(:user).permit(:promo_code, :referrer, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :terms_of_service_accepted)
+		params.require(:user).permit(:promo_code, :referrer, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :terms_of_service_accepted, :prefers_calls, :prefers_texts, :prefers_emails)
 	end
 
 	def user_just_cc_params(params)
@@ -44,11 +44,11 @@ module ParamExtraction
 	end
 
 	def user_cc_params(params)
-		params.require(:user).permit(:cc_number, :cc_name, :exp_month, :exp_year, :cc_cvc, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number)
+		params.require(:user).permit(:cc_number, :cc_name, :exp_month, :exp_year, :cc_cvc, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :prefers_calls, :prefers_texts, :prefers_emails)
 	end
 
 	def edit_user_params(params)
-		params.require(:user).permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation, :cc_number, :cc_name, :exp_month, :exp_year, :cc_cvc, :name)
+		params.require(:user).permit(:email, :address_line_1, :address_line_2, :city, :state, :zip, :special_instructions, :phone_number, :password, :password_confirmation, :cc_number, :cc_name, :exp_month, :exp_year, :cc_cvc, :name, :prefers_calls, :prefers_texts, :prefers_emails)
 	end
 
 	def create_packing_supplies_request_params(params)

@@ -167,6 +167,10 @@ class User < ActiveRecord::Base
       field :stripe_customer_identifier
       field :terms_of_service_accepted
       field :tire_customer
+      field :prefers_calls
+      field :prefers_texts
+      field :prefers_emails
+      field :not_ready
 
       field :delivery_requests
       field :pickup_requests
@@ -210,6 +214,10 @@ class User < ActiveRecord::Base
       field :stripe_customer_identifier
       field :terms_of_service_accepted
       field :tire_customer
+      field :prefers_calls
+      field :prefers_texts
+      field :prefers_emails
+      field :not_ready
 
       field :delivery_requests
       field :pickup_requests
