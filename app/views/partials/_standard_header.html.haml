@@ -25,9 +25,8 @@
       %ul.nav.navbar-nav.navbar-right
         - if current_user
           %li= link_to 'Dashboard', storage_items_path
+          %li= link_to 'Account', edit_user_path(current_user)
           %li= link_to 'Logout', destroy_user_session_path
         - else
           %li= link_to 'Login', new_user_session_path
           %li= link_to 'Signup', new_signup_pages_path
-
-        

@@ -1,7 +1,6 @@
 - content_for :title do
 	= "Pickup Request |"
-= render partial: "partials/logged_in_header"
-
+= render partial: 'partials/standard_header'
 = render partial: "partials/driver_confirmation", locals:{deliveryTime:"#{@pickup_request.best_delivery_time.strftime("%B #{@pickup_request.best_delivery_time.day.ordinalize}")}", title: "Your Pickup Is Booked!", description:"Someone will be by to take your items to storage on "}
 
 = render partial: "partials/footer"

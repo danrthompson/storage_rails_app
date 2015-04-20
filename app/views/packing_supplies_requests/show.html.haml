@@ -1,6 +1,6 @@
 - content_for :title do
   = "Packing Supplies Request |"
-= render partial: "partials/logged_in_header"   
+= render partial: 'partials/standard_header'  
 
 
 %section#about.home-section.text-center
@@ -12,7 +12,7 @@
             %h2 Your Order Has Been Recorded!
             %br/
             %p
-              We'll send you a confirmation email as soon as your items ship. 
+              We'll send you a confirmation email as soon as your items ship.
               If you have any questions in the meantime, feel free to contact us at
               %a{:href => "mailto:team@quickbox.com"} team@quickbox.com.
               Thanks!
@@ -31,4 +31,4 @@
               =link_to "Back To Dashboard", storage_items_path, class:"white"
 
 
-= render partial: "partials/footer"   
+= render partial: "partials/footer"

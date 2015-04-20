@@ -1,6 +1,6 @@
 - content_for :title do
   = "Edit Storage Item |"
-= render :partial => 'partials/logged_in_header'
+= render partial: 'partials/standard_header'
 = render partial: "partials/blue_bar", locals:{mainText:"Edit Item", dashboard:true, faq:true}
 
 
@@ -35,7 +35,7 @@
               %p Item Image
               .single-line.width-80.no-padding
               = form.file_field :image, class:"align-center"
-              %br/ 
+              %br/
             .boxed-grey.col-md-6.col-sm-8.col-xs-12.fat-white-border
               #contact-form
                 .row
@@ -53,11 +53,11 @@
 
                 .row
                   .col-md-8.col-md-offset-4.bottom-buttons.col-xs-12
-                    = form.submit "Save Changes", class:"btn btn-primary pull-right loadingOnClick" 
+                    = form.submit "Save Changes", class:"btn btn-primary pull-right loadingOnClick"
                     = link_to "Cancel", :storage_items, class:"btn gray-bg white half-opacity"
 
                     %p.pull-left.no-opacity p
-                %br/ 
+                %br/
 
 = render :partial => 'partials/footer'
 
@@ -73,8 +73,8 @@
         / %h1#itemIDModalLabel.modal-title.align-center What is the ID For?
       .modal-body.width-90
         %p.width-90
-          We can storage anything. Most items fall within one of four categories. For your convenience, we've listed these categories and the items they cover below. 
-        %br/ 
+          We can storage anything. Most items fall within one of four categories. For your convenience, we've listed these categories and the items they cover below.
+        %br/
         .row
           .col-md-6
             %h4.no-margin Boxes
@@ -87,7 +87,7 @@
               %li Sofas and couches
               %li Mattresses
               %li Desks
-          
+
         .row
           .col-md-6
             %h4.no-margin Medium Items
@@ -106,8 +106,7 @@
               %li Full bed frames
               %li Exercise equipment
               %li Items over 250lbs
-        
+
       .modal-footer
         %button.btn.btn-default.pull-left{"data-dismiss" => "modal", :type => "button"} Close
         / %button.btn.btn-primary{:type => "button"} Save changes
-
