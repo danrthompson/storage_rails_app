@@ -51,16 +51,6 @@ class SignupPagesController < ApplicationController
 	def add_payment
 		@user = current_user
 		@pickup_request = PickupRequest.new
-		unless @user.estimator_skip_pickup_request
-			@pickup_request = PickupRequest.new create_pickup_request_params(params)
-			@pickup_request.user = @user
-			@pickup_request.small_item_quantity = @user.estimator_small_item_quantity
-			@pickup_request.medium_item_quantity = @user.estimator_medium_item_quantity
-			@pickup_request.large_item_quantity = @user.estimator_large_item_quantity
-			@pickup_request.extra_large_item_quantity = @user.estimator_extra_large_item_quantity
-			@pickup_request.duration = @user.estimator_duration
-			pickup_valid = @pickup_request.valid?
-		end
 		@user.update(user_add_payment_no_cc(params))
 		begin
 			@user.update(user_just_cc_params(params))
@@ -70,15 +60,36 @@ class SignupPagesController < ApplicationController
 			flash.now[:alert] = e.message
 			render action: :show and return
 		end
-		if @user.valid?	and @user.ready?
-			if not @user.estimator_skip_pickup_request and pickup_valid
-				@pickup_request.save
+		user_valid_and_ready = @user.valid? and @user.ready?
+		unless user_valid_and_ready
+			@user.add_readiness_errors
+		end
+		pickup_created = false
+		unless @user.estimator_skip_pickup_request
+			@pickup_request = PickupRequest.new create_pickup_request_params(params)
+			@pickup_request.user = @user
+			@pickup_request.small_item_quantity = @user.estimator_small_item_quantity
+			@pickup_request.medium_item_quantity = @user.estimator_medium_item_quantity
+			@pickup_request.large_item_quantity = @user.estimator_large_item_quantity
+			@pickup_request.extra_large_item_quantity = @user.estimator_extra_large_item_quantity
+			@pickup_request.duration = @user.estimator_duration
+			unless @pickup_request.valid?
+				@user.not_ready = true
+				@user.save
+				render action: :show and return
+			end
+			@pickup_request.save
+			@user.not_ready = nil
+			@user.save
+			pickup_created = true
+		end
+		if user_valid_and_ready
+			if pickup_created
 				redirect_to @pickup_request and return
 			else
 				redirect_to storage_items_url and return
 			end
 		end
-		@user.add_readiness_errors
 		render action: :show and return
 	end
 
