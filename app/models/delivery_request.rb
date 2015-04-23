@@ -90,10 +90,10 @@ class DeliveryRequest < Request
 			field :delivery_time
 			field :driver_name
 			field :driver_notes
-			field :skip_delivery_validation
-			field :skip_confirm_request_email
+			field :skip_delivery_validation, :boolean
+			field :skip_confirm_request_email, :boolean
 			field :delivery_fee
-			field :tire_request
+			field :tire_request, :boolean
 			field :one_time_payment
 			field :completion_time
 			field :driver

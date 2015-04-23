@@ -90,9 +90,13 @@ class Request < ActiveRecord::Base
 
 	def proposed_date=(proposed_date_val)
 		unless proposed_date_val.blank?
-			date = Date.strptime(proposed_date_val, '%m/%d/%Y')
-			datetime = Time.zone.local(date.year, date.month, date.day)
-			write_attribute(:proposed_date, datetime)
+			if proposed_date_val.class == String
+				date = Date.strptime(proposed_date_val, '%m/%d/%Y')
+				datetime = Time.zone.local(date.year, date.month, date.day)
+				write_attribute(:proposed_date, datetime)
+			else
+				write_attribute(:proposed_date, proposed_date_val)
+			end
 		end
 	end
 
