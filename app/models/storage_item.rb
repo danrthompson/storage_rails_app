@@ -12,7 +12,7 @@ class StorageItem < ActiveRecord::Base
 	def self.volume_discounts
 		[
 			[10, 0.0],
-			[65, 0.0],
+			[85, 0.0],
 			[100, 0.1],
 			[180, 0.15],
 			[225, 0.20],
